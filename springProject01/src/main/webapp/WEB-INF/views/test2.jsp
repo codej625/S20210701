@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%-- <%		response.sendRedirect("test");	%> --%>
-	<%
-		response.sendRedirect("test2");
-	%>
+ push test 0721 18:14
 </body>
 </html>
