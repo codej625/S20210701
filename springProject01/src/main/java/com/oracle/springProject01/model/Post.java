@@ -18,17 +18,18 @@ public class Post {
 	private String p_gname;
 	private int p_capa;
 	private int p_cost;
-	private String P_regdate;
-	private String P_metdate;
+	private String P_appstart;
+	private String P_append;
 	private String p_choice;
 	private String p_overcapa;
 	private String p_loc;
 	private String P_tag;
-	private String p_startnum;
-	private String p_endnum;
+	private String p_metstart;
+	private String p_metend;
 	private String p_starttime;
 	private String p_endtime;
 	private String p_writedate;
 	private int p_hit;
+	private String p_cstatus;
 
 }
