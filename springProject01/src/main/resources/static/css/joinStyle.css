@@ -1,0 +1,149 @@
+body {
+    font-size: 15px;
+	font-weight: 400;
+    font-family: 'Nanum Square', sans-serif;
+	line-height: 1.8em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+	color: #3c3c3c;
+	margin: 0px;
+	padding: 0px;
+}
+ul, li {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	color: #3c3c3c;
+	text-decoration: none;
+}
+a {
+	color: #000;
+	text-decoration: none;
+}
+.header_top {
+	position: relative;
+	width: 100%;
+	height: 35px;
+	padding-top: 25px;
+	font-weight: 400;
+	display: flex;
+	z-index: 11;
+	justify-content: center;
+	align-items: center;
+	color:#3c3c3c;
+	border-bottom: 1px solid #EFEFEF;
+}
+.header_top .logo_section {
+	position: absolute;
+	left: 100px;
+	top: -1px;
+	width: 100px;
+}
+.header_top .logo_section img {
+	width: 100%;
+	cursor: pointer;
+}
+.header_top .nav_bar {
+	position: absolute;
+	top: 10px;
+	right: 200px;
+}
+.header_top .nav_bar .nav_header ul li{
+	margin: 0 15px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 13px;
+}
+.login_page {
+	background-color: #fafafa;
+	background-color: rgba(255, 255, 255, 0.4);
+	padding: 10vh 0px;
+	min-height: 100vh;
+	text-align: center;
+}
+.login_page .login_section {
+	max-width: 450px;
+	margin: 0px auto;
+}
+.login_page .login_section img{
+	width: 200px;
+	height: 200px;
+	margin-top:-40px;
+}
+.login_page .login_section .login_title {
+	font-size: 15px;
+	text-align: left;
+	margin-top: 20px;
+	font-weight: 700;
+}
+.login_page .login_section .login_input_section {
+	margin-top: 15px;
+}
+.login_page .login_section .login_input_section .input_item input{
+	width: 100%;
+	height: 56px;
+	margin-bottom: 30px;
+	padding: 10px 18px;
+	border-radius: 6px;
+	font-size: 15px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	background-color: #fff; 
+}
+.login_page .login_section .login_input_section .input_item2 .save_id {
+	font-size: 13px;
+	text-align: left;
+	margin-top: -25px;
+	font-weight: 700;
+}
+.login_page .login_section .login_input_section .input_item2 .search_info {
+	font-size: 13px;
+	text-align: right;
+	margin-top: -17px;
+	font-weight: 700;
+}
+.login_page .login_section .login_input_section .agree_form {
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+}
+.default_bt {
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	border: 0px;
+	border-radius: 6px;
+	padding: 20px 204px 20px 204px;
+	margin-top: 30px;
+}
+.default_bt1 {
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	font-size: 14px;
+	border: 0px;
+	border-radius: 6px;
+	font-weight: 600;
+}
+.default_bt .join_bt {
+	width: 180px;
+	height: 56px;
+	line-height: 64px;
+	padding: 0 0 0 50px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #fff;
+	
+}
+.default_bt1 .check_bt {
+	width: 30%;
+	height: 56px;
+	float: right;
+	line-height: 64px;
+	padding: 0 0 0 50px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #2F2F96;
+}
