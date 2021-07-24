@@ -10,13 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
-<link rel="stylesheet" type="text/css" href="../css/joinStyle.css"/>
-<link rel="stylesheet" type="text/css" href="../css/foot.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/joinStyle.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/foot.css"/>
 </head>
 <body onload="bodyOnload()">
 	<form action="userLoginPro.do" method="post">
         <div class="header_top">
-            <div class="logo_section"><img src="../img/logo.png"></div>
+            <div class="logo_section"><img src="${pageContext.request.contextPath}/img/logo.png"></div>
             <div class="nav_bar">
                 <div class="nav_header">
                     <ul>

@@ -5,10 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="./css/cate.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/cate.css"/>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
 	<!-- **MAIN START** -->
     <main>
         <!-- main -->
@@ -73,6 +72,6 @@
             </div>
         </div>
     </main>
-    <%@ include file="footer.jsp" %>
+   <%@ include file="/WEB-INF/views//main/footer.jsp"%>
 </body>
 </html>

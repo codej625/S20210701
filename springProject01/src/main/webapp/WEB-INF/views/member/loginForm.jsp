@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>loginForm</title>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
-<link href="../css/loginStyle.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/css/loginStyle.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 

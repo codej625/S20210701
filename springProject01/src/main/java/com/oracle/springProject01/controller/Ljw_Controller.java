@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Ljw_Controller {
-	@RequestMapping(value = "/login/login")
+	@RequestMapping(value = "/main/join")
 	public String test() {
 		System.out.println("Ljw_Controller test Start...");
-		return "login/login";
+		return "main/join";
 	}
 
 }
