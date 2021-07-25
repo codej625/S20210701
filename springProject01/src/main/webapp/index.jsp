@@ -9,7 +9,7 @@
 <body>
 	<%-- <%		response.sendRedirect("test");	%> --%>
 	<%
-		response.sendRedirect("main/main");
+		response.sendRedirect("login/join");
 	%>
 </body>
 </html>
