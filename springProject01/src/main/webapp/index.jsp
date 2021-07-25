@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%-- <%		response.sendRedirect("test");	%> --%>
 	<%
-		response.sendRedirect("login/login");
+		response.sendRedirect("main/join");
 	%>
 </body>
 </html>
