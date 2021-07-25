@@ -5,8 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/cate.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/cate.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
