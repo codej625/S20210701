@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Pmj_Controller {
-	@RequestMapping(value = "/login/join")
+	@RequestMapping(value = "/main/join")
 	public String join() {
-		System.out.println("/login/join Start...");
-		return "/login/join";
+		System.out.println("/main/join Start...");
+		return "main/join";
 	}
 }
