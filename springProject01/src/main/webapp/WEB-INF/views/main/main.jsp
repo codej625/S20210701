@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/index.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/index.css" />
 
 </head>
 <body>
@@ -18,7 +17,7 @@
 		<div class="contennts_wrap">
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url(${pageContext.request.contextPath}/img/goya.jpg');"></div>
+					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg');"></div>
 				<div class="ex_btn">
 					<button>기능1</button>
 					<button>기능2</button>
@@ -26,7 +25,7 @@
 			</div>
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url('${pageContext.request.contextPath/img/goya.jpg');"></div>
+					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg');"></div>
 				<div class="ex_btn">
 					<button>기능1</button>
 					<button>기능2</button>
