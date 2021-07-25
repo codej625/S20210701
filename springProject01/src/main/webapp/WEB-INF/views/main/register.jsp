@@ -16,7 +16,11 @@
 			<div class="page_title">개설하기</div>
 			<div class="info_section">
 				<div class="class_img"
+<<<<<<< HEAD
 					style="background-image: url('./img/01.jpg');">
+=======
+					style="background-image: url('${pageContext.request.contextPath}/img/01.jpg');">
+>>>>>>> 7de17e9b3e4a98ce20c0a522dfecb812985ad758
 					<input type="button" value="사진첨부">
 				</div>
 				<div class="class_info">

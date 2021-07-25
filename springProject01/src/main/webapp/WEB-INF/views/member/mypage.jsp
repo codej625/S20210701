@@ -5,7 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userInfo.css" />
+=======
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/userInfo.css" />
+>>>>>>> 7de17e9b3e4a98ce20c0a522dfecb812985ad758
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -22,7 +27,12 @@
 				<div class="info_nav_menu">관심내역</div>
 			</div>
 			<div class="info_section">
+<<<<<<< HEAD
 				<div class="info_img" style="background-image: url('/img/01.jpg');"></div>
+=======
+				<div class="info_img"
+					style="background-image: url('${pageContext.request.contextPath}/img/01.jpg');"></div>
+>>>>>>> 7de17e9b3e4a98ce20c0a522dfecb812985ad758
 				<div class="info_items">
 					<div class="info_item">
 						<div class="item_title">이름</div>
