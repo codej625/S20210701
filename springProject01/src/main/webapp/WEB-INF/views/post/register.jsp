@@ -24,23 +24,39 @@
 					<div class="class_info">
 						<div class="section_tit">기본정보</div>
 						<div class="section_con">
+							모임/클래스
+							<c:choose>
+								<c:when test="${bt_num == 1 }">
+									<div class="item_title">
+										<input type="hidden" name="bt_num" value="${bt_num }">
+										<input type="text" value="모임" readonly="readonly">
+									</div>
+								</c:when>
+								<c:when test="${bt_num == 2 }">
+									<div class="item_title">
+										<input type="hidden" name="bt_num" value="${bt_num }">
+										<input type="text" value="클래스" readonly="readonly">
+									</div>
+								</c:when>
+							</c:choose>
 							<div class="item_title">카테고리</div>
 							<div class="item_content">
-								<select name="">
-									<option>카테고리</option>
-									<option>게임/만화/애니</option>
-									<option>영화/음악/그림</option>
-									<option>스포츠/레저</option>
-									<option>반려동물</option>
-									<option>패션/미용</option>
-									<option>건강/다이어트</option>
-									<option>가족/육아</option>
-									<option>컴퓨터/통신</option>
-									<option>외국어/인문/과학</option>
-									<option>경제/금융/정치/사회</option>
-									<option>문학/창작</option>
-									<option>기타</option>
-								</select> <input type="text">
+								<select name="bc_num">
+									<option value="1">카테고리</option>
+									<option value="2">게임/만화/애니</option>
+									<option value="3">영화/음악/그림</option>
+									<option value="4">스포츠/레저</option>
+									<option value="5">반려동물</option>
+									<option value="6">패션/미용</option>
+									<option value="7">건강/다이어트</option>
+									<option value="8">가족/육아</option>
+									<option value="9">컴퓨터/통신</option>
+									<option value="10">외국어/인문/과학</option>
+									<option value="11">경제/금융/정치/사회</option>
+									<option value="12">문학/창작</option>
+									<option value="13">기타</option>
+								</select>
+								<input type="text" name="p_title" placeholder="모임명을 입력해주세요">
 							</div>
 							<div class="section_con">
 								<div class="item_title">문의연락처</div>

@@ -50,9 +50,11 @@ public class Yjh_Controller {
 	
 //	게시물 작성
 	@GetMapping(value = "/post/register")
-	public String register(int bt_num) {
-		System.out.println("Yjh_Controller list Start...");
-		
+	public String register(int bt_num, Model model) {
+		System.out.println("Yjh_Controller String register Start...");
+//		int bt_num = 
+		model.addAttribute("bt_num",bt_num);
+		System.out.println("bt_num->"+bt_num);
 		return "post/register";
 	}
 //	@RequestMapping(value = "/main/main")
