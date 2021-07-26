@@ -22,7 +22,7 @@
 			<div class="nav_bar">
 				<div class="nav_header">
 					<ul>
-						<li>로그인</li>
+						<li><a href="${pageContext.request.contextPath}/main/main">로그인</a></li>
 						<li>회원가입</li>
 						<li>회원님</li>
 						<li>로그아웃</li>
@@ -34,7 +34,8 @@
 						<i class="far fa-id-card fa-3x"></i><br /> <a>마이페이지</a>
 					</div>
 					<div class="nav_detail">
-						<i class="far fa-list-alt fa-3x"></i><br /> <a>모임개설</a>
+						<a href="${pageContext.request.contextPath}/post/add"><i class="far fa-list-alt fa-3x"></i></a><br />
+						<a href="${pageContext.request.contextPath}/post/add">모임개설</a>
 					</div>
 					<div class="nav_detail">
 						<i class="far fa-bell fa-3x"></i><br /> <a>알림</a>

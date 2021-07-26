@@ -31,5 +31,12 @@ public class Post {
 	private String p_writedate;
 	private int p_hit;
 	private String p_cstatus;
+	
+//	조회용
+	private String search;
+	private String keyword;
+	private String pageNum;
+	private int start;
+	private int end;
 
 }
