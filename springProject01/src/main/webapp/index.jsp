@@ -9,7 +9,7 @@
 <body>
 	<%-- <%		response.sendRedirect("test");	%> --%>
 	<%
-		response.sendRedirect("main/category");
+		response.sendRedirect("admin/index");
 	%>
 </body>
 </html>

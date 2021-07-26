@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class Ljw_Controller {
 
-	@RequestMapping(value = "/main/category")
+	@RequestMapping(value = "/admin/index")
 	public String test() {
 		System.out.println("Ljw_Controller test Start...");
-		return "main/category";
+		return "admin/index";
 	}
 
 }
