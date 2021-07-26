@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/index.css" />
+	href="${pageContext.request.contextPath}/css/main.css" />
 
 </head>
 <body>
@@ -18,18 +18,22 @@
 		<div class="contennts_wrap">
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url(${pageContext.request.contextPath}/img/goya.jpg');"></div>
+					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg');">
+					<a>모임을 하고싶으세요?</a>
+				</div>
 				<div class="ex_btn">
-					<button>기능1</button>
-					<button>기능2</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/category?bt_num=1">참여하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register'">개설하기</button>
 				</div>
 			</div>
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url('${pageContext.request.contextPath/img/goya.jpg');"></div>
+					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg');">
+					<a>클래스를 통해 배우고 싶으세요?</a>	
+				</div>
 				<div class="ex_btn">
-					<button>기능1</button>
-					<button>기능2</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/category'">참여하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register'">개설하기</button>
 				</div>
 			</div>
 			<div class="ex_section">
@@ -44,6 +48,6 @@
 			</div>
 		</div>
 	</main>
-	<%@ include file="/WEB-INF/views//main/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/main/footer.jsp"%>
 </body>
 </html>
