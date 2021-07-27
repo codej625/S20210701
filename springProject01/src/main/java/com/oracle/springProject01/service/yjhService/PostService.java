@@ -7,4 +7,5 @@ import com.oracle.springProject01.model.Post;
 public interface PostService {
 	int total();
 	List<Post> listPost(Post post);
+	int postInsert(Post post);
 }

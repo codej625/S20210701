@@ -29,5 +29,14 @@ public class PostServiceImpl implements PostService {
 		postList = pd.listPost(post);
 		return postList;
 	}
+	
+	@Override
+	public int postInsert(Post post) {
+		System.out.println("PostServiceImpl int postInsert start...");
+		int result = 0;
+		post.setP_cost(post.getP_cost().replaceAll(",", ""));
+		result = pd.postInsert(post);
+		return result;
+	}
 
 }

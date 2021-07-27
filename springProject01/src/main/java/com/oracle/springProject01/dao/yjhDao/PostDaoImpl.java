@@ -38,4 +38,16 @@ public class PostDaoImpl implements PostDao {
 		return postList;
 	}
 
+	@Override
+	public int postInsert(Post post) {
+		System.out.println("PostDaoImpl int postInsert start...");
+		int result = 0;
+		try {
+			result = session.insert("postInsert",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl int postInsert Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
 }

@@ -17,7 +17,7 @@ public class Post {
 	private String p_attach;
 	private String p_gname;
 	private int p_capa;
-	private int p_cost;
+	private String p_cost;
 	private String P_appstart;
 	private String P_append;
 	private String p_choice;

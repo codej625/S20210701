@@ -7,6 +7,22 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/open.css" />
+<script type="text/javascript">
+function inputNumberFormat(obj) {
+    obj.value = comma(uncomma(obj.value));
+}
+
+function comma(str) {
+    str = String(str);
+    return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+function uncomma(str) {
+    str = String(str);
+    return str.replace(/[^\d]+/g, '');
+}
+
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -14,12 +30,14 @@
 	<main>
 		<!-- main -->
 		<div class="oepn_wrap">
-			<form action="">
+			<form action="${pageContext.request.contextPath}/post/insert" method="post">
+				${pageNum }
+				<input type="hidden" name="p_num" value="${p_num }">
 				<div class="page_title">개설하기</div>
 				<div class="info_section">
 					<div class="class_img"
 						style="background-image: url('${pageContext.request.contextPath}/img/01.jpg');">
-						<input type="file" value="사진첨부">
+<!-- 						<input type="file" name="p_img" value="사진첨부"> -->
 					</div>
 					<div class="class_info">
 						<div class="section_tit">기본정보</div>
@@ -60,16 +78,18 @@
 							</div>
 							<div class="section_con">
 								<div class="item_title">문의연락처</div>
+<!-- 								이부분은 로그인부분과 연결시켜서 sessionId값을 불러와서 넣어줘야된다 -->
+<%-- 								이런식으로	<input type="text" name="m_name" value="${m_name }"> --%>
 								<div class="item_content">
-									<a>담당자명</a> <input type="text" placeholder="이름을 입력하세요.">
-									<a>전화번호</a> <input type="text" placeholder="전화번호를 입력하세요.">
-									<a>이메일</a> <input type="text" placeholder="이메일을 입력하세요.">
+<%-- 									<a>담당자명</a> <input type="text" name="m_name" value="${m_name }" placeholder="이름입력"> --%>
+<%-- 									<a>담당자명</a> <input type="tel" name="m_tel" value="${m_tel }" placeholder="번호입력"> --%>
+<%-- 									<a>담당자명</a> <input type="text" name="m_id" value="${m_id }" placeholder="id입력"> --%>
 								</div>
 							</div>
 							<div class="section_con">
 								<div class="item_title">간단소개</div>
 								<div class="item_content">
-									<input type="text" placeholder="100자 이내">
+									<input type="text" name="p_intro" placeholder="100자 이내">
 								</div>
 							</div>
 						</div>
@@ -78,7 +98,7 @@
 				<div class="info_section">
 					<div class="section_tit">상세정보</div>
 					<div class="section_con">
-						<textarea name="ir1" id="ir1" rows="10" cols="100"></textarea>
+						<textarea name="p_info" id="ir1" rows="10" cols="100" placeholder="상세정보"></textarea>
 						<script type="text/javascript">
 							var oEditors = [];
 							nhn.husky.EZCreator.createInIFrame({
@@ -95,24 +115,26 @@
 					<div class="section_con">
 						<div class="group_info">
 							<div class="info">
-								<input type="text" placeholder="그룹명을 입력하세요."> <input
-									type="text" placeholder="정원을 입력하세요.">
-								<button>무료</button>
-								<button>유료</button>
-								<input type="text">
+								<input type="text" name="p_gname" placeholder="그룹명을 입력하세요.">
+								<input type="number" name="p_capa" placeholder="정원을 입력하세요.">
+								<select name="p_cstatus">
+									<option value="0">무료</option>
+									<option value="1">유료</option>
+								</select>
 							</div>
 							<div class="info">
 								<div class="title">모임기간</div>
-								<input type="text">
+								<input type="date" name="p_metstart" placeholder="모임시작일">
+								<input type="date" name="p_metend" placeholder="모임종료일">
 							</div>
 							<div class="info">
 								<div class="title">신청기간</div>
-								<input type="text">
+<!-- 								<input type="date" name="p_appstart" placeholder="신청시작일"> -->
+<!-- 								<input type="date" name="p_append" placeholder="신청종료일"> -->
 							</div>
 							<div class="info">
-								<input type="checkbox">장소없음 <input type="text">
+								<input type="checkbox">장소없음 <input type="text" name="p_loc" placeholder="장소">
 								<button>검색</button>
-								<input type="text">
 								<textarea>임시지도위치</textarea>
 							</div>
 						</div>
@@ -124,18 +146,23 @@
 				</div>
 				<div class="info_section">
 					<div class="section_tit">결제방식</div>
-					<div class="section_con"></div>
+					<div class="section_con">
+<!-- 						<input type="number" name="p_cost" value="0" placeholder="비용"> -->
+						<input type="text" id="price" onkeyup="inputNumberFormat(this)" name="p_cost" value="0" placeholder="비용">
+<%-- 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${price}" /> --%>
+						<input type="time" name="p_starttime" placeholder="시작시간">
+						<input type="time" name="p_endtime" placeholder="종료시간">
+					</div>
 				</div>
 				<div class="info_section">
 					<div class="section_tit">알리기</div>
 					<div class="section_con">
 						<div class="title">태그입력</div>
-						<input type="text">
 					</div>
 				</div>
 				<div class="btn_section">
 					<button>다시작성</button>
-					<button>개설하기</button>
+					<button type="submit">개설하기</button>
 					<button>취소</button>
 				</div>
 			</form>

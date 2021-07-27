@@ -14,7 +14,7 @@
 		<!-- main -->
 		<div class="contents_wrap">
 			<div class="fil_section">
-				<div class="fil_title">상세검색기능</div>
+				<div class="fil_title">상세검색기능<c:if test="${msg != null }">${msg }</c:if></div>
 				<div class="fil_items">
 					<div class="item">
 						<select>
@@ -46,14 +46,18 @@
 	                        <img src="${pageContext.request.contextPath}/img/goya.jpg">
 	                    </div>
 	                    <div class="con_itm">
-							${post.p_num }
+							<input type="hidden" name="p_num" value="${post.p_num }">
+							${post.p_title }
 	                    </div>
 	                    <div class="con_itm">
 	                        <div class="con_contents">
-	                            ${post.p_title }
+	                            <c:choose>
+	                            	<c:when test="${post.p_cstatus == 0 }">무료</c:when>
+	                            	<c:when test="${post.p_cstatus == 1 }">유료</c:when>
+	                            </c:choose>
 	                        </div>
 	                        <div class="con_subinfo">
-	                            1
+	                            ${post.p_metstart }
 	                        </div>
                     	</div>
                 	</div>

@@ -14,7 +14,7 @@
 		<!-- main -->
 		<div class="contents_wrap">
 			<div class="fil_section">
-				<div class="fil_title">상세검색기능</div>
+				<div class="fil_title">상세검색기능<c:if test="${msg != null }">${msg }</c:if></div>
 				<div class="fil_items">
 					<div class="item">
 						<select>
