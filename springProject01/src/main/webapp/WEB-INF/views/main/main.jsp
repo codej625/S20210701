@@ -8,7 +8,6 @@
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/main.css" />
-
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -23,7 +22,7 @@
 				</div>
 				<div class="ex_btn">
 					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/category?bt_num=1">참여하기</button>
-					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register'">개설하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register?bt_num=1'">개설하기</button>
 				</div>
 			</div>
 			<div class="ex_section">
@@ -32,14 +31,15 @@
 					<a>클래스를 통해 배우고 싶으세요?</a>	
 				</div>
 				<div class="ex_btn">
-					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/category'">참여하기</button>
-					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register'">개설하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/category?bt_num=2'">참여하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register?bt_num=2'">개설하기</button>
 				</div>
 			</div>
 			<div class="ex_section">
 				<div>All the Best 모임.ver</div>
 				<div class=""></div>
 				<div class=""></div>
+				
 			</div>
 			<div class="ex_section">
 				<div>All the Best 클래스.ver</div>

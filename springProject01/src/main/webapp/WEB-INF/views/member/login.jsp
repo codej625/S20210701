@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/main/script.jsp"%>
+<%@ include file="/WEB-INF/views/main/script.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,18 +10,16 @@
 	href="${pageContext.request.contextPath}/css/loginStyle.css" />
 </head>
 <body onload="bodyOnload()">
-	<form action="userLoginPro.do" method="post">
+	<form action="${pageContext.request.contextPath}/member/login" method="post">
 		<div class="header_top">
 			<div class="logo_section">
-				<img src="${pageContext.request.contextPath}/img/logo.png">
+				<a href="${pageContext.request.contextPath}/main/main"><img src="${pageContext.request.contextPath}/img/logo.png"></a>
 			</div>
 			<div class="nav_bar">
 				<div class="nav_header">
 					<ul>
-						<li>로그인</li>
-						<li>회원가입</li>
-						<li>회원님</li>
-						<li>로그아웃</li>
+						<li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+						<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						<li>고객센터</li>
 					</ul>
 				</div>
@@ -32,11 +30,11 @@
 				<div class="auth_title">로그인</div>
 				<div class="auth_input_section">
 					<div class="input_item">
-						<input type="text" name="user_id" placeholder="아이디"
+						<input type="text" name="m_id" placeholder="아이디"
 							required="required">
 					</div>
 					<div class="input_item">
-						<input type="password" name="user_pw" placeholder="비밀번호"
+						<input type="password" name="m_pw" placeholder="비밀번호"
 							required="required">
 					</div>
 					<div class="input_item2">
