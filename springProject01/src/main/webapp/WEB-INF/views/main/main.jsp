@@ -35,36 +35,34 @@
 					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/post/register?bt_num=2'">개설하기</button>
 				</div>
 			</div>
-			<c:forEach items="${bestList1 }" var="post">
-			<c:if test="${bt_num == 1}">
-				<div class="ex_section">
-                <div>All the Best 모임.ver</div>
-                <div class=""></div>
-                
-	                <div class="class_wrap">
-	                    <div class="class_item">
-	                        <div class="class_img"><img src="img/people.jpg"></div>
-	                        <div class="class_info">${post.p_title }</div>
-	                    </div>
-	                  
-	                </div>
-                
-            	</div>
-            </c:if>
-            <c:if test="${bt_num == 2}">
+			
 			<div class="ex_section">
-                <div>All the Best 클래스.ver</div>
-                <div class=""></div>
-                <div class="class_wrap">
-                    <div class="class_item">1</div>
-                    <div class="class_item">2</div>
-                    <div class="class_item">3</div>
-                    <div class="class_item">4</div>
-                    <div class="class_item">5</div>    
-                </div>
-            </div>
-            </c:if>
-            </c:forEach>
+                <div>All the Best 모임.ver</div>
+	                <div class="class_wrap">
+	                <c:forEach var="post" items="${bestList }">
+	                    <div class="class_item">
+		                    <div class="class_img"><img src="${pageContext.request.contextPath}/img/people.jpg"></div>
+		                    <div class="class_info">${post.p_title }</div>
+	                    </div>
+	                </c:forEach>
+		        	</div>
+			</div>
+			
+			<div class="ex_section">
+                <div>All the Best 모임.ver</div>
+	            <div class="class_wrap">
+	            	<div class="class_item">
+		            	<div class="class_img"><img src="img/people.jpg"></div>
+		                <div class="class_info">2</div>
+	                </div>
+	            </div>
+				<div class="class_wrap">
+					<div class="class_item">
+						<div class="class_img"><img src="img/people.jpg"></div>
+						<div class="class_info">2</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views/main/footer.jsp"%>

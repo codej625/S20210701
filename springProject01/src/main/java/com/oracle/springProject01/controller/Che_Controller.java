@@ -19,14 +19,6 @@ public class Che_Controller {
 	@Autowired
 	private MainService ms;
 	
-	/*
-	@RequestMapping(value = "main/main")
-	public String mainForm() {
-		System.out.println("Che_Controller mainForm Start...");
-		return "main/main";
-	}
-	*/
-	
 	@RequestMapping(value = "main/main")
 	public String mainGetForm(HttpServletRequest request, ChePostVO post, Model model) {
 		System.out.println("Che_Controller mainForm Start...");
