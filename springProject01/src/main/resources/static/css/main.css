@@ -1,0 +1,91 @@
+body {
+    font-size: 15px;
+	font-weight: 400;
+    font-family: 'Nanum Square', sans-serif;
+	line-height: 1.8em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+	color: #3c3c3c;
+	margin: 0px;
+	padding: 0px;
+}
+ul, li {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	color: #3c3c3c;
+	text-decoration: none;
+}
+
+.ex_section {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 1500px;
+	height: 550px;
+	vertical-align: top;
+	margin: 30px auto;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 30px #eee;
+}
+.ex_section .ex_img {
+	height: 550px;
+	position: relative;
+	background-position: center center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 20% 10%;
+}
+.ex_section .ex_img a {
+	color: #eee;
+	font-size: 20px;
+}
+.ex_section .ex_btn {
+	position: absolute;
+	width: 100%;
+	margin: 27% 54%;
+	cursor: pointer;
+}
+.ex_section .class_wrap {
+	position: absolute;
+	display: flex;
+	margin-left: 40px;
+}
+.ex_section .class_wrap .class_item {
+	position: relative;
+	width: 252px;
+	height: 350px;
+	margin: 100px 40px 100px 0px;
+	background-color: yellowgreen;
+	cursor: pointer;
+}
+.ex_section .class_wrap .class_item .class_img {
+	width: 250px;
+    height: 300px;
+    overflow: hidden;
+    box-sizing: border-box;
+	margin: 0 1px;
+    display: inline-block;
+}
+.ex_section .class_wrap .class_item .class_img img{
+    width: 150%;
+    height: 100%;
+}
+::-webkit-file-upload-button {
+	cursor: pointer;
+}
+.default_bt {
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	font-size: 24px;
+	border: 0px;
+	border-radius: 6px;
+	font-weight: 700;
+	margin-right: 30px;
+	padding: 15px 100px 15px 100px;
+	background-color: #269F70;
+	color: #eee;
+}
