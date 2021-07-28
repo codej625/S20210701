@@ -147,9 +147,7 @@ function uncomma(str) {
 				<div class="info_section">
 					<div class="section_tit">결제방식</div>
 					<div class="section_con">
-<!-- 						<input type="number" name="p_cost" value="0" placeholder="비용"> -->
 						<input type="text" id="price" onkeyup="inputNumberFormat(this)" name="p_cost" value="0" placeholder="비용">
-<%-- 						<fmt:formatNumber type="number" maxFractionDigits="3" value="${price}" /> --%>
 						<input type="time" name="p_starttime" placeholder="시작시간">
 						<input type="time" name="p_endtime" placeholder="종료시간">
 					</div>
