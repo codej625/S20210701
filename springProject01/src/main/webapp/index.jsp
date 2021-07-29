@@ -9,8 +9,8 @@
 <body>	
 	<%-- <%		response.sendRedirect("test");	%> --%>
 	<%
-		response.sendRedirect("post/category");
-// 		response.sendRedirect("post/register");
+// 		response.sendRedirect("post/category");
+		response.sendRedirect("main/main");
 	%>
 </body>
 </html>

@@ -50,37 +50,37 @@
 				<i class="fas fa-angle-right fa-2x"></i>
 			</div>
 			<div class="filter_item">
-				모임
+				<a href="${pageContext.request.contextPath}/post/category?bt_num=1">모임</a>
 				<ul class="select_box">
-					<li>게임/만화/애니</li>
-					<li>영화/음악/그림</li>
-					<li>스포츠/레저</li>
-					<li>반려동물</li>
-					<li>패션/미용</li>
-					<li>건강/다이어트</li>
-					<li>가족/육아</li>
-					<li>컴퓨터/통신</li>
-					<li>외국어/인문/과학</li>
-					<li>경제/금융/정치/사회</li>
-					<li>문학/창작</li>
-					<li>기타</li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=1">게임/만화/애니</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=2">영화/음악/그림</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=3">스포츠/레저</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=4">반려동물</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=5">패션/미용</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=6">건강/다이어트</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=7">가족/육아</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=8">컴퓨터/통신</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=9">외국어/인문/과학</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=10">경제/금융/정치/사회</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=11">문학/창작</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=12">기타</a></li>
 				</ul>
 			</div>
 			<div class="filter_item">
-				클래스
+				<a href="${pageContext.request.contextPath}/post/category?bt_num=2">클래스</a>
 				<ul class="select_box">
-					<li>게임/만화/애니</li>
-					<li>영화/음악/그림</li>
-					<li>스포츠/레저</li>
-					<li>반려동물</li>
-					<li>패션/미용</li>
-					<li>건강/다이어트</li>
-					<li>가족/육아</li>
-					<li>컴퓨터/통신</li>
-					<li>외국어/인문/과학</li>
-					<li>경제/금융/정치/사회</li>
-					<li>문학/창작</li>
-					<li>기타</li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=1">게임/만화/애니</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=2">영화/음악/그림</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=3">스포츠/레저</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=4">반려동물</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=5">패션/미용</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=6">건강/다이어트</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=7">가족/육아</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=8">컴퓨터/통신</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=9">외국어/인문/과학</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=10">경제/금융/정치/사회</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=11">문학/창작</a></li>
+					<li><a href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=12">기타</a></li>
 				</ul>
 			</div>
 		</div>

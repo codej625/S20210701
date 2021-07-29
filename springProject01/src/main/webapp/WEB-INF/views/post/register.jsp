@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/open.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/smarteditor2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 function inputNumberFormat(obj) {
     obj.value = comma(uncomma(obj.value));
@@ -98,15 +99,49 @@ function uncomma(str) {
 				<div class="info_section">
 					<div class="section_tit">상세정보</div>
 					<div class="section_con">
-						<textarea name="p_info" id="ir1" rows="10" cols="100" placeholder="상세정보"></textarea>
+						<textarea name="p_info" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea>
+<!-- 					textarea부분 script -->
 						<script type="text/javascript">
 							var oEditors = [];
 							nhn.husky.EZCreator.createInIFrame({
 								oAppRef : oEditors,
 								elPlaceHolder : "ir1",
-								sSkinURI : "smarteditor2/SmartEditor2Skin.html",
+								sSkinURI : "${pageContext.request.contextPath}/smarteditor2/SmartEditor2Skin.html",
 								fCreator : "createSEditor2"
 							});
+							$(function() { 
+								$("#savebutton").click(function() { 
+									oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []); 
+									//textarea의 id를 적어줍니다. 
+									
+									var selcatd = $("#selcatd > option:selected").val(); 
+									var title = $("#title").val(); 
+									var content = document.getElementById("smartEditor").value;; 
+									
+									if (selcatd == "") { 
+										alert("카테고리를 선택해주세요."); 
+										return; 
+									} 
+									if (title == null || title == "") { 
+										alert("제목을 입력해주세요."); 
+										$("#title").focus(); 
+										return; 
+									} 
+									if(content == "" || content == null || content == '&nbsp;' || 
+													content == '<br>' || content == '<br/>' || content == '<p>&nbsp;</p>'){ 
+										alert("본문을 작성해주세요."); 
+										oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱 
+										return; 
+									} //이 부분은 스마트에디터 유효성 검사 부분이니 참고하시길 바랍니다. 
+									var result = confirm("발행 하시겠습니까?"); 
+									if(result){ 
+										alert("발행 완료!"); 
+										$("#noticeWriteForm").submit(); 
+									}else{ 
+										return; 
+									} 
+								}); 
+							})
 						</script>
 					</div>
 				</div>

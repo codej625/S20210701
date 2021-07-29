@@ -15,9 +15,13 @@ public class PostServiceImpl implements PostService {
 	private PostDao pd;
 
 	@Override
-	public int total() {
+	public int total(int bt_num, int bc_num) {
 		System.out.println("PostServiceImpl int total() start...");
-		int totCnt = pd.total();
+//		post를 생성해서 유형번호와 카테고리값을 넣어준다.
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		int totCnt = pd.total(post);
 		System.out.println("PostServiceImpl int total totCnt->" + totCnt);
 		return totCnt;
 	}

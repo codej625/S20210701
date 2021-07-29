@@ -3,15 +3,24 @@
 <mapper namespace="PostDao">
 
 <!-- 	total -->
-	<select id="total" resultType="int">
-		select count(*) from post
+	<select id="total" parameterType="Post" resultType="int">
+		select count(*) from post 
+		<where>
+		<if test='bt_num!=0'> bt_num = #{bt_num} </if>
+		<if test='bc_num!=0'> and bc_num = #{bc_num} </if>
+		</where>
 	</select>
 	
 <!-- 	postList -->
 	<select id="postList" parameterType="Post" resultType="Post">
 		select * from 
 			(select rownum rn, a.* from 
-				(select * from post order by p_num) a
+				(select * from post 
+					<where>
+					<if test='bt_num!=0'> bt_num = #{bt_num} </if>
+					<if test='bc_num!=0'> and bc_num = #{bc_num} </if>
+					</where>
+				order by bt_num,bc_num,p_num) a
 			)
 		where rn between #{start} and #{end}
 	</select>

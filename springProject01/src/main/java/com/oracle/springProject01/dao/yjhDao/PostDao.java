@@ -5,7 +5,7 @@ import java.util.List;
 import com.oracle.springProject01.model.Post;
 
 public interface PostDao {
-	int total();
+	int total(Post post);
 	List<Post> listPost(Post post);
 	int postInsert(Post post);
 }

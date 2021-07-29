@@ -15,11 +15,11 @@ public class PostDaoImpl implements PostDao {
 	private SqlSession session;
 
 	@Override
-	public int total() {
+	public int total(Post post) {
 		System.out.println("PostDaoImpl int total() start...");
 		int tot = 0;
 		try {
-			tot = session.selectOne("total");
+			tot = session.selectOne("total",post);
 		} catch (Exception e) {
 			System.out.println("PostDaoImpl int total Exception->" + e.getMessage());
 		}
