@@ -38,30 +38,26 @@
 			
 			<div class="ex_section">
                 <div>All the Best 모임.ver</div>
-	                <div class="class_wrap">
-	                <c:forEach var="post" items="${bestList }">
+	            <div class="class_wrap">
+	                <c:forEach var="post1" items="${bestList1 }">
 	                    <div class="class_item">
 		                    <div class="class_img"><img src="${pageContext.request.contextPath}/img/people.jpg"></div>
-		                    <div class="class_info">${post.p_title }</div>
+		                    <div class="class_info">${post1.p_title }</div>
 	                    </div>
 	                </c:forEach>
-		        	</div>
+		    	</div>
 			</div>
 			
 			<div class="ex_section">
                 <div>All the Best 모임.ver</div>
 	            <div class="class_wrap">
-	            	<div class="class_item">
-		            	<div class="class_img"><img src="img/people.jpg"></div>
-		                <div class="class_info">2</div>
-	                </div>
+	           		<c:forEach var="post2" items="${bestList2 }">
+		            	<div class="class_item">
+			            	<div class="class_img"><img src="img/people.jpg"></div>
+			                <div class="class_info">${post2.p_title }</div>
+		                </div>
+	                </c:forEach>
 	            </div>
-				<div class="class_wrap">
-					<div class="class_item">
-						<div class="class_img"><img src="img/people.jpg"></div>
-						<div class="class_info">2</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</main>

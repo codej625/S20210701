@@ -20,25 +20,37 @@ public class Che_Controller {
 	private MainService ms;
 	
 	@RequestMapping(value = "main/main")
-	public String mainGetForm(HttpServletRequest request, ChePostVO post, Model model) {
+	public String mainGetForm(HttpServletRequest request, ChePostVO post1, ChePostVO post2, Model model) {
 		System.out.println("Che_Controller mainForm Start...");
 		
 		int total = 5;
+		int bt_num1 = 1;
+		int bt_num2 = 2;
+		
 		String currentPage = null;
 		MainPaging mg = new MainPaging(total, currentPage);
-		post.setStart(mg.getStart());
-		post.setEnd(mg.getEnd());
-		int bt_num = 1;
-		post.setBt_num(bt_num);
-		System.out.println("Che_Controller mainGetForm bt_num -> " + post.getBt_num());
+		post1.setStart(mg.getStart());
+		post1.setEnd(mg.getEnd());
+		post1.setBt_num(bt_num1);
+		System.out.println("Che_Controller mainGetForm bt_num -> " + post1.getBt_num());
+		
+		post2.setStart(mg.getStart());
+		post2.setEnd(mg.getEnd());
+		post2.setBt_num(bt_num2);
+		System.out.println("Che_Controller mainGetForm bt_num -> " + post2.getBt_num());
 		
 //		게시물 리스트
-		List<ChePostVO> bestList = ms.bestListPost(post);
+		List<ChePostVO> bestList1 = ms.bestListPost(post1);
+		System.out.println("Che_Controller mainGetForm bestList1 listPost.size()->"+bestList1.size());
+		List<ChePostVO> bestList2 = ms.bestListPost(post2);
+		System.out.println("Che_Controller mainGetForm bestList2 listPost.size()->"+bestList2.size());
 		
-		System.out.println("Che_Controller mainGetForm listPost.size()->"+bestList.size());
 		model.addAttribute("total", 5);
-		model.addAttribute("bestList",bestList);
-		model.addAttribute("bt_num",bt_num);
+		model.addAttribute("bt_num1",bt_num1);
+		model.addAttribute("bt_num2",bt_num2);
+		model.addAttribute("bestList1",bestList1);
+		model.addAttribute("bestList2",bestList2);
+		
 		return "main/main";
 	}
 	
