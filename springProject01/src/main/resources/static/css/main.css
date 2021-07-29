@@ -38,19 +38,28 @@ a {
 	background-repeat: no-repeat;
 	background-position: 20% 10%;
 }
-.ex_section .ex_img a {
-	color: #eee;
-	font-size: 20px;
-}
 .ex_section .ex_btn {
 	position: absolute;
 	width: 100%;
 	margin: 27% 54%;
 	cursor: pointer;
 }
+.ex_section .ex_btn a{
+	font-size: 30px;
+	font-weight: 700;
+	cursor: pointer;
+	box-sizing: border-box;
+	border-radius: 1px solid #ffffff;
+	color: #eee;
+	padding-right: 60px;
+}
+.ex_section .ex_btn input{
+	cursor: pointer;
+}
 .ex_section .class_wrap {
 	position: absolute;
 	display: flex;
+	flex-direction: row;
 	margin-left: 40px;
 }
 .ex_section .class_wrap .class_item {
@@ -73,14 +82,12 @@ a {
     width: 150%;
     height: 100%;
 }
-::-webkit-file-upload-button {
-	cursor: pointer;
-}
+::-webkit-file-upload-button { cursor:pointer; }
 .default_bt {
 	box-sizing: border-box;
 	cursor: pointer;
 	text-align: center;
-	font-size: 24px;
+	font-size: 27px;
 	border: 0px;
 	border-radius: 6px;
 	font-weight: 700;
