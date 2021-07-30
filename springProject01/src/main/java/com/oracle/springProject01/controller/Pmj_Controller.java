@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.oracle.springProject01.model.Pmj_ChattingVO;
 //import com.oracle.springProject01.service.chatting.Pmj_MemberService;
 
 
