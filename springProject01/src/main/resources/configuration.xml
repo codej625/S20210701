@@ -2,5 +2,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Post" type="com.oracle.springProject01.model.Post"/>
+		<typeAlias alias="Pmj_ChattingVO" type="com.oracle.springProject01.model.Pmj_ChattingVO"/>
 	</typeAliases>
 </configuration>

@@ -12,7 +12,7 @@
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
 	<!-- **MAIN START** -->
 	<main>
-		<form action="${pageContext.request.contextPath}/member/mypage">
+		<form action="${pageContext.request.contextPath}/member/mypage_update">
 		<!-- main -->
 		<div class="userinfo_wrap">
 			<div class="title">${sessionID }님의 마이페이지</div>
@@ -50,10 +50,6 @@
 						<div class="item_content">
 							<input type="text" value="${lhj_MemberVO.m_regdate }" readonly>
 						</div>
-					</div>
-					<div>
-						<input type="submit" value="확인">
-						<input type="reset" value="취소">
 					</div>
 				</div>
 			</div>

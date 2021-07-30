@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/views/main/script.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -22,11 +23,15 @@
 			<div class="nav_bar">
 				<div class="nav_header">
 					<ul>
-						<li>로그인</li>
-						<li>회원가입</li>
-						<li>회원님</li>
-						<li>로그아웃</li>
-						<li>고객센터</li>
+					<c:if test="${m_name == null}">
+                     <li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+                     <li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
+                  </c:if>
+                  <c:if test="${m_name != null}">
+                     <li><span>${m_name}</span>회원님</li>
+                     <li>로그아웃</li>
+                  </c:if>
+                  <li>고객센터</li>
 					</ul>
 				</div>
 				<div class="nav_menu">
