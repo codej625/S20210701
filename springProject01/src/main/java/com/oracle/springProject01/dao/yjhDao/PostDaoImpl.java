@@ -50,4 +50,40 @@ public class PostDaoImpl implements PostDao {
 		return result;
 	}
 
+	@Override
+	public Post postListDetail(Post post) {
+		System.out.println("PostDaoImpl Post postListDetail start...");
+		Post post1 = new Post();
+		try {
+			post1 = session.selectOne("postListDetail",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl Post postListDetail Exception->"+e.getMessage());
+		}
+		return post1;
+	}
+
+	@Override
+	public int postListUpdate(Post post) {
+		System.out.println("PostDaoImpl int postListUpdate start...");
+		int result = 0;
+		try {
+			result = session.update("postListUpdate", post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl int postListUpdate Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public int postDelete(Post post) {
+		System.out.println("PostDaoImpl int postDelete start...");
+		int result = 0;
+		try {
+			result = session.delete("postDelete",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl int postListUpdate Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
 }

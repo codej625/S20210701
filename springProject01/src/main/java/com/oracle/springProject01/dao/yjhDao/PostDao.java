@@ -8,4 +8,7 @@ public interface PostDao {
 	int total(Post post);
 	List<Post> listPost(Post post);
 	int postInsert(Post post);
+	Post postListDetail(Post post);
+	int postListUpdate(Post post);
+	int postDelete(Post post);
 }

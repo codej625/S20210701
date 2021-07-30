@@ -32,7 +32,6 @@ function uncomma(str) {
 		<!-- main -->
 		<div class="oepn_wrap">
 			<form action="${pageContext.request.contextPath}/post/insert" method="post">
-				${pageNum }
 				<input type="hidden" name="p_num" value="${p_num }">
 				<div class="page_title">개설하기</div>
 				<div class="info_section">
@@ -61,19 +60,18 @@ function uncomma(str) {
 							<div class="item_title">카테고리</div>
 							<div class="item_content">
 								<select name="bc_num">
-									<option value="1">카테고리</option>
-									<option value="2">게임/만화/애니</option>
-									<option value="3">영화/음악/그림</option>
-									<option value="4">스포츠/레저</option>
-									<option value="5">반려동물</option>
-									<option value="6">패션/미용</option>
-									<option value="7">건강/다이어트</option>
-									<option value="8">가족/육아</option>
-									<option value="9">컴퓨터/통신</option>
-									<option value="10">외국어/인문/과학</option>
-									<option value="11">경제/금융/정치/사회</option>
-									<option value="12">문학/창작</option>
-									<option value="13">기타</option>
+									<option value="1">게임/만화/애니</option>
+									<option value="2">영화/음악/그림</option>
+									<option value="3">스포츠/레저</option>
+									<option value="4">반려동물</option>
+									<option value="5">패션/미용</option>
+									<option value="6">건강/다이어트</option>
+									<option value="7">가족/육아</option>
+									<option value="8">컴퓨터/통신</option>
+									<option value="9">외국어/인문/과학</option>
+									<option value="10">경제/금융/정치/사회</option>
+									<option value="11">문학/창작</option>
+									<option value="12">기타</option>
 								</select>
 								<input type="text" name="p_title" placeholder="모임명을 입력해주세요">
 							</div>

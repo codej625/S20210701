@@ -11,6 +11,7 @@
 	<%
 // 		response.sendRedirect("post/category");
 		response.sendRedirect("main/main");
+// 		response.sendRedirect("post/contents");
 	%>
 </body>
 </html>

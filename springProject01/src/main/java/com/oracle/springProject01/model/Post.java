@@ -32,7 +32,11 @@ public class Post {
 	private int p_hit;
 	private String p_cstatus;
 	
-//	조회용
+//	게시물 작성한 맴버 조회용
+	private String m_name;
+	private String m_tel;
+	
+//	페이징 조회용
 	private String search;
 	private String keyword;
 	private String pageNum;

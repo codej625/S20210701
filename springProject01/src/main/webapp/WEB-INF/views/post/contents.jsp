@@ -27,23 +27,23 @@
 									<div class="offer_img">
 										<img src="${pageContext.request.contextPath}/img/01.jpg">
 									</div>
-									<h2>강전사</h2>
+									<h2>${post.m_name }</h2>
 								</div>
 								<div class="offer_item">
 									<div class="item_title">이 메 일</div>
-									<div class="item_detail">jampbook@naver.com</div>
+									<div class="item_detail">${post.m_id }</div>
 								</div>
 								<div class="offer_item">
 									<div class="item_title">전화번호</div>
-									<div class="item_detail">010-7167-4987</div>
+									<div class="item_detail">${post.m_tel }</div>
 								</div>
 							</div>
 							<div class="offer_option">*로그인 후 정보를 볼 수 있습니다.</div>
 						</div>
 					</div>
 					<div class="a">
-						<div class="con_tit">모임제목</div>
-						<div class="con_sub">가나다라마바사</div>
+						<div class="con_tit">${post.p_title }</div>
+						<div class="con_sub">${post.p_intro }</div>
 						<div class="con_hash">
 							<a>#스프링</a> <a>#뿌뿌</a>
 						</div>
@@ -56,11 +56,25 @@
 						<div class="meet_info">
 							<div class="meet_title">모임장소</div>
 							<div class="meet_detail">
-								미정이거나 등록된 모임장소가 없습니다. <input type="hidden">
+								${post.p_loc } <input type="hidden">
+							</div>
+						</div>
+						<div class="meet_info">
+							<div class="meet_title">그룹명</div>
+							<div class="meet_detail">
+								${post.p_gname } <input type="hidden">
 							</div>
 						</div>
 						<div class="btn_section">
 							<button>신청하기</button>
+							<button type="button" 
+									onclick="location.href='${pageContext.request.contextPath}/post/postListUpdateView?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
+									수정하기
+							</button>
+							<button type="button" 
+									onclick="location.href='${pageContext.request.contextPath}/post/postDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
+									삭제하기
+							</button>
 							<button>신청완료</button>
 							<button>찜</button>
 						</div>
@@ -76,14 +90,7 @@
 					</div>
 					<div class="con_item">
 						<div class="item_tit">상세정보</div>
-						<div class="item_det">그래 그리 쉽지는 않겠지 나를 허락해준 세상이란 손쉽게 다가오는
-							편하고도 감미로운 공간이 아냐 그래도 날아오를거야 작은 날개짓에 꿈을 담아 조금만 기다려봐 Oh my- 그래 그리
-							쉽지는 않겠지 나를 허락해준 세상이란 손쉽게 다가오는 편하고도 감미로운 공간이 아냐 그래도 날아오를거야 작은 날개짓에
-							꿈을 담아 조금만 기다려봐 Oh my love​ 나비처럼 날아가 볼까 일렁거리는 바람에 실려 이런 느낌을 언제나 느낄
-							수 있을까 마음 속의 좁혀 오는 사소한 일은 신경쓰지마 지금 이대로 날아가 모두 잊으면 돼 어떻게 WOW WOW
-							WOW WOW WOW 하늘 끝까지 닿을 수 있을까 이렇게 WOW WOW WOW WOW WOW 여린 날개가 힘을 낼 수
-							있을까 그래 그리 쉽지는 않겠지 나를 허락해준 세상이란 손쉽게 다가오는 편하고도 감미로운 공간이 아냐 그래도
-							날아오를거야 작은 날개 밑에 꿈을 담아 조금만 기다려봐 Oh my love</div>
+						<div class="item_det">${post.p_info }</div>
 					</div>
 					<div class="con_item">
 						<div class="item_tit">지도</div>

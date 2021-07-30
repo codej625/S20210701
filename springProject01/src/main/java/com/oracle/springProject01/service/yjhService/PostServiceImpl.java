@@ -43,4 +43,35 @@ public class PostServiceImpl implements PostService {
 		return result;
 	}
 
+	@Override
+	public Post postListDetail(int bt_num, int bc_num, int p_num) {
+		System.out.println("PostServiceImpl Post postListDetail start...");
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		post.setP_num(p_num);
+		post = pd.postListDetail(post);
+		return post;
+	}
+
+	@Override
+	public int postListUpdate(Post post) {
+		System.out.println("PostServiceImpl int postListUpdate start...");
+		int result = 0;
+		post.setP_cost(post.getP_cost().replaceAll(",", ""));
+		result = pd.postListUpdate(post);
+		return result;
+	}
+
+	@Override
+	public int postDelete(int bt_num, int bc_num, int p_num) {
+		System.out.println("PostServiceImpl int postDelete start...");
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		post.setP_num(p_num);
+		int result = pd.postDelete(post);
+		return result;
+	}
+
 }

@@ -21,20 +21,20 @@
 					<div class="item">
 						<select onchange="if(this.value) location.href=(this.value);">
 							<option>
-							<c:choose>
-								<c:when test="${bc_num == 1 }">게임/만화/애니</c:when>
-								<c:when test="${bc_num == 2 }">영화/음악/그림</c:when>
-								<c:when test="${bc_num == 3 }">스포츠/레저</c:when>
-								<c:when test="${bc_num == 4 }">반려동물</c:when>
-								<c:when test="${bc_num == 5 }">패션/미용</c:when>
-								<c:when test="${bc_num == 6 }">건강/다이어트</c:when>
-								<c:when test="${bc_num == 7 }">가족/육아</c:when>
-								<c:when test="${bc_num == 8 }">컴퓨터/통신</c:when>
-								<c:when test="${bc_num == 9 }">외국어/인문/과학</c:when>
-								<c:when test="${bc_num == 10 }">경제/금융/정치/사회</c:when>
-								<c:when test="${bc_num == 11 }">문학/창작</c:when>
-								<c:when test="${bc_num == 12 }">기타</c:when>
-							</c:choose>
+								<c:choose>
+									<c:when test="${bc_num == 1 }">게임/만화/애니</c:when>
+									<c:when test="${bc_num == 2 }">영화/음악/그림</c:when>
+									<c:when test="${bc_num == 3 }">스포츠/레저</c:when>
+									<c:when test="${bc_num == 4 }">반려동물</c:when>
+									<c:when test="${bc_num == 5 }">패션/미용</c:when>
+									<c:when test="${bc_num == 6 }">건강/다이어트</c:when>
+									<c:when test="${bc_num == 7 }">가족/육아</c:when>
+									<c:when test="${bc_num == 8 }">컴퓨터/통신</c:when>
+									<c:when test="${bc_num == 9 }">외국어/인문/과학</c:when>
+									<c:when test="${bc_num == 10 }">경제/금융/정치/사회</c:when>
+									<c:when test="${bc_num == 11 }">문학/창작</c:when>
+									<c:when test="${bc_num == 12 }">기타</c:when>
+								</c:choose>
 							</option>
 							<c:if test="${bt_num == 1 }">
 								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=1">게임/만화/애니</option>
@@ -80,7 +80,7 @@
 	                    </div>
 	                    <div class="con_itm">
 							<input type="hidden" name="p_num" value="${post.p_num }">
-							${post.p_title }
+							<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}">${post.p_title }</a>
 	                    </div>
 	                    <div class="con_itm">
 	                        <div class="con_contents">
