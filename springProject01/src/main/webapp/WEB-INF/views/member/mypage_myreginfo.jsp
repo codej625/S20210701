@@ -12,7 +12,7 @@
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
 	<!-- **MAIN START** -->
 	<main>
-		<form action="${pageContext.request.contextPath}/member/mypage">
+		<form action="${pageContext.request.contextPath}/member/mypage_myreginfo">
 		<!-- main -->
 		<div class="userinfo_wrap">
 			<div class="title">${lhj_MemberVO.m_name }님의 마이페이지</div>
@@ -24,39 +24,31 @@
 				<div class="info_nav_menu"><a href="${pageContext.request.contextPath}/member/mypage_mybookmark">관심 내역</a></div>
 			</div>
 			<div class="info_section">
-				<div class="info_img"
-					style="background-image: url('${pageContext.request.contextPath}/img/01.jpg');">
-<%-- 					나중에 여기에 프로필 이미지 넣을 거임 저장경로 + ${lhj_MemberVO.m_proimg } 이런식 --%>
-				</div>
-				<div class="info_items">
-					<div class="info_item">
-						<div class="item_title">이름</div>
-						<div class="item_content">
-							<input type="text" value="${lhj_MemberVO.m_name }" readonly>
-						</div>
-					</div>
-					<div class="info_item">
-						<div class="item_title">이메일</div>
-						<div class="item_content">
-							<input type="text" value="${lhj_MemberVO.m_id }" readonly>
-						</div>
-					</div>
-					<div class="info_item">
-						<div class="item_title">번호</div>
-						<div class="item_content">
-							<input type="text" value="${lhj_MemberVO.m_tel }" readonly>
-						</div>
-					</div>
-					<div class="info_item">
-						<div class="item_title">가입일</div>
-						<div class="item_content">
-							<input type="text" value="${lhj_MemberVO.m_regdate }" readonly>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="info_section">
-				여기에 캘린더 api가 들어갈 예정
+				<table class="myreginfo_table">
+				<c:forEach var="lhj_MemberVO" items="${myRegInfoList }">
+					<tr>
+						<c:if test="${lhj_MemberVO.p_img == null}">
+							<td>
+								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
+							</td>
+						</c:if>
+						<c:if test="${lhj_MemberVO.p_img != null}">
+							<td>
+								${lhj_MemberVO.p_img }
+							</td>
+						</c:if>
+						<td>${lhj_MemberVO.p_title }</td>
+						<td id="myreginfo_table_td2">${lhj_MemberVO.p_cstatus }</td>
+						<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
+							<td>결제 하기 버튼</td>
+						</c:if>
+						<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
+							<td>결제 취소 버튼</td>
+						</c:if>
+						<td>신청 취소 버튼</td>
+					</tr>
+				</c:forEach>	
+				</table>
 			</div>
 			<div class="res_section"></div>
 		</div>

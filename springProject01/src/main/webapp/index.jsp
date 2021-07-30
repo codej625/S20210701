@@ -7,9 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%-- <%		response.sendRedirect("test");	%> --%>
+
 	<%
-		response.sendRedirect("main/category");
+// 		response.sendRedirect("test");
+// 		response.sendRedirect("main/category");
+// 		response.sendRedirect("main/join");
+		response.sendRedirect("member/login");
+
 	%>
 </body>
 </html>
