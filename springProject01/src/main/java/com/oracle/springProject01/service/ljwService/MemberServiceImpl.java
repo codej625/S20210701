@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 import com.oracle.springProject01.dao.ljwDao.MemberDao;
 import com.oracle.springProject01.model.Member;
 
-@Service
+@Service("LjwService")
 public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao md;
 
 	@Override
 	public List<Member> listMember(Member member) {
-		List<Member> MemberList = null;
+		List<Member> memberList = null;
 		System.out.println("MemberServiceImpl Start listMember...");
-		MemberList = md.listMember(member);
-		System.out.println("MemberServiceImpl listMember.size()->" + MemberList);
-		return MemberList;
+		memberList = md.listMember(member);
+		System.out.println("MemberServiceImpl listMember.size()->" + memberList);
+		return memberList;
 	}
 
 	@Override

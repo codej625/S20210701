@@ -17,7 +17,7 @@ public class Post {
 	private String p_attach;
 	private String p_gname;
 	private int p_capa;
-	private int p_cost;
+	private String p_cost;
 	private String P_appstart;
 	private String P_append;
 	private String p_choice;
@@ -31,5 +31,16 @@ public class Post {
 	private String p_writedate;
 	private int p_hit;
 	private String p_cstatus;
+	
+//	게시물 작성한 맴버 조회용
+	private String m_name;
+	private String m_tel;
+	
+//	페이징 조회용
+	private String search;
+	private String keyword;
+	private String pageNum;
+	private int start;
+	private int end;
 
 }

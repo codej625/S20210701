@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.service.ljwService.MemberService;
-import com.oracle.springProject01.service.paging.Paging;
+import com.oracle.springProject01.service.paging.LjwPaging;
 
 @Controller
 public class Ljw_Controller {
@@ -25,6 +25,12 @@ public class Ljw_Controller {
 		return "admin/index";
 	}
 
+//	@RequestMapping(value = "/main/category")
+//	public String test() {
+//		System.out.println("Ljw_Controller test Start...");
+//		return "main/category";
+//	}
+
 	@RequestMapping(value = "/admin/table")
 	public String list(Member member, String currentPage, Model model) {
 		System.out.println("EmpController list Start...");
@@ -32,7 +38,7 @@ public class Ljw_Controller {
 		System.out.println("EmpController total=>" + total);
 		System.out.println("currentPage=>" + currentPage);
 
-		Paging pg = new Paging(total, currentPage);
+		LjwPaging pg = new LjwPaging(total, currentPage);
 		member.setStart(pg.getStart());
 		member.setEnd(pg.getEnd());
 		List<Member> listMember = ms.listMember(member);

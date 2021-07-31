@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.springProject01.model.Lhj_MemberVO;
-import com.oracle.springProject01.service.lhj_login.MemberService;
+import com.oracle.springProject01.service.lhjService.MemberService;
 
 @Controller
 public class Lhj_Controller {
