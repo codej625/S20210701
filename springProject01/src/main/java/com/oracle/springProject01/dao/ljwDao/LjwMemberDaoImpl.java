@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.springProject01.model.Member;
 
 @Repository
-public class MemberDaoImpl implements MemberDao {
+public class LjwMemberDaoImpl implements MemberDao {
 	@Autowired
 	private SqlSession session;
 

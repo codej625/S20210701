@@ -115,3 +115,13 @@ a {
     display: flex;
     left: -1px;
 }
+
+
+/* mypage */
+.myreginfo_table{
+	border: 1px solid black;
+	padding-left: 50px;
+}
+#myreginfo_table_td2{
+	
+}
