@@ -17,4 +17,5 @@ public class Lhj_MemberVO {
 	private String m_withdrawal;
 	private String m_meetingauth;
 	private String m_masterauth;
+	private String m_point;
 }

@@ -17,4 +17,9 @@ public class Member {
 	private String m_withdrawal;
 	private String m_meetingauth;
 	private String m_masterauth;
+	
+	// 조회용
+	private String search;   private String keyword;
+	private String pageNum;  
+	private int start; 		 private int end;
 }

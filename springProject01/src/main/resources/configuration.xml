@@ -2,5 +2,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Post" type="com.oracle.springProject01.model.Post"/>
+		<typeAlias alias="Member" type="com.oracle.springProject01.model.Member"/>
 	</typeAliases>
 </configuration>
