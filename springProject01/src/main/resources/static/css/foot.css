@@ -1,8 +1,8 @@
 .footer {
     padding: 30px 40px;
     position: relative;
-    height: 80px;
-    border-top: 1px solid #656565;
+    height: 60px;
+    background-color: #ececec;
 }
 .footer .company_info {
     color: #656565;

@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/main.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -21,8 +20,8 @@
 					<a>모임을 하고싶으세요?</a>
 				</div>
 				<div class="ex_btn">
-					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/category?bt_num=1">참여하기</button>
-					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register?bt_num=1'">개설하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/post/category?bt_num=1">참여하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/post/register?bt_num=1">개설하기</button>
 				</div>
 			</div>
 			<div class="ex_section">
@@ -31,20 +30,33 @@
 					<a>클래스를 통해 배우고 싶으세요?</a>	
 				</div>
 				<div class="ex_btn">
-					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/category?bt_num=2'">참여하기</button>
-					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/board/register?bt_num=2'">개설하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/post/category?bt_num=2'">참여하기</button>
+					<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/post/register?bt_num=2'">개설하기</button>
 				</div>
 			</div>
+			
 			<div class="ex_section">
-				<div>All the Best 모임.ver</div>
-				<div class=""></div>
-				<div class=""></div>
-				
+                <div>All the Best 모임.ver</div>
+	            <div class="class_wrap">
+	                <c:forEach var="post1" items="${bestList1 }">
+	                    <div class="class_item">
+		                    <div class="class_img"><img src="${pageContext.request.contextPath}/img/people.jpg"></div>
+		                    <div class="class_info">${post1.p_title }</div>
+	                    </div>
+	                </c:forEach>
+		    	</div>
 			</div>
+			
 			<div class="ex_section">
-				<div>All the Best 클래스.ver</div>
-				<div class=""></div>
-				<div class=""></div>
+                <div>All the Best 모임.ver</div>
+	            <div class="class_wrap">
+	           		<c:forEach var="post2" items="${bestList2 }">
+		            	<div class="class_item">
+			            	<div class="class_img"><img src="img/people.jpg"></div>
+			                <div class="class_info">${post2.p_title }</div>
+		                </div>
+	                </c:forEach>
+	            </div>
 			</div>
 		</div>
 	</main>

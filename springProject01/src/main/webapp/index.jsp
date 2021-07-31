@@ -12,6 +12,7 @@
 	// response.sendRedirect("post/category"); 	
 	// response.sendRedirect("post/contents");
 	response.sendRedirect("member/login");
+	
 	%>
 </body>
 </html>
