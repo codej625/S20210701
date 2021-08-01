@@ -31,10 +31,10 @@ public class Yjh_Controller {
 	@Autowired
 	private MemberService ms;
 
-	@GetMapping(value = "/main/main")
-	public String maingogo() {
-		return "main/main";
-	}
+//	@GetMapping(value = "/main/main")
+//	public String maingogo() {
+//		return "main/main";
+//	}
 
 //	겟방식 게시물 리스트 불러오기
 	@RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })

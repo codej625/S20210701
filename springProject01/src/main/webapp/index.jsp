@@ -6,13 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
 <body>
 	<%
-	// response.sendRedirect("post/category"); 	
-	// response.sendRedirect("post/contents");
-	response.sendRedirect("member/login");
-	
+		// response.sendRedirect("post/category"); 	
+		// response.sendRedirect("post/contents");
+	response.sendRedirect("main/main");
 	%>
 </body>
 </html>

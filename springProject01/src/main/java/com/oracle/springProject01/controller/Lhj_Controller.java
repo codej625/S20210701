@@ -27,7 +27,7 @@ public class Lhj_Controller {
 	//로깅
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Lhj_Controller.class);
 	
-//	//메인화면
+	//메인화면
 //	@RequestMapping(value = "/main/main")
 //	public String main() {
 //		System.out.println("go main");

@@ -53,6 +53,10 @@
 							<input type="text" value="${lhj_MemberVO.m_regdate }" readonly>
 						</div>
 					</div>
+					<div>
+						<input type="submit" value="확인">
+						<input type="reset" value="취소">
+					</div>
 				</div>
 			</div>
 			<div class="info_section">

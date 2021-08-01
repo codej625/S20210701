@@ -57,7 +57,6 @@
 					</div>
 				</div>
 			</div>
-						
 					<div style="padding-top: 10px">
 						<img src="${pageContext.request.contextPath}/img/kakao_login_medium_wide.png" style="width: 450px", height="63px">
 					</div>
