@@ -19,6 +19,7 @@
 			from member
 			where m_id = #{m_id}
 			and m_pw = #{m_pw}
+		 	and M_WITHDRAWAL = 'N'
 		</select>
 
 <!-- 		마이페이지 -->
