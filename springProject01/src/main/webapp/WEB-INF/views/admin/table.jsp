@@ -80,6 +80,7 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
+				<p>[ 회원수 : ${total} 명 ]</p>
 				<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 				<table class="table">
 					<tr>
