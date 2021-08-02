@@ -10,6 +10,9 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/smarteditor2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 function inputNumberFormat(obj) {
+
+
+// 	alert(JSON.stringify(obj));
     obj.value = comma(uncomma(obj.value));
 }
 
@@ -80,9 +83,9 @@ function uncomma(str) {
 <!-- 								이부분은 로그인부분과 연결시켜서 sessionId값을 불러와서 넣어줘야된다 -->
 <%-- 								이런식으로	<input type="text" name="m_name" value="${m_name }"> --%>
 								<div class="item_content">
-<%-- 									<a>담당자명</a> <input type="text" name="m_name" value="${m_name }" placeholder="이름입력"> --%>
-<%-- 									<a>담당자명</a> <input type="tel" name="m_tel" value="${m_tel }" placeholder="번호입력"> --%>
-<%-- 									<a>담당자명</a> <input type="text" name="m_id" value="${m_id }" placeholder="id입력"> --%>
+									<a>담당자명</a> <input type="text" name="m_id" value="${sessionID }" readonly="readonly" >
+									<a>담당자명</a> <input type="text" value="${post.m_name }" readonly="readonly" >
+									<a>담당자명</a> <input type="tel" value="${post.m_tel }" readonly="readonly" >
 								</div>
 							</div>
 							<div class="section_con">
@@ -157,6 +160,12 @@ function uncomma(str) {
 							</div>
 							<div class="info">
 								<div class="title">모임기간</div>
+								<p>Date : <input type="text" id="datepicker1">
+								<script type="text/javascript">
+								$(function () {
+									$("#datepicker1" ).datepicker();
+								});
+								</script>
 								<input type="date" name="p_metstart" placeholder="모임시작일">
 								<input type="date" name="p_metend" placeholder="모임종료일">
 							</div>

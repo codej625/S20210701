@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oracle.springProject01.dao.member.Member;
 import com.oracle.springProject01.model.Post;
+import com.oracle.springProject01.model.Reply;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.BoardCategoryService;
 import com.oracle.springProject01.service.yjhService.MemberService;
 import com.oracle.springProject01.service.yjhService.PostService;
+import com.oracle.springProject01.service.yjhService.ReplyService;
 
 @Controller
 public class Yjh_Controller {
@@ -30,6 +32,9 @@ public class Yjh_Controller {
 
 	@Autowired
 	private MemberService ms;
+	
+	@Autowired
+	private ReplyService rs;
 
 //	@GetMapping(value = "/main/main")
 //	public String maingogo() {
@@ -67,8 +72,10 @@ public class Yjh_Controller {
 
 //	모임/클래스 개설하기 버튼
 	@RequestMapping(value = "/post/add")
-	public String add() {
+	public String add(HttpServletRequest request, Model model) {
 		System.out.println("Yjh_Controller void add() start...");
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		model.addAttribute("sessionID",sessionID);
 		return "post/add";
 	}
 
@@ -76,6 +83,10 @@ public class Yjh_Controller {
 	@GetMapping(value = "/post/register")
 	public String register(HttpServletRequest request, int bt_num, Model model) {
 		System.out.println("Yjh_Controller String register Start...");
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+//		섹션아이디의 정보가져오기
+		Post post = ps.registerMember(sessionID);
 //		게시물번호
 		int p_num = 0;
 //		페이지넘
@@ -84,6 +95,8 @@ public class Yjh_Controller {
 			pageNum = "1";
 		model.addAttribute("p_num", p_num);
 		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("sessionID",sessionID);
+		model.addAttribute("post",post);
 		model.addAttribute("bt_num", bt_num);
 		System.out.println("bt_num->" + bt_num);
 		return "post/register";
@@ -107,11 +120,25 @@ public class Yjh_Controller {
 
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model) {
+	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");		
+//		게시물 리스트
 		Post post = ps.postListDetail(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postListDetail post->" + post);
-		model.addAttribute("post", post);
+//		댓글 리스트
+		List<Reply> replyList = rs.postReplyList(bt_num, bc_num, p_num);
+		System.out.println("Controller postReplyList done");
+//		Reply reply = rs.postReplyList(bt_num, bc_num, p_num);
+		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0;
+		model.addAttribute("sessionID",sessionID);
+		model.addAttribute("r_num",r_num);
+		model.addAttribute("r_rate",r_rate);
+		model.addAttribute("r_indent",r_indent);
+		model.addAttribute("r_group",r_group);
+		model.addAttribute("post", post);	
+		model.addAttribute("reply",replyList);
 		return "post/contents";
 	}
 	
@@ -151,6 +178,21 @@ public class Yjh_Controller {
 		int result = ps.postDelete(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller String postDelete result->"+result);
 		return "redirect:/main/main";
+	}
+	
+//	댓글 작성
+	@RequestMapping(value = "/reply/replyInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replyInsert(Reply reply, Model model) {
+		System.out.println("Yjh_Controller String replyInsert start...");
+		int result = rs.replyInsert(reply);
+		System.out.println("Yjh_Controller postInsert result->" + result);
+		if (result > 0) {
+//			model.addAttribute("reply",reply);
+			return "forward:/post/postListDetail";
+		} else {
+			model.addAttribute("msg", "바보");
+			return "forward:add";
+		}
 	}
 
 }

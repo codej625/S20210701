@@ -5,5 +5,6 @@
 		<typeAlias alias="Member" type="com.oracle.springProject01.model.Member"/>
 		<typeAlias alias="Lhj_MemberVO" type="com.oracle.springProject01.model.Lhj_MemberVO"/>
 		<typeAlias alias="ChePostVO" type="com.oracle.springProject01.model.ChePostVO"/>
+		<typeAlias alias="Reply" type="com.oracle.springProject01.model.Reply"/>
 	</typeAliases>
 </configuration>

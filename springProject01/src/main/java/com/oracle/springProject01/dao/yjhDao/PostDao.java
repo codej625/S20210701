@@ -11,4 +11,5 @@ public interface PostDao {
 	Post postListDetail(Post post);
 	int postListUpdate(Post post);
 	int postDelete(Post post);
+	Post registerMember(Post post);
 }

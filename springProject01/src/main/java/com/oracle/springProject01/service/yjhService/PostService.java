@@ -11,4 +11,5 @@ public interface PostService {
 	Post postListDetail(int bt_num, int bc_num, int p_num);
 	int postListUpdate(Post post);
 	int postDelete(int bt_num, int bc_num, int p_num);
+	Post registerMember(String sessionID);
 }

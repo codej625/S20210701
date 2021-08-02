@@ -25,11 +25,19 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<select id="registerMember" parameterType="Post" resultType="Post">
+		select  *
+		from    member
+		where   m_id = #{m_id}
+	</select>
+	
 <!-- postinsert -->
 	<insert id="postInsert" parameterType="Post">
 		insert into post
 				(bt_num,bc_num,p_num,p_title,p_intro,p_info,p_gname,p_capa,p_cost,p_loc,p_starttime,p_endtime,p_cstatus)
-		values (#{bt_num},#{bc_num},(select max(p_num)+1 from post where bt_num= #{bt_num} and bc_num = #{bc_num}),
+		values (#{bt_num},#{bc_num},(select max(p_num)+1 
+									 from post 
+									 where bt_num= #{bt_num} and bc_num = #{bc_num}),
 				#{p_title},#{p_intro},#{p_info},#{p_gname},#{p_capa},#{p_cost},#{p_loc},
 				#{p_starttime},#{p_endtime},#{p_cstatus})
 	</insert>

@@ -37,6 +37,18 @@ public class PostDaoImpl implements PostDao {
 		}
 		return postList;
 	}
+	
+	@Override
+	public Post registerMember(Post post) {
+		System.out.println("PostDaoImpl registerMember start...");
+		Post registerMember = null;
+		try {
+			registerMember = session.selectOne("registerMember",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl registerMember Exception->"+e.getMessage());
+		}
+		return registerMember;
+	}
 
 	@Override
 	public int postInsert(Post post) {

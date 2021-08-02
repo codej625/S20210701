@@ -15,7 +15,7 @@
 	<form action="${pageContext.request.contextPath}/member/login" method="post">
 		<div class="header_top">
 			<div class="logo_section">
-				<img src="${pageContext.request.contextPath}/img/logo.png">
+				<a href="${pageContext.request.contextPath}/main/main"><img src="${pageContext.request.contextPath}/img/logo.png"></a>
 			</div>
 			<div class="nav_bar">
 				<div class="nav_header">
