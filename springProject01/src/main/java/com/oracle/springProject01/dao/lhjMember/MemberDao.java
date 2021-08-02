@@ -19,7 +19,15 @@ public interface MemberDao {
 	public void myPWchange(Lhj_MemberVO lhj_MemberVO);
 		//신청내역 조회
 	public			List<Lhj_MemberVO> myRegInfoList(String m_id);
+		//신청내역 취소
+	public void myRGNO(Lhj_MemberVO lhj_MemberVO); 
 		//관심내역 조회
 	public			List<Lhj_MemberVO> myBookMarkList(String m_id);
+		//관심내역에서 신청 (b_reg => y)
+	public void	myBMtoRG(Lhj_MemberVO lhj_MemberVO);
+		//관심내역에서 신청내역으로 insert 
+	public void myBMtoRG2(Lhj_MemberVO lhj_MemberVO);
+		//관심내역 취소
+	public void myBMNO(Lhj_MemberVO lhj_MemberVO);
 	
 }

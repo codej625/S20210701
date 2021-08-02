@@ -1,6 +1,5 @@
  package com.oracle.springProject01.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -107,7 +106,6 @@ public class Lhj_Controller {
 		String sessionID =  (String) request.getSession().getAttribute("sessionID");
 		m_id = sessionID;
 		Lhj_MemberVO lhj_MemberVO = ms.selectMypage(m_id);
-		System.out.println("아이디 잘 가져왓는지 확인"+m_id);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 		
 		return "/member/mypage_update";
@@ -165,6 +163,19 @@ public class Lhj_Controller {
 		return "/member/mypage_myreginfo";
 	}
 	
+	//마이페이지 신청내역 취소
+	@RequestMapping(value = "/member/mypage_myreginfoDE", method = { RequestMethod.GET, RequestMethod.POST })
+	public String myreginfoDE(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request, HttpSession session) throws Exception{
+		System.out.println("lhjController myreginfo Start...");
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID; 
+		lhj_MemberVO = ms.myRGNO(lhj_MemberVO);
+		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+		
+		return "forward:/member/mypage_myreginfo";
+	}
+	
+	
 	//마이페이지 관심 내역
 	@RequestMapping(value = "/member/mypage_mybookmark")
 	public String mybookmark(Model model, HttpServletRequest request, String m_id) throws Exception{
@@ -179,7 +190,31 @@ public class Lhj_Controller {
 		return "/member/mypage_mybookmark";
 	}
 	
+	//마이페이지 관심내역 신청
+	@RequestMapping(value = "/member/mypage_mybookmarkSin", method = { RequestMethod.GET, RequestMethod.POST })
+	public String mybookmarkSin(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request, HttpSession session) {
+		System.out.println("lhjController mybookmarkSin Start...");
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+		lhj_MemberVO = ms.myBMtoRG(lhj_MemberVO);
+		Lhj_MemberVO lhj_MemberVO2 = ms.myBMtoRG2(lhj_MemberVO);
+		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+		model.addAttribute("lhj_MemberVO", lhj_MemberVO2);
+		
+		return "forward:/member/mypage_myreginfo";
+	}
 	
+	//마이페이지 관심내역 취소
+	@RequestMapping(value = "/member/mypage_mybookmarkNO", method = { RequestMethod.GET, RequestMethod.POST })
+	public String mybookmarkNO(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request, HttpSession session) {
+		System.out.println("lhjController mybookmarkSin Start...");
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+		lhj_MemberVO = ms.myBMNO(lhj_MemberVO);
+		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+		
+		return "forward:/member/mypage_mybookmark";
+	}
 
 	
 	

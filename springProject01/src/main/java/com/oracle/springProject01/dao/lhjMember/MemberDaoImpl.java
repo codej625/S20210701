@@ -67,7 +67,6 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 	
-	
 		//신청 내역 조회
 	@Override
 	public List<Lhj_MemberVO> myRegInfoList(String m_id) {
@@ -79,6 +78,18 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
 		}
 		return myRegInfoList;
+	}
+	
+		//신청내역 취소
+	@Override
+	public void myRGNO(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjMember MemberDaoImpl myRGNO Start ...");
+		try {
+			session.delete("hj_myRGNO", lhj_MemberVO);
+			
+		} catch (Exception e) {
+			System.out.println("dao lhjMember MemberDaoImpl myRGNO Exception->"+e.getMessage());
+		}
 	}
 		//관심 내역 조회
 	@Override
@@ -92,6 +103,40 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return myBookMarkList;
 	}
+		//관심내역에서 신청 (b_reg => y)
+	@Override
+	public void myBMtoRG(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjmember memberDaoImpl myBMtoRG Start");
+		try {
+			session.update("hj_myBMtomyRG",lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("dao lhjMember MemberDaoImpl myBMtoRG Exception->"+e.getMessage());
+		}
+	}
+		//관심내역에서 신청내역으로 insert 
+	@Override
+	public void myBMtoRG2(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjMember MemberDaoImpl myBMtoRG2 Start ...");
+		try {
+			session.insert("hj_myBMtoRG2", lhj_MemberVO);
+			
+		} catch (Exception e) {
+			System.out.println("dao lhjMember MemberDaoImpl myBMtoRG2 Exception->"+e.getMessage());
+		}
+	}
+	
+		//관심내역 취소
+	@Override
+	public void myBMNO(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjMember MemberDaoImpl myBMNO Start ...");
+		try {
+			session.delete("hj_myBMNO", lhj_MemberVO);
+			
+		} catch (Exception e) {
+			System.out.println("dao lhjMember MemberDaoImpl myBMNO Exception->"+e.getMessage());
+		}
+	}
+	
 		
 	
 

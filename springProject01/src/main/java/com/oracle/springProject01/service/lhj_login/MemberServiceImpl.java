@@ -64,6 +64,15 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("service lhjLoginservice memverserviceImpl myRegInfo myRegInfoList.size()->" +myRegInfoList.size());
 		return myRegInfoList;
 	}
+	
+		//신청내역 취소
+	@Override
+	public Lhj_MemberVO myRGNO(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("service lhjLoginservice memverserviceImpl myRGNO start...");
+		md.myRGNO(lhj_MemberVO);
+		return lhj_MemberVO;
+	}
+	
 		//마이페이지 관심내역 조회
 	@Override
 	public List<Lhj_MemberVO> myBookMarkList(String m_id) {
@@ -73,7 +82,27 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("service lhjLoginservice memverserviceImpl myBookMark myBookMarkList.size()->" +myBookMarkList.size());
 		return myBookMarkList;
 	}
-	
+		//관심내역에서 신청 (b_reg => y)
+	@Override
+	public Lhj_MemberVO myBMtoRG(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("service lhjLoginservice memverserviceImpl myBMtoRG start...");
+		md.myBMtoRG(lhj_MemberVO);
+		return lhj_MemberVO;
+	}
+		//관심내역에서 신청내역으로 insert 
+	@Override
+	public Lhj_MemberVO myBMtoRG2(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("service lhjLoginservice memverserviceImpl myBMtoRG2 start...");
+		md.myBMtoRG2(lhj_MemberVO);
+		return lhj_MemberVO;
+	}
+		//관심내역 취소
+	@Override
+	public Lhj_MemberVO myBMNO(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("service lhjLoginservice memverserviceImpl myBMNO start...");
+		md.myBMNO(lhj_MemberVO);
+		return lhj_MemberVO;
+	}
 	
 
 
