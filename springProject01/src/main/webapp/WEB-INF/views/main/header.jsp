@@ -49,8 +49,9 @@
 						</c:if>
 					</div>
 					<div class="nav_detail">
-						<a href="${pageContext.request.contextPath}/post/register"><i
-							class="far fa-list-alt fa-3x"></i><br />모임개설</a>
+						<a href="${pageContext.request.contextPath}/post/add"><i
+							class="far fa-list-alt fa-3x"></i></a><br /> <a
+							href="${pageContext.request.contextPath}/post/add">모임개설</a>
 					</div>
 					<div class="nav_detail">
 						<i class="far fa-bell fa-3x"></i><br /> <a>알림</a>
