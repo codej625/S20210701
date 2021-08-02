@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oracle.springProject01.dao.member.Member;
 import com.oracle.springProject01.model.Post;
+import com.oracle.springProject01.model.Reply;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.BoardCategoryService;
 import com.oracle.springProject01.service.yjhService.MemberService;
 import com.oracle.springProject01.service.yjhService.PostService;
+import com.oracle.springProject01.service.yjhService.ReplyService;
 
 @Controller
 public class Yjh_Controller {
@@ -30,6 +32,9 @@ public class Yjh_Controller {
 
 	@Autowired
 	private MemberService ms;
+	
+	@Autowired
+	private ReplyService rs;
 
 	@GetMapping(value = "/main/main")
 	public String maingogo() {
@@ -109,9 +114,20 @@ public class Yjh_Controller {
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model) {
 		System.out.println("Yjh_Controller String postListDetail start...");
+//		게시물 리스트
 		Post post = ps.postListDetail(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postListDetail post->" + post);
-		model.addAttribute("post", post);
+//		댓글 리스트
+		List<Reply> replyList = rs.postReplyList(bt_num, bc_num, p_num);
+		System.out.println("Controller postReplyList done");
+//		Reply reply = rs.postReplyList(bt_num, bc_num, p_num);
+		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0;
+		model.addAttribute("r_num",r_num);
+		model.addAttribute("r_rate",r_rate);
+		model.addAttribute("r_indent",r_indent);
+		model.addAttribute("r_group",r_group);
+		model.addAttribute("post", post);	
+		model.addAttribute("reply",replyList);
 		return "post/contents";
 	}
 	
@@ -151,6 +167,21 @@ public class Yjh_Controller {
 		int result = ps.postDelete(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller String postDelete result->"+result);
 		return "redirect:/main/main";
+	}
+	
+//	댓글 작성
+	@RequestMapping(value = "/reply/replyInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replyInsert(Reply reply, Model model) {
+		System.out.println("Yjh_Controller String replyInsert start...");
+		int result = rs.replyInsert(reply);
+		System.out.println("Yjh_Controller postInsert result->" + result);
+		if (result > 0) {
+//			model.addAttribute("reply",reply);
+			return "forward:/post/postListDetail";
+		} else {
+			model.addAttribute("msg", "바보");
+			return "forward:add";
+		}
 	}
 
 }

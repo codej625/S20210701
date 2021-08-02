@@ -99,15 +99,41 @@
 						</div>
 					</div>
 					<div class="con_item">
-						<div class="item_tit">문의/기대평</div>
-						<div class="item_det">
-							<a class="photo"> <img
-								src="${pageContext.request.contextPath}/img/01.jpg">
-							</a>
-							<textarea rows="5" cols="70"></textarea>
-							<button>등록</button>
-							<input type="checkbox">비공개
-						</div>
+						<form action="${pageContext.request.contextPath}/reply/replyInsert" method="post">
+							<input type="hidden" name="bt_num" value="${post.bt_num }">
+							<input type="hidden" name="bc_num" value="${post.bc_num }">
+							<input type="hidden" name="p_num" value="${post.p_num }">
+							<input type="hidden" name="r_num" value="${r_num }">
+<%-- 							<input type="hidden" name="m_id" value="${reply.bt_num }"> --%>
+							<input type="hidden" name="r_rate" value="${r_rate }">
+							<input type="hidden" name="r_indent" value="${r_indent }">
+							<input type="hidden" name="r_group" value="${r_group }">
+							<div class="item_tit">문의/기대평</div>
+							<div class="item_det">
+								<a class="photo"> <img
+									src="${pageContext.request.contextPath}/img/01.jpg">
+								</a>
+								<textarea rows="5" cols="70" name="r_info"></textarea>
+								<button type="submit">등록</button>
+								<input type="checkbox">비공개
+							</div>
+						</form>
+					</div>
+					<div class="con_item">
+						<div class="item_tit">댓글들</div>
+							<c:forEach var="reply1" items="${reply }">
+							<div class="item_det">
+								<a class="photo">
+									<img src="${pageContext.request.contextPath}/img/01.jpg">
+								</a>
+								${reply1.m_name }
+								${reply1.m_tel }
+								${reply1.r_writedate }
+								<textarea rows="5" cols="70" name="r_info" readonly="readonly">${reply1.r_info }</textarea>
+								<button type="submit">수정</button>
+								<input type="checkbox">비공개
+							</div>
+							</c:forEach>
 					</div>
 					<div class="con_item">
 						<div class="item_tit">참여/취소안내</div>
