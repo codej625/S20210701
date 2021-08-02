@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 
 
-@Repository
+@Repository("LhjDao")
 public class MemberDaoImpl implements MemberDao {
 
 	@Autowired
