@@ -35,11 +35,11 @@ public class Lhj_Controller {
 //	}
 	
 	//회원가입 화면
-	@RequestMapping(value = "/main/join", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/join", method = RequestMethod.GET)
 	public String insertGET() throws Exception {
 		System.out.println("Lhj_Controller String insertGET start...");
 		logger.info("C: 회원가입 입력페이지 GET");
-		return "main/join";
+		return "member/join";
 	}
 	
 	//회원가입 처리

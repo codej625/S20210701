@@ -10,7 +10,7 @@
 	<%
 		// response.sendRedirect("post/category"); 	
 		// response.sendRedirect("post/contents");
-	response.sendRedirect("main/main");
+		response.sendRedirect("member/join");
 	%>
 </body>
 </html>
