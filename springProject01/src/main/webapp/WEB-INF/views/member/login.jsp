@@ -24,9 +24,9 @@
 							<li><a href="login">로그인</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						</c:if>
-						<li>${sessionID }회원님</li>
 						<c:if test="${sessionID != null }">
-<!-- 							<li><input type="submit" value="로그아웃"></li> -->
+							<li>${sessionID }회원님</li>
+<!-- 						<li><input type="submit" value="로그아웃"></li> -->
 							<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
 						<li><a href="고객센터">고객센터</a></li>

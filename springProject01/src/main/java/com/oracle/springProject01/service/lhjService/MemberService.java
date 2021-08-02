@@ -19,8 +19,16 @@ public interface MemberService {
 	Lhj_MemberVO			myPWchange(Lhj_MemberVO lhj_MemberVO);
 		//개인정보 신청내역 조회
 	List<Lhj_MemberVO> 		myRegInfoList(String m_id);
+		//신청내역 취소
+	Lhj_MemberVO 			myRGNO(Lhj_MemberVO lhj_MemberVO);
 		//관심내역 조회
 	List<Lhj_MemberVO> myBookMarkList(String m_id);
+		//관심내역에서 신청 (b_reg => y)
+	Lhj_MemberVO 			myBMtoRG(Lhj_MemberVO lhj_MemberVO);
+		//관심내역에서 신청내역으로 insert 
+	Lhj_MemberVO 			myBMtoRG2(Lhj_MemberVO lhj_MemberVO);
+		//관심내역 취소 
+	Lhj_MemberVO 			myBMNO(Lhj_MemberVO lhj_MemberVO);
 	 
 	
 

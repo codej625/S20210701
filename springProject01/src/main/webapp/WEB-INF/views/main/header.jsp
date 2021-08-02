@@ -22,13 +22,13 @@
 			<div class="nav_bar">
 				<div class="nav_header">
 					<ul>
-						<c:if test="${m_name == null}">
-							<li><a
-								href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+						<c:if test="${sessionID == null}">
+							<li>
+								<a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						</c:if>
-						<c:if test="${m_name != null}">
-							<li><span>${m_name}</span>회원님</li>
+						<c:if test="${sessionID != null}">
+							<li><span>${sessionID}</span>회원님</li>
 							<li>
 							<li><a
 								href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
