@@ -131,12 +131,13 @@ public class Yjh_Controller {
 		List<Reply> replyList = rs.postReplyList(bt_num, bc_num, p_num);
 		System.out.println("Controller postReplyList done");
 //		Reply reply = rs.postReplyList(bt_num, bc_num, p_num);
-		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0;
+		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0, r_level = 0;
 		model.addAttribute("sessionID",sessionID);
 		model.addAttribute("r_num",r_num);
 		model.addAttribute("r_rate",r_rate);
 		model.addAttribute("r_indent",r_indent);
 		model.addAttribute("r_group",r_group);
+		model.addAttribute("r_level",r_level);
 		model.addAttribute("post", post);	
 		model.addAttribute("reply",replyList);
 		return "post/contents";
@@ -193,6 +194,29 @@ public class Yjh_Controller {
 			model.addAttribute("msg", "바보");
 			return "forward:add";
 		}
+	}
+	
+//	댓글 삭제
+	@RequestMapping(value = "/reply/replyDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replyDelete(Integer bt_num, Integer bc_num, Integer p_num, Integer r_num, HttpServletRequest request) {
+		System.out.println("Yjh_Controller replyDelete strat...");
+		System.out.println("Yjh_Controller replyDelete bt_num->"+bt_num);
+		System.out.println("Yjh_Controller replyDelete bc_num->"+bc_num);
+		System.out.println("Yjh_Controller replyDelete p_num->"+p_num);
+		System.out.println("Yjh_Controller replyDelete r_num->"+r_num);
+		int result = rs.replyDelete(bt_num, bc_num, p_num, r_num);
+		return "forward:/post/postListDetail";
+	}
+	
+//	대댓글 등록
+	@RequestMapping(value = "/reply/replyReplyInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replyReplyInsert(Reply reply, HttpServletRequest request) {
+		System.out.println("Yjh_Controller replyReplyInsert start...");
+		System.out.println("Yjh_Controller replyDelete reply.getR_level->"+reply.getR_level());
+		System.out.println("Yjh_Controller replyDelete getR_indent()->"+reply.getR_indent());
+		System.out.println("Yjh_Controller replyDelete getR_group()->"+reply.getR_group());
+		int result = rs.replyReplyInsert(reply);
+		return "forward:/post/postListDetail";
 	}
 
 }

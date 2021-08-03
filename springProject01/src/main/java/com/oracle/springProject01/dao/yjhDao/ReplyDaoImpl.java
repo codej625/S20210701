@@ -40,17 +40,46 @@ public class ReplyDaoImpl implements ReplyDao {
 		return result;
 	}
 
+	@Override
+	public int replyDelete(Reply reply) {
+		System.out.println("ReplyDaoImpl replyDelete start...");
+		int result = 0;
+		try {
+			result = session.delete("replyDelete",reply);
+			System.out.println("ReplyDaoImpl replyDelete result -> " + result);
+		} catch (Exception e) {
+			System.out.println("ReplyDaoImpl replyDelete Exception->"+e.getMessage());
+		}
+		return result;
+	}
+	
+	@Override
+	public int replyIndentUpdate(Reply reply) {
+		System.out.println("ReplyDaoImpl replyIndentUpdate start...");
+		int result1 = 0;
+		try {
+			result1 = session.update("replyIndentUpdate",reply);
+			System.out.println("ReplyDaoImpl replyIndentUpdate result1->"+result1);
+		} catch (Exception e) {
+			System.out.println("ReplyDaoImpl replyIndentUpdate Exception->"+e.getMessage());
+		}
+		return result1;
+	}
 
-//	@Override
-//	public Reply postReplyList(Reply reply) {
-//		System.out.println("ReplyDaoImpl Reply postReplyList start...");
-//		Reply reply2 = new Reply();
-//		try {
-//			reply2 = session.selectList(statement);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		return null;
-//	}
+	@Override
+	public int replyReplyInsert(Reply reply) {
+		System.out.println("ReplyDaoImpl replyReplyInsert start...");
+		int result = 0;
+		try {
+			result = session.insert("replyReplyInsert",reply);
+			System.out.println("ReplyDaoImpl replyReplyInsert result -> " + result);
+		} catch (Exception e) {
+			System.out.println("ReplyDaoImpl replyReplyInsert Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+	
+
 
 }

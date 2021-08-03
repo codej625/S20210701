@@ -18,6 +18,8 @@ public class Reply {
 	private int r_group;
 	private String r_info;
 	private Date r_writedate;
+	private String r_openclose;
+	private int r_level;
 
 //	게시물 작성한 맴버 조회용
 	private String m_name;

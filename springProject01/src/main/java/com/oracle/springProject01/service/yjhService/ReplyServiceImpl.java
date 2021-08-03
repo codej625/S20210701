@@ -42,5 +42,31 @@ public class ReplyServiceImpl implements ReplyService {
 		return result;
 	}
 
+	@Override
+	public int replyDelete(int bt_num, int bc_num, int p_num, int r_num) {
+		System.out.println("ReplyServiceImpl replyDelete start...");
+		int result = 0;
+		Reply reply = new Reply();
+		reply.setBt_num(bt_num);
+		reply.setBc_num(bc_num);
+		reply.setP_num(p_num);
+		reply.setR_num(r_num);
+		result = rd.replyDelete(reply);
+		return result;
+	}
+
+	@Override
+	public int replyReplyInsert(Reply reply) {
+		System.out.println("ReplyServiceImpl replyIndentUpdate start...");
+		int result = 0;
+		int result1 = 0;
+//		r_indent(들여쓰기) 업데이트
+		result1 = rd.replyIndentUpdate(reply);
+		System.out.println("ReplyServiceImpl replyReplyInsert start...");
+//		대댓글 등록
+		result = rd.replyReplyInsert(reply); 
+		return result;
+	}
+
 
 }
