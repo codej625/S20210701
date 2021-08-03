@@ -6,14 +6,14 @@
 	font-weight: 400;
 	display: flex;
 	z-index: 11;
-	justify-content: center;
 	align-items: center;
 	color:#3c3c3c;
 	border-bottom: 1px solid #EFEFEF;
 }
 .header_top .logo_section {
 	position: absolute;
-	left: 60px;
+	margin-left: 350px;
+	margin-bottom: 10px;
 	width: 200px;
 }
 .header_top .logo_section img {
@@ -22,14 +22,15 @@
 }
 .header_top .search_section {
 	position: relative;
-	width: 28vw;
+	margin-left: 730px;
+	width: 450px;
 	height: 40px;
 	border: 1px solid #269F70;
 	border-radius: 20px;
 }
 .header_top .search_section input {
 	border: none;
-	width: 90%;
+	width: 400px;
 	height: 38px;
 	background-color: transparent;
 	padding-left: 30px;
@@ -48,22 +49,25 @@
 	color: #269F70;
 }
 .header_top .nav_bar {
-	position: absolute;
-	top: 10px;
-	right: 10px;
+	position: relative;
+	padding-left: 60px;
+	padding-bottom: 50px;
+}
+.header_top .nav_bar .nav_header {
+	padding-left: 120px;
+	padding-bottom: 5px;
 }
 .header_top .nav_bar .nav_header ul li{
-	margin: 0 1vw;
+	margin: 13px 20px 0 0;
 	cursor: pointer;
 	display: inline-block;
-	font-size: 13px;
+	font-size: 12px;
 }
 .header_top .nav_bar .nav_menu {
-	position: absolute;
+	position: relative;
 	display: flex;
-	top: 40px;
-	right: 40px;
 	text-align: center;
+	padding-bottom: 10px;
 }
 .header_top .nav_bar .nav_menu .nav_detail:hover {
     color: #269F70;
@@ -71,16 +75,16 @@
 }
 .header_top .nav_bar .nav_menu .nav_detail {
     cursor: pointer;
-	padding: 6.5px 30px;
-    font-size: 14px;
-	font-weight: 400;
+	padding: 10px 20px 6.5px;
+    font-size: 13px;
+	font-weight: 500;
+	
 }
 .header_top .nav_bar .nav_menu .nav_detail i {
-	font-size: 39px;
+	font-size: 35px;
 	font-weight: 200;
 	padding-bottom: 10px;
 }
-
 /* filter.css */
 .header_bottom {
 	position: relative;

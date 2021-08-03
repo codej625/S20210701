@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="ChePostVO">
+<mapper namespace="MainDao">
 
 	<!-- 모임/클래스 best -->
 	<select id="bestListPost" parameterType="Post" resultType="Post">
@@ -10,5 +10,24 @@
 			) where rn between #{start} and #{end}
 	</select>
 
-
+	<!-- 검색 total -->
+	<select id="searchTotal" parameterType="Post" resultType="Post">
+		select count(*) from post where '%'||#{keyword}||'%' or p_intro like '%'||#{keyword}||'%'
+	</select>
+	
+	<!-- 검색 list -->
+	<select id="searchlist" parameterType="Post" resultType="Post">
+		select * from 
+			(select rownum rn, a.* from 
+				(select * from post 
+                 where p_title like  '%'||#{keyword}||'%' OR p_intro like '%'||#{keyword}||'%'
+                 order by p_num) a
+			)
+		where rn between #{start} and #{end}
+	</select>	
+	
+	<!-- 출석체크 조회 -->
+	<select id="chkEventId" parameterType="Attend" resultType="Attend">
+		select * from attend where m_id = #{m_id};
+	</select>
 </mapper>
