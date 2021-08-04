@@ -49,6 +49,12 @@ public class Pmj_Controller {
 	        return "chat/chat3";
 	    }
 	  
+	  @RequestMapping("/chat/broadcast")
+	  public String broadcast() {
+		  System.out.println("Pmj_Controller broadcast start");
+		  return "chat/broadcast";
+	  }
+	  
 	
 	
 
