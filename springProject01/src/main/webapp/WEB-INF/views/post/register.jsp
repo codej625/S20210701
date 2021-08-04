@@ -38,9 +38,8 @@ function uncomma(str) {
 				<input type="hidden" name="p_num" value="${p_num }">
 				<div class="page_title">개설하기</div>
 				<div class="info_section">
-					<div class="class_img"
-						style="background-image: url('${pageContext.request.contextPath}/img/01.jpg');">
-<!-- 						<input type="file" name="p_img" value="사진첨부"> -->
+					<div class="class_img">
+<!-- 						<input type="file" name="p_img"> -->
 					</div>
 					<div class="class_info">
 						<div class="section_tit">기본정보</div>
@@ -83,9 +82,9 @@ function uncomma(str) {
 <!-- 								이부분은 로그인부분과 연결시켜서 sessionId값을 불러와서 넣어줘야된다 -->
 <%-- 								이런식으로	<input type="text" name="m_name" value="${m_name }"> --%>
 								<div class="item_content">
-									<a>담당자명</a> <input type="text" name="m_id" value="${sessionID }" readonly="readonly" >
-									<a>담당자명</a> <input type="text" value="${post.m_name }" readonly="readonly" >
-									<a>담당자명</a> <input type="tel" value="${post.m_tel }" readonly="readonly" >
+									<a>담당자아이디</a> <input type="text" name="m_id" value="${sessionID }" readonly="readonly" >
+									<a>담당자이름</a> <input type="text" value="${post.m_name }" readonly="readonly" >
+									<a>담당자번호</a> <input type="tel" value="${post.m_tel }" readonly="readonly" >
 								</div>
 							</div>
 							<div class="section_con">
@@ -160,14 +159,19 @@ function uncomma(str) {
 							</div>
 							<div class="info">
 								<div class="title">모임기간</div>
-								<p>Date : <input type="text" id="datepicker1">
+								<p>Date : 
+								<input type="text" id="datepicker1" name="p_metstart" placeholder="모임시작일">
+								<input type="text" id="datepicker2" name="p_metend" placeholder="모임종료일">
 								<script type="text/javascript">
 								$(function () {
 									$("#datepicker1" ).datepicker();
 								});
+								$(function () {
+									$("#datepicker2" ).datepicker();
+								});
 								</script>
-								<input type="date" name="p_metstart" placeholder="모임시작일">
-								<input type="date" name="p_metend" placeholder="모임종료일">
+<!-- 								<input type="date" name="p_metstart" placeholder="모임시작일"> -->
+<!-- 								<input type="date" name="p_metend" placeholder="모임종료일"> -->
 							</div>
 							<div class="info">
 								<div class="title">신청기간</div>

@@ -166,7 +166,28 @@
 					                <c:when test="${reply.m_id == sessionID || sessionID == 'aaaaaa@aaaaaa.com'}">
 					                    <textarea rows="5" cols="70" name="r_info" readonly="readonly">${reply.r_info }</textarea>
 					                    <button type="button" onclick="location.href='${pageContext.request.contextPath}/reply/replyDelete?bt_num=${reply.bt_num }&bc_num=${reply.bc_num }&p_num=${reply.p_num}&r_num=${reply.r_num}'">삭제</button>
-					                    <button>답변</button>
+<!-- 							           	 댓글이 비공개일때 답글쓰는 로직 -->
+							            <div id='dis' style="display: none;">
+		           							<form action="${pageContext.request.contextPath}/reply/replyReplyInsert" method="post">
+												<input type="hidden" name="bt_num" value="${reply.bt_num }">
+												<input type="hidden" name="bc_num" value="${reply.bc_num }">
+												<input type="hidden" name="p_num" value="${reply.p_num }">
+												<input type="hidden" name="r_num" value="${reply.r_num }">
+												<input type="hidden" name="m_id" value="${sessionID }">
+												<input type="hidden" name="r_indent" value="${r_indent }">
+												<input type="hidden" name="r_group" value="${reply.r_group }">
+												<input type="hidden" name="r_group" value="${r_level }">
+												<div class="item_tit">문의/기대평</div>
+												<div class="item_det">
+													<a class="photo"> <img src="${pageContext.request.contextPath}/img/01.jpg"></a>
+													<textarea rows="5" cols="70" name="r_info"></textarea>
+													<button type="submit">등록</button>
+												</div>
+											</form>
+							            </div>
+										<c:if test="${reply.r_level == 0 }">
+											<button id='show' onclick="dis()">답변쓰기</button>
+										</c:if>
 					                </c:when>
 					                <c:otherwise>비밀글은 작성자와 관리자만 볼 수 있습니다.</c:otherwise>
 					            </c:choose>
@@ -175,7 +196,7 @@
 					        <c:if test="${reply.r_openclose eq 'Y'}" >
 					            <textarea rows="5" cols="70" name="r_info" readonly="readonly">${reply.r_info }</textarea>
 					            
-					            <div id='dis' style="display: none;">
+					            <div id='dis${reply.r_num }' style="display: none;">
            							<form action="${pageContext.request.contextPath}/reply/replyReplyInsert" method="post">
 										<input type="hidden" name="bt_num" value="${reply.bt_num }">
 										<input type="hidden" name="bc_num" value="${reply.bc_num }">
@@ -193,9 +214,9 @@
 										</div>
 									</form>
 					            </div>
-								<c:if test="${sessionID != null}">
+								<c:if test="${sessionID != null  }">
 									<c:if test="${reply.r_level == 0 }">
-										<button id='show' onclick="dis()">답변쓰기</button>
+										<button id='show' onclick="dis(${reply.r_num})">답변쓰기</button>
 									</c:if>
 <!-- 									<button id='show' onclick="dis()">답변쓰기</button> -->
 								</c:if>
@@ -205,11 +226,11 @@
 								</c:if>
 <!-- 								<button id='show' onclick="dis()">답변</button> -->
 								<script type="text/javascript">
-							        function dis(){
-							            if($('#dis').css('display') == 'none'){
-							            $('#dis').show();
+							        function dis(r_num){
+							            if($('#dis'+r_num).css('display') == 'none'){
+							            $('#dis'+r_num).show();
 								        }else{
-								            $('#dis').hide();
+								            $('#dis'+r_num).hide();
 								        }
 							        }
 							    </script>
