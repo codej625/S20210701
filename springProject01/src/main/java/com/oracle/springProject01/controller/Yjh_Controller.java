@@ -39,12 +39,7 @@ public class Yjh_Controller {
 	
 	@Autowired
 	private ReplyService rs;
-
-//	@GetMapping(value = "/main/main")
-//	public String maingogo() {
-//		return "main/main";
-//	}
-
+	
 //	겟방식 게시물 리스트 불러오기
 	@RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
 	public String categoryGet(Integer bt_num, Integer bc_num, Post post, String currentPage, Model model) {
