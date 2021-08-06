@@ -42,7 +42,7 @@ public class Yjh_Controller {
 	
 //	겟방식 게시물 리스트 불러오기
 	@RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
-	public String categoryGet(Integer bt_num, Integer bc_num, Post post, String currentPage, Model model) {
+	public String categoryGet(Integer bt_num, Integer bc_num, String currentPage, Model model) {
 		System.out.println("Yjh_Controller categoryGet Start...");
 		int total = 0;
 //		유형번호만 눌렀을때 카테고리값을 0으로
@@ -53,12 +53,16 @@ public class Yjh_Controller {
 		System.out.println("Yjh_Controller categoryGet total->" + total);
 //		페이징 처리
 		Paging pg = new Paging(total, currentPage);
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
 		post.setStart(pg.getStart());
 		post.setEnd(pg.getEnd());
 //		게시물 리스트
 		List<Post> listPost = ps.listPost(post);
 		for(Post post1 : listPost ) {
 			System.out.println("Yjh_Controller categoryGet post1.getP_title()->"+post1.getP_title());
+			System.out.println("Yjh_Controller categoryGet post1.getP_title()->"+post1.getP_img());
 		}
 		System.out.println("Yjh_Controller String list() listPost.size()->" + listPost.size());
 		model.addAttribute("total", total);
@@ -103,21 +107,39 @@ public class Yjh_Controller {
 
 //	게시물 작성
 	@PostMapping(value = "/post/insert")
-	public String postInsert(Post post, Model model)  {
-//		public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model) throws IOException {
+//	public String postInsert(Post post, Model model)  {
+	public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model) throws IOException {
 		System.out.println("Yjh_Controller String postInsert start...");
+		Post post = new Post();
+		post.setBt_num(Integer.parseInt(request.getParameter("bt_num")));
+		post.setBc_num(Integer.parseInt(request.getParameter("bc_num")));
+		post.setP_num(Integer.parseInt(request.getParameter("p_num")));
+		post.setP_title(request.getParameter("p_title"));
+		post.setM_id(request.getParameter("m_id"));
+		post.setP_intro(request.getParameter("p_intro"));
+		post.setP_info(request.getParameter("p_info"));
+		post.setP_gname(request.getParameter("p_gname"));
+		post.setP_capa(Integer.parseInt(request.getParameter("p_capa")));
+		post.setP_cstatus(request.getParameter("p_cstatus"));
+		post.setP_metstart(request.getParameter("p_metstart"));
+		post.setP_metend(request.getParameter("p_metend"));
+		post.setP_loc(request.getParameter("p_loc"));
+		post.setP_cost(request.getParameter("p_cost"));
+		post.setP_starttime(request.getParameter("p_starttime"));
+		post.setP_endtime(request.getParameter("p_endtime"));
 		System.out.println("post.p_cost: " + post.getP_cost());
-		System.out.println(post.getP_starttime());
+		System.out.println("post.P_starttime: " + post.getP_starttime());
 //		uploadPath = 파일경로지정
-//		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
-//		System.out.println("originalName : " + p_img.getOriginalFilename());
-//		System.out.println("size : " + p_img.getSize());
-//		System.out.println("contentType : " + p_img.getContentType());
-//		System.out.println("uploadPath : " + uploadPath);
-//		String savedName = uploadFile(p_img.getOriginalFilename(), p_img.getBytes(), uploadPath);
-//		post.setP_img(p_img.getOriginalFilename());
-//		System.out.println("saveName : " + savedName);
-//		model.addAttribute("savedName", savedName);
+		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
+		System.out.println("originalName : " + p_img.getOriginalFilename());
+		System.out.println("size : " + p_img.getSize());
+		System.out.println("contentType : " + p_img.getContentType());
+		System.out.println("uploadPath : " + uploadPath);
+		String savedName = uploadFile(p_img.getOriginalFilename(), p_img.getBytes(), uploadPath);
+		post.setP_img(savedName);
+		System.out.println("saveName : " + savedName);
+		System.out.println("Yjh_Controller post.getP_img->"+post.getP_img());
+		System.out.println("Yjh_Controller post.getP_title()->"+post.getP_title());
 		int result = ps.postInsert(post);
 		System.out.println("Yjh_Controller postInsert result->" + result);
 		if (result > 0) {
@@ -130,51 +152,51 @@ public class Yjh_Controller {
 //		return "/post/kkk";
 	}
 	
-//	게시물 작성
-//	@PostMapping(value = "/post/insert")
-//	public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model)  {
-//		public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model) throws IOException {
-//		System.out.println("Yjh_Controller String postInsert start...");
-//		System.out.println("post.p_cost: " + post.getP_cost());
-//		System.out.println(post.getP_starttime());
-////		uploadPath = 파일경로지정
-//		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
-//		System.out.println("originalName : " + p_img.getOriginalFilename());
-//		System.out.println("size : " + p_img.getSize());
-//		System.out.println("contentType : " + p_img.getContentType());
-//		System.out.println("uploadPath : " + uploadPath);
-//		String savedName = uploadFile(p_img.getOriginalFilename(), p_img.getBytes(), uploadPath);
-//		post.setP_img(p_img.getOriginalFilename());
-//		System.out.println("saveName : " + savedName);
-//		model.addAttribute("savedName", savedName);
-//		int result = ps.postInsert(post);
-//		System.out.println("Yjh_Controller postInsert result->" + result);
-	//		return "forward:/post/category";
-//		return "/post/kkk";
-//	}
-	
-//	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws IOException {
-//		System.out.println("UploadController String uploadFile start...");
-////		UUID = 범용 고유 식별자는 소프트웨어 구축에 쓰이는 식별자 표준으로, 개방 소프트웨어 재단이 분산 컴퓨팅 환경의 일부로 표준화하였다
-//		UUID uid = UUID.randomUUID();
-////		requestPath = requestPath + "/resources/image";
-//		System.out.println("uploadPath->" + uploadPath);
-////		Directory 생성
-//		File fileDirectory = new File(uploadPath);
-////		fileDirectory 가 없으면 만들어준다
-//		if (!fileDirectory.exists()) {
-////			mkdirs = make directory의 약자
-//			fileDirectory.mkdirs();
-//			System.out.println("업로드용 폴더 생성 : " + uploadPath);
-//		}
-//		String savedName = uid.toString() + "_" + originalName;
-//		
-//		// savedName을 DB 에다가 원하는 Table에 원하는 항목에 저장 
-//		File target = new File(uploadPath, savedName);
-//		FileCopyUtils.copy(fileData, target); // org.springframework.util.FileCopyUtils
-//
-//		return savedName;
-//	}
+////	게시물 작성
+////	@PostMapping(value = "/post/insert")
+////	public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model)  {
+////		public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model) throws IOException {
+////		System.out.println("Yjh_Controller String postInsert start...");
+////		System.out.println("post.p_cost: " + post.getP_cost());
+////		System.out.println(post.getP_starttime());
+//////		uploadPath = 파일경로지정
+////		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
+////		System.out.println("originalName : " + p_img.getOriginalFilename());
+////		System.out.println("size : " + p_img.getSize());
+////		System.out.println("contentType : " + p_img.getContentType());
+////		System.out.println("uploadPath : " + uploadPath);
+////		String savedName = uploadFile(p_img.getOriginalFilename(), p_img.getBytes(), uploadPath);
+////		post.setP_img(p_img.getOriginalFilename());
+////		System.out.println("saveName : " + savedName);
+////		model.addAttribute("savedName", savedName);
+////		int result = ps.postInsert(post);
+////		System.out.println("Yjh_Controller postInsert result->" + result);
+//	//		return "forward:/post/category";
+////		return "/post/kkk";
+////	}
+//	
+	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws IOException {
+		System.out.println("UploadController String uploadFile start...");
+//		UUID = 범용 고유 식별자는 소프트웨어 구축에 쓰이는 식별자 표준으로, 개방 소프트웨어 재단이 분산 컴퓨팅 환경의 일부로 표준화하였다
+		UUID uid = UUID.randomUUID();
+//		requestPath = requestPath + "/resources/image";
+		System.out.println("uploadPath->" + uploadPath);
+//		Directory 생성
+		File fileDirectory = new File(uploadPath);
+//		fileDirectory 가 없으면 만들어준다
+		if (!fileDirectory.exists()) {
+//			mkdirs = make directory의 약자
+			fileDirectory.mkdirs();
+			System.out.println("업로드용 폴더 생성 : " + uploadPath);
+		}
+		String savedName = uid.toString() + "_" + originalName;
+		
+		// savedName을 DB 에다가 원하는 Table에 원하는 항목에 저장 
+		File target = new File(uploadPath, savedName);
+		FileCopyUtils.copy(fileData, target); // org.springframework.util.FileCopyUtils
+
+		return savedName;
+	}
 
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })

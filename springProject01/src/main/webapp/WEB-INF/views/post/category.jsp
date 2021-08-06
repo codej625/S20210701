@@ -76,7 +76,7 @@
 				<c:forEach var="post" items="${listPost }">
 				<div class="con_item">
 	                    <div class="con_img">
-	                        <img src="${pageContext.request.contextPath}/img/01.jpg">
+	                        <img src="${pageContext.request.contextPath}/upload/${post.p_img}">
 	                    </div>
 	                    <div class="con_itm">
 							<input type="hidden" name="p_num" value="${post.p_num }">
@@ -98,13 +98,13 @@
 <!-- 				<div class="con_item">2</div> -->
 				<div class="page_btn">
 					<c:if test="${pg.startPage > pg.pageBlock }">
-						<a href="category?currentPage=${pg.startPage-pg.pageBlock }">[이전]</a>
+						<a href="${pageContext.request.contextPath}/post/category?bt_num=${bt_num }&bc_num=${bc_num }&currentPage=${pg.startPage-pg.pageBlock }">[이전]</a>
 					</c:if>
 					<c:forEach var="i" begin="${pg.startPage }" end="${pg.endPage }">
-						<a href="category?currentPage=${i }">[${i }]</a>
+						<a href="${pageContext.request.contextPath}/post/category?bt_num=${bt_num }&bc_num=${bc_num }&currentPage=${i }">[${i }]</a>
 					</c:forEach>
 					<c:if test="${pg.endPage < pg.totalPage }">
-						<a href="category?currentPage=${pg.startPage+pg.pageBlock }">[다음]</a>
+						<a href="${pageContext.request.contextPath}/post/category?bt_num=${bt_num }&bc_num=${bc_num }&currentPage=${pg.startPage+pg.pageBlock }">[다음]</a>
 					</c:if>
 				</div>
 			</div>

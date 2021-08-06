@@ -34,11 +34,11 @@
 <!-- postinsert -->
 	<insert id="postInsert" parameterType="Post">
 		insert into post
-				(bt_num,bc_num,p_num,p_title,m_id,p_intro,p_info,p_gname,p_capa,p_cost,p_loc,p_metstart,p_metend,p_starttime,p_endtime,p_cstatus)
+				(bt_num,bc_num,p_num,p_title,p_img,m_id,p_intro,p_info,p_gname,p_capa,p_cost,p_loc,p_metstart,p_metend,p_starttime,p_endtime,p_cstatus)
 		values (#{bt_num},#{bc_num},(select max(p_num)+1 
 									 from post 
 									 where bt_num= #{bt_num} and bc_num = #{bc_num}),
-				#{p_title},#{m_id},#{p_intro},#{p_info},#{p_gname},#{p_capa},#{p_cost},#{p_loc},#{p_metstart},#{p_metend},
+				#{p_title},#{p_img},#{m_id},#{p_intro},#{p_info},#{p_gname},#{p_capa},#{p_cost},#{p_loc},#{p_metstart},#{p_metend},
 				#{p_starttime},#{p_endtime},#{p_cstatus})
 	</insert>
 	

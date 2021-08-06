@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/open.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/smarteditor2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/smarteditor211/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 function inputNumberFormat(obj) {
 
@@ -27,6 +27,30 @@ function uncomma(str) {
 }
 
 </script>
+<script type="text/javascript">
+
+function handleFileSelect(event) {
+    var input = this;
+    console.log(input.files)
+    if (input.files && input.files.length) {
+        var reader = new FileReader();
+        this.enabled = false
+        reader.onload = (function (e) {
+        console.log(e)
+            $("#preview").html(['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/>'].join(''))
+        });
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$('#file').change(handleFileSelect);
+$('.file-edit-icon').on('click', '.preview-de', function () {
+    $("#preview").empty()
+    $("#file").val("");
+});
+$('.preview-edit').click( function() {
+  $("#file").click();
+} );
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -34,12 +58,19 @@ function uncomma(str) {
 	<main>
 		<!-- main -->
 		<div class="oepn_wrap">
-			<form action="${pageContext.request.contextPath}/post/insert" method="post">
+			<form action="${pageContext.request.contextPath}/post/insert" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="p_num" value="${p_num }">
 				<div class="page_title">개설하기</div>
 				<div class="info_section">
 					<div class="class_img">
-<!-- 						<input type="file" name="p_img"> -->
+<!-- 						<div id="image_container" ></div>  -->
+<!-- 						<input type="file" name="p_img" onchange="setThumbnail(event);"> -->
+						<input type="file" name="p_img" id="file" accept="image/*">
+						    <div id="preview"></div>
+						    <div class="file-edit-icon">
+						      <a href="#" class="preview-edit">수정</a>
+						      <a href="#" class="preview-de">삭제</a>
+						    </div>
 					</div>
 					<div class="class_info">
 						<div class="section_tit">기본정보</div>
@@ -106,8 +137,16 @@ function uncomma(str) {
 							nhn.husky.EZCreator.createInIFrame({
 								oAppRef : oEditors,
 								elPlaceHolder : "ir1",
-								sSkinURI : "${pageContext.request.contextPath}/smarteditor2/SmartEditor2Skin.html",
-								fCreator : "createSEditor2"
+								sSkinURI : "${pageContext.request.contextPath}/smarteditor211/SmartEditor2Skin.html",
+								fCreator : "createSEditor2",
+								htParams : { 
+									// 툴바 사용 여부 (true:사용/ false:사용하지 않음) 
+									bUseToolbar : true, 
+									// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음) 
+									bUseVerticalResizer : false, 
+									// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음) 
+									bUseModeChanger : false 
+								}
 							});
 							$(function() { 
 								$("#savebutton").click(function() { 
