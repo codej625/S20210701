@@ -80,6 +80,7 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
+				<p>[ 회원수 : ${total} 명 ]</p>
 				<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 				<table class="table">
 					<tr>
@@ -91,7 +92,7 @@
 					</tr>
 					<c:forEach var="member" items="${listMember}">
 						<tr>
-							<td><input type="checkbox" value="${num}">${num}</td>
+							<td><input type="checkbox" value="${num}" class="checkSelect" name="box[]">${num}</td>
 							<td>${member.m_id}</td>
 							<td>${member.m_name}</td>
 							<td>${member.m_regdate}</td>
@@ -100,6 +101,8 @@
 						<c:set var="num" value="${num - 1 }"></c:set>
 					</c:forEach>
 				</table>
+				<input type="button" value="삭제" src="">
+				
 				<c:if test="${pg.startPage > pg.pageBlock }">
 					<a
 						href="${pageContext.request.contextPath}/admin/table?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
@@ -127,6 +130,7 @@
 			</footer>
 		</div>
 	</div>
+	<script src="${pageContext.request.contextPath}/js/array.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>

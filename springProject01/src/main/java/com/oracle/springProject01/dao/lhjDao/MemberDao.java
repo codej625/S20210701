@@ -47,7 +47,6 @@ public interface MemberDao {
 	public void 	myBMNO(Lhj_MemberVO lhj_MemberVO);
 	//회원 탈퇴 (member_withdrawal => y)
 	public void 	myDelMySelf2(Lhj_MemberVO lhj_MemberVO);
-	
 		//내가 쓴 글 리스트-all
 	public List<Lhj_MemberVO> myPostList(String m_id);
 		//내가 쓴 글 리스트-class
@@ -56,7 +55,7 @@ public interface MemberDao {
 	public List<Lhj_MemberVO> myPostList_meeting(String m_id);
 		//내가 쓴 글에 신청한 회원 리스트
 	public List<Lhj_MemberVO> mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
-	
+
 	
 
 

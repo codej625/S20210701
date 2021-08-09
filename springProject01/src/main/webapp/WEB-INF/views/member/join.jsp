@@ -115,6 +115,7 @@
 								<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
 						<li><a href="고객센터">고객센터</a></li>
+					</ul>
                 </div>
             </div>
         </div>

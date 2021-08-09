@@ -362,7 +362,7 @@ public class Lhj_Controller {
 	@RequestMapping(value = "/member/mypage_mycertification", method = RequestMethod.GET)
 	public String mypage_mycertification(Model model, HttpServletRequest request, String m_id) throws Exception{
 		System.out.println("lhjController mypage_changePW Start...");
-		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		m_id = sessionID;
 		Lhj_MemberVO lhj_MemberVO = ms.selectMypage(m_id);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);

@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/header.css" />
 <body>
 	<header>
 		<!-- header_top -->
@@ -23,8 +24,8 @@
 				<div class="nav_header">
 					<ul>
 						<c:if test="${sessionID == null}">
-							<li>
-								<a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/member/login">로그인</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						</c:if>
 						<c:if test="${sessionID != null}">
@@ -58,8 +59,7 @@
 						</c:if>
 					</div>
 					<div class="nav_detail">
-						<i class="far fa-bell fa-3x"></i><br />
-						<a>알림</a>
+						<i class="far fa-bell fa-3x"></i><br /> <a>알림</a>
 					</div>
 				</div>
 			</div>

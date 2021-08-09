@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LjwAttachmentFile">
+
+	<insert id="ljwInsert" parameterType="LjwAttachmentFileVO">
+		<selectKey keyProperty="f_num" resultType="int"
+			order="BEFORE">
+			select SEQ_MP_FILE_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO
+		ATTACHMENTFILE(
+		m_id
+		, f_num
+		, f_newname
+		, f_orgname
+		, f_regdate
+		)
+		VALUES
+		( #{m_id}
+		, #{f_num}
+		, #{f_newname}
+		, #{f_orgname}
+		, #{f_regdate}
+		)
+	</insert>
+
+	<select id="ljwCheck" resultType="LjwAttachmentFile" parameterType="LjwAttachmentFile">
+		SELECT F_NUM, M_ID, F_ORGNAME, F_NEWNAME, F_REGDATE
+		FROM ATTACHMENTFILE
+		WHERE m_id = #{test}
+		ORDER BY F_NUM DESC
+	</select>
+</mapper>

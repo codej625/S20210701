@@ -241,6 +241,19 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("service lhjLoginservice memverserviceImpl mypage_myPostMEmberList.size()->" +mypage_myPostMEmberList.size());
 		return mypage_myPostMEmberList;
 	}
+//
+//	@Override
+//	public Lhj_MemberVO mypage_mycertification(Lhj_MemberVO lhj_MemberVO) {
+//		System.out.println("service lhjLoginservice memverserviceImpl mypage_mycertification start...");
+//		Lhj_MemberVO lhj_MemberVO = md.mypage_mycertification(lhj_MemberVO);
+//		return lhj_MemberVO;
+//	}
+
+	@Override
+	public Lhj_MemberVO mypage_mycertification(Lhj_MemberVO lhj_MemberVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	
 

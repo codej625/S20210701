@@ -50,7 +50,8 @@ public interface MemberService {
 	Lhj_MemberVO 			myBMNO(Lhj_MemberVO lhj_MemberVO);
 		//회원 탈퇴 (member_withdrawal => y)
 	Lhj_MemberVO 			myDelMySelf2(Lhj_MemberVO lhj_MemberVO);
-	
+		//모임, 고수 인증
+	Lhj_MemberVO           	mypage_mycertification(Lhj_MemberVO lhj_MemberVO);       
 		//내가 쓴 글 리스트 -all
 	List<Lhj_MemberVO> myPostList(String m_id);
 		//내가 쓴 글 리스트 -class
@@ -60,11 +61,7 @@ public interface MemberService {
 	
 		//내가 쓴 글 리스트에 대한 신청 인원 정보
 	List<Lhj_MemberVO> 		mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
-	
-	
-	
-	
-	
+
 	
 	
 	 
