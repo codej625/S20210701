@@ -91,6 +91,7 @@
 	                        </div>
 	                        <div class="con_subinfo">
 	                            ${post.p_metstart }
+								조회수 ${post.p_hit }
 	                        </div>
                     	</div>
                 	</div>

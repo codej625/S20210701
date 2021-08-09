@@ -55,6 +55,18 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	public int postHit(int bt_num, int bc_num, int p_num) {
+		System.out.println("PostServiceImpl Post postHit start...");
+		int result = 0;
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		post.setP_num(p_num);
+		result = pd.postHit(post);
+		return result;
+	}
+	
+	@Override
 	public Post postListDetail(int bt_num, int bc_num, int p_num) {
 		System.out.println("PostServiceImpl Post postListDetail start...");
 		Post post = new Post();

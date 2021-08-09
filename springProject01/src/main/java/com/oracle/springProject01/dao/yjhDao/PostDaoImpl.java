@@ -63,6 +63,18 @@ public class PostDaoImpl implements PostDao {
 	}
 
 	@Override
+	public int postHit(Post post) {
+		System.out.println("PostDaoImpl int postHit start...");
+		int result = 0;
+		try {
+			result = session.update("postHit",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl int postHit Exception->"+e.getMessage());
+		}
+		return result;
+	}
+	
+	@Override
 	public Post postListDetail(Post post) {
 		System.out.println("PostDaoImpl Post postListDetail start...");
 		Post post1 = new Post();

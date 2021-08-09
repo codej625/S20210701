@@ -203,7 +203,8 @@ public class Yjh_Controller {
 	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
 //		섹션아이디
-		String sessionID =  (String) request.getSession().getAttribute("sessionID");		
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");	
+		int result = ps.postHit(bt_num, bc_num, p_num);
 //		게시물 리스트
 		Post post = ps.postListDetail(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postListDetail post->" + post);
@@ -297,6 +298,11 @@ public class Yjh_Controller {
 		System.out.println("Yjh_Controller replyDelete getR_group()->"+reply.getR_group());
 		int result = rs.replyReplyInsert(reply);
 		return "forward:/post/postListDetail";
+	}
+	
+	@RequestMapping(value = "/post/test")
+	public String test() {
+		return "/post/test";
 	}
 
 }

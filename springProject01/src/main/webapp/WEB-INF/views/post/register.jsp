@@ -8,6 +8,18 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/open.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/smarteditor211/js/HuskyEZCreator.js" charset="utf-8"></script>
+<!-- calendar를 위한 라이브러리들 지우면 안됨 -->
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<!-- <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js'></script> -->
+<!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css'rel='stylesheet'/> -->
+<!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css' rel='stylesheet' media='print'/> -->
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script> -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
 <script type="text/javascript">
 function inputNumberFormat(obj) {
 
@@ -121,7 +133,7 @@ $('.preview-edit').click( function() {
 							<div class="section_con">
 								<div class="item_title">간단소개</div>
 								<div class="item_content">
-									<input type="text" name="p_intro" placeholder="100자 이내">
+									<input type="text" name="p_intro" placeholder="100자 이내" style="width: 600px; height: 50px;">
 								</div>
 							</div>
 						</div>
@@ -197,25 +209,97 @@ $('.preview-edit').click( function() {
 								</select>
 							</div>
 							<div class="info">
-								<div class="title">모임기간</div>
-								<p>Date : 
-								<input type="text" id="datepicker1" name="p_metstart" placeholder="모임시작일">
-								<input type="text" id="datepicker2" name="p_metend" placeholder="모임종료일">
-								<script type="text/javascript">
-								$(function () {
-									$("#datepicker1" ).datepicker();
-								});
-								$(function () {
-									$("#datepicker2" ).datepicker();
-								});
-								</script>
-<!-- 								<input type="date" name="p_metstart" placeholder="모임시작일"> -->
-<!-- 								<input type="date" name="p_metend" placeholder="모임종료일"> -->
+								<div class="title">신청기간</div>
+								<div class="container calendar-container">
+									<div id="calendar" style="max-width:900px; margin:40px auto;">
+										<p>Date :
+										<input type="text" id="metStartDate" name="p_metstart" placeholder="모임시작일">
+										<input type="text" id="metEndDate" name="p_metend" placeholder="모임종료일">
+										<p>Time :
+										<input type="time" name="p_starttime" placeholder="모임시작시간">
+										<input type="time" name="p_endtime" placeholder="모임종료시간">
+									</div>
+								</div>
 							</div>
 							<div class="info">
 								<div class="title">신청기간</div>
-<!-- 								<input type="date" name="p_appstart" placeholder="신청시작일"> -->
-<!-- 								<input type="date" name="p_append" placeholder="신청종료일"> -->
+								<div class="container calendar-container">
+									<div id="calendar" style="max-width:900px; margin:40px auto;">
+										<p>Date :
+										<input type="text" id="appStartDate" name="p_appstart" placeholder="신청시작일">
+										<input type="text" id="appEndDate" name="p_append" placeholder="신청종료일">
+<!-- 										날짜 관리해주는 스크립트 -->
+										<script>
+								            $(function() {
+								                //오늘 날짜를 출력
+								                $("#appEndDate").text(new Date().toLocaleDateString());
+								                //datepicker 한국어로 사용하기 위한 언어설정
+								                $.datepicker.setDefaults($.datepicker.regional['ko']); 
+								                
+								              //모든 datepicker에 대한 공통 옵션 설정
+									            $.datepicker.setDefaults({
+									                dateFormat: 'yy-mm-dd' //Input Display Format 변경
+									                ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+									                ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
+									                ,changeYear: true //콤보박스에서 년 선택 가능
+									                ,changeMonth: true //콤보박스에서 월 선택 가능                
+									                ,showOn: "both" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+									                ,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+									                ,buttonImageOnly: true //기본 버튼의 회색 부분을 없애고, 이미지만 보이게 함
+									                ,buttonText: "선택" //버튼에 마우스 갖다 댔을 때 표시되는 텍스트                
+									                ,yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
+									                ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
+									                ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
+									                ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
+									                ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
+									                ,minDate: "today" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+									                ,maxDate: "+1Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)                    
+									            });
+								                
+								                // 시작일(fromDate)은 종료일(toDate) 이후 날짜 선택 불가
+								                // 종료일(toDate)은 시작일(fromDate) 이전 날짜 선택 불가
+								                
+								                //시작일.
+								                $('#metStartDate').datepicker({
+								                    onClose: function( selectedDate ) {    
+								                        // 시작일(fromDate) datepicker가 닫힐때
+								                        // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+								                        $("#metEndDate").datepicker( "option", "minDate", selectedDate );
+								                        $("#appStartDate").datepicker( "option", "maxDate", selectedDate );
+								                        $("#appEndDate").datepicker( "option", "maxDate", selectedDate );
+								                    }                
+								                });
+								
+								                //종료일
+								                $('#metEndDate').datepicker({
+								                    onClose: function( selectedDate ) {
+								                        // 종료일(toDate) datepicker가 닫힐때
+								                        // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+								                        $("#metStartDate").datepicker( "option", "maxDate", selectedDate );
+								                    }                
+								                });
+								                
+								                //시작일.
+								                $('#appStartDate').datepicker({
+								                    onClose: function( selectedDate ) {    
+								                        // 시작일(fromDate) datepicker가 닫힐때
+								                        // 종료일(toDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
+								                        $("#appEndDate").datepicker( "option", "minDate", selectedDate );
+								                    }                
+								                });
+								
+								                //종료일
+								                $('#appEndDate').datepicker({
+								                    onClose: function( selectedDate ) {
+								                        // 종료일(toDate) datepicker가 닫힐때
+								                        // 시작일(fromDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
+								                        $("#appStartDate").datepicker( "option", "maxDate", selectedDate );
+								                    }                
+								                });
+								            });
+								        </script> 
+									</div>
+								</div>
 							</div>
 							<div class="info">
 								<input type="checkbox">장소없음 <input type="text" name="p_loc" placeholder="장소">
@@ -226,7 +310,7 @@ $('.preview-edit').click( function() {
 								<script>
 									var mapContainer = document.getElementById("map"), // 지도를 표시할 div 
 									    mapOption = {
-									        center: new kakao.maps.LatLng(37.56797, 126.97220), // 지도의 중심좌표
+									        center: new kakao.maps.LatLng(37.55654, 126.94508), // 지도의 중심좌표
 									        level: 5, // 지도의 확대 레벨
 									        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 									    }; 
@@ -267,8 +351,6 @@ $('.preview-edit').click( function() {
 					<div class="section_tit">결제방식</div>
 					<div class="section_con">
 						<input type="text" id="price" onkeyup="inputNumberFormat(this)" name="p_cost" value="0" placeholder="비용">
-						<input type="time" name="p_starttime" placeholder="시작시간">
-						<input type="time" name="p_endtime" placeholder="종료시간">
 					</div>
 				</div>
 				<div class="info_section">
