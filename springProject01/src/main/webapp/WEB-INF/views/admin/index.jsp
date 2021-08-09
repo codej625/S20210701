@@ -91,6 +91,7 @@
 						<li class="breadcrumb-item active">임시 지정</li>
 					</ol>
 					<p>업데이트시 전달 Message : ${num}
+					<p>업데이트시 전달 Message : ${f.m_num}
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
