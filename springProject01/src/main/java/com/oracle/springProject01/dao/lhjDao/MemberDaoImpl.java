@@ -14,7 +14,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Autowired
 	private	SqlSession	session;
-
+	
 	//회원가입 구현
 	@Override
 	public void insertMember(Lhj_MemberVO lhj_MemberVO) {
@@ -26,12 +26,56 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println("dao lhjMember MemberDaoImpl insertMember Exception->"+e.getMessage());
 		}
 	}
+	
+	//회원가입 아이디 중복 확인 ajax
+	@Override
+	public Lhj_MemberVO idOverlap(String m_id) {
+		System.out.println("daoImple lhjMember MemberDaoImpl idOverlap start");
+		
+		return session.selectOne("hj_m_idCheck", m_id);
+	}
+	
+	//회원가입 전화번호 중복 확인 ajax
+	@Override
+	public Lhj_MemberVO telOverlap(String m_tel) {
+		System.out.println("daoImple lhjMember MemberDaoImpl telOverlap start");
+		
+		return session.selectOne("hj_m_telCheck", m_tel);
+	}
+		
 	//로그인
 	@Override
 	public Lhj_MemberVO selectLogin(Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("daoImple select login_id start");
 		return session.selectOne("hj_selectLog", lhj_MemberVO);
 	}
+	
+	//로그인 아이디 찾기
+	@Override
+	public Lhj_MemberVO find_m_id(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("daoImple select find_m_id start");
+		try {
+			lhj_MemberVO = session.selectOne("hj_find_m_pw", lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("Dao lhjmember memberDaoImpl find_m_id error -> "+e.getMessage());
+		}
+		return lhj_MemberVO;
+		
+	}
+	
+	//로그인 비밀번호 찾기
+	@Override
+	public Lhj_MemberVO find_m_pw(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("daoImple select find_m_pw start");
+		try {
+			lhj_MemberVO = session.selectOne("hj_find_m_pw", lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("Dao lhjmember memberDaoImpl find_m_pw error -> "+e.getMessage());
+		}
+		return lhj_MemberVO;
+		
+	}
+	
 	//마이페이지
 		//개인정보 조회
 	@Override
@@ -56,7 +100,7 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 
-		//비밀번호 변경 미완
+		//비밀번호 변경
 	@Override
 	public void myPWchange(Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("dao lhjmember memberDaoImpl myPWchange Start");
@@ -67,7 +111,7 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 	
-		//신청 내역 조회
+		//신청 내역 조회 -all
 	@Override
 	public List<Lhj_MemberVO> myRegInfoList(String m_id) {
 		List<Lhj_MemberVO> myRegInfoList = null;
@@ -75,10 +119,35 @@ public class MemberDaoImpl implements MemberDao {
 		try {
 			myRegInfoList = session.selectList("hj_myRegInfo", m_id);
 		} catch (Exception e) {
-			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
+			System.out.println("EmpDaoImpl myRegInfoList Exception->"+e.getMessage());
 		}
 		return myRegInfoList;
 	}
+		//신청 내역 조회 -class
+	@Override
+	public List<Lhj_MemberVO> myRegInfo_classList(String m_id) {
+		List<Lhj_MemberVO> myRegInfo_classList = null;
+		System.out.println("dao lhjmember memberDaoImpl myRegInfo_classList Start");
+		try {
+			myRegInfo_classList = session.selectList("hj_myRegInfo_class", m_id);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl myRegInfo_classList Exception->"+e.getMessage());
+		}
+		return myRegInfo_classList;
+	}
+		//신청 내역 조회 -meeting
+	@Override
+	public List<Lhj_MemberVO> myRegInfo_meetingList(String m_id) {
+		List<Lhj_MemberVO> myRegInfo_meetingList = null;
+		System.out.println("dao lhjmember memberDaoImpl myRegInfo_meetingList Start");
+		try {
+			myRegInfo_meetingList = session.selectList("hj_myRegInfo_meeting", m_id);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl myRegInfo_meetingList Exception->"+e.getMessage());
+		}
+		return myRegInfo_meetingList;
+	}
+	
 	
 		//신청내역 취소
 	@Override
@@ -91,7 +160,7 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println("dao lhjMember MemberDaoImpl myRGNO Exception->"+e.getMessage());
 		}
 	}
-		//관심 내역 조회
+		//관심 내역 조회 -all
 	@Override
 	public List<Lhj_MemberVO> myBookMarkList(String m_id) {
 		List<Lhj_MemberVO> myBookMarkList = null;
@@ -103,6 +172,34 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return myBookMarkList;
 	}
+	
+		//관심 내역 조회 -class
+	@Override
+	public List<Lhj_MemberVO> myBookMark_classList(String m_id) {
+		List<Lhj_MemberVO> myBookMark_classList = null;
+		System.out.println("dao lhjmember memberDaoImpl myBookMark_classList Start");
+		try {
+			myBookMark_classList = session.selectList("hj_myBookMark_class", m_id);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
+		}
+		return myBookMark_classList;
+	}
+	
+		//관심 내역 조회 -meeting
+	@Override
+	public List<Lhj_MemberVO> myBookMark_meetingList(String m_id) {
+		List<Lhj_MemberVO> myBookMark_meetingList = null;
+		System.out.println("dao lhjmember memberDaoImpl myBookMark_meetingList Start");
+		try {
+			myBookMark_meetingList = session.selectList("hj_myBookMark_meeting", m_id);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
+		}
+		return myBookMark_meetingList;
+	}
+	
+	
 		//관심내역에서 신청 (b_reg => y)
 	@Override
 	public void myBMtoRG(Lhj_MemberVO lhj_MemberVO) {
@@ -137,6 +234,42 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 	
+		//회원 탈퇴 (member_withdrawal => y)
+	@Override
+	public void myDelMySelf2(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjmember memberDaoImpl mypageUpdate Start");
+		try {
+			session.update("hj_myDelMySelf2",lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("dao lhjMember MemberDaoImpl mypageUpdate Exception->"+e.getMessage());
+		}
+	}
+
+	
+	
+	@Override
+	public Lhj_MemberVO mypage_myreginfo_title(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjmember memberDaoImpl mypage_myreginfo_title Start");
+		Lhj_MemberVO mypage_myreginfo_title = new Lhj_MemberVO();
+		try {
+			mypage_myreginfo_title = session.selectOne("hj_selectmyreginfo_title", lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("Dao lhjmember memberDaoImpl mypage_myreginfo_title error -> "+e.getMessage());
+		}
+		return mypage_myreginfo_title; 
+		
+	}
+
+	
+
+	
+
+	
+
+	
+		
+
+
 		
 	
 

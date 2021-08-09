@@ -12,6 +12,16 @@
             					, #{m_area}, #{m_field}, sysdate, 0
             					, 'N', 'N', 'N', 0	)
 		</insert>
+		
+<!-- 			회원가입시 아이디 중복 체크 -->
+		<select id="hj_m_idCheck" parameterType="Lhj_MemberVO" resultType="Lhj_MemberVO">
+			select * from member where m_id = #{m_id}
+		</select>
+		
+<!-- 			회원가입시 전화번호 중복 체크 -->
+		<select id="hj_m_telCheck" parameterType="Lhj_MemberVO" resultType="Lhj_MemberVO">
+			select * from member where m_tel = #{m_tel}
+		</select>
 
 <!-- 		로그인 -->
 		<select id="hj_selectLog" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
@@ -19,6 +29,23 @@
 			from member
 			where m_id = #{m_id}
 			and m_pw = #{m_pw}
+			and M_WITHDRAWAL = 'N'
+		</select>
+<!-- 			로그인 - 아이디 찾기 -->
+		<select id="hj_find_m_id" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+			select * 
+			from member 
+			where m_name = #{m_name}
+			and m_tel = #{m_tel} 
+		</select>
+			
+<!-- 			로그인 - 비밀번호 찾기 -->
+		<select id="hj_find_m_pw" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+			select * 
+			from member 
+			where m_name = #{m_name}
+			and m_tel = #{m_tel}
+			and m_id = #{m_id}
 		</select>
 
 <!-- 		마이페이지 -->
@@ -34,20 +61,48 @@
 					                , m_tel = #{m_tel}
 					                , m_area = #{m_area}
 					                , m_field = #{m_field}
-					                , m_meetingauth = #{m_meetingauth}
-					                , m_masterauth = #{m_masterauth}
+					                , m_img = #{m_img}
                 where m_id = #{m_id}
 		</update>
 <!-- 			비밀번호 변경 -->
 		<update id="hj_changePW"  parameterType="Lhj_MemberVO">
-				update member set m_pw = #{m_pw}
+				update member set	m_pw = #{m_pw}
 				where m_id = #{m_id}
 		</update>		
 <!-- 			신청정보 조회 -->
 		<select id="hj_myRegInfo" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+<!-- 				select * -->
+<!-- 				from member NATURAL JOIN reginfo NATURAL JOIN post -->
+<!-- 				where m_id = #{m_id} -->
+				
+				select *
+				from reginfo
+				where m_id = #{m_id}
+		</select>
+		
+<!-- 		신청정보 post 관련 -->
+		<select id="hj_selectmyreginfo_title" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from post
+				where bt_num = #{bt_num}
+				and bc_num = #{bc_num}
+				and p_nm = #{p_num}
+		</select>
+		
+		
+		
+<!-- 			신청정보 조회 - 모임만 -->
+		<select id="hj_myRegInfo_meeting" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
 				select *
 				from member NATURAL JOIN reginfo NATURAL JOIN post
-				where m_id = #{m_id}	
+				where m_id = #{m_id} and bt_num = 1
+		</select>
+		
+<!-- 			신청정보 조회 - 클래스만 -->
+		<select id="hj_myRegInfo_class" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from member NATURAL JOIN reginfo NATURAL JOIN post
+				where m_id = #{m_id} and bt_num = 2
 		</select>
 <!-- 			신청 취소 -->
 		<delete id="hj_myRGNO">
@@ -64,6 +119,21 @@
 				from member NATURAL JOIN bookmark NATURAL JOIN post
 				where m_id = #{m_id}
 		</select>
+		
+<!-- 			관심내역 조회 -클래스만 -->
+		<select id="hj_myBookMark_class" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from member NATURAL JOIN bookmark NATURAL JOIN post
+				where m_id = #{m_id} and bt_num = 1
+		</select>
+		
+<!-- 			관심내역 조회 -모임만 -->
+		<select id="hj_myBookMark_meeting" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from member NATURAL JOIN bookmark NATURAL JOIN post
+				where m_id = #{m_id} and bt_num = 2
+		</select>
+		
 <!-- 			관심내역에서 신청 b_reg => y -->
 		<update id="hj_myBMtomyRG" parameterType="Lhj_MemberVO">
 				update bookmark set b_reg = 'Y'
@@ -76,6 +146,7 @@
 		<insert id="hj_myBMtoRG2">
 				insert into reginfo( m_id, bt_num, bc_num, p_num )
 							values( #{m_id}, #{bt_num}, #{bc_num}, #{p_num} )
+					
 		</insert>
 <!-- 			관심내역 취소 -->
 		<delete id="hj_myBMNO">
@@ -85,4 +156,10 @@
 				and bc_num = #{bc_num}
 				and p_num = #{p_num}		
 		</delete>
+<!-- 			회원 탈퇴로 업뎃 (member_m_withdrawal => y) -->
+		<update id="hj_myDelMySelf2" parameterType="Lhj_MemberVO">
+				update member set M_WITHDRAWAL = 'Y'
+				where m_id = #{m_id}
+				and m_pw = #{m_pw}
+		</update>
 </mapper>

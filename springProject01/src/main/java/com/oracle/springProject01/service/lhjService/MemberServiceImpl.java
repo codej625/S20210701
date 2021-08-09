@@ -1,6 +1,9 @@
 package com.oracle.springProject01.service.lhjService;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,12 +26,61 @@ public class MemberServiceImpl implements MemberService {
 		}
 		md.insertMember(lhj_MemberVO);
 	}
+	
+	//회원가입 아이디 중복 확인 ajax
+	@Override
+	public void idOverlap(String m_id, HttpServletResponse response) throws IOException {
+		System.out.println("lhj_login memberServiceImpl idOverlap start..");
+		Lhj_MemberVO lhj_MemberVO = new Lhj_MemberVO();
+		lhj_MemberVO = md.idOverlap(m_id);
+		if(lhj_MemberVO == null) {
+			//dao에서 select이 되지 않아야 true
+			//id가 없어야 true(사용 가능)
+			response.getWriter().print("1");
+		}else {
+			//id가 있으면 false(중복으로 사용 불가능)
+			response.getWriter().print("0");
+		}
+		
+	}
+	
+	//회원가입 전화번호 중복 확인 ajax
+	@Override
+	public void telOverlap(String m_tel, HttpServletResponse response) throws IOException {
+		System.out.println("lhj_login memberServiceImpl telOverlap start..");
+		Lhj_MemberVO lhj_MemberVO = new Lhj_MemberVO();
+		lhj_MemberVO = md.telOverlap(m_tel);
+		if(lhj_MemberVO == null) {
+			//dao에서 select이 되지 않아야 true
+			//m_tel가 없어야 true(사용 가능)
+			response.getWriter().print("1");
+		}else {
+			//m_tel가 있으면 false(중복으로 사용 불가능)
+			response.getWriter().print("0");
+		}
+		
+	}
+	
 	//로그인
 	@Override
 	public Lhj_MemberVO login(Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("service lhj_login MemberserviceImpl login Start...");
 		return md.selectLogin(lhj_MemberVO);
 	}
+	
+	//로그인 아이디 찾기
+	@Override
+	public Lhj_MemberVO find_m_id(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("service lhj_login MemberserviceImpl find_m_id Start...");
+		return md.find_m_id(lhj_MemberVO);
+	}
+
+	//로그인 비밀번호 찾기
+		@Override
+		public Lhj_MemberVO find_m_pw(Lhj_MemberVO lhj_MemberVO) {
+			System.out.println("service lhj_login MemberserviceImpl find_m_pw Start...");
+			return md.find_m_pw(lhj_MemberVO);
+		}
 	//마이페이지
 		//개인정보 조회
 	@Override
@@ -46,16 +98,14 @@ public class MemberServiceImpl implements MemberService {
 		md.mypageUpdate(lhj_MemberVO);
 		return lhj_MemberVO;
 	}
-		//비밀번호 변경 미완
+		//비밀번호 변경
 	@Override
 	public Lhj_MemberVO myPWchange(Lhj_MemberVO lhj_MemberVO) {
-		System.out.println("service lhjLoginservice memverserviceImpl mypageUpdate start...");
+		System.out.println("service lhjLoginservice memverserviceImpl myPWchange start...");
 		md.myPWchange(lhj_MemberVO);
 		return lhj_MemberVO;
 	}
-	
-	
-		//마이페이지 신청내역 조회
+		//마이페이지 신청내역 조회 -all
 	@Override
 	public List<Lhj_MemberVO> myRegInfoList(String m_id) {
 		System.out.println("service lhjLoginservice memverserviceImpl myRegInfo start...");
@@ -63,6 +113,24 @@ public class MemberServiceImpl implements MemberService {
 		myRegInfoList = md.myRegInfoList(m_id);
 		System.out.println("service lhjLoginservice memverserviceImpl myRegInfo myRegInfoList.size()->" +myRegInfoList.size());
 		return myRegInfoList;
+	}
+		//마이페이지 신청내역 조회 -class
+	@Override
+	public List<Lhj_MemberVO> myRegInfo_classList(String m_id) {
+		System.out.println("service lhjLoginservice memverserviceImpl myRegInfo_classList start...");
+		List<Lhj_MemberVO> myRegInfo_classList = null;
+		myRegInfo_classList = md.myRegInfo_classList(m_id);
+		System.out.println("service lhjLoginservice memverserviceImpl myRegInfo myRegInfo_classList.size()->" +myRegInfo_classList.size());
+		return myRegInfo_classList;
+	}
+		//마이페이지 신청내역 조회 -meeting
+	@Override
+	public List<Lhj_MemberVO> myRegInfo_meetingList(String m_id) {
+		System.out.println("service lhjLoginservice memverserviceImpl myRegInfo_meetingList start...");
+		List<Lhj_MemberVO> myRegInfo_meetingList = null;
+		myRegInfo_meetingList = md.myRegInfo_meetingList(m_id);
+		System.out.println("service lhjLoginservice memverserviceImpl myRegInfo myRegInfo_meetingList.size()->" +myRegInfo_meetingList.size());
+		return myRegInfo_meetingList;
 	}
 	
 		//신청내역 취소
@@ -73,7 +141,7 @@ public class MemberServiceImpl implements MemberService {
 		return lhj_MemberVO;
 	}
 	
-		//마이페이지 관심내역 조회
+		//마이페이지 관심내역 조회 -all
 	@Override
 	public List<Lhj_MemberVO> myBookMarkList(String m_id) {
 		System.out.println("service lhjLoginservice memverserviceImpl myBookMarkList start...");
@@ -82,6 +150,28 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("service lhjLoginservice memverserviceImpl myBookMark myBookMarkList.size()->" +myBookMarkList.size());
 		return myBookMarkList;
 	}
+	
+		//마이페이지 관심내역 조회 -class
+	@Override
+	public List<Lhj_MemberVO> myBookMark_classList(String m_id) {
+		System.out.println("service lhjLoginservice memverserviceImpl myBookMark_classList start...");
+		List<Lhj_MemberVO> myBookMark_classList = null;
+		myBookMark_classList = md.myBookMark_classList(m_id);
+		System.out.println("service lhjLoginservice memverserviceImpl myBookMark myBookMark_classList.size()->" +myBookMark_classList.size());
+		return myBookMark_classList;
+	}
+
+		//마이페이지 관심내역 조회	-meeting
+	@Override
+	public List<Lhj_MemberVO> myBookMark_meetingList(String m_id) {
+		System.out.println("service lhjLoginservice memverserviceImpl myBookMark_meetingList start...");
+		List<Lhj_MemberVO> myBookMark_meetingList = null;
+		myBookMark_meetingList = md.myBookMark_meetingList(m_id);
+		System.out.println("service lhjLoginservice memverserviceImpl myBookMark myBookMark_meetingList.size()->" +myBookMark_meetingList.size());
+		return myBookMark_meetingList;
+	}
+	
+	
 		//관심내역에서 신청 (b_reg => y)
 	@Override
 	public Lhj_MemberVO myBMtoRG(Lhj_MemberVO lhj_MemberVO) {
@@ -93,7 +183,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Lhj_MemberVO myBMtoRG2(Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("service lhjLoginservice memverserviceImpl myBMtoRG2 start...");
-		md.myBMtoRG2(lhj_MemberVO);
+//		int result =0;
+//		result =  md.my_check(lhj_MemberVO);
+//		if ( result > 0) {
+//			md.myBMtoRG2(lhj_MemberVO);
+//			
+//		}
+//		md.myBMtoRG2(lhj_MemberVO);
 		return lhj_MemberVO;
 	}
 		//관심내역 취소
@@ -103,6 +199,31 @@ public class MemberServiceImpl implements MemberService {
 		md.myBMNO(lhj_MemberVO);
 		return lhj_MemberVO;
 	}
+	
+		//회원 탈퇴 (member_withdrawal => y)
+	@Override 
+	public Lhj_MemberVO myDelMySelf2(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("service lhjLoginservice memverserviceImpl myDelMySelf2 start...");
+		md.myDelMySelf2(lhj_MemberVO);
+		return lhj_MemberVO;
+	}
+
+	
+	
+	@Override
+	public Lhj_MemberVO mypage_myreginfo_title(Lhj_MemberVO lhj_MemberVO2) {
+		System.out.println("service lhjLoginservice memverserviceImpl mypage_myreginfo_title start...");
+		Lhj_MemberVO lhj_MemberVO = md.mypage_myreginfo_title(lhj_MemberVO2);
+		return lhj_MemberVO;
+	}
+
+	
+
+
+
+	
+	
+	
 	
 
 
