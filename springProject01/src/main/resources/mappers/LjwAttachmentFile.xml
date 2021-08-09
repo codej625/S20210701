@@ -29,5 +29,6 @@
 		SELECT F_NUM, M_ID, F_ORGNAME, F_NEWNAME, F_REGDATE
 		FROM ATTACHMENTFILE
 		WHERE m_id = #{test}
+		ORDER BY F_NUM DESC
 	</select>
 </mapper>

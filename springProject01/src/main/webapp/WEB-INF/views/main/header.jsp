@@ -40,18 +40,23 @@
 				<div class="nav_menu">
 					<div class="nav_detail">
 						<c:if test="${sessionID != null}">
-							<a href="${pageContext.request.contextPath}/member/mypage"><i
-								class="far fa-id-card fa-3x"></i><br />마이페이지</a>
+							<a href="${pageContext.request.contextPath}/member/mypage">
+							<i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
 						</c:if>
 						<c:if test="${sessionID == null}">
-							<a href="${pageContext.request.contextPath}/member/login"><i
-								class="far fa-id-card fa-3x"></i><br />마이페이지</a>
+							<a href="${pageContext.request.contextPath}/member/mypage">
+							<i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
 						</c:if>
 					</div>
 					<div class="nav_detail">
-						<a href="${pageContext.request.contextPath}/post/add"><i
-							class="far fa-list-alt fa-3x"></i></a><br /> <a
-							href="${pageContext.request.contextPath}/post/add">모임개설</a>
+						<c:if test="${sessionID != null}">
+							<a href="${pageContext.request.contextPath}/post/register">
+							<i class="far fa-list-alt fa-3x"></i><br />모임개설</a>
+						</c:if>
+						<c:if test="${sessionID == null}">
+							<a href="${pageContext.request.contextPath}/member/login">
+							<i class="far fa-list-alt fa-3x"></i><br />모임개설</a>
+						</c:if>
 					</div>
 					<div class="nav_detail">
 						<i class="far fa-bell fa-3x"></i><br /> <a>알림</a>

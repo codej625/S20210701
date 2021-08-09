@@ -45,13 +45,13 @@
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
 		
-		<!--저도 잘 모르겟음 카카오 로그인 api 하려는데 이거 넣으래요 -->
+		<!--카카오 로그인 api 하려고 넣은거 -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.7</version>
-		</dependency>
-
+		</dependency>	 
+		
 		 <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-websocket</artifactId>

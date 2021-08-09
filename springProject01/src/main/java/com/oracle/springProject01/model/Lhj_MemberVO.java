@@ -20,6 +20,9 @@ public class Lhj_MemberVO {
 	private String m_meetingauth;
 	private String m_masterauth;
 	private int m_point;
+	private String m_img;
+	private String m_meetingfile;
+	private String m_masterfile;
 	
 	//post
 	private int bt_num;
