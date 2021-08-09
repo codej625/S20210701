@@ -37,6 +37,18 @@ public class PostDaoImpl implements PostDao {
 		}
 		return postList;
 	}
+	
+	@Override
+	public Post registerMember(Post post) {
+		System.out.println("PostDaoImpl registerMember start...");
+		Post registerMember = null;
+		try {
+			registerMember = session.selectOne("registerMember",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl registerMember Exception->"+e.getMessage());
+		}
+		return registerMember;
+	}
 
 	@Override
 	public int postInsert(Post post) {
@@ -50,6 +62,18 @@ public class PostDaoImpl implements PostDao {
 		return result;
 	}
 
+	@Override
+	public int postHit(Post post) {
+		System.out.println("PostDaoImpl int postHit start...");
+		int result = 0;
+		try {
+			result = session.update("postHit",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl int postHit Exception->"+e.getMessage());
+		}
+		return result;
+	}
+	
 	@Override
 	public Post postListDetail(Post post) {
 		System.out.println("PostDaoImpl Post postListDetail start...");

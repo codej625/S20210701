@@ -25,14 +25,28 @@
 		where rn between #{start} and #{end}
 	</select>
 	
+	<select id="registerMember" parameterType="Post" resultType="Post">
+		select  *
+		from    member
+		where   m_id = #{m_id}
+	</select>
+	
 <!-- postinsert -->
 	<insert id="postInsert" parameterType="Post">
 		insert into post
-				(bt_num,bc_num,p_num,p_title,p_intro,p_info,p_gname,p_capa,p_cost,p_loc,p_starttime,p_endtime,p_cstatus)
-		values (#{bt_num},#{bc_num},(select max(p_num)+1 from post where bt_num= #{bt_num} and bc_num = #{bc_num}),
-				#{p_title},#{p_intro},#{p_info},#{p_gname},#{p_capa},#{p_cost},#{p_loc},
-				#{p_starttime},#{p_endtime},#{p_cstatus})
+				(bt_num,bc_num,p_num,p_title,p_img,m_id,p_intro,p_info,p_gname,p_capa,p_cost,p_loc,
+				 p_metstart,p_metend,p_starttime,p_endtime,p_appstart,p_append,p_cstatus,p_writedate)
+		values (#{bt_num},#{bc_num},(select max(p_num)+1 
+									 from post 
+									 where bt_num= #{bt_num} and bc_num = #{bc_num}),
+				#{p_title},#{p_img},#{m_id},#{p_intro},#{p_info},#{p_gname},#{p_capa},#{p_cost},#{p_loc},#{p_metstart},#{p_metend},
+				#{p_starttime},#{p_endtime},#{p_appstart},#{p_append},#{p_cstatus},sysdate)
 	</insert>
+	
+<!-- 	postHit -->
+	<update id="postHit">
+		update post set p_hit = p_hit + 1 where bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</update>
 	
 <!-- postListdetail -->
 	<select id="postListDetail" parameterType="Post" resultType="Post">

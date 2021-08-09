@@ -7,5 +7,6 @@
 		<typeAlias alias="ChePostVO" type="com.oracle.springProject01.model.ChePostVO"/>
 		<typeAlias alias="LjwAttachmentFileVO" type="com.oracle.springProject01.model.AttachmentFileVO"/>
 		<typeAlias alias="LjwAttachmentFile" type="com.oracle.springProject01.model.AttachmentFile"/>
+		<typeAlias alias="Reply" type="com.oracle.springProject01.model.Reply"/>
 	</typeAliases>
 </configuration>
