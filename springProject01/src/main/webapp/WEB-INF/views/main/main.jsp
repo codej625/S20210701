@@ -15,7 +15,7 @@
 		<div class="contennts_wrap">
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg');">
+					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg')">
 					<a>모임을 하고싶으세요?</a>
 				</div>
 				<div class="ex_btn">
@@ -25,7 +25,7 @@
 			</div>
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg');">
+					style="background-image: url('${pageContext.request.contextPath}/img/goya.jpg')">
 					<a>클래스를 통해 배우고 싶으세요?</a>	
 				</div>
 				<div class="ex_btn">
