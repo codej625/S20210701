@@ -183,13 +183,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Lhj_MemberVO myBMtoRG2(Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("service lhjLoginservice memverserviceImpl myBMtoRG2 start...");
-//		int result =0;
-//		result =  md.my_check(lhj_MemberVO);
-//		if ( result > 0) {
-//			md.myBMtoRG2(lhj_MemberVO);
-//			
-//		}
-//		md.myBMtoRG2(lhj_MemberVO);
+		md.myBMtoRG2(lhj_MemberVO);
 		return lhj_MemberVO;
 	}
 		//관심내역 취소
@@ -208,13 +202,44 @@ public class MemberServiceImpl implements MemberService {
 		return lhj_MemberVO;
 	}
 
-	
-	
+		//내가 쓴 글 리스트 -all
 	@Override
-	public Lhj_MemberVO mypage_myreginfo_title(Lhj_MemberVO lhj_MemberVO2) {
-		System.out.println("service lhjLoginservice memverserviceImpl mypage_myreginfo_title start...");
-		Lhj_MemberVO lhj_MemberVO = md.mypage_myreginfo_title(lhj_MemberVO2);
-		return lhj_MemberVO;
+	public List<Lhj_MemberVO> myPostList(String m_id) {
+		System.out.println("service lhjLoginservice memverserviceImpl myPostList start...");
+		List<Lhj_MemberVO> myPostList = null;
+		myPostList = md.myPostList(m_id);
+		System.out.println("service lhjLoginservice memverserviceImpl myPostList.size()->" +myPostList.size());
+		return myPostList;
+	}
+
+		//내가 쓴 글 리스트 -class
+	@Override
+	public List<Lhj_MemberVO> myPostList_class(String m_id) {
+		System.out.println("service lhjLoginservice memverserviceImpl myPostList_class start...");
+		List<Lhj_MemberVO> myPostList_class = null;
+		myPostList_class = md.myPostList_class(m_id);
+		System.out.println("service lhjLoginservice memverserviceImpl myPostList_class.size()->" +myPostList_class.size());
+		return myPostList_class;
+	}
+
+		//내가 쓴 글 리스트 -meeting
+	@Override
+	public List<Lhj_MemberVO> myPostList_meeting(String m_id) {
+		System.out.println("service lhjLoginservice memverserviceImpl myPostList_meeting start...");
+		List<Lhj_MemberVO> myPostList_meeting = null;
+		myPostList_meeting = md.myPostList_meeting(m_id); 
+		System.out.println("service lhjLoginservice memverserviceImpl myPostList_meeting.size()->" +myPostList_meeting.size());
+		return myPostList_meeting;
+	}
+
+	//내가 쓴 글 에 대해 신청한 회원 list
+	@Override
+	public List<Lhj_MemberVO> mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("service lhjLoginservice memverserviceImpl mypage_myPostMEmberList start...");
+		List<Lhj_MemberVO> mypage_myPostMEmberList = null;
+		mypage_myPostMEmberList = md.mypage_myPostMEmberList(lhj_MemberVO); 
+		System.out.println("service lhjLoginservice memverserviceImpl mypage_myPostMEmberList.size()->" +mypage_myPostMEmberList.size());
+		return mypage_myPostMEmberList;
 	}
 
 	

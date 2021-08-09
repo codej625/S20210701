@@ -90,33 +90,23 @@
 				<c:forEach var="lhj_MemberVO" items="${myRegInfoList }">
 												
 					<tr>
-							<td rowspan="2">
-							<form action="${pageContext.request.contextPath}/member/mypage_myreginfo_title">
-							<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
-							<input type="hidden" name="bc_num" value="${lhj_MemberVO.bc_num }">
-							<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">
-							<c:if test="${lhj_MemberVO.p_img == null}">
-									<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
-								
-							</c:if>
-							<c:if test="${lhj_MemberVO.p_img != null}">
-								
-									<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
-							</c:if>
-							</form>
-							</td>
+						<td rowspan="2">
+						<c:if test="${lhj_MemberVO.p_img == null}">
+								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
+							
+						</c:if>
+						<c:if test="${lhj_MemberVO.p_img != null}">
+							
+								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
+						</c:if>
+						</td>
 						<td>
-							<form action="${pageContext.request.contextPath}/member/mypage_myreginfo_title">
-							<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
-							<input type="hidden" name="bc_num" value="${lhj_MemberVO.bc_num }">
-							<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">	
-								<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
-									무료
-								</c:if>
-								<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
-									유료
-								</c:if>
-							</form>
+							<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
+								무료
+							</c:if>
+							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
+								유료
+							</c:if>
 						</td>
 						<td  rowspan="4">
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
@@ -125,7 +115,6 @@
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
 								결제 취소 버튼
 							</c:if>
-							
 							<form action="${pageContext.request.contextPath}/member/mypage_myreginfoDE">
 								<input type="hidden" name="m_id" value="${lhj_MemberVO.m_id }">
 								<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
@@ -138,12 +127,7 @@
 					</tr>
 					<tr>
 						<td>
-						<form action="${pageContext.request.contextPath}/member/mypage_myreginfo_title">
-							<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
-							<input type="hidden" name="bc_num" value="${lhj_MemberVO.bc_num }">
-							<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">
-								${lhj_MemberVO.p_title }
-						</form>
+							${lhj_MemberVO.p_title }
 						</td>
 					</tr>
 					<tr>
@@ -152,12 +136,7 @@
 					</tr>
 					<tr>
 						<td>
-						<form action="${pageContext.request.contextPath}/member/mypage_myreginfo_title">
-							<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
-							<input type="hidden" name="bc_num" value="${lhj_MemberVO.bc_num }">
-							<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">
-								${lhj_MemberVO.p_cost }
-						</form>
+							${lhj_MemberVO.p_cost }
 						</td>
 						<td>
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
@@ -170,7 +149,6 @@
 					</tr>
 				</c:forEach>	
 				</table>
-				<input type="submit" value="확인">	
 
 <!-- 				reginfo - class만 보여주는 거 -->
 

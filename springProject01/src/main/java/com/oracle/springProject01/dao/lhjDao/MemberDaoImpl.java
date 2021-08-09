@@ -245,20 +245,59 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 
-	
-	
+	//내가 쓴 글 리스트-all
 	@Override
-	public Lhj_MemberVO mypage_myreginfo_title(Lhj_MemberVO lhj_MemberVO) {
-		System.out.println("dao lhjmember memberDaoImpl mypage_myreginfo_title Start");
-		Lhj_MemberVO mypage_myreginfo_title = new Lhj_MemberVO();
+	public List<Lhj_MemberVO> myPostList(String m_id) {
+		List<Lhj_MemberVO> myPostList = null;
+		System.out.println("dao lhjmember memberDaoImpl myPostList Start");
 		try {
-			mypage_myreginfo_title = session.selectOne("hj_selectmyreginfo_title", lhj_MemberVO);
+			myPostList = session.selectList("hj_myPostList", m_id);
 		} catch (Exception e) {
-			System.out.println("Dao lhjmember memberDaoImpl mypage_myreginfo_title error -> "+e.getMessage());
+			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
 		}
-		return mypage_myreginfo_title; 
-		
+		return myPostList;
 	}
+
+	//내가 쓴 글 리스트-class
+	@Override
+	public List<Lhj_MemberVO> myPostList_class(String m_id) {
+		List<Lhj_MemberVO> myPostList_class = null;
+		System.out.println("dao lhjmember memberDaoImpl myPostList_class Start");
+		try {
+			myPostList_class = session.selectList("hj_myPostList_class", m_id);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
+		}
+		return myPostList_class;
+	}
+
+	//내가 쓴 글 리스트-meeting
+	@Override
+	public List<Lhj_MemberVO> myPostList_meeting(String m_id) {
+		List<Lhj_MemberVO> myPostList_meeting = null;
+		System.out.println("dao lhjmember memberDaoImpl myPostList_meeting Start");
+		try {
+			myPostList_meeting = session.selectList("hj_myPostList_meeting", m_id);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
+		}
+		return myPostList_meeting;
+	}
+
+	@Override
+	public List<Lhj_MemberVO> mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO) {
+		List<Lhj_MemberVO> mypage_myPostMEmberList = null;
+		System.out.println("dao lhjmember memberDaoImpl mypage_myPostMEmberList Start");
+		try {
+			mypage_myPostMEmberList = session.selectList("hj_myPostMEmberList", lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("EmpDaoImpl listEmp Exception->"+e.getMessage());
+		}
+		return mypage_myPostMEmberList;
+	}
+
+	
+	
 
 	
 

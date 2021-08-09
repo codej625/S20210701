@@ -51,8 +51,18 @@ public interface MemberService {
 		//회원 탈퇴 (member_withdrawal => y)
 	Lhj_MemberVO 			myDelMySelf2(Lhj_MemberVO lhj_MemberVO);
 	
+		//내가 쓴 글 리스트 -all
+	List<Lhj_MemberVO> myPostList(String m_id);
+		//내가 쓴 글 리스트 -class
+	List<Lhj_MemberVO> myPostList_class(String m_id);
+		//내가 쓴 글 리스트 -meeting
+	List<Lhj_MemberVO> myPostList_meeting(String m_id);
 	
-	Lhj_MemberVO mypage_myreginfo_title(Lhj_MemberVO lhj_MemberVO2);
+		//내가 쓴 글 리스트에 대한 신청 인원 정보
+	List<Lhj_MemberVO> 		mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
+	
+	
+	
 	
 	
 	

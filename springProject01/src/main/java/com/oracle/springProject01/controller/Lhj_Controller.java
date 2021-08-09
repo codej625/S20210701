@@ -272,17 +272,6 @@ public class Lhj_Controller {
 	}
 	
 	// 마이페이지 신청내역 post관련 보여주는거
-	@RequestMapping(value = "/member/mypage_myreginfo_title")
-	public String mypage_myreginfo_title(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request, String m_id) throws Exception{
-		System.out.println("lhjController mypage_myreginfo_title Start...");
-		String sessionID =  (String) request.getSession().getAttribute("sessionID");
-		m_id = sessionID;
-		
-		Lhj_MemberVO mypage_myreginfo_title = ms.mypage_myreginfo_title(lhj_MemberVO);
-		model.addAttribute("lhj_MemberVO", mypage_myreginfo_title);
-		
-		return "/member/mypage_myreginfo_title";
-	}
 	
 	//마이페이지 신청내역 취소
 	@RequestMapping(value = "/member/mypage_myreginfoDE", method = { RequestMethod.GET, RequestMethod.POST })
@@ -386,11 +375,36 @@ public class Lhj_Controller {
 	public String mypage_myPostList(Model model, HttpServletRequest request, String m_id) throws Exception{
 		System.out.println("lhjController mypage_changePW Start...");
 		String sessionID =  (String) request.getSession().getAttribute("sessionID");
-		m_id = sessionID;
+		m_id = sessionID; 
 		Lhj_MemberVO lhj_MemberVO = ms.selectMypage(m_id);
+		//내가 쓴 글 리스트 -all
+		List<Lhj_MemberVO> myPostList = ms.myPostList(m_id);
+		//내가 쓴 글 리스트 -class
+		List<Lhj_MemberVO> myPostList_class = ms.myPostList_class(m_id);
+		//내가 쓴 글 리스트 -meeting
+		List<Lhj_MemberVO> myPostList_meeting = ms.myPostList_meeting(m_id);
+		model.addAttribute("myPostList", myPostList);
+		model.addAttribute("myPostList_class", myPostList_class);
+		model.addAttribute("myPostList_meeting", myPostList_meeting);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 		 
 		return "/member/mypage_myPostList";
 	}
+	
+	//마이페이지 내가 쓴글의 회원 관리 화면
+	@RequestMapping(value = "/member/mypage_myPostMEmberList_", method = RequestMethod.GET)
+	public String mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request, String m_id) throws Exception{
+		System.out.println("lhjController mypage_changePW Start...");
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		m_id = sessionID; 
+		//내가 쓴 글 리스트 -all
+		List<Lhj_MemberVO> mypage_myPostMEmberList = ms.mypage_myPostMEmberList(lhj_MemberVO);
+		model.addAttribute("mypage_myPostMEmberList", mypage_myPostMEmberList);
+		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+		 
+		return "/member/mypage_myPostMEmberList_";
+	}
+	
+	
 	
 }
