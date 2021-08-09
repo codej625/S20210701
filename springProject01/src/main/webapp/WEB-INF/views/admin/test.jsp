@@ -8,8 +8,7 @@
 </head>
 <body>
 	<form method="post"
-		action="${pageContext.request.contextPath}/admin/upload"
-		enctype="multipart/form-data">
+		action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><input type="text" name="m_id"></td>

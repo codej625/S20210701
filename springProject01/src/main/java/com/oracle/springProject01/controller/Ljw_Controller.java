@@ -80,18 +80,21 @@ public class Ljw_Controller {
 	@PostMapping(value = "/admin/upload")
 	public String upload(AttachmentFileVO attachmentFileVO, Model model) throws Exception {
 		System.out.println("Ljw_Controller upload Start...");
+//======첨부파일을 로컬에 저장===================================================================
+		
 //======MultipartFile 객체로 파일을 받아서 for문으로 하나씩 빼서 저장===================================
 		for (MultipartFile file : attachmentFileVO.getFiles()) {
 			String originalfileName = file.getOriginalFilename();
 			
-//==========C:/Image/ + originalfileName 이름으로 저장=========================================
+//==========C:/Image/ + 원본 파일이름으로 저장===================================================
 			File dest = new File("C:/Image/" + originalfileName);
 			file.transferTo(dest);
 			System.out.println(attachmentFileVO.getFiles());
 //==========VO로 받은 files 갯수 확인용 Message==================================================
 			System.out.println("files->" + attachmentFileVO.getFiles().size());
 		}
-//======DTO 단위로 Service로 보냄==============================================================
+		
+//======데이터 값을 DB에 저장하기 위해 DTO 단위로 Service로 보냄========================================
 		List<AttachmentFileVO> f = ms.test(attachmentFileVO);
 
 		System.out.println("files->" + attachmentFileVO.getFiles().size());
