@@ -9,16 +9,16 @@
 	href="${pageContext.request.contextPath}/css/open.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/smarteditor211/js/HuskyEZCreator.js" charset="utf-8"></script>
 <!-- calendar를 위한 라이브러리들 지우면 안됨 -->
-<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
-<!-- <script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js'></script> -->
-<!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css'rel='stylesheet'/> -->
-<!-- <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css' rel='stylesheet' media='print'/> -->
-<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script> -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src='https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js'></script>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css'rel='stylesheet'/>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css' rel='stylesheet' media='print'/>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> -->
+<!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" /> -->
 
 <script type="text/javascript">
 function inputNumberFormat(obj) {
@@ -39,30 +39,6 @@ function uncomma(str) {
 }
 
 </script>
-<script type="text/javascript">
-
-function handleFileSelect(event) {
-    var input = this;
-    console.log(input.files)
-    if (input.files && input.files.length) {
-        var reader = new FileReader();
-        this.enabled = false
-        reader.onload = (function (e) {
-        console.log(e)
-            $("#preview").html(['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/>'].join(''))
-        });
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$('#file').change(handleFileSelect);
-$('.file-edit-icon').on('click', '.preview-de', function () {
-    $("#preview").empty()
-    $("#file").val("");
-});
-$('.preview-edit').click( function() {
-  $("#file").click();
-} );
-</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -78,11 +54,35 @@ $('.preview-edit').click( function() {
 <!-- 						<div id="image_container" ></div>  -->
 <!-- 						<input type="file" name="p_img" onchange="setThumbnail(event);"> -->
 						<input type="file" name="p_img" id="file" accept="image/*">
-						    <div id="preview"></div>
-						    <div class="file-edit-icon">
-						      <a href="#" class="preview-edit">수정</a>
-						      <a href="#" class="preview-de">삭제</a>
-						    </div>
+						<div id="preview"></div>
+						<div class="file-edit-icon">
+					    	<a href="#" class="preview-edit">수정</a>
+					    	<a href="#" class="preview-de">삭제</a>
+						</div>
+<!-- 						이미지 미리보는 스크립트 -->
+						<script type="text/javascript">
+						function handleFileSelect(event) {
+						    var input = this;
+						    console.log(input.files)
+						    if (input.files && input.files.length) {
+						        var reader = new FileReader();
+						        this.enabled = false
+						        reader.onload = (function (e) {
+						        console.log(e)
+						            $("#preview").html(['<img class="thumb" src="', e.target.result, '" title="', escape(e.name), '"/>'].join(''))
+						        });
+						        reader.readAsDataURL(input.files[0]);
+						    }
+						}
+						$('#file').change(handleFileSelect);
+						$('.file-edit-icon').on('click', '.preview-de', function () {
+						    $("#preview").empty()
+						    $("#file").val("");
+						});
+						$('.preview-edit').click( function() {
+						  $("#file").click();
+						} );
+						</script>
 					</div>
 					<div class="class_info">
 						<div class="section_tit">기본정보</div>

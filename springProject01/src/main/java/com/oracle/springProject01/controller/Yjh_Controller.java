@@ -123,6 +123,8 @@ public class Yjh_Controller {
 		post.setP_cstatus(request.getParameter("p_cstatus"));
 		post.setP_metstart(request.getParameter("p_metstart"));
 		post.setP_metend(request.getParameter("p_metend"));
+		post.setP_appstart(request.getParameter("p_appstart"));
+		post.setP_append(request.getParameter("p_append"));
 		post.setP_loc(request.getParameter("p_loc"));
 		post.setP_cost(request.getParameter("p_cost"));
 		post.setP_starttime(request.getParameter("p_starttime"));

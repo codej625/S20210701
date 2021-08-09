@@ -168,8 +168,8 @@ function uncomma(str) {
 							</div>
 							<div class="info">
 								<div class="title">신청기간</div>
-<!-- 								<input type="date" name="p_appstart" placeholder="신청시작일"> -->
-<!-- 								<input type="date" name="p_append" placeholder="신청종료일"> -->
+								<input type="date" name="p_appstart" placeholder="신청시작일">
+								<input type="date" name="p_append" placeholder="신청종료일">
 							</div>
 							<div class="info">
 								<input type="checkbox">장소없음 <input type="text" name="p_loc" value="${post.p_loc }">
