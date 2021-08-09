@@ -13,7 +13,7 @@ body {
 	padding: 0px;
 }
 
-#image_container img {
+div #preview img {
 	width: 250px;
 	height: 250px;
 }
