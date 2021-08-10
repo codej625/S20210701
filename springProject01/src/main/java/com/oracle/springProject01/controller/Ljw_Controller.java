@@ -87,7 +87,7 @@ public class Ljw_Controller {
 			String originalfileName = file.getOriginalFilename();
 			
 //==========C:/Image/ + 원본 파일이름으로 저장===================================================
-			File dest = new File("C:/Image/" + originalfileName);
+			File dest = new File("C:/Images/" + originalfileName);
 			file.transferTo(dest);
 			System.out.println(attachmentFileVO.getFiles());
 //==========VO로 받은 files 갯수 확인용 Message==================================================

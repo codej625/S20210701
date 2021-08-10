@@ -57,7 +57,7 @@ public class MemberServiceImpl implements MemberService {
 		AttachmentFileVO attachmentFileTest = new AttachmentFileVO();
 		
 		for (MultipartFile file : attachmentFileVO.getFiles()) {
-			String name = "img/" + file.getOriginalFilename();
+			String name = "images/" + file.getOriginalFilename();
 			attachmentFileVO.setF_orgname(name);
 //==========로컬에 저장된 이름과 DB에 저장된 이름이 같지 않게 하기위해  random을 붙임=================
 			attachmentFileVO.setF_newname(name + Math.random());
