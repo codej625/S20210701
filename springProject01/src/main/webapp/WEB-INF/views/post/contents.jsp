@@ -18,14 +18,14 @@
 				<div class="cont_info">
 					<div class="offeror">
 						<div class="con_img">
-							<img src="${pageContext.request.contextPath}/img/goya.jpg">
+							<img src="${pageContext.request.contextPath}/upload/${post.p_img}">
 						</div>
 						<div class="offeror_info">
 							<div class="offer_title">개설자정보</div>
 							<div class="info_detail">
 								<div class="offer_item">
 									<div class="offer_img">
-										<img src="${pageContext.request.contextPath}/img/01.jpg">
+										<img src="${pageContext.request.contextPath}/upload/${post.m_img}">
 									</div>
 									<h2>${post.m_name }</h2>
 								</div>
@@ -50,7 +50,7 @@
 						<div class="meet_info">
 							<div class="meet_title">모임기간</div>
 							<div class="meet_detail">
-								2021.7.11 (일) 08:50 ~ 12:00 <input type="hidden">
+								${post.p_metstart } ~ ${post.p_metend }, ${post.p_starttime } ~ ${post.p_endtime } <input type="hidden">
 							</div>
 						</div>
 						<div class="meet_info">
@@ -60,13 +60,44 @@
 							</div>
 						</div>
 						<div class="meet_info">
-							<div class="meet_title">그룹명</div>
-							<div class="meet_detail">
-								${post.p_gname } <input type="hidden">
-							</div>
+							<table border="1">
+								<tr>
+									<th colspan="2">${post.p_gname }</th>
+									<th>
+										<c:choose>
+			                            	<c:when test="${post.p_cstatus == 0 }">무료</c:when>
+			                            	<c:when test="${post.p_cstatus == 1 }">유료</c:when>
+			                            </c:choose>
+									</th>
+								</tr>
+								<tr>
+									<td colspan="2">${post.p_appstart } ~ ${post.p_append }까지</td>
+									<td>신청 가능 인원 ${post.p_capa }명 남음</td>
+								</tr>
+								
+							</table>
+<!-- 							<div class="meet_title">그룹명</div> -->
+<!-- 							<div class="meet_detail"> -->
+<%-- 								${post.p_gname } <input type="hidden"> --%>
+<!-- 							</div> -->
 						</div>
 						<div class="btn_section">
-							<button>신청하기</button>
+<!-- 							이 게시물에 신청을 했으면 result = 1, 안헀으면 result = 0 -->
+							<c:if test="${result > 0 }">
+								<button type="button" 
+									onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">취소하기</button>
+								
+							</c:if>
+							<c:if test="${result == 0 }">
+								<c:if test="${post.p_capa == 0 }">
+									신청끝났음.
+								</c:if>
+								<c:if test="${post.p_capa != 0 }">
+									<button type="button" 
+										onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoApplication?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">신청하기</button>
+								</c:if>
+							</c:if>
+<!-- 							<button>신청하기</button> -->
 							<button type="button" 
 									onclick="location.href='${pageContext.request.contextPath}/post/postListUpdateView?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
 									수정하기
@@ -75,7 +106,6 @@
 									onclick="location.href='${pageContext.request.contextPath}/post/postDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
 									삭제하기
 							</button>
-							<button>신청완료</button>
 							<button>찜</button>
 						</div>
 					</div>

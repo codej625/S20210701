@@ -11,6 +11,7 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 <body>
+
 test
 <input type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
 <script>

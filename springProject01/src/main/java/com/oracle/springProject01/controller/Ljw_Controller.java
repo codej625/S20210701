@@ -85,7 +85,7 @@ public class Ljw_Controller {
 //======MultipartFile 객체로 파일을 받아서 for문으로 하나씩 빼서 저장===================================
 		for (MultipartFile file : attachmentFileVO.getFiles()) {
 			String originalfileName = file.getOriginalFilename();
-			
+			System.out.println("MultipartFile originalfileName->"+originalfileName);
 //==========C:/Image/ + 원본 파일이름으로 저장===================================================
 			File dest = new File("C:/Images/" + originalfileName);
 			file.transferTo(dest);

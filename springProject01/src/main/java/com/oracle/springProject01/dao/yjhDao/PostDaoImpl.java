@@ -14,6 +14,7 @@ public class PostDaoImpl implements PostDao {
 	@Autowired
 	private SqlSession session;
 
+//	게시물 갯수 가져오기
 	@Override
 	public int total(Post post) {
 		System.out.println("PostDaoImpl int total() start...");
@@ -26,6 +27,7 @@ public class PostDaoImpl implements PostDao {
 		return tot;
 	}
 
+//	게시물 리스트 가져오기
 	@Override
 	public List<Post> listPost(Post post) {
 		System.out.println("PostDaoImpl List<Post> listPost() start...");
@@ -37,7 +39,8 @@ public class PostDaoImpl implements PostDao {
 		}
 		return postList;
 	}
-	
+
+//	로그인되어있는 아이디 가져오기
 	@Override
 	public Post registerMember(Post post) {
 		System.out.println("PostDaoImpl registerMember start...");
@@ -50,6 +53,7 @@ public class PostDaoImpl implements PostDao {
 		return registerMember;
 	}
 
+//	게시물 작성하기
 	@Override
 	public int postInsert(Post post) {
 		System.out.println("PostDaoImpl int postInsert start...");
@@ -61,7 +65,21 @@ public class PostDaoImpl implements PostDao {
 		}
 		return result;
 	}
+	
+//	신청했는지 안했는지 확인
+	@Override
+	public int regInfoCheck(Post post) {
+		System.out.println("PostDaoImpl regInfoCheck start...");
+		int result = 0;
+		try {
+			result = session.selectOne("regInfoCheck",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl regInfoCheck Exception->"+e.getMessage());
+		}
+		return result;
+	}
 
+//	조회수 증가
 	@Override
 	public int postHit(Post post) {
 		System.out.println("PostDaoImpl int postHit start...");
@@ -74,6 +92,7 @@ public class PostDaoImpl implements PostDao {
 		return result;
 	}
 	
+//	게시물 내용보기
 	@Override
 	public Post postListDetail(Post post) {
 		System.out.println("PostDaoImpl Post postListDetail start...");
@@ -86,6 +105,7 @@ public class PostDaoImpl implements PostDao {
 		return post1;
 	}
 
+//	게시물 수정하기
 	@Override
 	public int postListUpdate(Post post) {
 		System.out.println("PostDaoImpl int postListUpdate start...");
@@ -98,6 +118,7 @@ public class PostDaoImpl implements PostDao {
 		return result;
 	}
 
+//	게시물 삭제
 	@Override
 	public int postDelete(Post post) {
 		System.out.println("PostDaoImpl int postDelete start...");
@@ -106,6 +127,58 @@ public class PostDaoImpl implements PostDao {
 			result = session.delete("postDelete",post);
 		} catch (Exception e) {
 			System.out.println("PostDaoImpl int postListUpdate Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+//	게시물 신청하기
+	@Override
+	public int postRegInfoInsert(Post post) {
+		System.out.println("PostDaoImpl postRegInfoInsert start...");
+		int result = 0;
+		try {
+			result = session.insert("postRegInfoInsert",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl postRegInfoInsert Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+//	게시물 신청하면 p_capa값 마이너스 해주기
+	@Override
+	public int postCapaMinusUpdate(Post post) {
+		System.out.println("PostDaoImpl postCapaMinusUpdate start...");
+		int result = 0;
+		try {
+			result = session.update("postCapaMinusUpdate",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl postCapaMinusUpdate Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+//	게시물 신청 취소하기
+	@Override
+	public int postRegInfoDelete(Post post) {
+		System.out.println("PostDaoImpl postRegInfoDelete start...");
+		int result = 0;
+		try {
+			result = session.delete("postRegInfoDelete",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl postRegInfoDelete Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+//	게시물 신청하면 p_capa값 플러스 해주기
+	@Override
+	public int postCapaPlusUpdate(Post post) {
+		System.out.println("PostDaoImpl postCapaPlusUpdate start...");
+		int result = 0;
+		try {
+			result = session.update("postCapaPlusUpdate",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl postCapaPlusUpdate Exception->"+e.getMessage());
 		}
 		return result;
 	}

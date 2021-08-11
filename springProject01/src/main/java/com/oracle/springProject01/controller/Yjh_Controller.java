@@ -40,7 +40,7 @@ public class Yjh_Controller {
 	@Autowired
 	private ReplyService rs;
 	
-//	겟방식 게시물 리스트 불러오기
+//	게시물 리스트 불러오기
 	@RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
 	public String categoryGet(Integer bt_num, Integer bc_num, String currentPage, Model model) {
 		System.out.println("Yjh_Controller categoryGet Start...");
@@ -150,33 +150,9 @@ public class Yjh_Controller {
 			model.addAttribute("msg", "바보");
 			return "forward:add";
 		}
-//		return "forward:/post/category";
-//		return "/post/kkk";
 	}
 	
-////	게시물 작성
-////	@PostMapping(value = "/post/insert")
-////	public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model)  {
-////		public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model) throws IOException {
-////		System.out.println("Yjh_Controller String postInsert start...");
-////		System.out.println("post.p_cost: " + post.getP_cost());
-////		System.out.println(post.getP_starttime());
-//////		uploadPath = 파일경로지정
-////		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
-////		System.out.println("originalName : " + p_img.getOriginalFilename());
-////		System.out.println("size : " + p_img.getSize());
-////		System.out.println("contentType : " + p_img.getContentType());
-////		System.out.println("uploadPath : " + uploadPath);
-////		String savedName = uploadFile(p_img.getOriginalFilename(), p_img.getBytes(), uploadPath);
-////		post.setP_img(p_img.getOriginalFilename());
-////		System.out.println("saveName : " + savedName);
-////		model.addAttribute("savedName", savedName);
-////		int result = ps.postInsert(post);
-////		System.out.println("Yjh_Controller postInsert result->" + result);
-//	//		return "forward:/post/category";
-////		return "/post/kkk";
-////	}
-//	
+//	파일업로드
 	private String uploadFile(String originalName, byte[] fileData, String uploadPath) throws IOException {
 		System.out.println("UploadController String uploadFile start...");
 //		UUID = 범용 고유 식별자는 소프트웨어 구축에 쓰이는 식별자 표준으로, 개방 소프트웨어 재단이 분산 컴퓨팅 환경의 일부로 표준화하였다
@@ -205,9 +181,14 @@ public class Yjh_Controller {
 	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
 //		섹션아이디
-		String sessionID =  (String) request.getSession().getAttribute("sessionID");	
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+//		게시물을 신청 했는지 안했는지 확인
+		int result1 = ps.regInfoCheck(m_id,bt_num, bc_num, p_num);
+		System.out.println("postListDetail regInfoCheck result1->"+result1);
+//		조회수 증가해주기
 		int result = ps.postHit(bt_num, bc_num, p_num);
-//		게시물 리스트
+//		게시물 상세정보
 		Post post = ps.postListDetail(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postListDetail post->" + post);
 //		댓글 리스트
@@ -221,6 +202,7 @@ public class Yjh_Controller {
 		model.addAttribute("r_indent",r_indent);
 		model.addAttribute("r_group",r_group);
 		model.addAttribute("r_level",r_level);
+		model.addAttribute("result",result1);
 		model.addAttribute("post", post);	
 		model.addAttribute("reply",replyList);
 		return "post/contents";
@@ -302,9 +284,57 @@ public class Yjh_Controller {
 		return "forward:/post/postListDetail";
 	}
 	
-	@RequestMapping(value = "/post/test")
-	public String test() {
-		return "/post/test";
+//	게시물 신청하기 보여주는 곳
+	@RequestMapping(value = "post/postRegInfoApplication", method = { RequestMethod.GET, RequestMethod.POST })
+	public String postRegInfoApplication(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+		System.out.println("Yjh_Controller postRegInfoApplication start...");
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+//		게시물 리스트
+		Post post = ps.postListDetail(bt_num, bc_num, p_num);
+//		로그인 아이디 정보
+		Post postMemberDetail = ps.registerMember(sessionID);
+		model.addAttribute("post", post);
+		model.addAttribute("member",postMemberDetail);
+		return "post/applicationContents";
+	}
+	
+//	게시물 신청하기
+	@RequestMapping(value = "post/postRegInfoInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String postRegInfoInsert(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+		System.out.println("Yjh_Controller postRegInfoInsert start...");
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+//		게시물 신청하기
+		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num);
+		System.out.println("Yjh_Controller postRegInfoInsert result->"+post);
+		if (post > 0) {
+//			게시물 신청하면 p_capa값 마이너스 해주기
+			int postUpdate = ps.postCapaMinusUpdate(bt_num, bc_num, p_num);
+			System.out.println("Yjh_Controller postCapaMinusUpdate result->"+postUpdate);
+			return "forward:/post/postListDetail";
+		}
+		return "forward:/post/applicationContents";
+	}
+	
+//	게시물 취소하기
+	@RequestMapping(value = "post/postRegInfoDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String postRegInfoDelete(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+		System.out.println("Yjh_Controller postRegInfoDelete start...");
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+//		게시물 신청 취소하기
+		int post = ps.postRegInfoDelete(m_id,bt_num, bc_num, p_num);
+		System.out.println("Yjh_Controller postRegInfoInsert result->"+post);
+		if (post > 0) {
+//			게시물 취소하면 p_capa값 플러스 해주기
+			int postUpdate = ps.postCapaPlusUpdate(bt_num, bc_num, p_num);
+			System.out.println("Yjh_Controller postCapaPlusUpdate result->"+postUpdate);
+			return "forward:/post/postListDetail";
+		}
+		return "forward:/post/applicationContents";
 	}
 
 }
