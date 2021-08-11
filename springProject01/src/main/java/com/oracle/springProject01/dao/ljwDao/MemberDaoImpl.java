@@ -78,7 +78,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int test2(AttachmentFileVO attachmentFileTest) {
+	public int test2(AttachmentFile attachmentFileTest) {
 		int test = 0;
 		System.out.println("MemberDaoImpl Start test2...");
 		try {

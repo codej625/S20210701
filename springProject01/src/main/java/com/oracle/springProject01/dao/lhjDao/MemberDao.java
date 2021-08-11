@@ -55,7 +55,8 @@ public interface MemberDao {
 	public List<Lhj_MemberVO> myPostList_meeting(String m_id);
 		//내가 쓴 글에 신청한 회원 리스트
 	public List<Lhj_MemberVO> mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
-
+		//모임, 클래스 인증
+	Lhj_MemberVO	mypage_mycertification(Lhj_MemberVO lhj_MemberVO);      
 	
 
 

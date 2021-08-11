@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post"
-		action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
+	<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td><input type="text" name="m_id"></td>

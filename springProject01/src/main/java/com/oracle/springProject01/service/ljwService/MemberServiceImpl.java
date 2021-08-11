@@ -54,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
 		String date = Format.format(time.getTime());
 
 //======List에서 꺼낸 files, m_id, f_orgname f_newname, f_regdate를  DTO 단위로 옮길 계획==		
-		AttachmentFileVO attachmentFileTest = new AttachmentFileVO();
+		AttachmentFile attachmentFileTest = new AttachmentFile();
 		
 		for (MultipartFile file : attachmentFileVO.getFiles()) {
 			String name = "images/" + file.getOriginalFilename();

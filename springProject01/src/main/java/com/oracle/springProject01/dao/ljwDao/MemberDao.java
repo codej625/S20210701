@@ -18,5 +18,5 @@ public interface MemberDao {
 
 	List<AttachmentFile> check(AttachmentFile attachmentFile);
 
-	int test2(AttachmentFileVO attachmentFileTest);
+	int test2(AttachmentFile attachmentFileTest);
 }

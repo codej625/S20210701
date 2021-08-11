@@ -296,6 +296,17 @@ public class MemberDaoImpl implements MemberDao {
 		return mypage_myPostMEmberList;
 	}
 
+	@Override
+	public Lhj_MemberVO mypage_mycertification(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjMember MemberDaoImpl mypage_mycertification Start...");
+		try {
+			lhj_MemberVO = session.selectOne("hj_mycertification", lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl mypage_mycertification error...->" + e.getMessage());
+		}
+		return lhj_MemberVO;
+	}
+
 	
 	
 

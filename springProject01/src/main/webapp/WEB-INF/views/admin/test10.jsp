@@ -17,9 +17,7 @@
 				<td>아이디 : ${kkk.m_id}</td>
 			</tr>
 			<tr>
-				<td>이미지 : <img alt="f_orgname"
-					src="${pageContext.request.contextPath}/${kkk.f_orgname}"
-					height="240" width="320"></td>
+				<td>이미지 : <img alt="f_orgname" src="${pageContext.request.contextPath}/${kkk.f_orgname}" height="240" width="320"></td>
 			</tr>
 			<tr>
 				<td>업로드시간 : ${kkk.f_regdate}</td>
