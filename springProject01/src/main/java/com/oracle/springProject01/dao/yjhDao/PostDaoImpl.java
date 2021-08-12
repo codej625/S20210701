@@ -78,6 +78,19 @@ public class PostDaoImpl implements PostDao {
 		}
 		return result;
 	}
+	
+//	게시물을 찜 했는지 안했는지 확인
+	@Override
+	public int bookmarkCheck(Post post) {
+		System.out.println("PostDaoImpl bookmarkCheck start...");
+		int result = 0;
+		try {
+			result = session.selectOne("bookmarkCheck",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl bookmarkCheck Exception->"+e.getMessage());
+		}
+		return result;
+	}
 
 //	조회수 증가
 	@Override
@@ -179,6 +192,32 @@ public class PostDaoImpl implements PostDao {
 			result = session.update("postCapaPlusUpdate",post);
 		} catch (Exception e) {
 			System.out.println("PostDaoImpl postCapaPlusUpdate Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+//	게시물 찜하기
+	@Override
+	public int postBookmarkInsert(Post post) {
+		System.out.println("PostDaoImpl postBookmarkInsert start...");
+		int result = 0;
+		try {
+			result = session.insert("postBookmarkInsert",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl postBookmarkInsert Exception->"+e.getMessage());
+		}
+		return result;
+	}
+
+//	게시물 찜 취소하기
+	@Override
+	public int postBookmarkDelete(Post post) {
+		System.out.println("PostDaoImpl postBookmarkDelete start...");
+		int result = 0;
+		try {
+			result = session.delete("postBookmarkDelete",post);
+		} catch (Exception e) {
+			System.out.println("PostDaoImpl postBookmarkDelete Exception->"+e.getMessage());
 		}
 		return result;
 	}

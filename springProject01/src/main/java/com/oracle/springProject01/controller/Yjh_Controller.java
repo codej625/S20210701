@@ -110,6 +110,15 @@ public class Yjh_Controller {
 //	public String postInsert(Post post, Model model)  {
 	public String postInsert(HttpServletRequest request, MultipartFile p_img, Model model) throws IOException {
 		System.out.println("Yjh_Controller String postInsert start...");
+//		태그를 배열로 받아서 저장해주기
+		String[] p_tag =  request.getParameterValues("p_tag");
+//		태그 받은걸  (a b)a 띄어쓰기 b 이런식으로  변경해서 p_tagStr로  다시 받아주기
+		String p_tagStr = "";
+		for (int i = 0; i < p_tag.length; i++) {
+			System.out.println("p_tag name->"+p_tag[i]);
+			p_tagStr = p_tagStr + p_tag[i] + " ";
+		}
+		System.out.println("Yjh_Controller p_tagStr->"+p_tagStr);
 		Post post = new Post();
 		post.setBt_num(Integer.parseInt(request.getParameter("bt_num")));
 		post.setBc_num(Integer.parseInt(request.getParameter("bc_num")));
@@ -129,6 +138,7 @@ public class Yjh_Controller {
 		post.setP_cost(request.getParameter("p_cost"));
 		post.setP_starttime(request.getParameter("p_starttime"));
 		post.setP_endtime(request.getParameter("p_endtime"));
+		post.setP_tag(p_tagStr);
 		System.out.println("post.p_cost: " + post.getP_cost());
 		System.out.println("post.P_starttime: " + post.getP_starttime());
 //		uploadPath = 파일경로지정
@@ -186,6 +196,9 @@ public class Yjh_Controller {
 //		게시물을 신청 했는지 안했는지 확인
 		int result1 = ps.regInfoCheck(m_id,bt_num, bc_num, p_num);
 		System.out.println("postListDetail regInfoCheck result1->"+result1);
+//		게시물을 찜 했는지 안했는지 확인
+		int result2 = ps.bookmarkCheck(m_id,bt_num, bc_num, p_num);
+		System.out.println("postListDetail regInfoCheck result1->"+result1);
 //		조회수 증가해주기
 		int result = ps.postHit(bt_num, bc_num, p_num);
 //		게시물 상세정보
@@ -203,6 +216,7 @@ public class Yjh_Controller {
 		model.addAttribute("r_group",r_group);
 		model.addAttribute("r_level",r_level);
 		model.addAttribute("result",result1);
+		model.addAttribute("result2",result2);
 		model.addAttribute("post", post);	
 		model.addAttribute("reply",replyList);
 		return "post/contents";
@@ -250,6 +264,10 @@ public class Yjh_Controller {
 	@RequestMapping(value = "/reply/replyInsert", method = { RequestMethod.GET, RequestMethod.POST })
 	public String replyInsert(Reply reply, Model model) {
 		System.out.println("Yjh_Controller String replyInsert start...");
+		System.out.println("Yjh_Controller replyInsert reply.getBt_num()->"+reply.getBt_num());
+		System.out.println("Yjh_Controller replyInsert reply.getBc_num()->"+reply.getBc_num());
+		System.out.println("Yjh_Controller replyInsert reply.getP_num()->"+reply.getP_num());
+		System.out.println("Yjh_Controller replyInsert reply.getR_num()->"+reply.getR_num());
 		int result = rs.replyInsert(reply);
 		System.out.println("Yjh_Controller postInsert result->" + result);
 		if (result > 0) {
@@ -335,6 +353,32 @@ public class Yjh_Controller {
 			return "forward:/post/postListDetail";
 		}
 		return "forward:/post/applicationContents";
+	}
+	
+//	게시물 찜하기
+	@RequestMapping(value = "post/postBookmarkInsert", method = { RequestMethod.GET, RequestMethod.POST })
+	public String postBookmarkInsert(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+		System.out.println("Yjh_Controller postBookmarkInsert start...");
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+//		게시물 찜하기
+		int post = ps.postBookmarkInsert(m_id,bt_num, bc_num, p_num);
+		System.out.println("Yjh_Controller postBookmarkInsert result->"+post);
+		return "forward:/post/postListDetail";
+	}
+	
+//	게시물 찜 취소하기
+	@RequestMapping(value = "post/postBookmarkDelete", method = { RequestMethod.GET, RequestMethod.POST })
+	public String postBookmarkDelete(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+		System.out.println("Yjh_Controller postBookmarkDelete start...");
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+//		게시물 찜 취소하기
+		int post = ps.postBookmarkDelete(m_id,bt_num, bc_num, p_num);
+		System.out.println("Yjh_Controller postBookmarkDelete result->"+post);
+		return "forward:/post/postListDetail";
 	}
 
 }

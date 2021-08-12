@@ -74,6 +74,23 @@ public class PostServiceImpl implements PostService {
 		result = pd.regInfoCheck(post);
 		return result;
 	}
+	
+//	게시물을 찜 했는지 안했는지 확인
+	@Override
+	public int bookmarkCheck(String m_id, int bt_num, int bc_num, int p_num) {
+		System.out.println("PostServiceImpl bookmarkCheck start...");
+		int result = 0;
+		Post post = new Post();
+		post.setM_id(m_id);
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		post.setP_num(p_num);
+		System.out.println("post.getM_id()->"+post.getM_id());
+		System.out.println("post.getBt_num()->"+post.getBt_num());
+		System.out.println("post.getBc_num()->"+post.getBc_num());
+		result = pd.bookmarkCheck(post);
+		return result;
+	}
 
 //	조회수 증가
 	@Override
@@ -173,6 +190,34 @@ public class PostServiceImpl implements PostService {
 		post.setBc_num(bc_num);
 		post.setP_num(p_num);
 		result = pd.postCapaPlusUpdate(post);
+		return result;
+	}
+
+//	게시물 찜하기
+	@Override
+	public int postBookmarkInsert(String m_id, int bt_num, int bc_num, int p_num) {
+		System.out.println("PostServiceImpl postBookmarkInsert start...");
+		int result = 0;
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		post.setP_num(p_num);
+		post.setM_id(m_id);
+		result = pd.postBookmarkInsert(post);
+		return result;
+	}
+
+//	게시물 찜 취소하기
+	@Override
+	public int postBookmarkDelete(String m_id, int bt_num, int bc_num, int p_num) {
+		System.out.println("PostServiceImpl postBookmarkInsert start...");
+		int result = 0;
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		post.setP_num(p_num);
+		post.setM_id(m_id);
+		result = pd.postBookmarkDelete(post);
 		return result;
 	}
 

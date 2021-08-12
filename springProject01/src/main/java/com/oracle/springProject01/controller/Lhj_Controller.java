@@ -24,12 +24,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.service.lhjService.MemberService;
+import com.oracle.springProject01.service.yjhService.PostService;
 
 @Controller
 public class Lhj_Controller {
 	
 	@Autowired
 	private	MemberService ms;
+	
+	@Autowired
+	private PostService ps;
 	
 	//로깅
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Lhj_Controller.class);
@@ -279,8 +283,15 @@ public class Lhj_Controller {
 		System.out.println("lhjController myreginfo Start...");
 		String sessionID =  (String) request.getSession().getAttribute("sessionID");
 		String m_id = sessionID; 
-		lhj_MemberVO = ms.myRGNO(lhj_MemberVO);
-		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+		int bt_num = lhj_MemberVO.getBt_num();
+		int bc_num = lhj_MemberVO.getBc_num();
+		int p_num = lhj_MemberVO.getP_num();
+		int post = ps.postRegInfoDelete(m_id,bt_num, bc_num, p_num);
+		if (post>0) {
+			int postUpdate = ps.postCapaPlusUpdate(bt_num, bc_num, p_num);
+		}
+//		lhj_MemberVO = ms.myRGNO(lhj_MemberVO);
+//		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 		
 		return "forward:/member/mypage_myreginfo";
 	}
@@ -314,9 +325,17 @@ public class Lhj_Controller {
 		String sessionID =  (String) request.getSession().getAttribute("sessionID");
 		String m_id = sessionID;
 		lhj_MemberVO = ms.myBMtoRG(lhj_MemberVO);
-		Lhj_MemberVO lhj_MemberVO2 = ms.myBMtoRG2(lhj_MemberVO);
+//		Lhj_MemberVO lhj_MemberVO2 = ms.myBMtoRG2(lhj_MemberVO);
+		int bt_num = lhj_MemberVO.getBt_num();
+		int bc_num = lhj_MemberVO.getBc_num();
+		int p_num = lhj_MemberVO.getP_num();
+		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num);
+		System.out.println("lhjController mybookmarkSin int bt_num->"+bt_num);
+		if (post>0) {
+			int postUpdate = ps.postCapaMinusUpdate(bt_num, bc_num, p_num);
+		}
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
-		model.addAttribute("lhj_MemberVO", lhj_MemberVO2);
+//		model.addAttribute("lhj_MemberVO", lhj_MemberVO2);
 		
 		return "forward:/member/mypage_myreginfo";
 	}

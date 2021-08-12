@@ -45,7 +45,10 @@
 						<div class="con_tit">${post.p_title }</div>
 						<div class="con_sub">${post.p_intro }</div>
 						<div class="con_hash">
-							<a>#스프링</a> <a>#뿌뿌</a>
+<!-- 							태그 뿌려주기 띄어쓰기로 delims하여 보여주기 -->
+							<c:forTokens items="${post.p_tag }" delims=" " var="p_tag">
+								<a>#${p_tag }&nbsp;&nbsp;&nbsp;</a>
+							</c:forTokens>
 						</div>
 						<div class="meet_info">
 							<div class="meet_title">모임기간</div>
@@ -86,7 +89,6 @@
 							<c:if test="${result > 0 }">
 								<button type="button" 
 									onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">취소하기</button>
-								
 							</c:if>
 							<c:if test="${result == 0 }">
 								<c:if test="${post.p_capa == 0 }">
@@ -98,6 +100,7 @@
 								</c:if>
 							</c:if>
 <!-- 							<button>신청하기</button> -->
+							<c:if test="${post.m_id == sessionID || sessionID == 'aaaaaa@aaaaaa.com' }">
 							<button type="button" 
 									onclick="location.href='${pageContext.request.contextPath}/post/postListUpdateView?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
 									수정하기
@@ -106,26 +109,77 @@
 									onclick="location.href='${pageContext.request.contextPath}/post/postDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
 									삭제하기
 							</button>
-							<button>찜</button>
+							</c:if>
+							<c:if test="${result2 == 0 }">
+								<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/post/postBookmarkInsert?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">찜 하기</button>
+							</c:if>
+							<c:if test="${result2 > 0 }">
+								<button type="button" 
+									onclick="location.href='${pageContext.request.contextPath}/post/postBookmarkDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">찜 취소하기</button>
+							</c:if>
+							
 						</div>
 					</div>
 				</div>
 				<div class="con_detail">
 					<div class="con_nav">
-						<div class="det_nav">상세정보</div>
-						<div class="det_nav">지도</div>
-						<div class="det_nav">문의/기대평</div>
-						<div class="det_nav">문의/리뷰</div>
-						<div class="det_nav">참여/취소안내</div>
+						<div class="det_nav"><a href="#p_info">상세정보</a></div>
+						<div class="det_nav"><a href="#p_loc">지도</a></div>
+						<div class="det_nav"><a href="#reply">문의/기대평</a></div>
+						<div class="det_nav"><a href="#rereply">문의/리뷰</a></div>
+						<div class="det_nav"><a href="#application">참여/취소안내</a></div>
 					</div>
 					<div class="con_item">
-						<div class="item_tit">상세정보</div>
+						<div class="item_tit" id="p_info">상세정보</div>
 						<div class="item_det">${post.p_info }</div>
 					</div>
 					<div class="con_item">
-						<div class="item_tit">지도</div>
+						<div class="item_tit" id="p_loc">지도</div>
 						<div class="item_det">
-							<textarea>임시지도위치</textarea>
+							
+							<div id="map" style="width:100%;height:350px;"></div>
+
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6fdc4b499f6102a4487b9dceb7cce1ba&libraries=services"></script>
+						<script>
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						    mapOption = {
+						        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+						        level: 3 // 지도의 확대 레벨
+						    };  
+						
+						// 지도를 생성합니다    
+						var map = new kakao.maps.Map(mapContainer, mapOption); 
+						
+						// 주소-좌표 변환 객체를 생성합니다
+						var geocoder = new kakao.maps.services.Geocoder();
+						
+						// 주소로 좌표를 검색합니다
+						geocoder.addressSearch('${post.p_loc}', function(result, status) {
+						
+						    // 정상적으로 검색이 완료됐으면 
+						     if (status === kakao.maps.services.Status.OK) {
+						
+						        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+						
+						        // 결과값으로 받은 위치를 마커로 표시합니다
+						        var marker = new kakao.maps.Marker({
+						            map: map,
+						            position: coords
+						        });
+						
+						        // 인포윈도우로 장소에 대한 설명을 표시합니다
+						        var infowindow = new kakao.maps.InfoWindow({
+						            content: '<div style="width:150px;text-align:center;padding:6px 0;">장소</div>'
+						        });
+						        infowindow.open(map, marker);
+						
+						        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+						        map.setCenter(coords);
+						    } 
+						});    
+						</script>
+						
 						</div>
 					</div> 
 					<div class="con_item">
@@ -139,7 +193,7 @@
 							<input type="hidden" name="r_indent" value="${r_indent }">
 							<input type="hidden" name="r_group" value="${r_group }">
 							<input type="hidden" name="r_group" value="${r_level }">
-							<div class="item_tit">문의/기대평</div>
+							<div class="item_tit" id="reply">문의/기대평</div>
 							<div class="item_det">
 								<a class="photo"> <img src="${pageContext.request.contextPath}/img/01.jpg">
 								</a>
@@ -171,7 +225,7 @@
 					<hr>
 <!-- 					댓글들 모임 -->
 					<div class="con_item">
-						<div class="item_tit">댓글들</div>
+						<div class="item_tit" id="rereply">댓글들</div>
 						<c:forEach var="reply" items="${reply }">
 						<div class="item_det">
 <!-- 							대댓글들 다른이미지 보여주는곳 -->
@@ -275,7 +329,7 @@
 						</c:forEach>
 					</div>
 					<div class="con_item">
-						<div class="item_tit">참여/취소안내</div>
+						<div class="item_tit" id="application">참여/취소안내</div>
 						<div class="item_det">
 							<div class="can_detail">
 								* 모임의 신청/취소/변경/환불은 참여신청 기간 내에만 가능합니다.<br /> * 결제한 유료모임은 환불 시 결제

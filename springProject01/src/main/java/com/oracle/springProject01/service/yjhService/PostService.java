@@ -15,6 +15,8 @@ public interface PostService {
 	int postInsert(Post post);
 //	게시물을 신청 했는지 안했는지 확인
 	int regInfoCheck(String m_id,int bt_num, int bc_num, int p_num);
+//	게시물을 찜 했는지 안했는지 확인
+	int bookmarkCheck(String m_id,int bt_num, int bc_num, int p_num);
 //	조회수 증가해주기
 	int postHit(int bt_num, int bc_num, int p_num);
 //	게시물 상세정보
@@ -31,4 +33,8 @@ public interface PostService {
 	int postRegInfoDelete(String m_id,int bt_num, int bc_num, int p_num);
 //	게시물 신청하면 p_capa값 플러스 해주기
 	int postCapaPlusUpdate(int bt_num, int bc_num, int p_num);
+//	게시물 찜하기
+	int postBookmarkInsert(String m_id,int bt_num, int bc_num, int p_num);
+//	게시물 찜 취소하기
+	int postBookmarkDelete(String m_id,int bt_num, int bc_num, int p_num);
 }

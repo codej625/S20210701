@@ -15,6 +15,8 @@ public interface PostDao {
 	int postInsert(Post post);
 //	게시물을 신청 했는지 안했는지 확인
 	int regInfoCheck(Post post);
+//	게시물을 찜 했는지 안했는지 확인
+	int bookmarkCheck(Post post);
 //	조회수 증가해주기
 	int postHit(Post post);
 //	게시물 상세정보
@@ -31,4 +33,8 @@ public interface PostDao {
 	int postRegInfoDelete(Post post);
 //	게시물 신청하면 p_capa값 플러스 해주기
 	int postCapaPlusUpdate(Post post);
+//	게시물 찜하기
+	int postBookmarkInsert(Post post);
+//	게시물 찜 취소하기
+	int postBookmarkDelete(Post post);
 }
