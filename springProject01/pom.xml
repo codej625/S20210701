@@ -44,6 +44,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
+<!-- 		  채팅 위한 socket
+        <dependency> 
+            <groupId>org.springframework</groupId> 
+            <artifactId>spring-websocket</artifactId> 
+            <version>${org.springframework-version}</version> 
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.6</version>
+        </dependency>
+        // 채팅 위한 socket -->
 		
 		<!--저도 잘 모르겟음 카카오 로그인 api 하려는데 이거 넣으래요 -->
 		<dependency>
@@ -140,13 +152,7 @@
 		</dependency>
 
 	</dependencies>
-	<!-- 민지가 servlet-context를 위해 추가한것  -->
-	<!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-	<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-webmvc</artifactId>
-    <version>5.2.9.RELEASE</version>
-	</dependency>
+
 	
 
 	<build>

@@ -49,3 +49,12 @@ if ((navigator.mediaDevices && 'getDisplayMedia' in navigator.mediaDevices)) {
 } else {
   errorMsg('getDisplayMedia is not supported');
 }
+
+navigator.mediaDevices.getDisplayMedia({
+	audio: true,
+	video: true
+}).then(function(stream){
+	//success
+}).catch(function(e){
+	//error;
+});

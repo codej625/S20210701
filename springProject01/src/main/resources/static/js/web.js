@@ -7,6 +7,7 @@
 //오디오는 기본적으로 "audio: false"로 설정되어 있으므로 스트리밍되지 않습니다.
 const mediaStreamConstraints = {
   video: true,
+
 };
 
 // 비디오만 교환하도록 설정합니다.

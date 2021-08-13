@@ -34,7 +34,8 @@
 							<li><a
 								href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
-						<li>고객센터</li>
+						<li><a href="${pageContext.request.contextPath}/chat/user">고객센터</a></li>
+						<li><a href="${pageContext.request.contextPath}/chat/chat">라이브채팅</a></li>
 					</ul>
 				</div>
 				<div class="nav_menu">
