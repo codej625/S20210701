@@ -35,6 +35,17 @@ public class PostServiceImpl implements PostService {
 	}
 	
 	@Override
+	public Post registerMember(String sessionID) {
+		System.out.println("PostServiceImpl registerMember start...");
+		Post post = new Post();
+		post.setM_id(sessionID);
+		
+		Post registerMember = null;
+		registerMember = pd.registerMember(post);
+		return registerMember;
+	}
+	
+	@Override
 	public int postInsert(Post post) {
 		System.out.println("PostServiceImpl int postInsert start...");
 		int result = 0;
@@ -43,6 +54,18 @@ public class PostServiceImpl implements PostService {
 		return result;
 	}
 
+	@Override
+	public int postHit(int bt_num, int bc_num, int p_num) {
+		System.out.println("PostServiceImpl Post postHit start...");
+		int result = 0;
+		Post post = new Post();
+		post.setBt_num(bt_num);
+		post.setBc_num(bc_num);
+		post.setP_num(p_num);
+		result = pd.postHit(post);
+		return result;
+	}
+	
 	@Override
 	public Post postListDetail(int bt_num, int bc_num, int p_num) {
 		System.out.println("PostServiceImpl Post postListDetail start...");
@@ -73,5 +96,6 @@ public class PostServiceImpl implements PostService {
 		int result = pd.postDelete(post);
 		return result;
 	}
+
 
 }

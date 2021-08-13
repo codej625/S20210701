@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/main/script.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/loginStyle.css" />
+<!-- 아이디 비밀번호 찾는  -->
 <script type="text/javascript">
 	
 	function find_m_id(){
@@ -21,28 +23,22 @@
 	}
 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- 네이버 로그인 -->
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+
 <!-- 카카오 로그인 --> 
-<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script> 
-<script type="text/javascript"> 
-	//초기화 시키기. 
-	$(document).ready(function(){ Kakao.init('자바스크립트 앱키 입력'); 
-	Kakao.isInitialized(); }); 
-	
-	function loginWithKakao() { 
-		Kakao.Auth.authorize({ 
-			redirectUri: 'http://localhost:8080/user/loginpage_kakao_callback' 
-			}); 
-		}
-	
-</script>
+<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.min.js" charset="utf-8"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 </head>
 <body onload="bodyOnload()">
 <!-- 	<form action="userLoginPro.do" method="post"> -->
-	<form action="${pageContext.request.contextPath}/member/login" method="post">
 		<div class="header_top">
 			<div class="logo_section">
-				<a href="${pageContext.request.contextPath}/main/main"><img src="${pageContext.request.contextPath}/img/logo.png"></a>
+				<a href="${pageContext.request.contextPath}/main/main">
+					<img src="${pageContext.request.contextPath}/img/logo.png">
+				</a>
 			</div>
 			<div class="nav_bar">
 				<div class="nav_header">
@@ -59,10 +55,12 @@
 						<li><a href="고객센터">고객센터</a></li>
 					</ul>
 				</div>
+				
 			</div>
 		</div>
 		<div class="auth_page">
 			<div class="login_section">
+	<form action="${pageContext.request.contextPath}/member/login" method="post">
 				<div class="auth_title">로그인</div>
 				<div class="auth_input_section">
 					<div class="input_item">
@@ -86,10 +84,33 @@
 						<button class="default_bt login_bt" type="submit" id="">로그인</button>
 					</div>
 				</div>
+				</form>
 			</div>
 					<div style="padding-top: 10px">
-						<img src="${pageContext.request.contextPath}/img/kakao_login_medium_wide.png" style="width: 450px", height="63px" onclick="loginWithKakao()">
+						
+						<a href="https://kauth.kakao.com/oauth/authorize?client_id=142ce1de0bd727a3968c1ff08bfca9be&redirect_uri=http://localhost:8181/springProject01/member/kakaoCallback&response_type=code">
+							<img src="${pageContext.request.contextPath}/img/kakaoBtn.png">
+						</a>
+					
+<%-- 					<a href="https://kauth.kakao.com/oauth/authorize?client_id=142ce1de0bd727a3968c1ff08bfca9be&redirect_uri=${pageContext.request.contextPath}/member/test&response_type=code">  --%>
+<%-- 							<img src="${pageContext.request.contextPath}/img/kakaoBtn.png">  --%>
+<!-- 					</a>  -->
+						    
 					</div>
+						  
+					<div style="padding-top: 10px" id="naver_id_login"></div>
+					
+					<script type="text/javascript">
+					  	var naver_id_login = new naver_id_login("6afzdjusqprAB9msW6OV", "http://localhost:8181/springProject01/member/naverCallback");
+					  	var state = naver_id_login.getUniqState();
+					  	naver_id_login.setButton("white", 2,40);
+					  	naver_id_login.setDomain("http://localhost:8181/springProject01/member/login");
+					  	naver_id_login.setState(state);
+					  	naver_id_login.setPopup();
+					  	naver_id_login.init_naver_id_login();
+					</script>
 		</div>
-	</form>
+
+</body>
+	
 </html>

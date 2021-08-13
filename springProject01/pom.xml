@@ -47,6 +47,11 @@
 		
 		<!--카카오 로그인  -->
 		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+		</dependency>
+		
+		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.8.7</version>
@@ -58,7 +63,6 @@
 			<artifactId>scribejava-core</artifactId> 
 			<version>2.8.1</version> 
 		</dependency>
-
 		
 		 <dependency>
             <groupId>org.springframework</groupId>
@@ -103,7 +107,7 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+		<dependency> 
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>

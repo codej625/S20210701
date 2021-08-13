@@ -28,7 +28,12 @@
 			</div>
 			<div class="info_section">
 				<div class="info_img">
-					<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.m_img}">
+					<c:if test="${lhj_MemberVO.m_img == null}">
+						<img src="${pageContext.request.contextPath}/img/흰둥이.jpg">				
+					</c:if>
+					<c:if test="${lhj_MemberVO.m_img != null}">
+						<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.m_img}">				
+					</c:if>
 				</div>
 				<div class="info_items">
 					<div class="info_item">
