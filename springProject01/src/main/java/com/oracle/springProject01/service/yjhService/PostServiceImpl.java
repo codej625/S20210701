@@ -141,7 +141,7 @@ public class PostServiceImpl implements PostService {
 
 //	게시물 신청하기
 	@Override
-	public int postRegInfoInsert(String m_id, int bt_num, int bc_num, int p_num) {
+	public int postRegInfoInsert(String m_id, int bt_num, int bc_num, int p_num, String p_cstatus) {
 		System.out.println("PostServiceImpl postRegInfoInsert start...");
 		int result = 0;
 		Post post = new Post();
@@ -149,6 +149,7 @@ public class PostServiceImpl implements PostService {
 		post.setBc_num(bc_num);
 		post.setP_num(p_num);
 		post.setM_id(m_id);
+		post.setP_cstatus(p_cstatus);
 		result = pd.postRegInfoInsert(post);
 		return result;
 	}

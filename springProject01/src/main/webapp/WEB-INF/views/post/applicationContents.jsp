@@ -36,6 +36,95 @@
 								${post.p_loc } <input type="hidden">
 							</div>
 						</div>
+						<c:if test="${post.p_cstatus == 1 }">
+							<div class="meet_info">
+								<div class="meet_title">결제하기</div>
+								<div class="meet_detail">
+									${post.p_cost }원
+									<button id="check_module" type="button">결제하기</button>
+<!-- 								결제 api      -->
+									<script type="text/javascript">
+										$("#check_module").click(function () {
+											var IMP = window.IMP; // 생략가능
+											IMP.init('imp24851080');
+											// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+											// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+											IMP.request_pay({
+												pg: 'kakao', // version 1.1.0부터 지원.
+												/*
+												'kakao':카카오페이,
+												html5_inicis':이니시스(웹표준결제)
+												'nice':나이스페이
+												'jtnet':제이티넷
+												'uplus':LG유플러스
+												'danal':다날
+												'payco':페이코
+												'syrup':시럽페이
+												'paypal':페이팔
+												*/
+												pay_method: 'card',
+												/*
+												'samsung':삼성페이,
+												'card':신용카드,
+												'trans':실시간계좌이체,
+												'vbank':가상계좌,
+												'phone':휴대폰소액결제
+												*/
+												merchant_uid: 'merchant_' + new Date().getTime(),
+												/*
+												merchant_uid에 경우
+												// https://docs.iamport.kr/implementation/payment
+												위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+												참고하세요.
+												나중에 포스팅 해볼게요.
+												*/
+												name: '${post.p_gname}',
+												//결제창에서 보여질 이름
+												amount: ${post.p_cost},
+												//가격
+												buyer_email: '${member.m_id}',
+												buyer_name: '${member.m_name}',
+												buyer_tel: '${member.m_tel}',
+												buyer_addr: '${post.p_loc}',
+												buyer_postcode: '123-456',
+												// m_redirect_url: 'https://www.yourdomain.com/payments/complete'
+												/*
+												모바일 결제시,
+												결제가 끝나고 랜딩되는 URL을 지정
+												(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+												*/
+												}, function(rsp) {
+												    if ( rsp.success ) {
+												    	console.log("hhh");
+											            $.ajax({
+											                type : "POST",            // HTTP method type(GET, POST) 형식이다.
+											                url : "${pageContext.request.contextPath}/post/payments/complete",      // 컨트롤러에서 대기중인 URL 주소이다.
+											                data : {'imp_uid' : rsp.imp_uid},            // Json 형식의 데이터이다.
+											                success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
+											                    // 응답코드 > 0000
+											                    console.log(res);
+											                    alert("결제 완료!! 신청되었습니다.");
+											                    location.href='${pageContext.request.contextPath}/post/postRegInfoInsert?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}&p_cstatus=${post.p_cstatus }';
+											                },
+											                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+											                    alert("통신 실패.");
+											                }
+											            });
+												    	
+												        
+												    } else {
+												        msg = '결제에 실패하였습니다.!!';
+												        msg += '에러내용 : ' + rsp.error_msg;
+												        //실패시 이동할 페이지
+												        location.href="${pageContext.request.contextPath}/post/postRegInfoApplication?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}";
+												        alert(msg);
+												    }
+												});
+										});
+									</script>
+								</div>
+							</div>
+						</c:if>
 					</div>
 				</div>
 				<div class="con_detail">
@@ -51,9 +140,7 @@
 									<th>번호</th>
 									<td>${member.m_tel }</td>
 								</tr>
-								
 							</table>
-						
 						</div>
 					</div>
 					<div class="con_item">
@@ -70,8 +157,10 @@
 								결제 기능을 제공하는 회사로 모임개설자(주최측)가 아닙니다. 모임 내용과 관련한 사항은 모임 개설자에게 문의
 								바랍니다.
 							</div>
-							<button type="button"
-								onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoInsert?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">신청하기</button>
+							<c:if test="${post.p_cstatus == 0 }">
+								<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoInsert?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}&p_cstatus=${post.p_cstatus }'">신청하기</button>
+							</c:if>
 							<button type="button" 
 								onclick="location.href='${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">돌아가기</button>
 						</div>

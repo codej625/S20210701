@@ -26,7 +26,7 @@ public interface PostService {
 //	게시물 삭제하기
 	int postDelete(int bt_num, int bc_num, int p_num);
 //	게시물 신청하기
-	int postRegInfoInsert(String m_id,int bt_num, int bc_num, int p_num);
+	int postRegInfoInsert(String m_id,int bt_num, int bc_num, int p_num,String p_cstatus);
 //	게시물 신청하면 p_capa값 마이너스 해주기
 	int postCapaMinusUpdate(int bt_num, int bc_num, int p_num);
 //	게시물 신청 취소하기

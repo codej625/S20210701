@@ -150,6 +150,7 @@ public class PostDaoImpl implements PostDao {
 		System.out.println("PostDaoImpl postRegInfoInsert start...");
 		int result = 0;
 		try {
+			System.out.println("PostDaoImpl postRegInfoInsert post.getP_cstatus()->"+post.getP_cstatus());
 			result = session.insert("postRegInfoInsert",post);
 		} catch (Exception e) {
 			System.out.println("PostDaoImpl postRegInfoInsert Exception->"+e.getMessage());

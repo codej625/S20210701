@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.springProject01.model.Post;
@@ -60,10 +61,10 @@ public class Yjh_Controller {
 		post.setEnd(pg.getEnd());
 //		게시물 리스트
 		List<Post> listPost = ps.listPost(post);
-		for(Post post1 : listPost ) {
-			System.out.println("Yjh_Controller categoryGet post1.getP_title()->"+post1.getP_title());
-			System.out.println("Yjh_Controller categoryGet post1.getP_title()->"+post1.getP_img());
-		}
+//		for(Post post1 : listPost ) {
+//			System.out.println("Yjh_Controller categoryGet post1.getP_title()->"+post1.getP_title());
+//			System.out.println("Yjh_Controller categoryGet post1.getP_title()->"+post1.getP_img());
+//		}
 		System.out.println("Yjh_Controller String list() listPost.size()->" + listPost.size());
 		model.addAttribute("total", total);
 		model.addAttribute("listPost", listPost);
@@ -139,6 +140,7 @@ public class Yjh_Controller {
 		post.setP_starttime(request.getParameter("p_starttime"));
 		post.setP_endtime(request.getParameter("p_endtime"));
 		post.setP_tag(p_tagStr);
+		System.out.println("post.getP_cstatus->"+post.getP_cstatus());
 		System.out.println("post.p_cost: " + post.getP_cost());
 		System.out.println("post.P_starttime: " + post.getP_starttime());
 //		uploadPath = 파일경로지정
@@ -319,13 +321,14 @@ public class Yjh_Controller {
 	
 //	게시물 신청하기
 	@RequestMapping(value = "post/postRegInfoInsert", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postRegInfoInsert(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+	public String postRegInfoInsert(Integer bt_num, Integer bc_num, Integer p_num, String p_cstatus, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller postRegInfoInsert start...");
 //		섹션아이디
 		String sessionID =  (String) request.getSession().getAttribute("sessionID");
 		String m_id = sessionID;
 //		게시물 신청하기
-		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num);
+		System.out.println("Yjh_Controller postRegInfoInsert p_cstatus->"+p_cstatus);
+		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num, p_cstatus);
 		System.out.println("Yjh_Controller postRegInfoInsert result->"+post);
 		if (post > 0) {
 //			게시물 신청하면 p_capa값 마이너스 해주기
@@ -379,6 +382,15 @@ public class Yjh_Controller {
 		int post = ps.postBookmarkDelete(m_id,bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postBookmarkDelete result->"+post);
 		return "forward:/post/postListDetail";
+	}
+	
+//	결제확인 ajax
+	@RequestMapping(value = "post/payments/complete", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public String paymentsComplete(String imp_uid) {
+		System.out.println(imp_uid);
+//		Post post = ps.postBookmarkDelete(m_id,bt_num, bc_num, p_num);
+		return "ok!!!";
 	}
 
 }

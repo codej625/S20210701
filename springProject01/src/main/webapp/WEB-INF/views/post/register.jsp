@@ -271,11 +271,30 @@ function uncomma(str) {
 						<div class="group_info">
 							<div class="info">
 								<input type="text" name="p_gname" placeholder="그룹명을 입력하세요.">
-								<input type="number" name="p_capa" placeholder="정원을 입력하세요.">
-								<select name="p_cstatus">
+								정원을 입력하세요
+								<input type="number" id="wr_2" name="p_capa" min="1" max="30" style="width: 100px;" placeholder="최대 30명">
+								<script type="text/javascript">
+									$('#wr_2').on('keyup', function() {
+										if (this.value > 30 || this.value <= 0) {
+											this.value = 30;
+											alert('1~30까지만 가능합니다.');
+									  	}
+									});
+								</script>
+								<select name="p_cstatus" onchange="dis()">
 									<option value="0">무료</option>
 									<option value="1">유료</option>
 								</select>
+								<input type="text" style="display: none;" id="price" onkeyup="inputNumberFormat(this)" name="p_cost" placeholder="비용">
+								<script type="text/javascript">
+							        function dis(){
+							            if($('#price').css('display') == 'none'){
+							            $('#price').show();
+								        }else{
+								            $('#price').hide();
+								        }
+							        }
+							    </script>
 							</div>
 							<div class="info">
 								<div class="title">신청기간</div>
@@ -473,14 +492,15 @@ function uncomma(str) {
 				<div class="info_section">
 					<div class="section_tit">결제방식</div>
 					<div class="section_con">
-						<input type="text" id="price" onkeyup="inputNumberFormat(this)" name="p_cost" value="0" placeholder="비용">
+<!-- 						<input type="text" id="price" onkeyup="inputNumberFormat(this)" name="p_cost" value="0" placeholder="비용"> -->
 					</div>
 				</div>
 				<div class="info_section">
 					<div class="section_tit">태그</div>
 					<div class="section_con">
 						<div class="title">
-							<input type="checkbox" name="p_tag" value="게임/만화/애니">게임/만화/애니
+							<p>한개 이상 선택하세요</p>
+							<input type="checkbox" name="p_tag" value="게임/만화/애니" checked="checked">게임/만화/애니
 							<input type="checkbox" name="p_tag" value="영화/음악/그림">영화/음악/그림
 							<input type="checkbox" name="p_tag" value="스포츠/레저">스포츠/레저
 							<input type="checkbox" name="p_tag" value="반려동물">반려동물

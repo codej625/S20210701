@@ -86,39 +86,44 @@
 						</div>
 						<div class="btn_section">
 <!-- 							이 게시물에 신청을 했으면 result = 1, 안헀으면 result = 0 -->
-							<c:if test="${result > 0 }">
-								<button type="button" 
-									onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">취소하기</button>
-							</c:if>
-							<c:if test="${result == 0 }">
-								<c:if test="${post.p_capa == 0 }">
-									신청끝났음.
-								</c:if>
-								<c:if test="${post.p_capa != 0 }">
-									<button type="button" 
-										onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoApplication?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">신청하기</button>
-								</c:if>
-							</c:if>
 <!-- 							<button>신청하기</button> -->
-							<c:if test="${post.m_id == sessionID || sessionID == 'aaaaaa@aaaaaa.com' }">
-							<button type="button" 
-									onclick="location.href='${pageContext.request.contextPath}/post/postListUpdateView?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
-									수정하기
-							</button>
-							<button type="button" 
-									onclick="location.href='${pageContext.request.contextPath}/post/postDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
-									삭제하기
-							</button>
+							<c:if test="${sessionID == null}">
+								<button type="button" onclick="location.href='${pageContext.request.contextPath}/member/login'">신청하기</button>
+								<button type="button" onclick="location.href='${pageContext.request.contextPath}/member/login'">찜하기</button>
 							</c:if>
-							<c:if test="${result2 == 0 }">
-								<button type="button"
-									onclick="location.href='${pageContext.request.contextPath}/post/postBookmarkInsert?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">찜 하기</button>
+							<c:if test="${sessionID != null}">
+								<c:if test="${post.m_id == sessionID || sessionID == 'aaaaaa@aaaaaa.com' }">
+									<button type="button" 
+											onclick="location.href='${pageContext.request.contextPath}/post/postListUpdateView?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
+											수정하기
+									</button>
+									<button type="button" 
+											onclick="location.href='${pageContext.request.contextPath}/post/postDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
+											삭제하기
+									</button>
+								</c:if>
+								<c:if test="${result > 0 }">
+									<button type="button" 
+										onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">취소하기</button>
+								</c:if>
+								<c:if test="${result == 0 }">
+									<c:if test="${post.p_capa == 0 }">
+										신청끝났음.
+									</c:if>
+									<c:if test="${post.p_capa != 0 }">
+										<button type="button" 
+											onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoApplication?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">신청하기</button>
+									</c:if>
+								</c:if>
+								<c:if test="${result2 == 0 }">
+									<button type="button"
+										onclick="location.href='${pageContext.request.contextPath}/post/postBookmarkInsert?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">찜 하기</button>
+								</c:if>
+								<c:if test="${result2 > 0 }">
+									<button type="button" 
+										onclick="location.href='${pageContext.request.contextPath}/post/postBookmarkDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">찜 취소하기</button>
+								</c:if>
 							</c:if>
-							<c:if test="${result2 > 0 }">
-								<button type="button" 
-									onclick="location.href='${pageContext.request.contextPath}/post/postBookmarkDelete?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">찜 취소하기</button>
-							</c:if>
-							
 						</div>
 					</div>
 				</div>
