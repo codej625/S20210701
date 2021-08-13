@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 
 public interface MemberService {
@@ -58,7 +59,11 @@ public interface MemberService {
 	List<Lhj_MemberVO> myPostList_meeting(String m_id);
 		//내가 쓴 글 리스트에 대한 신청 인원 정보
 	List<Lhj_MemberVO> 		mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
-	//모임, 고수 인증
-	Lhj_MemberVO           	mypage_mycertification(Lhj_MemberVO lhj_MemberVO);       
+		//모임, 고수 인증
+	Lhj_MemberVO           	mypage_mycertification(Lhj_MemberVO lhj_MemberVO);
+		//메인 인증
+	int mail(Lhj_MemberVO lhj_MemberVO);
+		//개설자 권한 파일첨부
+	void certification(AttachmentFileVO attachmentFileVO);
 
 }

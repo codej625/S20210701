@@ -8,31 +8,22 @@
 %>
 <head>
 <meta charset="utf-8">
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userInfo.css" />
-
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	function in() {
-		console.log("아작스 호출")
-		console.log("아이디 입력 값 : " +form.m_id.value)
+	function mail(){
 		$.ajax({
-			url :"$<%=context%>/admin/mailTransport", 
-			data : {"m_id" : form.m_id.value},
-			dataType : "text",
+			url :"${pageContext.request.contextPath}/admin/mailTransport", 
+			data : {'m_id' : resultform.m_id.value},
+			type :"POST",
 			success : function(data){	
-				if(data=="1"){
-					alert("성공");
-				}else{	
-					alert("실패");
-				}
+				alert("인증번호를 보냈습니다.");
 			},
 			error : function(){
-				alert("대실패");
+				alert("ajax error");
 			}
 		});
 	}
-
 </script>
 <title>Insert title here</title>
 </head>
@@ -54,8 +45,7 @@
 					<div class="info_section">
 				 <c:choose>
 				     <c:when test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq 'N'}"> 
-						<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data" name="form">
-							<input type="hidden" value="${lhj_MemberVO.m_id }" name="m_id">
+						<form method="post" action="${pageContext.request.contextPath}/member/certification" enctype="multipart/form-data" name="resultform">
 							<div class="info_img">
 								<div id="image_container">
 									<table width="100%" cellpadding="5" cellspacing="0">
@@ -66,8 +56,8 @@
 											<tr>
 												<td></td>
 												<td colspan="2">
-													<input type="checkbox" name="m_meetingauth" value="Y">&nbsp;모임&nbsp;&nbsp;
-													<input type="checkbox" name="m_masterauth" value="Y">&nbsp;클래스
+													<input type="checkbox" name="m_meetingauth" value="M">&nbsp;모임&nbsp;&nbsp;
+													<input type="checkbox" name="_masterauth" value="M">&nbsp;클래스
 												</td>
 											</tr>
 											<tr>
@@ -75,12 +65,13 @@
 												<td colspan="2"><font color="blue">&lt;인증 받으려는 이유를 선택&gt;</font></td>
 											</tr>
 											<tr>
+												<td></td>
 												<td colspan="3" align="center">
-													<select>
-														<option value="1">정보 공유</option>
-														<option value="2">상업적인 목적</option>
-														<option value="3">취미 활동</option>
-														<option value="4">기타</option>
+													<select name="m_certification">
+														<option value="정보 공유">정보 공유</option>
+														<option value="상업적인 목적">상업적인 목적</option>
+														<option value="취미 활동">취미 활동</option>
+														<option value="기타">기타</option>
 													</select>
 												</td>
 											</tr>
@@ -91,18 +82,21 @@
 											<tr>
 												<td></td>
 												<td colspan="1"><input type="text" placeholder="${lhj_MemberVO.m_id}" readonly></td>
+												<td colspan="1"><input type="button" onclick="mail()" value="인증번호 받기"></td>
 											</tr>
 											<tr>
+												<td colspan="1"><input type="hidden" name="m_id" value="${lhj_MemberVO.m_id}"></td>
+												<td colspan="1"><input type="text" name="m_mail" placeholder="인증번호를 입력하세요"></td>
 												<td></td>
-												<td colspan="1"><input type="text"></td>
-												<td colspan="1">
-												<input type="button" onclick="in()" value="확인">
-												
-<%-- 												<button onclick='location.href="${pageContext.request.contextPath}/admin/mailTransport?m_id=${lhj_MemberVO.m_id}"'>메인 인증</button></td> --%>
 											</tr>
 											<tr>
-												<td colspan="3" align="right"><input type="submit" value="개설자 인증받기"></td>
+												<td valign="TOP" width="15" align="RIGHT">4.</td>
+												<td width="37%"><font color="blue">&lt;첨부 파일&gt;</font></td>
+												<td><input multiple="multiple" type="file" name="files"></td>
+											<tr>
 												<td></td>
+												<td></td>
+												<td colspan="3" align="left"><input type="submit" value="개설자 인증받기"></td>
 											</tr>
 										</tbody>
 									</table>
@@ -116,8 +110,7 @@
 							<div id="image_container">
 								<table>
 									<tr>
-										<td>
-										</td>
+										<td>Y/N</td>
 									</tr>
 								</table>
 							</div>
@@ -130,28 +123,78 @@
 							<div id="image_container">
 								<table>
 									<tr>
-										<td>
-										</td>
+										<td>N/Y</td>
 									</tr>
 								</table>
 							</div>
 						</div>
 					</form>
 					</c:when>
-					<c:otherwise>
-					<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
-						<div class="info_img">
-							<div id="image_container">
-								<table>
-									<tr>
-										<td>
-										</td>
-									</tr>
-								</table>
+					<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'Y'}">
+						<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
+							<div class="info_img">
+								<div id="image_container">
+									<table>
+										<tr>
+											<td>M/Y</td>
+										</tr>
+									</table>
+								</div>
 							</div>
-						</div>
-				  	</form>
-					</c:otherwise>
+					  	</form>
+					</c:when>
+					<c:when test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'M'}">
+						<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
+							<div class="info_img">
+								<div id="image_container">
+									<table>
+										<tr>
+											<td>Y/M</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+					  	</form>
+					</c:when>
+					<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'M'}">
+						<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
+							<div class="info_img">
+								<div id="image_container">
+									<table>
+										<tr>
+											<td>M/M</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+					  	</form>
+					</c:when>
+					<c:when test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq 'M'}">
+						<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
+							<div class="info_img">
+								<div id="image_container">
+									<table>
+										<tr>
+											<td>N/M</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+					  	</form>
+					</c:when>
+					<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'N'}">
+						<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
+							<div class="info_img">
+								<div id="image_container">
+									<table>
+										<tr>
+											<td>M/N</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+					  	</form>
+					</c:when>
 				</c:choose>
 			</div>
 		</div>

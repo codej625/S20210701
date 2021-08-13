@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.AttachmentFileVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Member;
 
 @Repository("LjwDao")
@@ -100,4 +101,5 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return check;
 	}
+
 }

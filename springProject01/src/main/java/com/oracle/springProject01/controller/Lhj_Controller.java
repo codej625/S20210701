@@ -5,15 +5,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.service.lhjService.MemberService;
 
@@ -30,6 +35,9 @@ public class Lhj_Controller {
 
 	@Autowired
 	private MemberService ms;
+
+	@Autowired
+	private JavaMailSender mailSender;
 
 	// 로깅
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Lhj_Controller.class);
@@ -366,15 +374,15 @@ public class Lhj_Controller {
 
 	// 마이페이지 인증 화면
 	@RequestMapping(value = "/member/mypage_mycertification")
-	public String mypage_mycertification(Model model, HttpServletRequest request, Lhj_MemberVO lhj_MemberVO, String m_id) throws Exception {
+	public String mypage_mycertification(Model model, HttpServletRequest request, Lhj_MemberVO lhj_MemberVO,
+			String m_id) throws Exception {
 		System.out.println("lhjController mypage_mycertification Start...");
-
 		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		m_id = sessionID;
+//======m_id에 값을 셋팅하고 조회하기 위해 DTO단위로 보냄
 		lhj_MemberVO.setM_id(m_id);
 		lhj_MemberVO = ms.mypage_mycertification(lhj_MemberVO);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
-
 		System.out.println("lhjController mypage_mycertification return...");
 		return "/member/mypage_mycertification";
 	}
@@ -413,6 +421,79 @@ public class Lhj_Controller {
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 
 		return "/member/mypage_myPostMEmberList_";
+	}
+
+	@RequestMapping(value = "/admin/mailTransport", method = RequestMethod.POST)
+	@ResponseBody
+	public String mailTransport(Model model, Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("Mail Start...");
+//======받는 사람 이메일
+		String tomail = lhj_MemberVO.getM_id();
+//======넘어온 m_id값 확인용
+		System.out.println(tomail);
+//======보내는 사람 이메일		
+		String setfrom = "dkwksla@gmail.com";
+		String title = "인증번호 입니다.";
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+//=========="UTF-8"방식으로 메세지를 보낼수 있는 객체 생성
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+//==========보내는 사람			
+			messageHelper.setFrom(setfrom);
+//==========받는 사람
+			messageHelper.setTo(tomail);
+//==========메일 제목			
+			messageHelper.setSubject(title);
+//==========Math내장 객체로 랜덤 인증번호 만들기
+			String tempPassword = (int) (Math.random() * 999999) + 1 + "";
+//==========랜덤번호로 만들어진 인증번호를 DB에 입력하기 setter를 이용해서 집어넣음
+			lhj_MemberVO.setM_mail(tempPassword);
+//==========setText함수에 인증번호와 간단한 메세지를 넣음
+			messageHelper.setText("인증번호 : " + tempPassword);
+//==========set 되어있는 메세지 확인용
+			System.out.println("인증번호 : " + tempPassword);
+//==========메세지 전송
+			mailSender.send(message);
+//==========정상 전달시 메세지
+			System.out.println("Mail Sending End...");
+//==========form에서 넘겨받은 m_id와 위에서 setter에 넣어놓은 인증번호를 갖고 DB에 넣기위해 DTO단위로 서비스로 보냄
+			ms.mail(lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.out.println("전송 실패");
+		}
+//======반환값은 없음
+		return "null";
+	}
+
+	@PostMapping(value = "/member/certification")
+	@ResponseBody
+	public void upload(AttachmentFileVO attachmentFileVO, Model model, HttpServletRequest request) throws Exception {
+		System.out.println("Ljw_Controller upload Start...");
+		System.out.println(
+				"controller value->" + attachmentFileVO.getM_meetingauth() + attachmentFileVO.getM_masterauth());
+//======인증번호가 틀렸는지 확인
+//		if (attachmentFileVO.getM_mail().equals(null)) {
+//			String error = "인증번호가 틀립니다.";
+//			model.addAttribute("error", error);
+//			return "member/certification";
+//		}
+//======MultipartFile 객체로 파일을 받아서 for문으로 하나씩 빼서 저장===================================
+		for (MultipartFile file : attachmentFileVO.getFiles()) {
+//==========C:/Image/ + 원본 파일이름으로 저장===================================================
+			String originalfileName = file.getOriginalFilename();
+//==========파일로 만들기 위한 작업 경로를 지정
+			File data = new File("C:/Images/" + originalfileName);
+//==========저장 파일로 변환
+			file.transferTo(data);
+//==========파일 확인용 메세지
+			System.out.println(attachmentFileVO.getFiles());
+//==========VO로 받은 files 갯수 확인용 Message==================================================
+			System.out.println("files->" + attachmentFileVO.getFiles().size());
+		}
+//======데이터 값을 DB에 저장하기 위해 DTO 단위로 Service로 보냄========================================
+		ms.certification(attachmentFileVO);
+//======List를 Model에 담아서 return=====================================================
 	}
 
 }

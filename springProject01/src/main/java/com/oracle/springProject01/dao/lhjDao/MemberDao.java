@@ -2,6 +2,8 @@ package com.oracle.springProject01.dao.lhjDao;
 
 import java.util.List;
 
+import com.oracle.springProject01.model.AttachmentFile;
+import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 
 public interface MemberDao {
@@ -57,6 +59,12 @@ public interface MemberDao {
 	public List<Lhj_MemberVO> mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
 		//모임, 클래스 인증
 	Lhj_MemberVO	mypage_mycertification(Lhj_MemberVO lhj_MemberVO);      
+		//메일 인증
+	int mail(Lhj_MemberVO lhj_MemberVO);
+		//개설자 권한 파일첨부 등록
+	void certification(AttachmentFile attachmentFile);
+//		//개설자 권한 사용자 정보 업데이트
+	void certification2(Lhj_MemberVO lhj_MemberVO);
 	
 
 

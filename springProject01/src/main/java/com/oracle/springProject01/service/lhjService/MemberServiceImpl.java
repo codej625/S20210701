@@ -1,14 +1,19 @@
 package com.oracle.springProject01.service.lhjService;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.springProject01.dao.lhjDao.MemberDao;
+import com.oracle.springProject01.model.AttachmentFile;
+import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 
 @Service("LhjService")
@@ -263,6 +268,43 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("MemberServiceImpl mypage_mycertification start...");
 		lhj_MemberVO = md.mypage_mycertification(lhj_MemberVO);
 		return lhj_MemberVO;
+	}
+
+	// 메일 인증 받기
+	@Override
+	public int mail(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("MemberServiceImpl Start mail...");
+		int mail = 0;
+		mail = md.mail(lhj_MemberVO);
+		return mail;
+	}
+
+	// 개설자 권한 파일첨부 등록
+	@Override
+	public void certification(AttachmentFileVO attachmentFileVO) {
+		System.out.println("MemberServiceImpl Start certification...");
+
+//======날짜를 입력하기 위한 SimpleDateFormat, Calendar 객체 생성==========================
+		SimpleDateFormat Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar time = Calendar.getInstance();
+		String date = Format.format(time.getTime());
+
+		AttachmentFile attachmentFile = new AttachmentFile();
+		Lhj_MemberVO lhj_MemberVO = new Lhj_MemberVO();
+
+		for (MultipartFile file : attachmentFileVO.getFiles()) {
+//==========로컬에 저장된 이름과 DB에 저장될 이름을 똑같이 만들어준다.
+			String name = "images/" + file.getOriginalFilename();
+			attachmentFile.setF_orgname(name);
+			attachmentFile.setM_id(attachmentFileVO.getM_id().toString());
+			attachmentFile.setF_regdate(date);
+			md.certification(attachmentFile);
+		}
+		lhj_MemberVO.setM_id(attachmentFileVO.getM_id().toString());
+		lhj_MemberVO.setM_meetingauth(attachmentFileVO.getM_meetingauth());
+		lhj_MemberVO.setM_masterauth(attachmentFileVO.getM_masterauth());
+		lhj_MemberVO.setM_certification(attachmentFileVO.getM_certification());
+		md.certification2(lhj_MemberVO);
 	}
 
 }
