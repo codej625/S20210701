@@ -329,7 +329,8 @@ public class Lhj_Controller {
 		int bt_num = lhj_MemberVO.getBt_num();
 		int bc_num = lhj_MemberVO.getBc_num();
 		int p_num = lhj_MemberVO.getP_num();
-		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num);
+		String p_cstatus = lhj_MemberVO.getP_cstatus();
+		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num, p_cstatus);
 		System.out.println("lhjController mybookmarkSin int bt_num->"+bt_num);
 		if (post>0) {
 			int postUpdate = ps.postCapaMinusUpdate(bt_num, bc_num, p_num);
