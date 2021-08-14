@@ -285,7 +285,22 @@ function uncomma(str) {
 									<option value="0">무료</option>
 									<option value="1">유료</option>
 								</select>
-								<input type="text" style="display: none;" id="price" onkeyup="inputNumberFormat(this)" name="p_cost" placeholder="비용">
+								<div id="price" style="display: none;">
+								<input type="text" onkeyup="inputNumberFormat(this)" name="p_cost" placeholder="비용">
+								<select name="p_bankname">
+									<option value="">없음</option>
+									<option value="신한은행">신한은행</option>
+									<option value="국민은행">국민은행</option>
+									<option value="우리은행">우리은행</option>
+									<option value="SC제일은행">SC제일은행</option>
+									<option value="KEB하나은행">KEB하나은행</option>
+									<option value="외한은행">외한은행</option>
+									<option value="기업은행">기업은행</option>
+									<option value="농협은행">농협은행</option>
+									<option value="부산은행">부산은행</option>
+								</select>
+								<input type="text" name="p_accountnumber" placeholder="예시)111-2222-2222">
+								</div>
 								<script type="text/javascript">
 							        function dis(){
 							            if($('#price').css('display') == 'none'){

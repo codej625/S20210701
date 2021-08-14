@@ -140,6 +140,8 @@ public class Yjh_Controller {
 		post.setP_starttime(request.getParameter("p_starttime"));
 		post.setP_endtime(request.getParameter("p_endtime"));
 		post.setP_tag(p_tagStr);
+		post.setP_bankname(request.getParameter("p_bankname"));
+		post.setP_accountnumber(request.getParameter("p_accountnumber"));
 		System.out.println("post.getP_cstatus->"+post.getP_cstatus());
 		System.out.println("post.p_cost: " + post.getP_cost());
 		System.out.println("post.P_starttime: " + post.getP_starttime());
@@ -150,10 +152,12 @@ public class Yjh_Controller {
 		System.out.println("contentType : " + p_img.getContentType());
 		System.out.println("uploadPath : " + uploadPath);
 		String savedName = uploadFile(p_img.getOriginalFilename(), p_img.getBytes(), uploadPath);
+//		파일이름  post에 저장
 		post.setP_img(savedName);
 		System.out.println("saveName : " + savedName);
 		System.out.println("Yjh_Controller post.getP_img->"+post.getP_img());
 		System.out.println("Yjh_Controller post.getP_title()->"+post.getP_title());
+//		게시물 저장
 		int result = ps.postInsert(post);
 		System.out.println("Yjh_Controller postInsert result->" + result);
 		if (result > 0) {
@@ -187,7 +191,7 @@ public class Yjh_Controller {
 
 		return savedName;
 	}
-
+	
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
 	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {

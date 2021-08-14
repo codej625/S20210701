@@ -31,6 +31,8 @@ public class Post {
 	private String p_writedate;
 	private int p_hit;
 	private String p_cstatus;
+	private String p_bankname;
+	private String p_accountnumber;
 	
 //	게시물 작성한 맴버 조회용
 	private String m_name;

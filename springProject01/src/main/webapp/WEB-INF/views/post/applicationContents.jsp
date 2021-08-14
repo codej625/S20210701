@@ -40,6 +40,30 @@
 							<div class="meet_info">
 								<div class="meet_title">결제하기</div>
 								<div class="meet_detail">
+									<button type="button" onclick="dis()">무통장입금</button>
+									<div id="price" style="display: none;">
+									<table border="1">
+										<tr>
+											<th>은행</th>
+											<td>${post.p_bankname }</td>
+										</tr>
+										<tr>
+											<th>계좌번호</th>
+											<td>${post.p_accountnumber }</td>
+										</tr>
+									</table>
+									<button type="button"
+									onclick="location.href='${pageContext.request.contextPath}/post/postRegInfoInsert?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}&p_cstatus=${post.p_cstatus }'">신청하기</button>
+									</div>
+									<script type="text/javascript">
+								        function dis(){
+								            if($('#price').css('display') == 'none'){
+								            $('#price').show();
+									        }else{
+									            $('#price').hide();
+									        }
+								        }
+							    	</script>
 									${post.p_cost }원
 									<button id="check_module" type="button">결제하기</button>
 <!-- 								결제 api      -->
