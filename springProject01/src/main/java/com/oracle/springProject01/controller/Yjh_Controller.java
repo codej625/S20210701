@@ -1,12 +1,16 @@
 package com.oracle.springProject01.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oracle.springProject01.dao.member.Member;
 import com.oracle.springProject01.model.Post;
+import com.oracle.springProject01.model.PostCookie;
+import com.oracle.springProject01.model.RecentPost;
+import com.oracle.springProject01.service.cheService.MainService;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.BoardCategoryService;
 import com.oracle.springProject01.service.yjhService.MemberService;
@@ -30,6 +37,9 @@ public class Yjh_Controller {
 
 	@Autowired
 	private MemberService ms;
+	
+	@Autowired
+	private MainService mas;
 
 //	@GetMapping(value = "/main/main")
 //	public String maingogo() {
@@ -107,13 +117,32 @@ public class Yjh_Controller {
 
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model) {
+	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, RecentPost rpost, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
+		
+		// 게시물 읽어오기
 		Post post = ps.postListDetail(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postListDetail post->" + post);
+		
+		// 최근 본 게시물(로그인 시에만 구현)
+		String m_id = (String) request.getSession().getAttribute("sessionID");
+		System.out.println("m_id -> " + m_id);
+		if(m_id != null) {
+			rpost.setBt_num(post.getBt_num());
+			System.out.println("rpost.setBt_num" + rpost.getBt_num());
+			rpost.setBc_num(post.getBc_num());
+			System.out.println("rpost.setBt_num" + rpost.getBc_num());
+			rpost.setP_num(post.getP_num());
+			System.out.println("rpost.setBt_num" + rpost.getP_num());
+			rpost.setM_id(m_id);
+			rpost.setP_title(post.getP_title());
+			mas.insertRecentPost(rpost);
+		}
+		
 		model.addAttribute("post", post);
 		return "post/contents";
 	}
+	
 	
 //	선택한 게시물 내용 수정 뷰단
 	@RequestMapping(value = "/post/postListUpdateView", method = { RequestMethod.GET, RequestMethod.POST })

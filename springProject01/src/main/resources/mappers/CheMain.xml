@@ -26,8 +26,20 @@
 		where rn between #{start} and #{end}
 	</select>	
 	
-	<!-- 출석체크 조회 -->
-	<select id="chkEventId" parameterType="Attend" resultType="Attend">
-		select * from attend where m_id = #{m_id};
+	<insert id="insertRecent">
+		insert into RECENTPOST (bt_num, bc_num, p_num, m_id, rp_cnt, rp_date, p_title)
+		select #{bt_num}, #{bc_num}, #{p_num}, #{m_id}, (select NVL(MAX(rp_cnt),0)+1 from RECENTPOST where m_id = #{m_id}), SYSDATE, #{p_title} from dual
+		where not exists (select bt_num, bc_num, p_num  from RECENTPOST where bt_num = #{bt_num} and bc_num = #{bc_num} and p_num=#{p_num})
+	</insert>
+	
+	<select id="cntRecent" resultType="int">
+		select count(*) from RECENTPOST where m_id = #{m_id}
 	</select>
+	
+	<select id="Recentlist" parameterType="RecentPost" resultType="RecentPost">
+		select * from (select rownum rn, a.* from 
+				(select * from RECENTPOST where m_id = #{m_id}  order by rp_cnt) a
+			) where rn between #{start} and #{end}
+	</select>
+	
 </mapper>

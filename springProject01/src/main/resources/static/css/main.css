@@ -1,4 +1,3 @@
-@import url(/css/header.css);
 body {
     font-size: 15px;
 	font-weight: 400;
@@ -19,7 +18,11 @@ a {
 	color: #3c3c3c;
 	text-decoration: none;
 }
-
+main {
+	position: relative;
+	margin-left: 300px;
+	display: flex;
+}
 .ex_section {
 	position: relative;
 	display: flex;
@@ -57,6 +60,11 @@ a {
 .ex_section .ex_btn input{
 	cursor: pointer;
 }
+.ex_section .ex_title {
+	font-size: 28px;
+	text-align: center;
+	padding-top: 20px;
+}
 .ex_section .class_wrap {
 	position: absolute;
 	display: flex;
@@ -68,19 +76,27 @@ a {
 	width: 230px;
 	height: 330px;
 	margin: 110px 20px 110px 0px;
-	background-color: yellowgreen;
 	cursor: pointer;
+	border: 1px solid #eee;
+	border-radius: 3px;
 }
 .ex_section .class_wrap .class_item .class_img {
-	width: 230px;
-    height: 300px;
+	width: 210px;
+    height: 280px;
     overflow: hidden;
     box-sizing: border-box;
     display: inline-block;
+	margin: 10px 10px;
 }
 .ex_section .class_wrap .class_item .class_img img{
     width: 170%;
     height: 100%;
+}
+.ex_section .class_wrap .class_item .class_info {
+	text-align: center;
+	margin-top: -15px;
+	font-size: 13px;
+	font-weight: 400;
 }
 ::-webkit-file-upload-button { cursor:pointer; }
 .default_bt {

@@ -8,6 +8,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/header.css" />
+<script type="text/javascript">
+	function innerHTMLTest(){
+		var randValNode = document.getElementById("rand-val");
+	    var input = document.getElementById("chkdate").value;
+		randValNode.innerHTML = input;
+	}
+</script>
 <body>
 	<header>
 		<!-- header_top -->
@@ -16,46 +23,55 @@
 				<a href="${pageContext.request.contextPath}/main/main"><img
 					src="${pageContext.request.contextPath}/img/logo.png"></a>
 			</div>
-			<div class="search_section">
-				<input type="text" placeholder="원하는 모임을 검색해보세요!" /> <i
-					class="fas fa-search fa-2x"></i>
-			</div>
+			<form action="${pageContext.request.contextPath}/post/category/search" method="get">
+				<div class="search_section">
+					<input type="text" id="keyword" name="keyword" placeholder="원하는 모임을 검색해보세요!" /><button>검색하기</button>
+				</div>
+			</form>
 			<div class="nav_bar">
 				<div class="nav_header">
 					<ul>
 						<c:if test="${sessionID == null}">
-							<li><a
-								href="${pageContext.request.contextPath}/member/login">로그인</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/login">로그인</a></li>
 							<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						</c:if>
 						<c:if test="${sessionID != null}">
-							<li><span>${sessionID}</span>회원님</li>
-							<li>
-							<li><a
-								href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${m_name}회원님</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
 						<li>고객센터</li>
 					</ul>
 				</div>
 				<div class="nav_menu">
 					<div class="nav_detail">
-						<c:if test="${sessionID != null}">
-							<a href="${pageContext.request.contextPath}/member/mypage"><i
-								class="far fa-id-card fa-3x"></i><br />마이페이지</a>
-						</c:if>
 						<c:if test="${sessionID == null}">
-							<a href="${pageContext.request.contextPath}/member/login"><i
-								class="far fa-id-card fa-3x"></i><br />마이페이지</a>
+							<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
+						</c:if>
+						<c:if test="${sessionID != null}">
+							<a href="${pageContext.request.contextPath}/member/mypage"><i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
 						</c:if>
 					</div>
 					<div class="nav_detail">
-						<a href="${pageContext.request.contextPath}/post/add"><i
-							class="far fa-list-alt fa-3x"></i></a><br /> <a
-							href="${pageContext.request.contextPath}/post/add">모임개설</a>
+						<c:if test="${sessionID == null}">
+							<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-list-alt fa-3x"></i><br />모임개설</a>
+						</c:if>
+						<c:if test="${sessionID != null}">
+							<a href="${pageContext.request.contextPath}/post/register"><i class="far fa-list-alt fa-3x"></i><br />모임개설</a>
+						</c:if>
 					</div>
 					<div class="nav_detail">
-						<i class="far fa-bell fa-3x"></i><br /> <a>알림</a>
+						<a><i class="far fa-bell fa-3x"></i><br />알림</a>
 					</div>
+					<div class="nav_detail">
+						<c:if test="${sessionID == null}">
+                        	<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-calendar-check"></i><br/>출석체크</a>
+                        </c:if>
+						<c:if test="${sessionID != null}">
+                        	<a onclick="chkValue()"><i class="far fa-calendar-check"></i><br/>출석체크</a>
+                        	<div id="rand-val">Let's generate random Value</div>
+    						<input type="text" id="chkdate" value="${sessionID }">
+                        </c:if>
+                    </div>
 				</div>
 			</div>
 		</div>

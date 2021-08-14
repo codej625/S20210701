@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.oracle.springProject01.dao.cheDao.MainDao;
 import com.oracle.springProject01.model.ChePostVO;
 import com.oracle.springProject01.model.Post;
+import com.oracle.springProject01.model.RecentPost;
 
 @Service
 public class MainServiceImpl implements MainService {
@@ -24,7 +25,7 @@ public class MainServiceImpl implements MainService {
 		return postList;
 	}
 	
-	//
+	// 검색 개수 조회
 	@Override
 	public int searchTotal(String keyword) {
 		System.out.println("********* MainServiceImpl searchTotal() start *********");
@@ -34,6 +35,7 @@ public class MainServiceImpl implements MainService {
 		return total;
 	}
 	
+	// 검색
 	@Override
 	public List<Post> searchPost(Post post) {
 		System.out.println("********* MainServiceImpl searchPost() start *********");
@@ -43,5 +45,39 @@ public class MainServiceImpl implements MainService {
 		
 		return listPost;
 	}
+	
+	// 최근 본 게시물 삽입
+	@Override
+	public void insertRecentPost(RecentPost rpost) {
+		System.out.println("********* MainServiceImpl insertRecentPost() start *********");
+		System.out.println("MainServiceImpl insertRecentPost bt_num" + rpost.getBt_num());
+		System.out.println("MainServiceImpl insertRecentPost bc_num" + rpost.getBc_num());
+		System.out.println("MainServiceImpl insertRecentPost p_num" + rpost.getP_num());
+		System.out.println("MainServiceImpl insertRecentPost rp_cnt" + rpost.getRp_cnt());
+		System.out.println("MainServiceImpl insertRecentPost m_id" + rpost.getM_id());
+		md.insertRecentPost(rpost);
+	}
 
+	@Override
+	public int cntRecentPost(String m_id) {
+		System.out.println("********* MainServiceImpl cntRecentPost() start *********");
+		int total = 0;
+		total = md.cntRecentPost(m_id);
+		System.out.println("MainServiceImpl cntRecentPost total -> " + total);
+		
+		return total;
+	}
+
+	@Override
+	public List<RecentPost> recentPostList(RecentPost rpost) {
+		System.out.println("********* MainServiceImpl recentPostList() start *********");
+		List<RecentPost> listRpost = null;
+		listRpost = md.recentPostList(rpost);
+		System.out.println("MainDaoImpl recentPostList listRpost size -> " + listRpost.size());
+		
+		return listRpost;
+	}
+
+
+	
 }
