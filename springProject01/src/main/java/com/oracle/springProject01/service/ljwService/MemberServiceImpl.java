@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oracle.springProject01.dao.ljwDao.MemberDao;
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.AttachmentFileVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Member;
 
 @Service("LjwService")
@@ -54,8 +55,8 @@ public class MemberServiceImpl implements MemberService {
 		String date = Format.format(time.getTime());
 
 //======List에서 꺼낸 files, m_id, f_orgname f_newname, f_regdate를  DTO 단위로 옮길 계획==		
-		AttachmentFileVO attachmentFileTest = new AttachmentFileVO();
-		
+		AttachmentFile attachmentFileTest = new AttachmentFile();
+
 		for (MultipartFile file : attachmentFileVO.getFiles()) {
 			String name = "images/" + file.getOriginalFilename();
 			attachmentFileVO.setF_orgname(name);
@@ -86,10 +87,18 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<AttachmentFile> check(AttachmentFile attachmentFile) {
-		System.out.println("AttachmentFileServiceImpl Start check...");
+		System.out.println("MemberServiceImpl Start mail...");
 		List<AttachmentFile> check = null;
 		check = md.check(attachmentFile);
 		return check;
+	}
+
+	@Override
+	public int user_delete(String m_id) {
+		int delete = 0;
+		System.out.println("MemberServiceImpl Start user_delete...");
+		delete = md.user_delete(m_id);
+		return delete;
 	}
 
 }

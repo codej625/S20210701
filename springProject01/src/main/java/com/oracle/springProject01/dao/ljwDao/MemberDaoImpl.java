@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.AttachmentFileVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Member;
 
 @Repository("LjwDao")
@@ -78,7 +79,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public int test2(AttachmentFileVO attachmentFileTest) {
+	public int test2(AttachmentFile attachmentFileTest) {
 		int test = 0;
 		System.out.println("MemberDaoImpl Start test2...");
 		try {
@@ -100,4 +101,17 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return check;
 	}
+
+	@Override
+	public int user_delete(String m_id) {
+		int delete = 0;
+		System.out.println("MemberDaoImpl user_delete Start");
+		try {
+			delete = session.update("ljwDelete", m_id);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl user_delete Exception->" + e.getMessage());
+		}
+		return delete;
+	}
+
 }

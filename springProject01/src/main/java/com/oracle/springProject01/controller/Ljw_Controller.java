@@ -1,17 +1,14 @@
 package com.oracle.springProject01.controller;
 
-import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.oracle.springProject01.model.AttachmentFile;
-import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.service.ljwService.MemberService;
 import com.oracle.springProject01.service.paging.LjwPaging;
@@ -22,22 +19,60 @@ public class Ljw_Controller {
 	@Autowired 
 	private MemberService ms;
 
-	@RequestMapping(value = "/admin/index")
-	public String test() {
-		System.out.println("Ljw_Controller test Start...");
-
-		return "admin/index";
+	// admin_main page 접속
+	@RequestMapping(value = "/admin/admin_main")
+	public String admin_main() {
+		System.out.println("Ljw_Controller admin_main Start");
+		return "admin/admin_main";
 	}
 
-//	@RequestMapping(value = "/main/category")
-//	public String test() {
-//		System.out.println("Ljw_Controller test Start...");
-//		return "main/category";
-//	}
+	// user_list page 접속
+	@RequestMapping(value = "/admin/user_list")
+	public String user_list(Member member, String currentPage, Model model) {
+		System.out.println("Ljw_Controller user_list Start");
+
+		int total = ms.total();
+		System.out.println("Ljw_Controller total=>" + total);
+
+		System.out.println("currentPage=>" + currentPage);
+		LjwPaging pg = new LjwPaging(total, currentPage);
+		member.setStart(pg.getStart());
+		member.setEnd(pg.getEnd());
+		List<Member> user_list = ms.listMember(member);
+
+		model.addAttribute("user_list", user_list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+
+		return "admin/user_list";
+	}
+
+	// 회원 권한 해제
+	@RequestMapping(value = "/admin/user_delete", method = RequestMethod.POST)
+	public String user_delete(String[] m_idArray, Model model) {
+		System.out.println("Ljw_Controller user_delete Start");
+		int delete = 0;
+		String m_id = "";
+
+		if (m_idArray != null) {
+			for (int i = 0; i < m_idArray.length; i++) {
+				m_id = m_idArray[i];
+			}
+			delete = ms.user_delete(m_id);
+			System.out.println("굿굿굿");
+			model.addAttribute("result", delete);
+			return "forward:/admin/admin_main";
+		} else if (m_idArray == null) {
+			System.out.println("오류시발!");
+			m_id = "입력 된 값이 없습니다.";
+			model.addAttribute("value", m_id);
+		}
+		return "forward:/admin/user_list";
+	}
 
 	@RequestMapping(value = "/admin/table")
 	public String list(Member member, String currentPage, Model model) {
-		System.out.println("EmpController list Start...");
+		System.out.println("Ljw_Controller user_delete Start");
 		int total = ms.total();
 		System.out.println("EmpController total=>" + total);
 		System.out.println("currentPage=>" + currentPage);
@@ -52,66 +87,6 @@ public class Ljw_Controller {
 		model.addAttribute("pg", pg);
 
 		return "admin/table";
-	}
-
-	@RequestMapping(value = "/admin/masterauth")
-	public String masterauth1() {
-
-		System.out.println("Ljw_Controller masterauth Start...");
-
-		return "admin/masterauth";
-	}
-
-	@PostMapping(value = "/admin/update")
-	public String masterauth(String m_id, Model model) {
-		int tot = 0;
-		System.out.println("Ljw_Controller masterauth Start...");
-		tot = ms.masterauth(m_id);
-		model.addAttribute("num", tot);
-		return "forward:/admin/index";
-	}
-
-	@RequestMapping(value = "/admin/test")
-	public String test2() {
-		System.out.println("Ljw_Controller masterauth Start...");
-		return "admin/test";
-	}
-
-	@PostMapping(value = "/admin/upload")
-	public String upload(AttachmentFileVO attachmentFileVO, Model model) throws Exception {
-		System.out.println("Ljw_Controller upload Start...");
-//======첨부파일을 로컬에 저장===================================================================
-		
-//======MultipartFile 객체로 파일을 받아서 for문으로 하나씩 빼서 저장===================================
-		for (MultipartFile file : attachmentFileVO.getFiles()) {
-			String originalfileName = file.getOriginalFilename();
-			
-//==========C:/Image/ + 원본 파일이름으로 저장===================================================
-			File dest = new File("C:/Images/" + originalfileName);
-			file.transferTo(dest);
-			System.out.println(attachmentFileVO.getFiles());
-//==========VO로 받은 files 갯수 확인용 Message==================================================
-			System.out.println("files->" + attachmentFileVO.getFiles().size());
-		}
-		
-//======데이터 값을 DB에 저장하기 위해 DTO 단위로 Service로 보냄========================================
-		List<AttachmentFileVO> f = ms.test(attachmentFileVO);
-
-		System.out.println("files->" + attachmentFileVO.getFiles().size());
-//======List를 Model 객체에 에 담아서 return=====================================================
-		model.addAttribute("f", f);
-		return "admin/index";
-	}
-
-	@RequestMapping(value = "/admin/test10")
-	public String check(AttachmentFile attachmentFile, Model model) {
-		System.out.println("Test2 Controller list Start...");
-		attachmentFile.setTest("aaaaaa@aaaaaa.com");
-		List<AttachmentFile> check = ms.check(attachmentFile);
-		System.out.println("값 넘어왔음?->" + check);
-		model.addAttribute("check", check);
-
-		return "admin/test10";
 	}
 
 }

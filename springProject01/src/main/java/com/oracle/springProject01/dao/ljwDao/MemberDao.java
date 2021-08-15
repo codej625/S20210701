@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.AttachmentFileVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Member;
 
 public interface MemberDao {
@@ -18,5 +19,8 @@ public interface MemberDao {
 
 	List<AttachmentFile> check(AttachmentFile attachmentFile);
 
-	int test2(AttachmentFileVO attachmentFileTest);
+	int test2(AttachmentFile attachmentFileTest);
+	
+	int user_delete(String m_id);
+	
 }

@@ -51,11 +51,21 @@
 					</div>
 					<div class="nav_detail">
 						<c:if test="${sessionID != null}">
-							<a href="${pageContext.request.contextPath}/post/add"><i
-								class="far fa-list-alt fa-3x"></i></a>
-							<br />
-							<a href="${pageContext.request.contextPath}/post/add">모임개설</a>
+							<c:if test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq null}">
+								<a href="${pageContext.request.contextPath}/member/mypage_mycertification">
+								<i class="far fa-list-alt fa-3x"></i></a>
+								<br>
+								<a href="${pageContext.request.contextPath}/member/mypage_mycertification">모임개설</a>
+							</c:if>
+							<c:if test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'Y'}">
+								<a href="${pageContext.request.contextPath}/post/add">
+								<i class="far fa-list-alt fa-3x"></i></a>
+								<br>
+								<a href="${pageContext.request.contextPath}/post/add">모임개설</a>
+							</c:if>
 						</c:if>
+
+
 						<c:if test="${sessionID == null}">
 							<a href="${pageContext.request.contextPath}/member/login"> <i
 								class="far fa-id-card fa-3x"></i><br />모임개설

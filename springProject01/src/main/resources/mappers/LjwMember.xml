@@ -6,16 +6,30 @@
 	<select id="ljwListMember" parameterType="Member"
 		resultType="Member">
 		SELECT * FROM (SELECT rownum rn, a.*
-		FROM (SELECT * FROM member ORDER BY m_id) a
+		FROM (SELECT * FROM
+		member WHERE m_withdrawal = 'N' ORDER BY m_regdate DESC) a
 		)
-		WHERE rn BETWEEN #{start} AND #{end}
+		WHERE rn
+		BETWEEN #{start} AND #{end}
 	</select>
 
 	<select id="ljwTotal" resultType="int">
 		SELECT COUNT(*) FROM member
+		WHERE m_withdrawal = 'N'
 	</select>
 
-	<update id="ljwUpdate" parameterType="string">
-		UPDATE member SET  m_masterauth = 1 WHERE m_id = #{m_id}
+<!-- 	<select id="ljwCertificationTotal" resultType="int"> -->
+<!-- 		SELECT COUNT(*) FROM member -->
+<!-- 		WHERE m_withdrawal = 'N' -->
+<!-- 	</select> -->
+
+	<update id="ljwUpdate" parameterType="String">
+		UPDATE member SET
+		m_masterauth = 1 WHERE m_id = #{m_id}
+	</update>
+
+	<update id="ljwDelete" parameterType="String">
+		UPDATE member SET
+		m_withdrawal = 'Y' WHERE m_id = #{m_id}
 	</update>
 </mapper>

@@ -23,6 +23,8 @@ public class Lhj_MemberVO {
 	private String m_img;
 	private String m_meetingfile;
 	private String m_masterfile;
+	private String m_mail;
+	private String m_certification;
 	
 	//post
 	private int bt_num;

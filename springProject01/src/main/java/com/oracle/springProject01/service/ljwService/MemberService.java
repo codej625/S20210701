@@ -17,5 +17,8 @@ public interface MemberService {
 	List<AttachmentFileVO> test(AttachmentFileVO attachmentFileVO);
 
 	List<AttachmentFile> check(AttachmentFile attachmentFile);
+	
+	int user_delete(String m_id);
+
 
 }
