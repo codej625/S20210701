@@ -61,6 +61,9 @@ public interface MemberService {
 	
 		//내가 쓴 글 리스트에 대한 신청 인원 정보
 	List<Lhj_MemberVO> 		mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
+	
+	//네이버 회원가입
+	void insertMember_NaverID(Lhj_MemberVO lhj_MemberVO);
 
 	
 	

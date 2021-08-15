@@ -55,6 +55,9 @@ public interface MemberDao {
 	public List<Lhj_MemberVO> myPostList_meeting(String m_id);
 		//내가 쓴 글에 신청한 회원 리스트
 	public List<Lhj_MemberVO> mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
+	
+	//네이버 회원가입
+	public void insertMember_NaverID(Lhj_MemberVO lhj_MemberVO);
 
 	
 

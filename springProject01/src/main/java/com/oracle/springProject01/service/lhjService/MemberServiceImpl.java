@@ -27,6 +27,16 @@ public class MemberServiceImpl implements MemberService {
 		md.insertMember(lhj_MemberVO);
 	}
 	
+	//회원가입 - 네이버
+	@Override
+	public void insertMember_NaverID(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("lhj_login memberServiceImpl insertMember_NaverID start..");
+		if(lhj_MemberVO == null) {
+			return ; 
+		}
+		md.insertMember_NaverID(lhj_MemberVO);
+	}
+	
 	//회원가입 아이디 중복 확인 ajax
 	@Override
 	public void idOverlap(String m_id, HttpServletResponse response) throws IOException {
@@ -254,6 +264,8 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 
 	
 

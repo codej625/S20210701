@@ -26,6 +26,19 @@ public class MemberDaoImpl implements MemberDao {
 			System.out.println("dao lhjMember MemberDaoImpl insertMember Exception->"+e.getMessage());
 		}
 	}
+	//네이버 회원가입 구현
+	@Override
+	public void insertMember_NaverID(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("dao lhjMember MemberDaoImpl insertMember_NaverID Start ...");
+		try {
+			session.insert("hj_insertMember_naver", lhj_MemberVO);
+			
+		} catch (Exception e) {
+			System.out.println("dao lhjMember MemberDaoImpl insertMember_NaverID Exception->"+e.getMessage());
+		}
+	}
+	
+	
 	
 	//회원가입 아이디 중복 확인 ajax
 	@Override
@@ -295,6 +308,10 @@ public class MemberDaoImpl implements MemberDao {
 		}
 		return mypage_myPostMEmberList;
 	}
+
+	
+	
+
 
 	
 	

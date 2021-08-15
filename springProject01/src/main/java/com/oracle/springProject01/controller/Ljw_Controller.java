@@ -19,7 +19,7 @@ import com.oracle.springProject01.service.paging.LjwPaging;
 @Controller
 public class Ljw_Controller {
 
-	@Autowired
+	@Autowired 
 	private MemberService ms;
 
 	@RequestMapping(value = "/admin/index")

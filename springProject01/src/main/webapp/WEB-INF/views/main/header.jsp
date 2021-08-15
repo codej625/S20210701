@@ -45,9 +45,8 @@
 							</a>
 						</c:if>
 						<c:if test="${sessionID == null}">
-							<a href="${pageContext.request.contextPath}/member/login"> <i
-								class="far fa-id-card fa-3x"></i><br />마이페이지
-							</a>
+							<a href="${pageContext.request.contextPath}/member/login">
+							<i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
 						</c:if>
 					</div>
 					<div class="nav_detail">

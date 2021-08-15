@@ -12,9 +12,9 @@
 		// response.sendRedirect("post/contents");
 		// response.sendRedirect("admin/index");
 		// response.sendRedirect("admin/test10");
-		// response.sendRedirect("main/main");
 	 	// response.sendRedirect("admin/test");
-	 	// response.sendRedirect("member/mypage_mycertification");
+		// response.sendRedirect("member/mypage_mycertification");
+		response.sendRedirect("main/main");
 	%>
 </body>
 </html>

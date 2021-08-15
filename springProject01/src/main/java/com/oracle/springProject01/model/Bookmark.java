@@ -11,4 +11,5 @@ public class Bookmark {
 	private int bc_num;
 	private int p_num;
 	private String b_time;
+	private String b_reg;
 }
