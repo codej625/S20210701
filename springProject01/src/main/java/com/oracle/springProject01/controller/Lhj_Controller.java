@@ -39,6 +39,7 @@ import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Lhj_OAuthToken;
 import com.oracle.springProject01.service.lhjService.MemberService;
+import com.oracle.springProject01.service.yjhService.PostService;
 
 @Controller
 public class Lhj_Controller {
@@ -47,9 +48,13 @@ public class Lhj_Controller {
 	private MemberService ms;
 	
 	@Autowired
+	private PostService ps;
+	
+	@Autowired
 	private JavaMailSender mailSender;
 
 	// 로깅
+
 	private static final Logger logger = org.slf4j.LoggerFactory.getLogger(Lhj_Controller.class);
 
 	// 메인화면
@@ -420,7 +425,7 @@ public class Lhj_Controller {
 		String m_id = sessionID;
 		lhj_MemberVO = ms.myRGNO(lhj_MemberVO);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
-
+		
 		return "forward:/member/mypage_myreginfo";
 	}
 
@@ -445,18 +450,26 @@ public class Lhj_Controller {
 		return "/member/mypage_mybookmark";
 	}
 
-	// 마이페이지 관심내역 신청
+	//마이페이지 관심내역 신청
 	@RequestMapping(value = "/member/mypage_mybookmarkSin", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mybookmarkSin(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request,
-			HttpSession session) {
+	public String mybookmarkSin(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request, HttpSession session) {
 		System.out.println("lhjController mybookmarkSin Start...");
-		String sessionID = (String) request.getSession().getAttribute("sessionID");
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
 		String m_id = sessionID;
 		lhj_MemberVO = ms.myBMtoRG(lhj_MemberVO);
-		Lhj_MemberVO lhj_MemberVO2 = ms.myBMtoRG2(lhj_MemberVO);
+//		Lhj_MemberVO lhj_MemberVO2 = ms.myBMtoRG2(lhj_MemberVO);
+		int bt_num = lhj_MemberVO.getBt_num();
+		int bc_num = lhj_MemberVO.getBc_num();
+		int p_num = lhj_MemberVO.getP_num();
+		String p_cstatus = lhj_MemberVO.getP_cstatus();
+		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num, p_cstatus);
+		System.out.println("lhjController mybookmarkSin int bt_num->"+bt_num);
+		if (post>0) {
+			int postUpdate = ps.postCapaMinusUpdate(bt_num, bc_num, p_num);
+		}
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
-		model.addAttribute("lhj_MemberVO", lhj_MemberVO2);
-
+//		model.addAttribute("lhj_MemberVO", lhj_MemberVO2);
+		
 		return "forward:/member/mypage_myreginfo";
 	}
 

@@ -74,13 +74,14 @@
 			</div>
 			<div class="con_section">
 				<c:forEach var="post" items="${listPost }">
-				<div class="con_item">
+					<div class="con_item" style="cursor: pointer;" 
+						onclick="location.href='${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
 	                    <div class="con_img">
 	                        <img src="${pageContext.request.contextPath}/upload/${post.p_img}">
 	                    </div>
 	                    <div class="con_itm">
 							<input type="hidden" name="p_num" value="${post.p_num }">
-							<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}">${post.p_title }</a>
+							${post.p_title }
 	                    </div>
 	                    <div class="con_itm">
 	                        <div class="con_contents">

@@ -31,10 +31,20 @@ public class Post {
 	private String p_writedate;
 	private int p_hit;
 	private String p_cstatus;
+	private String p_bankname;
+	private String p_accountnumber;
 	
 //	게시물 작성한 맴버 조회용
 	private String m_name;
 	private String m_tel;
+	private String m_img;
+	
+//	신청내역 조회용
+	private String ri_pstatus;
+	
+//	북마크 조회용
+	private String b_time;
+	private String b_reg;
 	
 //	페이징 조회용
 	private String search;
