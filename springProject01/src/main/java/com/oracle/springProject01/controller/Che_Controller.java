@@ -2,15 +2,20 @@ package com.oracle.springProject01.controller;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.oracle.springProject01.model.RecentPost;
 import com.oracle.springProject01.model.ChePostVO;
 import com.oracle.springProject01.model.Post;
 import com.oracle.springProject01.service.cheService.MainService;
@@ -25,77 +30,107 @@ public class Che_Controller {
 	@Autowired
 	private PostService ps;
 	
+	// 메인화면
 	@RequestMapping(value = "main/main")
-	public String mainGetForm(HttpServletRequest request, ChePostVO post1, ChePostVO post2, Model model) {
-		System.out.println("Che_Controller mainForm Start...");
+	public String mainGetForm(HttpServletRequest request, RecentPost rpost, Post post, Model model) {
+		System.out.println("********* Che_Controller mainForm Start *********");
 		
-		int total = 5;
+		int best_total = 5;
 		int bt_num1 = 1;
 		int bt_num2 = 2;
+		int rp_total = 0;
 		
-		List<ChePostVO> bestList1 = null;
-		List<ChePostVO> bestList2 = null;
+		// 모임/클래스 Best5
+		List<Post> bestList1 = null;
+		List<Post> bestList2 = null;
+		List<RecentPost> listRpost = null;
+		List<Post> listPost = null;
 		
+		// 모임 Best5
 		String currentPage = null;
-		MainPaging mg = new MainPaging(total, currentPage);
-		post1.setStart(mg.getStart());
-		post1.setEnd(mg.getEnd());
-		post1.setBt_num(bt_num1);
-		System.out.println("Che_Controller mainGetForm bt_num1 -> " + post1.getBt_num());
-		bestList1 = ms.bestListPost(post1);
+		MainPaging mg = new MainPaging(best_total, currentPage);
+		post.setStart(mg.getStart());
+		post.setEnd(mg.getEnd());
+		post.setBt_num(bt_num1);
+		bestList1 = ms.bestListPost(post);
 		System.out.println("Che_Controller mainGetForm bestList1 listPost.size()->"+bestList1.size());
-		
-		post2.setStart(mg.getStart());
-		post2.setEnd(mg.getEnd());
-		post2.setBt_num(bt_num2);
-		System.out.println("Che_Controller mainGetForm bt_num2 -> " + post2.getBt_num());
-		bestList2 = ms.bestListPost(post2);
+		//클래스 Best5
+		post.setStart(mg.getStart());
+		post.setEnd(mg.getEnd());
+		post.setBt_num(bt_num2);
+		bestList2 = ms.bestListPost(post);
 		System.out.println("Che_Controller mainGetForm bestList2 listPost.size()->"+bestList2.size());
-
-		model.addAttribute("bt_num1",post1.getBt_num());
-		System.out.println("Che_Controller mainGetForm bt_num1 -> " + post1.getBt_num());
-		model.addAttribute("bt_num2",post2.getBt_num());
-		System.out.println("Che_Controller mainGetForm bt_num2 -> " + post2.getBt_num());
+		
+		String m_id = (String) request.getSession().getAttribute("sessionID");
+		System.out.println("Che_Controller recentPostList m_id -> " + m_id);
+		
+		if(m_id != null) {
+			rp_total = ms.cntRecentPost(m_id);
+			System.out.println("Che_Controller recentPostList total -> " + rp_total);
+			Paging pg = new Paging(rp_total, currentPage);
+			
+			rpost.setM_id(m_id);
+			System.out.println("Che_Controller recentPostList m_id -> " + rpost.getM_id());
+			rpost.setStart(pg.getStart());
+			rpost.setEnd(pg.getEnd());
+			listRpost = ms.recentPostList(rpost);
+			
+			System.out.println("Che_Controller recentPostList listRpost size -> " + listRpost.size());
+			model.addAttribute("size", listRpost.size());
+			model.addAttribute("listRpost", listRpost);
+		}
+		
+		model.addAttribute("bt_num1", bt_num1);
+		model.addAttribute("bt_num2", bt_num2);
 		model.addAttribute("bestList1",bestList1);
 		model.addAttribute("bestList2",bestList2);
 		
 		return "main/main";
 	}
-	/*
-	@GetMapping(value = "/post/category")
-	public String list(HttpServletRequest request, Post post, String currentPage, Model model) {
-		System.out.println("Yjh_Controller String list() Start...");
-//		게시물 갯수
-		int total = ps.total();
-		int bt_num = Integer.parseInt(request.getParameter("bt_num"));
-		int bc_num = Integer.parseInt(request.getParameter("bc_num"));
+	
+	// 검색
+	@GetMapping(value = "/post/category/search")
+	public String mainSearch(@RequestParam(value="keyword") String keyword, String currentPage, Post post, Model model) {
+		System.out.println("********* Che_Controller mainSearch start *********");
 		
-		System.out.println("Yjh_Controller String list() total->"+total);
-		System.out.println("Yjh_Controller currentPage -> " + currentPage);
-//		페이징 처리
+		int total = 0;
+		total = ms.searchTotal(keyword);
 		Paging pg = new Paging(total, currentPage);
+		
+		System.out.println("Che_Controller mainSearch keyword -> " + keyword);
+		post.setKeyword(keyword);
 		post.setStart(pg.getStart());
 		post.setEnd(pg.getEnd());
-		post.setBt_num(bt_num);
-		post.setBt_num(bc_num);
-		
-//		게시물 리스트
-		List<Post> listPost = ps.listPost(post);
-		System.out.println("Yjh_Controller String list() listPost.size()->"+listPost.size());
-		model.addAttribute("total",total);
-		model.addAttribute("listPost",listPost);
-		model.addAttribute("pg",pg);
-		model.addAttribute("bt_num",bt_num);
-		model.addAttribute("bc_num",bc_num);
-		return "post/category";
-	}
-	@GetMapping("/post/category/search")
-	public String mainSearch(@RequestParam(value="keyword") String keyword, Post post, Model model) {
-		System.out.println("Che_Controller mainSearch keyword -> " + keyword);
-		
-		List<Post> listPost = ms.searchPost(keyword);
+		List<Post> listPost = ms.searchPost(post);
 		model.addAttribute("listPost", listPost);
 		
 		return "post/category";
-	}*/
+	}
+	
+	/*
+	@GetMapping(value = "main/aside")
+	public String recentPostList(HttpServletRequest request, RecentPost rpost, Post post, Model model, String currentPage) {
+		System.out.println("********* Che_Controller recentPostList start *********");
+		
+		List<RecentPost> listRpost = null;
+		
+		
+		String m_id = (String) request.getSession().getAttribute("sessionID");
+		System.out.println("Che_Controller recentPostList m_id -> " + m_id);
+		int rp_total = 0;
+		rp_total = ms.cntRecentPost(m_id);
+		System.out.println("Che_Controller recentPostList total -> " + rp_total);
+		Paging pg = new Paging(rp_total, currentPage);
+		
+		rpost.setM_id(m_id);
+		System.out.println("Che_Controller recentPostList m_id -> " + rpost.getM_id());
+		rpost.setStart(pg.getStart());
+		rpost.setEnd(pg.getEnd());
+		listRpost = ms.recentPostList(rpost);
+		System.out.println("Che_Controller recentPostList listRpost size -> " + listRpost.size());
+		model.addAttribute("listRpost", listRpost);
+		
+		return "main/aside";
+	}
+	*/
 }

@@ -8,18 +8,25 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/header.css" />
+<script type="text/javascript">
+	function innerHTMLTest(){
+		var randValNode = document.getElementById("rand-val");
+	    var input = document.getElementById("chkdate").value;
+		randValNode.innerHTML = input;
+	}
+</script>
 <body>
 	<header>
 		<!-- header_top -->
 		<div class="header_top">
 			<div class="logo_section">
-				<a href="${pageContext.request.contextPath}/main/main"><img
-					src="${pageContext.request.contextPath}/img/logo.png"></a>
+				<a href="${pageContext.request.contextPath}/main/main"><img src="${pageContext.request.contextPath}/img/logo.png"></a>
 			</div>
-			<div class="search_section">
-				<input type="text" placeholder="원하는 모임을 검색해보세요!" /> <i
-					class="fas fa-search fa-2x"></i>
-			</div>
+			<form action="${pageContext.request.contextPath}/post/category/search" method="get">
+				<div class="search_section">
+					<input type="text" id="keyword" name="keyword" placeholder="원하는 모임을 검색해보세요!" /><button>검색하기</button>
+				</div>
+			</form>
 			<div class="nav_bar">
 				<div class="nav_header">
 					<ul>
@@ -28,10 +35,8 @@
 							<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						</c:if>
 						<c:if test="${sessionID != null}">
-							<li><span>${sessionID}</span>회원님</li>
-							<li>
-							<li><a
-								href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
+							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${m_name}회원님</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/chat/user">고객센터</a></li>
 <%-- 						<li><a href="${pageContext.request.contextPath}/chat/chat">라이브톡</a></li>
@@ -39,45 +44,46 @@
 				</div>
 				<div class="nav_menu">
 					<div class="nav_detail">
-						<c:if test="${sessionID != null}">
-							<a href="${pageContext.request.contextPath}/member/mypage"> <i
-								class="far fa-id-card fa-3x"></i><br />마이페이지
-							</a>
-						</c:if>
 						<c:if test="${sessionID == null}">
-							<a href="${pageContext.request.contextPath}/member/login">
-							<i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
+							<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
+						</c:if>
+						<c:if test="${sessionID != null}">
+							<a href="${pageContext.request.contextPath}/member/mypage"> <i class="far fa-id-card fa-3x"></i><br />마이페이지</a>
 						</c:if>
 					</div>
 					<div class="nav_detail">
 						<c:if test="${sessionID != null}">
 							<c:if test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq null}">
-								<a href="${pageContext.request.contextPath}/member/mypage_mycertification">
-								<i class="far fa-list-alt fa-3x"></i></a>
+								<a href="${pageContext.request.contextPath}/member/mypage_mycertification"><i class="far fa-list-alt fa-3x"></i></a>
 								<br>
 								<a href="${pageContext.request.contextPath}/member/mypage_mycertification">모임개설</a>
 							</c:if>
 							<c:if test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'Y'}">
-								<a href="${pageContext.request.contextPath}/post/add">
-								<i class="far fa-list-alt fa-3x"></i></a>
+								<a href="${pageContext.request.contextPath}/post/add"><i class="far fa-list-alt fa-3x"></i></a>
 								<br>
 								<a href="${pageContext.request.contextPath}/post/add">모임개설</a>
 							</c:if>
 						</c:if>
-
-
 						<c:if test="${sessionID == null}">
-							<a href="${pageContext.request.contextPath}/member/login"> <i
-								class="far fa-id-card fa-3x"></i><br />모임개설
-							</a>
+							<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-id-card fa-3x"></i><br />모임개설</a>
 						</c:if>
-					</div>
-					<div class="nav_detail">
-						<i class="far fa-bell fa-3x"></i><br /> <a>알림</a>
 					</div>
 					<div class="nav_detail">
 						<a href="${pageContext.request.contextPath}/chat/chat"><i class="far fa-comment-dots"></i></a><br /> <a
 							href="${pageContext.request.contextPath}/chat/chat">라이브톡</a>
+					</div>
+					<div class="nav_detail">
+						<c:if test="${sessionID == null}">
+                        	<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-calendar-check"></i><br/>출석체크</a>
+                        </c:if>
+						<c:if test="${sessionID != null}">
+                        	<a onclick="chkValue()"><i class="far fa-calendar-check"></i><br/>출석체크</a>
+                        	<div id="rand-val">Let's generate random Value</div>
+    						<input type="text" id="chkdate" value="${sessionID }">
+                        </c:if>
+                    </div>
+					<div class="nav_detail">
+						<a><i class="far fa-bell fa-3x"></i><br />알림</a>
 					</div>
 				</div>
 			</div>

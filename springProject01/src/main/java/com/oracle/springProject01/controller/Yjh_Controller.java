@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.springProject01.model.Post;
+import com.oracle.springProject01.model.RecentPost;
 import com.oracle.springProject01.model.Reply;
+import com.oracle.springProject01.service.cheService.MainService;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.BoardCategoryService;
 import com.oracle.springProject01.service.yjhService.MemberService;
@@ -40,6 +44,9 @@ public class Yjh_Controller {
 	
 	@Autowired
 	private ReplyService rs;
+	
+	@Autowired
+	private MainService mas;
 	
 //	게시물 리스트 불러오기
 	@RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
@@ -194,39 +201,65 @@ public class Yjh_Controller {
 	
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+//<<<<<<< HEAD
+//	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
+//		System.out.println("Yjh_Controller String postListDetail start...");
+////		섹션아이디
+//		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+//		String m_id = sessionID;
+////		게시물을 신청 했는지 안했는지 확인
+//		int result1 = ps.regInfoCheck(m_id,bt_num, bc_num, p_num);
+//		System.out.println("postListDetail regInfoCheck result1->"+result1);
+////		게시물을 찜 했는지 안했는지 확인
+//		int result2 = ps.bookmarkCheck(m_id,bt_num, bc_num, p_num);
+//		System.out.println("postListDetail regInfoCheck result1->"+result1);
+////		조회수 증가해주기
+//		int result = ps.postHit(bt_num, bc_num, p_num);
+////		게시물 상세정보
+//		Post post = ps.postListDetail(bt_num, bc_num, p_num);
+//		System.out.println("Yjh_Controller postListDetail post->" + post);
+////		댓글 리스트
+//		List<Reply> replyList = rs.postReplyList(bt_num, bc_num, p_num);
+//		System.out.println("Controller postReplyList done");
+////		Reply reply = rs.postReplyList(bt_num, bc_num, p_num);
+//		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0, r_level = 0;
+//		model.addAttribute("sessionID",sessionID);
+//		model.addAttribute("r_num",r_num);
+//		model.addAttribute("r_rate",r_rate);
+//		model.addAttribute("r_indent",r_indent);
+//		model.addAttribute("r_group",r_group);
+//		model.addAttribute("r_level",r_level);
+//		model.addAttribute("result",result1);
+//		model.addAttribute("result2",result2);
+//		model.addAttribute("post", post);	
+//		model.addAttribute("reply",replyList);
+//=======
+	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, RecentPost rpost, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
-//		섹션아이디
-		String sessionID =  (String) request.getSession().getAttribute("sessionID");
-		String m_id = sessionID;
-//		게시물을 신청 했는지 안했는지 확인
-		int result1 = ps.regInfoCheck(m_id,bt_num, bc_num, p_num);
-		System.out.println("postListDetail regInfoCheck result1->"+result1);
-//		게시물을 찜 했는지 안했는지 확인
-		int result2 = ps.bookmarkCheck(m_id,bt_num, bc_num, p_num);
-		System.out.println("postListDetail regInfoCheck result1->"+result1);
-//		조회수 증가해주기
-		int result = ps.postHit(bt_num, bc_num, p_num);
-//		게시물 상세정보
+		
+		// 게시물 읽어오기
 		Post post = ps.postListDetail(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postListDetail post->" + post);
-//		댓글 리스트
-		List<Reply> replyList = rs.postReplyList(bt_num, bc_num, p_num);
-		System.out.println("Controller postReplyList done");
-//		Reply reply = rs.postReplyList(bt_num, bc_num, p_num);
-		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0, r_level = 0;
-		model.addAttribute("sessionID",sessionID);
-		model.addAttribute("r_num",r_num);
-		model.addAttribute("r_rate",r_rate);
-		model.addAttribute("r_indent",r_indent);
-		model.addAttribute("r_group",r_group);
-		model.addAttribute("r_level",r_level);
-		model.addAttribute("result",result1);
-		model.addAttribute("result2",result2);
-		model.addAttribute("post", post);	
-		model.addAttribute("reply",replyList);
+		
+		// 최근 본 게시물(로그인 시에만 구현)
+		String m_id = (String) request.getSession().getAttribute("sessionID");
+		System.out.println("m_id -> " + m_id);
+		if(m_id != null) {
+			rpost.setBt_num(post.getBt_num());
+			System.out.println("rpost.setBt_num" + rpost.getBt_num());
+			rpost.setBc_num(post.getBc_num());
+			System.out.println("rpost.setBt_num" + rpost.getBc_num());
+			rpost.setP_num(post.getP_num());
+			System.out.println("rpost.setBt_num" + rpost.getP_num());
+			rpost.setM_id(m_id);
+			rpost.setP_title(post.getP_title());
+			mas.insertRecentPost(rpost);
+		}
+		
+		model.addAttribute("post", post);
 		return "post/contents";
 	}
+	
 	
 //	선택한 게시물 내용 수정 뷰단
 	@RequestMapping(value = "/post/postListUpdateView", method = { RequestMethod.GET, RequestMethod.POST })

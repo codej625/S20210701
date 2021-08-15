@@ -39,8 +39,10 @@
 	            <div class="class_wrap">
 	                <c:forEach var="post1" items="${bestList1 }">
 	                    <div class="class_item">
-		                    <div class="class_img"><img src="${pageContext.request.contextPath}/img/people.jpg"></div>
-		                    <div class="class_info">${post1.p_title }</div>
+	                    	<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${post1.bt_num }&bc_num=${post1.bc_num }&p_num=${post1.p_num}">
+		                    	<div class="class_img"><img src="${pageContext.request.contextPath}/img/people.jpg"></div>
+		                    	<div class="class_info">${post1.p_title }</div>
+		                    </a>
 	                    </div>
 	                </c:forEach>
 		    	</div>
@@ -51,14 +53,18 @@
 	            <div class="class_wrap">
 	           		<c:forEach var="post2" items="${bestList2 }">
 		            	<div class="class_item">
-			            	<div class="class_img"><img src="img/people.jpg"></div>
-			                <div class="class_info">${post2.p_title }</div>
+			            	<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${post2.bt_num }&bc_num=${post2.bc_num }&p_num=${post2.p_num}">
+			            		<div class="class_img"><img src="img/people.jpg"></div>
+			                	<div class="class_info">${post2.p_title }</div>
+			            	</a>
 		                </div>
 	                </c:forEach>
 	            </div>
 			</div>
 		</div>
+		<%@ include file="/WEB-INF/views/main/aside.jsp"%>
 	</main>
+	
 	<%@ include file="/WEB-INF/views/main/footer.jsp"%>
 </body>
 </html>
