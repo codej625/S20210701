@@ -61,10 +61,10 @@ public interface MemberDao {
 	Lhj_MemberVO	mypage_mycertification(Lhj_MemberVO lhj_MemberVO);      
 		//메일 인증
 	int mail(Lhj_MemberVO lhj_MemberVO);
-		//개설자 권한 파일첨부 등록
-	void certification(AttachmentFile attachmentFile);
-//		//개설자 권한 사용자 정보 업데이트
-	void certification2(Lhj_MemberVO lhj_MemberVO);
+		//개설자 권한 인증 파일첨부 등록
+	int certification(AttachmentFileVO attachmentFileVO);
+		//메일 인증 확인
+	AttachmentFileVO member(AttachmentFileVO attachmentFileVO);
 	
 
 

@@ -21,4 +21,6 @@ public interface MemberDao {
 
 	int test2(AttachmentFile attachmentFileTest);
 	
+	int user_delete(String m_id);
+	
 }

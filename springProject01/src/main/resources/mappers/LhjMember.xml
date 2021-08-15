@@ -267,7 +267,7 @@
 	</update>
 
 	<!-- 권한 받기용 첨부파일 -->
-	<insert id="hj_Attachment" parameterType="LjwAttachmentFile">
+	<insert id="hj_Attachment" parameterType="LjwAttachmentFileVO">
 		<selectKey keyProperty="f_num" resultType="int"
 			order="BEFORE">
 			select SEQ_MP_FILE_NO.NEXTVAL FROM DUAL
@@ -287,9 +287,18 @@
 		)
 	</insert>
 
-	<!-- 개설자 권한 사용자 정보 업데이트 -->
-	<update id="hj_user" parameterType="lhj_MemberVO">
-		UPDATE member SET m_meetingauth = #{m_meetingauth}, m_masterauth = #{m_masterauth}, m_certification = #{m_certification} 
+	<!-- 개설자 권한 신청 -->
+	<update id="hj_user" parameterType="LjwAttachmentFileVO">
+		UPDATE member SET 
+		m_meetingauth = #{m_meetingauth, jdbcType=VARCHAR}, m_masterauth = #{m_masterauth, jdbcType=VARCHAR}, m_certification = #{m_certification} 
 		WHERE m_id = #{m_id}
 	</update>
+	
+		<!-- 모임, 클래스 인증 -->
+	<select id="hj_member" resultType="LjwAttachmentFileVO"
+		parameterType="LjwAttachmentFileVO">
+		SELECT *
+		FROM member
+		WHERE m_id = #{m_id}
+	</select>
 </mapper>

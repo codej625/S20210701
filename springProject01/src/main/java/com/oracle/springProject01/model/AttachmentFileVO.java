@@ -17,9 +17,6 @@ public class AttachmentFileVO {
 	private String f_del;
 	private List<MultipartFile> files;
 
-//	tset용 나중에 삭제 예정
-	private String test;
-
 //	Member
 	private String m_id;
 	private String m_pw;

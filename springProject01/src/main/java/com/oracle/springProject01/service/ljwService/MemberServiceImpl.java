@@ -93,4 +93,12 @@ public class MemberServiceImpl implements MemberService {
 		return check;
 	}
 
+	@Override
+	public int user_delete(String m_id) {
+		int delete = 0;
+		System.out.println("MemberServiceImpl Start user_delete...");
+		delete = md.user_delete(m_id);
+		return delete;
+	}
+
 }

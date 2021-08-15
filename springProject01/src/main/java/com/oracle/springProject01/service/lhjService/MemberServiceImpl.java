@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.springProject01.dao.lhjDao.MemberDao;
-import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 
@@ -281,30 +280,37 @@ public class MemberServiceImpl implements MemberService {
 
 	// 개설자 권한 파일첨부 등록
 	@Override
-	public void certification(AttachmentFileVO attachmentFileVO) {
+	public int certification(AttachmentFileVO attachmentFileVO) {
 		System.out.println("MemberServiceImpl Start certification...");
+		int result = 0;
 
-//======날짜를 입력하기 위한 SimpleDateFormat, Calendar 객체 생성==========================
+		// 날짜를 입력하기 위한 SimpleDateFormat, Calendar 객체 생성==========================
 		SimpleDateFormat Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Calendar time = Calendar.getInstance();
 		String date = Format.format(time.getTime());
 
-		AttachmentFile attachmentFile = new AttachmentFile();
-		Lhj_MemberVO lhj_MemberVO = new Lhj_MemberVO();
-
+		// attachmentFileVO.getFiles()속에 리스트로 저장된 값들을 하나씩 꺼낸다
 		for (MultipartFile file : attachmentFileVO.getFiles()) {
-//==========로컬에 저장된 이름과 DB에 저장될 이름을 똑같이 만들어준다.
+			//
 			String name = "images/" + file.getOriginalFilename();
-			attachmentFile.setF_orgname(name);
-			attachmentFile.setM_id(attachmentFileVO.getM_id().toString());
-			attachmentFile.setF_regdate(date);
-			md.certification(attachmentFile);
+			attachmentFileVO.setF_orgname(name);
+			attachmentFileVO.setM_id(attachmentFileVO.getM_id().toString());
+			attachmentFileVO.setF_regdate(date);
+			md.certification(attachmentFileVO);
 		}
-		lhj_MemberVO.setM_id(attachmentFileVO.getM_id().toString());
-		lhj_MemberVO.setM_meetingauth(attachmentFileVO.getM_meetingauth());
-		lhj_MemberVO.setM_masterauth(attachmentFileVO.getM_masterauth());
-		lhj_MemberVO.setM_certification(attachmentFileVO.getM_certification());
-		md.certification2(lhj_MemberVO);
+		attachmentFileVO.setM_id(attachmentFileVO.getM_id().toString());
+		attachmentFileVO.setM_meetingauth(attachmentFileVO.getM_meetingauth());
+		attachmentFileVO.setM_masterauth(attachmentFileVO.getM_masterauth());
+		attachmentFileVO.setM_certification(attachmentFileVO.getM_certification());
+		result = md.certification(attachmentFileVO);
+		return result;
 	}
 
+	// 메일 인증 확인용
+	@Override
+	public AttachmentFileVO member(AttachmentFileVO attachmentFileVO) {
+		System.out.println("MemberServiceImpl Start member...");
+		attachmentFileVO = md.member(attachmentFileVO);
+		return attachmentFileVO;
+	}
 }

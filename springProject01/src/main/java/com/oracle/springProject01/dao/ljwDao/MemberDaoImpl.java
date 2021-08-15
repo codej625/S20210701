@@ -102,4 +102,16 @@ public class MemberDaoImpl implements MemberDao {
 		return check;
 	}
 
+	@Override
+	public int user_delete(String m_id) {
+		int delete = 0;
+		System.out.println("MemberDaoImpl user_delete Start");
+		try {
+			delete = session.update("ljwDelete", m_id);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl user_delete Exception->" + e.getMessage());
+		}
+		return delete;
+	}
+
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<typeAliases>
+ 	<typeAliases>
 		<typeAlias alias="Post" type="com.oracle.springProject01.model.Post"/>
 		<typeAlias alias="Member" type="com.oracle.springProject01.model.Member"/>
 		<typeAlias alias="Lhj_MemberVO" type="com.oracle.springProject01.model.Lhj_MemberVO"/>

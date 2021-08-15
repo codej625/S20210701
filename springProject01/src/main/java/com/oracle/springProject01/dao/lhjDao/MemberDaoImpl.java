@@ -325,27 +325,56 @@ public class MemberDaoImpl implements MemberDao {
 		return mail;
 	}
 
-	// 개설자 권한 파일첨부 등록
+	// 개설자 권한 인증 파일첨부 등록
+//	@Override
+//	public void certification(AttachmentFile attachmentFile) {
+//		System.out.println("dao lhjMember MemberDaoImpl certification Start...");
+//		try {
+//			session.insert("hj_Attachment", attachmentFile);
+//		} catch (Exception e) {
+//			System.out.println("MemberDaoImpl certification Exception->" + e.getMessage());
+//		}
+//	}
+
+	// 개설자 권한 신청
+//	@Override
+//	public int certification2(Lhj_MemberVO lhj_MemberVO) {
+//		System.out.println("dao lhjMember MemberDaoImpl certification2 Start...");
+//		int result = 0;
+//		System.out.println("value->" + lhj_MemberVO.getM_meetingauth() + lhj_MemberVO.getM_masterauth()
+//				+ lhj_MemberVO.getM_certification());
+//		try {
+//			result = session.update("hj_user", lhj_MemberVO);
+//		} catch (Exception e) {
+//			System.out.println("MemberDaoImpl certification2 Exception->" + e.getMessage());
+//		}
+//		return result;
+//	}
+
 	@Override
-	public void certification(AttachmentFile attachmentFile) {
+	public int certification(AttachmentFileVO attachmentFileVO) {
 		System.out.println("dao lhjMember MemberDaoImpl certification Start...");
+		int result = 0;
 		try {
-			session.insert("hj_Attachment", attachmentFile);
+			session.insert("hj_Attachment", attachmentFileVO);
+			result = session.update("hj_user", attachmentFileVO);
 		} catch (Exception e) {
 			System.out.println("MemberDaoImpl certification Exception->" + e.getMessage());
 		}
+		System.out.println("dao lhjMember MemberDaoImpl certification End...");
+		return result;
 	}
 
-	// 개설자 권한 사용자 정보 등록
+	// 메일 인증 확인용
 	@Override
-	public void certification2(Lhj_MemberVO lhj_MemberVO) {
-		System.out.println("dao lhjMember MemberDaoImpl certification2 Start...");
-		System.out.println("value->" + lhj_MemberVO.getM_meetingauth() + lhj_MemberVO.getM_masterauth() + lhj_MemberVO.getM_certification());
+	public AttachmentFileVO member(AttachmentFileVO attachmentFileVO) {
+		System.out.println("dao lhjMember MemberDaoImpl member Start...");
 		try {
-			session.update("hj_user", lhj_MemberVO);
+			attachmentFileVO = session.selectOne("hj_member", attachmentFileVO);
 		} catch (Exception e) {
-			System.out.println("MemberDaoImpl certification2 Exception->" + e.getMessage());
+			System.out.println("MemberDaoImpl member Exception->" + e.getMessage());
 		}
+		return attachmentFileVO;
 	}
 
 }

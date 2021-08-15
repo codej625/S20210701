@@ -1,19 +1,23 @@
 package com.oracle.springProject01.model;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
 public class AttachmentFile {
-	// AttachmentFile
 	private int f_num;
 	private String f_orgname;
 	private String f_newname;
 	private String f_regdate;
 	private String f_del;
+	private List<MultipartFile> files;
 
-	// member
+//	Member
 	private String m_id;
 	private String m_pw;
 	private String m_name;
@@ -31,5 +35,4 @@ public class AttachmentFile {
 	private String m_masterfile;
 	private String m_mail;
 	private String m_certification;
-		
 }

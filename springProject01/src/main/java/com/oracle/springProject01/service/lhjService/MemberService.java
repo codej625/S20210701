@@ -61,9 +61,11 @@ public interface MemberService {
 	List<Lhj_MemberVO> 		mypage_myPostMEmberList(Lhj_MemberVO lhj_MemberVO);
 		//모임, 고수 인증
 	Lhj_MemberVO           	mypage_mycertification(Lhj_MemberVO lhj_MemberVO);
-		//메인 인증
+		//메일 인증
 	int mail(Lhj_MemberVO lhj_MemberVO);
-		//개설자 권한 파일첨부
-	void certification(AttachmentFileVO attachmentFileVO);
+		//개설자 권한 신청, 파일첨부
+	int certification(AttachmentFileVO attachmentFileVO);
+		//메일 인증 확인
+	AttachmentFileVO member(AttachmentFileVO attachmentFileVO);
 
 }
