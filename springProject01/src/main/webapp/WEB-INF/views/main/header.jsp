@@ -33,8 +33,9 @@
 							<li><a
 								href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
-						<li>고객센터</li>
-					</ul>
+						<li><a href="${pageContext.request.contextPath}/chat/user">고객센터</a></li>
+<%-- 						<li><a href="${pageContext.request.contextPath}/chat/chat">라이브톡</a></li>
+ --%>					</ul>
 				</div>
 				<div class="nav_menu">
 					<div class="nav_detail">
@@ -73,6 +74,10 @@
 					</div>
 					<div class="nav_detail">
 						<i class="far fa-bell fa-3x"></i><br /> <a>알림</a>
+					</div>
+					<div class="nav_detail">
+						<a href="${pageContext.request.contextPath}/chat/chat"><i class="far fa-comment-dots"></i></a><br /> <a
+							href="${pageContext.request.contextPath}/chat/chat">라이브톡</a>
 					</div>
 				</div>
 			</div>

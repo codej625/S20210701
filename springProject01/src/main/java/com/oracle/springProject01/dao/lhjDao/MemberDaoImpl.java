@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 
