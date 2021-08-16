@@ -20,13 +20,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Post;
 import com.oracle.springProject01.model.RecentPost;
 import com.oracle.springProject01.model.Reply;
 import com.oracle.springProject01.service.cheService.MainService;
+import com.oracle.springProject01.service.lhjService.MemberService;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.BoardCategoryService;
-import com.oracle.springProject01.service.yjhService.MemberService;
 import com.oracle.springProject01.service.yjhService.PostService;
 import com.oracle.springProject01.service.yjhService.ReplyService;
 
@@ -38,15 +39,15 @@ public class Yjh_Controller {
 
 	@Autowired
 	private BoardCategoryService bcs;
-
-	@Autowired
-	private MemberService ms;
 	
 	@Autowired
 	private ReplyService rs;
 	
 	@Autowired
 	private MainService mas;
+	
+	@Autowired
+	private MemberService ms;
 	
 //	게시물 리스트 불러오기
 	@RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
@@ -83,9 +84,13 @@ public class Yjh_Controller {
 
 //	모임/클래스 개설하기 버튼
 	@RequestMapping(value = "/post/add")
-	public String add(HttpServletRequest request, Model model) {
+	public String add(HttpServletRequest request, Model model, Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("Yjh_Controller void add() start...");
 		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		
+		lhj_MemberVO = ms.selectMypage(sessionID);
+		System.out.println("lhj_MemberVO.getM_meetingauth()->" + lhj_MemberVO.getM_meetingauth());
+		model.addAttribute(lhj_MemberVO);
 		model.addAttribute("sessionID",sessionID);
 		return "post/add";
 	}

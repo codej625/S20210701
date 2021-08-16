@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.oracle.springProject01.model.RecentPost;
 import com.oracle.springProject01.model.ChePostVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Post;
 import com.oracle.springProject01.service.cheService.MainService;
+import com.oracle.springProject01.service.lhjService.MemberService;
 import com.oracle.springProject01.service.paging.MainPaging;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.PostService;
@@ -29,10 +31,12 @@ public class Che_Controller {
 	private MainService ms;
 	@Autowired
 	private PostService ps;
+	@Autowired
+	private MemberService es;
 	
 	// 메인화면
 	@RequestMapping(value = "main/main")
-	public String mainGetForm(HttpServletRequest request, RecentPost rpost, Post post, Model model) {
+	public String mainGetForm(HttpServletRequest request, RecentPost rpost, Post post, Model model, Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("********* Che_Controller mainForm Start *********");
 		
 		int best_total = 5;
@@ -79,11 +83,12 @@ public class Che_Controller {
 			model.addAttribute("size", listRpost.size());
 			model.addAttribute("listRpost", listRpost);
 		}
-		
+		lhj_MemberVO = es.selectMypage(m_id);
 		model.addAttribute("bt_num1", bt_num1);
 		model.addAttribute("bt_num2", bt_num2);
 		model.addAttribute("bestList1",bestList1);
 		model.addAttribute("bestList2",bestList2);
+		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 		
 		return "main/main";
 	}

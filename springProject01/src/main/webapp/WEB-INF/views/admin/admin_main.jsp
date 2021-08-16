@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<%
+	String context = request.getContextPath();
+%>
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -73,6 +76,9 @@
 					</ol>
 					<p>업데이트시 전달 Message : ${num}
 					<p>업데이트시 전달 Message : ${f.m_num}
+				</div>
+				<div>
+					<%@ include file="/WEB-INF/views/chat/admin.jsp"%>
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">

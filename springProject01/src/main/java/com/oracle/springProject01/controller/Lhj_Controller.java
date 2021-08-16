@@ -46,10 +46,10 @@ public class Lhj_Controller {
 
 	@Autowired
 	private MemberService ms;
-	
+
 	@Autowired
 	private PostService ps;
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
 
@@ -105,7 +105,7 @@ public class Lhj_Controller {
 //	public String Naverjoin(String m_id)
 	public String Naverjoin(HttpServletResponse response, Lhj_MemberVO lhj_MemberVO, @RequestParam("m_id") String m_id)
 			throws Exception {
-		System.out.println("Lhj_Controller String Naverjoin start..."+m_id);
+		System.out.println("Lhj_Controller String Naverjoin start..." + m_id);
 
 		ms.insertMember_NaverID(lhj_MemberVO);
 
@@ -124,38 +124,33 @@ public class Lhj_Controller {
 	@RequestMapping(value = "/member/kakaoCallback")
 	public @ResponseBody String kakaoCallback(String code) {
 		System.out.println("Lhj_Controller String kakaoCallback start...");
-		
-		//post 방식으로 key = value 데이터를 요청(ㅋ카카오로)
-		
+
+		// post 방식으로 key = value 데이터를 요청(ㅋ카카오로)
+
 		RestTemplate rt = new RestTemplate();
-		
-		//httpheader 오브젝트 생성
+
+		// httpheader 오브젝트 생성
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-		
-		//httpbody 오브젝트 생성
+
+		// httpbody 오브젝트 생성
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "142ce1de0bd727a3968c1ff08bfca9be");
 		params.add("redirect_uri", "http://localhost:8181/springProject01/member/kakaoCallback");
 		params.add("code", code);
-				
-		//httpheader와 httpbody를 하나의 오브젝트에 젖ㅇ
-		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = 
-				new HttpEntity<>(params, headers);
-		
-		//http 요청하기 post 방식으ㅗ로, response 변수의 응답 받음
-		ResponseEntity responseEntity = rt.exchange(
-			"https://kauth.kakao.com/oauth/token",
-			HttpMethod.POST,
-			kakaoTokenRequest,
-			String.class
-		);		
-		
-		//Gson, Json Simple, ObjectMapper
+
+		// httpheader와 httpbody를 하나의 오브젝트에 젖ㅇ
+		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
+
+		// http 요청하기 post 방식으ㅗ로, response 변수의 응답 받음
+		ResponseEntity responseEntity = rt.exchange("https://kauth.kakao.com/oauth/token", HttpMethod.POST,
+				kakaoTokenRequest, String.class);
+
+		// Gson, Json Simple, ObjectMapper
 		ObjectMapper objectMapper = new ObjectMapper();
 		Lhj_OAuthToken lhj_OAuthToken = null;
-		
+
 //		try {
 //			lhj_OAuthToken = objectMapper.readValue(response.getBody(), Lhj_OAuthToken.class);
 //		} catch (JsonMappingException e) {
@@ -164,11 +159,10 @@ public class Lhj_Controller {
 //			e.printStackTrace();
 //		}
 
-		
 //		System.out.println("카카오 엑세스 토큰 :" +lhj_OAuthToken.getAccess_token());
-		
+
 //		return "토큰 벗기기 "+response.getBody(); 
-		return "카카오 인증 완료: 토큰"+code+"<br> 토큰 요청에 대한 응답 : "+responseEntity;
+		return "카카오 인증 완료: 토큰" + code + "<br> 토큰 요청에 대한 응답 : " + responseEntity;
 	}
 
 	// 로그인 처리 //로그인 카카오 로그인이랑 네이버 로그인 api 추가할 예정
@@ -431,7 +425,7 @@ public class Lhj_Controller {
 		String m_id = sessionID;
 		lhj_MemberVO = ms.myRGNO(lhj_MemberVO);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
-		
+
 		return "forward:/member/mypage_myreginfo";
 	}
 
@@ -456,11 +450,12 @@ public class Lhj_Controller {
 		return "/member/mypage_mybookmark";
 	}
 
-	//마이페이지 관심내역 신청
+	// 마이페이지 관심내역 신청
 	@RequestMapping(value = "/member/mypage_mybookmarkSin", method = { RequestMethod.GET, RequestMethod.POST })
-	public String mybookmarkSin(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request, HttpSession session) {
+	public String mybookmarkSin(Lhj_MemberVO lhj_MemberVO, Model model, HttpServletRequest request,
+			HttpSession session) {
 		System.out.println("lhjController mybookmarkSin Start...");
-		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		String m_id = sessionID;
 		lhj_MemberVO = ms.myBMtoRG(lhj_MemberVO);
 //		Lhj_MemberVO lhj_MemberVO2 = ms.myBMtoRG2(lhj_MemberVO);
@@ -468,14 +463,14 @@ public class Lhj_Controller {
 		int bc_num = lhj_MemberVO.getBc_num();
 		int p_num = lhj_MemberVO.getP_num();
 		String p_cstatus = lhj_MemberVO.getP_cstatus();
-		int post = ps.postRegInfoInsert(m_id,bt_num, bc_num, p_num, p_cstatus);
-		System.out.println("lhjController mybookmarkSin int bt_num->"+bt_num);
-		if (post>0) {
+		int post = ps.postRegInfoInsert(m_id, bt_num, bc_num, p_num, p_cstatus);
+		System.out.println("lhjController mybookmarkSin int bt_num->" + bt_num);
+		if (post > 0) {
 			int postUpdate = ps.postCapaMinusUpdate(bt_num, bc_num, p_num);
 		}
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 //		model.addAttribute("lhj_MemberVO", lhj_MemberVO2);
-		
+
 		return "forward:/member/mypage_myreginfo";
 	}
 
@@ -636,14 +631,15 @@ public class Lhj_Controller {
 		AttachmentFileVO emali = new AttachmentFileVO();
 		// 이메일 번호 확인용
 		emali = ms.member(attachmentFileVO);
-		// 인증번호를 입력 안 했는지 확인
-		if (attachmentFileVO.getM_mail().equals(emali.getM_mail())) {
+		if (attachmentFileVO.getM_mail().equals(emali.getM_mail()) && attachmentFileVO.getFiles() != null) {
 			// MultipartFile 객체로 파일을 받아서 for문으로 하나씩 빼서 저장
 			for (MultipartFile file : attachmentFileVO.getFiles()) {
 				// C:/Image/ + 원본 파일이름으로 저장
 				String originalfileName = file.getOriginalFilename();
+				System.out.println("originalfileName->" + originalfileName);
 				// 파일로 만들기 위한 작업 경로를 지정
 				File data = new File("C:/Images/" + originalfileName);
+				System.out.println("data->" + data);
 				// 저장 파일로 변환
 				file.transferTo(data);
 				// VO로 받은 files 갯수 확인용
@@ -656,10 +652,46 @@ public class Lhj_Controller {
 			model.addAttribute("lhj_MemberVO", attachmentFileVO);
 			return "member/mypage";
 
-		} else if (attachmentFileVO.getM_mail().equals("") || attachmentFileVO.getM_mail().equals(emali.getM_mail())) {
+		} else if (attachmentFileVO.getM_mail().equals("") || attachmentFileVO.getM_mail() != emali.getM_mail()) {
 			attachmentFileVO.setM_id(m_id);
 			model.addAttribute("lhj_MemberVO", attachmentFileVO);
+			System.out.println("attachmentFileVO.getM_mail()->" + attachmentFileVO.getM_mail());
+			System.out.println("못 지나간다");
+			return "member/mypage";
+		} else {
+			System.out.println("못 지나간다");
+			return "member/mypage";
 		}
-		return "member/mypage";
 	}
+	
+	@RequestMapping(value = "/member/certification2", method = RequestMethod.POST)
+	public String upload2(AttachmentFileVO attachmentFileVO, HttpServletRequest request, String m_id, Model model)
+			throws Exception {
+		System.out.println("Lhj_Controller upload2 Start...");
+		String sessionID = (String) request.getSession().getAttribute("sessionID");
+		m_id = sessionID;
+		AttachmentFileVO emali = new AttachmentFileVO();
+		// 이메일 번호 확인용
+		emali = ms.member(attachmentFileVO);
+		if (attachmentFileVO.getM_mail().equals(emali.getM_mail()) && attachmentFileVO.getFiles() != null) {
+			// 데이터 값을 DB에 저장하기 위해 DTO 단위로 Service로 보냄
+			int result = ms.certification(attachmentFileVO);
+			System.out.println("attachmentFileVO->m_id: " + attachmentFileVO.getM_id());
+			model.addAttribute("result", result);
+			model.addAttribute("lhj_MemberVO", attachmentFileVO);
+			return "member/mypage";
+
+		} else if (attachmentFileVO.getM_mail().equals("") || attachmentFileVO.getM_mail() != emali.getM_mail()) {
+			attachmentFileVO.setM_id(m_id);
+			model.addAttribute("lhj_MemberVO", attachmentFileVO);
+			System.out.println("attachmentFileVO.getM_mail()->" + attachmentFileVO.getM_mail());
+			System.out.println("못 지나간다");
+			return "member/mypage";
+		} else {
+			System.out.println("못 지나간다");
+			return "member/mypage";
+		}
+	}
+	
+	
 }

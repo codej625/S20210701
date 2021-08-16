@@ -22,13 +22,19 @@ public class Pmj_Controller {
 
 	@Autowired
 	private MemberService ms;
+	
+	@Autowired
+	private com.oracle.springProject01.service.lhjService.MemberService es;
 
 	// 채팅
 
 	@RequestMapping(value = "/chat/chat")
-	public ModelAndView chat(Model model) throws Exception {
+	public ModelAndView chat(HttpServletRequest request, Model model, Lhj_MemberVO lhj_MemberVO) throws Exception {
 		System.out.println("Pmj_Controller chat Start...");
+		String m_id = (String) request.getSession().getAttribute("sessionID");
 		// chatting
+		lhj_MemberVO = es.selectMypage(m_id);
+		model.addAttribute(lhj_MemberVO);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("chat/chat");
 
