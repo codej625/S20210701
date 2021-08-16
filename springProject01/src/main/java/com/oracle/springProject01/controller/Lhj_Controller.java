@@ -171,23 +171,29 @@ public class Lhj_Controller {
 		return "카카오 인증 완료: 토큰"+code+"<br> 토큰 요청에 대한 응답 : "+responseEntity;
 	}
 
-	// 로그인 처리
+	// 로그인 처리 //로그인 카카오 로그인이랑 네이버 로그인 api 추가할 예정
 	@RequestMapping(value = "/member/login", method = RequestMethod.POST)
 	public String loginPOST(Lhj_MemberVO lhj_MemberVO, String m_id, Model model, HttpServletRequest request)
 			throws Exception {
 		System.out.println("LoginController login Start...");
 		Lhj_MemberVO login = ms.login(lhj_MemberVO);
-		System.out.println("LoginController result->" + login);
-		if (login == null) {
+		System.out.println("ms.login(lhj_MemberVO) result->" + login);
+		if (login != null) {
+			if (login.getM_id().equals("dkwksla@naver.com")) {
+				return "/admin/admin_main";
+			} else {
+				// 세션유지
+				request.getSession().setAttribute("sessionID", m_id);
+				model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+				model.addAttribute("m_id", m_id);
+				// 넘어간 m_id value 확인용
+				System.out.println("m_id->" + m_id);
+				return "/main/main";
+			}
+		} else if (login == null) {
 			logger.info("아이디 혹은 비밀번호 오류");
-			return "redirect:/member/login";
-		} else {
-			// 세션유지
-			request.getSession().setAttribute("sessionID", m_id);
-			model.addAttribute("m_id", m_id);
-			System.out.println("m_id->" + m_id);
-			return "/main/main";
 		}
+		return "redirect:/member/login";
 	}
 
 	// 네이버 로그인
