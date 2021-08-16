@@ -1,0 +1,130 @@
+@import url('/css/header.css');
+@import url('/css/foot.css');
+
+body {
+    font-size: 15px;
+	font-weight: 400;
+    font-family: 'Nanum Square', sans-serif;
+	line-height: 1.8em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+	color: #3c3c3c;
+	margin: 0px;
+	padding: 0px;
+}
+
+div #image_container img {
+	width: 250px;
+	height: 250px;
+}
+
+ul, li {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	color: #3c3c3c;
+	text-decoration: none;
+}
+
+.userinfo_wrap {
+    position: relative;
+    width: 1200px;
+    margin: 50px auto;
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 30px 0px 80px;
+    /*border: 1px solid black;*/
+}
+.userinfo_wrap .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: -30px;
+    margin-bottom: 40px;
+}
+.userinfo_wrap .info_nav_bar {
+    position: relative;
+	width: 1200px;
+	height: 35px;
+	font-weight: 400;
+	display: flex;
+	z-index: 11;
+	justify-content: center;
+	align-items: center;
+	color:#3c3c3c;
+	border-bottom: 1px solid #EFEFEF;
+    background-color: #ffffff;
+}
+.userinfo_wrap .info_nav_bar .info_nav_menu{
+    width: calc(100% / 5);
+    height: 35px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid black;
+}
+.userinfo_wrap .info_section {
+    position: relative;
+    width: 100%;
+    margin: 50px auto;
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 40px 0px 40px;
+    border: 1px solid black;
+    display: flex;
+    left: -1px;
+}
+.userinfo_wrap .info_section .info_img {
+    width: 230px;
+    height: 250px;
+    margin-left: 40px;
+	position: relative;
+	background-position: center center;
+	background-size: 100%;
+}
+.userinfo_wrap .info_section .info_items {
+    position: relative;
+    margin-left: 50px;
+}
+.info_section .info_items .info_item {
+    width: calc(75%-230px);
+    display: flex;
+}
+.info_section .info_items .info_item .item_title {
+    font-size: 15px;
+    font-weight: 600;
+    width: 100px;
+    padding: 10px 0 0 20px;
+}
+.info_section .info_items .info_item .item_content {
+    position: relative;
+	width: 500px;
+	height: 40px;
+}
+.info_section .info_items .info_item .item_content input {
+    border: none;
+	width: 90%;
+	height: 38px;
+	background-color: transparent;
+	padding-left: 30px;
+	font-size: 15px;
+	box-sizing: border-box;
+}
+.userinfo_wrap .res_section {
+    position: relative;
+    width: 100%;
+    margin: 50px auto;
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 40px 0px 40px;
+    background-color: #269F70;
+    display: flex;
+    left: -1px;
+}
+
+
+/* mypage */
+/* .myreginfo_table{ */
+/* 	border: 1px solid black; */
+/* 	padding-left: 50px; */
+/* } */

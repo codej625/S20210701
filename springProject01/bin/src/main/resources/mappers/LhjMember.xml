@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LhjMember.MemberDao">
+
+<!-- 		회원가입 -보통의 회원가입의 경우 -->
+		<insert id="hj_insertMember">
+<!-- 			insert into member(	  m_id, m_pw, m_name, m_tel -->
+<!-- 								, m_area, m_field, m_regdate, m_rate -->
+<!-- 								, m_withdrawal, m_meetingauth, m_masterauth, m_point	) -->
+<!--             			values(	  #{m_id}, #{m_pw}, #{m_name}, #{m_tel} -->
+<!--             					, #{m_area}, #{m_field}, sysdate, 0 -->
+<!--             					, 'N', 'N', 'N', 0	) -->
+				insert into member(	  m_id, m_pw, m_name, m_tel
+								, m_area, m_field, m_regdate, m_rate
+								, m_withdrawal, m_meetingauth, m_masterauth, m_point	)
+            			values(	  #{m_id}, '1234', #{m_name}, '1234'
+            					, '', '', sysdate, 0
+            					, 'N', 'N', 'N', 0	)
+		</insert>
+<!-- 		회원가입 -네이버 로그인 경우 -->
+		<insert id="hj_insertMember_naver">
+				insert into member( m_id, m_pw, m_name, m_tel, m_regdate)
+							values( #{m_id}, #{m_pw}, #{m_name}, #{m_tel}, sysdate)
+		</insert>
+		
+<!-- 			회원가입시 아이디 중복 체크 -->
+		<select id="hj_m_idCheck" parameterType="Lhj_MemberVO" resultType="Lhj_MemberVO">
+			select * from member where m_id = #{m_id}
+		</select>
+		
+<!-- 			회원가입시 전화번호 중복 체크 -->
+		<select id="hj_m_telCheck" parameterType="Lhj_MemberVO" resultType="Lhj_MemberVO">
+			select * from member where m_tel = #{m_tel}
+		</select>
+
+<!-- 		로그인 -->
+		<select id="hj_selectLog" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+			select *
+			from member
+			where m_id = #{m_id}
+			and m_pw = #{m_pw}
+			and M_WITHDRAWAL = 'N'
+		</select>
+<!-- 			로그인 - 아이디 찾기 -->
+		<select id="hj_find_m_id" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+			select * 
+			from member 
+			where m_name = #{m_name}
+			and m_tel = #{m_tel} 
+		</select>
+			
+<!-- 			로그인 - 비밀번호 찾기 -->
+		<select id="hj_find_m_pw" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+			select * 
+			from member 
+			where m_name = #{m_name}
+			and m_tel = #{m_tel}
+			and m_id = #{m_id}
+		</select>
+
+<!-- 		마이페이지 -->
+<!-- 			개인정보 조회 -->
+		<select id="hj_selectMypage" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from member
+				where m_id = #{m_id}
+		</select>
+<!-- 			회원정보 수정 -->
+		<update id="hj_updateMypage" parameterType="Lhj_MemberVO">
+				update member set 	  m_name = #{m_name}
+					                , m_tel = #{m_tel}
+					                , m_area = #{m_area}
+					                , m_field = #{m_field}
+					                , m_img = #{m_img}
+                where m_id = #{m_id}
+		</update>
+<!-- 			비밀번호 변경 -->
+		<update id="hj_changePW"  parameterType="Lhj_MemberVO">
+				update member set	m_pw = #{m_pw}
+				where m_id = #{m_id}
+		</update>		
+<!-- 			신청정보 조회 -->
+		<select id="hj_myRegInfo" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				
+				select *
+				from reginfo r LEFT OUTER JOIN post p 
+				ON (r.bt_num = p.bt_num AND r.bc_num = p.bc_num AND r.p_num = p.p_num) 
+				where r.m_id = #{m_id}
+		
+<!-- 				select * -->
+<!-- 				from member NATURAL JOIN reginfo NATURAL JOIN post -->
+<!-- 				where m_id = #{m_id} -->
+		</select>
+		
+<!-- 			신청정보 조회 - 모임만 -->
+		<select id="hj_myRegInfo_meeting" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from reginfo r LEFT OUTER JOIN post p 
+				ON (r.bt_num = p.bt_num AND r.bc_num = p.bc_num AND r.p_num = p.p_num) 
+				where r.m_id = #{m_id}
+				and r.bt_num = 1
+				
+<!-- 				select * -->
+<!-- 				from member NATURAL JOIN reginfo NATURAL JOIN post -->
+<!-- 				where m_id = #{m_id} and bt_num = 1 -->
+		</select>
+		
+<!-- 			신청정보 조회 - 클래스만 -->
+		<select id="hj_myRegInfo_class" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+		
+				select *
+				from reginfo r LEFT OUTER JOIN post p 
+				ON (r.bt_num = p.bt_num AND r.bc_num = p.bc_num AND r.p_num = p.p_num) 
+				where r.m_id = #{m_id}
+				and r.bt_num = 2
+		
+<!-- 				select * -->
+<!-- 				from member NATURAL JOIN reginfo NATURAL JOIN post -->
+<!-- 				where m_id = #{m_id} and bt_num = 2 -->
+		</select>
+<!-- 			신청 취소 -->
+		<delete id="hj_myRGNO">
+				delete from reginfo
+				where m_id = #{m_id}
+				and bt_num = #{bt_num}
+				and bc_num = #{bc_num}
+				and p_num = #{p_num}
+		</delete>
+		
+<!-- 			관심내역 조회 -->
+		<select id="hj_myBookMark" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from bookmark b LEFT OUTER JOIN post p 
+				ON (b.bt_num = p.bt_num AND b.bc_num = p.bc_num AND b.p_num = p.p_num) 
+				where b.m_id = #{m_id}
+				
+<!-- 				select * -->
+<!-- 				from member NATURAL JOIN bookmark NATURAL JOIN post -->
+<!-- 				where m_id = #{m_id} -->
+		</select>
+		
+<!-- 			관심내역 조회 -클래스만 -->
+		<select id="hj_myBookMark_class" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from bookmark b LEFT OUTER JOIN post p 
+				ON (b.bt_num = p.bt_num AND b.bc_num = p.bc_num AND b.p_num = p.p_num) 
+				where b.m_id = #{m_id}
+				and b.bt_num = 2
+				
+<!-- 				select * -->
+<!-- 				from member NATURAL JOIN bookmark NATURAL JOIN post -->
+<!-- 				where m_id = #{m_id} and bt_num = 1 -->
+		</select>
+		
+<!-- 			관심내역 조회 -모임만 -->
+		<select id="hj_myBookMark_meeting" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from bookmark b LEFT OUTER JOIN post p 
+				ON (b.bt_num = p.bt_num AND b.bc_num = p.bc_num AND b.p_num = p.p_num) 
+				where b.m_id = #{m_id}
+				and b.bt_num = 1
+				
+<!-- 				select * -->
+<!-- 				from member NATURAL JOIN bookmark NATURAL JOIN post -->
+<!-- 				where m_id = #{m_id} and bt_num = 2 -->
+		</select>
+		
+<!-- 			관심내역에서 신청 b_reg => y -->
+		<update id="hj_myBMtomyRG" parameterType="Lhj_MemberVO">
+				update bookmark set b_reg = 'Y'
+				where m_id = #{m_id}
+				and bt_num = #{bt_num}
+				and bc_num = #{bc_num}
+				and p_num = #{p_num}
+		</update>
+<!-- 			관심내역에서 신청 insert -->
+		<insert id="hj_myBMtoRG2">
+				insert into reginfo( m_id, bt_num, bc_num, p_num )
+							values( #{m_id}, #{bt_num}, #{bc_num}, #{p_num} )
+					
+		</insert>
+<!-- 			관심내역 취소 -->
+		<delete id="hj_myBMNO">
+				delete from bookmark
+				where m_id = #{m_id}
+				and bt_num = #{bt_num}
+				and bc_num = #{bc_num}
+				and p_num = #{p_num}		
+		</delete>
+<!-- 			회원 탈퇴로 업뎃 (member_m_withdrawal => y) -->
+		<update id="hj_myDelMySelf2" parameterType="Lhj_MemberVO">
+				update member set M_WITHDRAWAL = 'Y'
+				where m_id = #{m_id}
+				and m_pw = #{m_pw}
+		</update>
+		
+<!-- 		내가 쓴 글 리스트 -all -->
+		<select id="hj_myPostList" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from post
+				where m_id = #{m_id}
+		</select>
+		
+<!-- 		내가 쓴 글 리스트 -class -->
+		<select id="hj_myPostList_class" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from post
+				where m_id = #{m_id}
+				and bt_num = 2
+		</select>
+		
+<!-- 		내가 쓴 글 리스트 -meeting -->
+		<select id="hj_myPostList_meeting" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from post
+				where m_id = #{m_id}
+				and bt_num = 1
+		</select>
+
+<!-- 		내가 쓴 글 신청 회원 리스트 -->
+		<select id="hj_myPostMEmberList" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
+				select *
+				from reginfo NATURAL JOIN member
+				where bt_num = #{bt_num}
+				and bc_num = #{bc_num}
+				and p_num = #{p_num}
+		</select>
+
+	<!-- 모임, 클래스 인증 -->
+	<select id="hj_mycertification" resultType="Lhj_MemberVO"
+		parameterType="Lhj_MemberVO">
+		SELECT *
+		FROM member
+		WHERE m_id = #{m_id}
+	</select>
+
+	<!-- 메일 인증 -->
+	<update id="hj_mail" parameterType="lhj_MemberVO">
+		UPDATE member SET m_mail = #{m_mail} WHERE m_id = #{m_id}
+	</update>
+
+	<!-- 권한 받기용 첨부파일 -->
+	<insert id="hj_Attachment" parameterType="LjwAttachmentFileVO">
+		<selectKey keyProperty="f_num" resultType="int"
+			order="BEFORE">
+			select SEQ_MP_FILE_NO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO
+		ATTACHMENTFILE(
+		  m_id
+		, f_num
+		, f_orgname
+		, f_regdate
+		)
+		VALUES
+		( #{m_id}
+		, #{f_num}
+		, #{f_orgname}
+		, #{f_regdate}
+		)
+	</insert>
+
+	<!-- 개설자 권한 신청 -->
+	<update id="hj_user" parameterType="LjwAttachmentFileVO">
+		UPDATE member SET 
+		m_meetingauth = #{m_meetingauth, jdbcType=VARCHAR}, m_masterauth = #{m_masterauth, jdbcType=VARCHAR}, m_certification = #{m_certification} 
+		WHERE m_id = #{m_id}
+	</update>
+	
+		<!-- 모임, 클래스 인증 -->
+	<select id="hj_member" resultType="LjwAttachmentFileVO"
+		parameterType="LjwAttachmentFileVO">
+		SELECT *
+		FROM member
+		WHERE m_id = #{m_id}
+	</select>
+</mapper>

@@ -65,25 +65,12 @@
 							</c:if>
 						</c:if>
 						<c:if test="${sessionID == null}">
-							<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-id-card fa-3x"></i><br />모임개설</a>
+							<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-list-alt fa-3x"></i><br />모임개설</a>
 						</c:if>
 					</div>
 					<div class="nav_detail">
 						<a href="${pageContext.request.contextPath}/chat/chat"><i class="far fa-comment-dots"></i></a><br /> <a
 							href="${pageContext.request.contextPath}/chat/chat">라이브톡</a>
-					</div>
-					<div class="nav_detail">
-						<c:if test="${sessionID == null}">
-                        	<a href="${pageContext.request.contextPath}/member/login"><i class="far fa-calendar-check"></i><br/>출석체크</a>
-                        </c:if>
-						<c:if test="${sessionID != null}">
-                        	<a onclick="chkValue()"><i class="far fa-calendar-check"></i><br/>출석체크</a>
-                        	<div id="rand-val">Let's generate random Value</div>
-    						<input type="text" id="chkdate" value="${sessionID }">
-                        </c:if>
-                    </div>
-					<div class="nav_detail">
-						<a><i class="far fa-bell fa-3x"></i><br />알림</a>
 					</div>
 				</div>
 			</div>

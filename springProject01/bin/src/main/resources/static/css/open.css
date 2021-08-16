@@ -1,0 +1,77 @@
+@import url('/css/header.css');
+@import url('/css/foot.css');
+
+body {
+    font-size: 15px;
+	font-weight: 400;
+    font-family: 'Nanum Square', sans-serif;
+	line-height: 1.8em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+	color: #3c3c3c;
+	margin: 0px;
+	padding: 0px;
+}
+
+div #preview img {
+	width: 250px;
+	height: 250px;
+}
+
+ul, li {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	color: #3c3c3c;
+	text-decoration: none;
+}
+.oepn_wrap {
+    position: relative;
+    width: 75%;
+    margin: 50px auto;
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 30px 0px 80px;
+}
+.oepn_wrap .page_title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: -30px;
+    margin-bottom: 40px;
+}
+.oepn_wrap .info_section {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 40px 0px 40px;
+    border: 1px solid black;
+    display: flex;
+    left: -1px;
+}
+.oepn_wrap .info_section .class_img {
+    width: 300px;
+    height: 350px;
+    margin-left: 40px;
+	position: relative;
+	background-position: center center;
+	background-size: 100%;
+}
+.oepn_wrap .info_section .section_tit {
+    position: relative;
+    font-size: 17px;
+    font-weight: 700;
+    width: 150px;
+    padding-left: 30px;
+}
+.oepn_wrap .info_section .section_con {
+    position: relative;
+    width: 100%;
+    background-color: #ffffff;
+}
+.oepn_wrap .btn_section {
+    text-align: center;
+}
+

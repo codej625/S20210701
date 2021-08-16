@@ -1,0 +1,13 @@
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "HTTP://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+ 	<typeAliases>
+		<typeAlias alias="Post" type="com.oracle.springProject01.model.Post"/>
+		<typeAlias alias="Member" type="com.oracle.springProject01.model.Member"/>
+		<typeAlias alias="Lhj_MemberVO" type="com.oracle.springProject01.model.Lhj_MemberVO"/>
+		<typeAlias alias="ChePostVO" type="com.oracle.springProject01.model.ChePostVO"/>
+		<typeAlias alias="LjwAttachmentFileVO" type="com.oracle.springProject01.model.AttachmentFileVO"/>
+		<typeAlias alias="LjwAttachmentFile" type="com.oracle.springProject01.model.AttachmentFile"/>
+		<typeAlias alias="Reply" type="com.oracle.springProject01.model.Reply"/>
+		<typeAlias alias="RecentPost" type="com.oracle.springProject01.model.RecentPost"/>
+	</typeAliases>
+</configuration>

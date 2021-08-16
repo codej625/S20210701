@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="LjwMember">
+
+	<select id="ljwListMember" parameterType="Member"
+		resultType="Member">
+		SELECT * FROM (SELECT rownum rn, a.*
+		FROM (SELECT * FROM
+		member WHERE m_withdrawal = 'N' ORDER BY m_regdate DESC) a
+		)
+		WHERE rn
+		BETWEEN #{start} AND #{end}
+	</select>
+
+	<select id="ljwTotal" resultType="int">
+		SELECT COUNT(*) FROM member
+		WHERE m_withdrawal = 'N'
+	</select>
+
+<!-- 	<select id="ljwCertificationTotal" resultType="int"> -->
+<!-- 		SELECT COUNT(*) FROM member -->
+<!-- 		WHERE m_withdrawal = 'N' -->
+<!-- 	</select> -->
+
+	<update id="ljwUpdate" parameterType="String">
+		UPDATE member SET
+		m_masterauth = 1 WHERE m_id = #{m_id}
+	</update>
+
+	<update id="ljwDelete" parameterType="String">
+		UPDATE member SET
+		m_withdrawal = 'Y' WHERE m_id = #{m_id}
+	</update>
+</mapper>

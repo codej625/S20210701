@@ -1,0 +1,115 @@
+body {
+    font-size: 15px;
+	font-weight: 400;
+    font-family: 'Nanum Square', sans-serif;
+	line-height: 1.8em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+	color: #3c3c3c;
+	margin: 0px;
+	padding: 0px;
+}
+ul, li {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+a {
+	color: #3c3c3c;
+	text-decoration: none;
+}
+main {
+	position: relative;
+	margin-left: 300px;
+	display: flex;
+}
+.ex_section {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 1300px;
+	height: 550px;
+	vertical-align: top;
+	margin: 30px auto;
+	background-color: #ffffff;
+	box-shadow: 0px 0px 30px #eee;
+}
+.ex_section .ex_img {
+	height: 550px;
+	position: relative;
+	background-position: center center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 20% 10%;
+}
+.ex_section .ex_btn {
+	position: absolute;
+	margin: 430px 750px;
+	cursor: pointer;
+	display: flex;
+}
+.ex_section .ex_btn a{
+	font-size: 30px;
+	font-weight: 700;
+	cursor: pointer;
+	box-sizing: border-box;
+	border-radius: 1px solid #ffffff;
+	color: #eee;
+	padding-right: 60px;
+}
+.ex_section .ex_btn input{
+	cursor: pointer;
+}
+.ex_section .ex_title {
+	font-size: 28px;
+	text-align: center;
+	padding-top: 20px;
+}
+.ex_section .class_wrap {
+	position: absolute;
+	display: flex;
+	flex-direction: row;
+	margin-left: 35px;
+}
+.ex_section .class_wrap .class_item {
+	position: relative;
+	width: 230px;
+	height: 330px;
+	margin: 110px 20px 110px 0px;
+	cursor: pointer;
+	border: 1px solid #eee;
+	border-radius: 3px;
+}
+.ex_section .class_wrap .class_item .class_img {
+	width: 210px;
+    height: 280px;
+    overflow: hidden;
+    box-sizing: border-box;
+    display: inline-block;
+	margin: 10px 10px;
+}
+.ex_section .class_wrap .class_item .class_img img{
+    width: 170%;
+    height: 100%;
+}
+.ex_section .class_wrap .class_item .class_info {
+	text-align: center;
+	margin-top: -15px;
+	font-size: 13px;
+	font-weight: 400;
+}
+::-webkit-file-upload-button { cursor:pointer; }
+.default_bt {
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	font-size: 20px;
+	border: 0px;
+	border-radius: 6px;
+	font-weight: 700;
+	margin-right: 30px;
+	width: 200px;
+	height: 50px;
+	background-color: #269F70;
+	color: #eee;
+}

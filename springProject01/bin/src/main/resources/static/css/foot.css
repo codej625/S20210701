@@ -1,0 +1,22 @@
+.footer {
+    padding: 30px 40px;
+    position: relative;
+    height: 60px;
+    background-color: #ececec;
+}
+.footer .company_info {
+    color: #656565;
+}
+.footer .company_info ul li {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 25px;
+    margin-bottom: 15px;
+}
+.footer .ft_copyright {
+    position: absolute;
+    right: 80px;
+    bottom: 30px;
+    font-size: 14px;
+    font-weight: 500;
+}

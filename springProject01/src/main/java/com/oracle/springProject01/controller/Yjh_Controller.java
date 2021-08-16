@@ -201,48 +201,30 @@ public class Yjh_Controller {
 	
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-//<<<<<<< HEAD
-//	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, Model model, HttpServletRequest request) {
-//		System.out.println("Yjh_Controller String postListDetail start...");
-////		섹션아이디
-//		String sessionID =  (String) request.getSession().getAttribute("sessionID");
-//		String m_id = sessionID;
-////		게시물을 신청 했는지 안했는지 확인
-//		int result1 = ps.regInfoCheck(m_id,bt_num, bc_num, p_num);
-//		System.out.println("postListDetail regInfoCheck result1->"+result1);
-////		게시물을 찜 했는지 안했는지 확인
-//		int result2 = ps.bookmarkCheck(m_id,bt_num, bc_num, p_num);
-//		System.out.println("postListDetail regInfoCheck result1->"+result1);
-////		조회수 증가해주기
-//		int result = ps.postHit(bt_num, bc_num, p_num);
-////		게시물 상세정보
-//		Post post = ps.postListDetail(bt_num, bc_num, p_num);
-//		System.out.println("Yjh_Controller postListDetail post->" + post);
-////		댓글 리스트
-//		List<Reply> replyList = rs.postReplyList(bt_num, bc_num, p_num);
-//		System.out.println("Controller postReplyList done");
-////		Reply reply = rs.postReplyList(bt_num, bc_num, p_num);
-//		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0, r_level = 0;
-//		model.addAttribute("sessionID",sessionID);
-//		model.addAttribute("r_num",r_num);
-//		model.addAttribute("r_rate",r_rate);
-//		model.addAttribute("r_indent",r_indent);
-//		model.addAttribute("r_group",r_group);
-//		model.addAttribute("r_level",r_level);
-//		model.addAttribute("result",result1);
-//		model.addAttribute("result2",result2);
-//		model.addAttribute("post", post);	
-//		model.addAttribute("reply",replyList);
-//=======
 	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, RecentPost rpost, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
-		
-		// 게시물 읽어오기
+
+//		섹션아이디
+		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+		String m_id = sessionID;
+//		게시물을 신청 했는지 안했는지 확인
+		int result1 = ps.regInfoCheck(m_id,bt_num, bc_num, p_num);
+		System.out.println("postListDetail regInfoCheck result1->"+result1);
+//		게시물을 찜 했는지 안했는지 확인
+		int result2 = ps.bookmarkCheck(m_id,bt_num, bc_num, p_num);
+		System.out.println("postListDetail regInfoCheck result1->"+result1);
+//		조회수 증가해주기
+		int result = ps.postHit(bt_num, bc_num, p_num);
+//		게시물 상세정보
 		Post post = ps.postListDetail(bt_num, bc_num, p_num);
 		System.out.println("Yjh_Controller postListDetail post->" + post);
+//		댓글 리스트
+		List<Reply> replyList = rs.postReplyList(bt_num, bc_num, p_num);
+		System.out.println("Controller postReplyList done");
+//		Reply reply = rs.postReplyList(bt_num, bc_num, p_num);
+		int r_num = 0, r_rate = 0, r_indent = 0, r_group = 0, r_level = 0;
 		
 		// 최근 본 게시물(로그인 시에만 구현)
-		String m_id = (String) request.getSession().getAttribute("sessionID");
 		System.out.println("m_id -> " + m_id);
 		if(m_id != null) {
 			rpost.setBt_num(post.getBt_num());
@@ -257,6 +239,16 @@ public class Yjh_Controller {
 		}
 		
 		model.addAttribute("post", post);
+		model.addAttribute("sessionID",sessionID);
+		model.addAttribute("r_num",r_num);
+		model.addAttribute("r_rate",r_rate);
+		model.addAttribute("r_indent",r_indent);
+		model.addAttribute("r_group",r_group);
+		model.addAttribute("r_level",r_level);
+		model.addAttribute("result",result1);
+		model.addAttribute("result2",result2);	
+		model.addAttribute("reply",replyList);
+		
 		return "post/contents";
 	}
 	

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PmjChat">
+<!-- 채팅 이름 -->
+		<select id="mj_selectChat" resultType="PmjChatVO" parameterType="string">
+				select *
+				from member
+				where m_id = #{m_id}
+		</select>
+</mapper>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PostDao">
+
+	<!-- 게시물 갯수 가져오기 -->
+	<select id="total" parameterType="Post" resultType="int">
+		select count(*) from post
+		<where>
+			<if test='bt_num!=0'> bt_num = #{bt_num} </if>
+			<if test='bc_num!=0'> and bc_num = #{bc_num} </if>
+		</where>
+	</select>
+
+	<!-- 게시물 리스트 가져오기 -->
+	<select id="postList" parameterType="Post" resultType="Post">
+		select * from
+			(select rownum rn, a.* from
+				(select * from post
+					<where>
+						<if test='bt_num!=0'> bt_num = #{bt_num} </if>
+						<if test='bc_num!=0'> and bc_num = #{bc_num} </if>
+					</where>
+				order by bt_num,bc_num,p_num desc) a
+			)
+		where rn between #{start} and #{end}
+	</select>
+	
+<!-- 	로그인되어있는 아이디 가져오기 -->
+	<select id="registerMember" parameterType="Post" resultType="Post">
+		select  *
+		from    member
+		where   m_id = #{m_id}
+	</select>
+	
+<!-- 게시물 작성하기 -->
+	<insert id="postInsert" parameterType="Post">
+		insert into post
+				(bt_num,bc_num,p_num,p_title,p_img,m_id,p_intro,p_info,p_gname,p_capa,p_cost,p_loc,p_metstart,p_metend,
+				 p_starttime,p_endtime,p_appstart,p_append,p_cstatus,p_writedate,p_tag,p_bankname,p_accountnumber)
+		values (#{bt_num},#{bc_num},(select max(p_num)+1 
+									 from post 
+									 where bt_num= #{bt_num} and bc_num = #{bc_num}),
+				#{p_title},#{p_img},#{m_id},#{p_intro},#{p_info},#{p_gname},#{p_capa},#{p_cost},#{p_loc},#{p_metstart},#{p_metend},
+				#{p_starttime},#{p_endtime},#{p_appstart},#{p_append},#{p_cstatus},sysdate,#{p_tag},#{p_bankname},#{p_accountnumber})
+	</insert>
+	
+<!-- 	신청했는지 안했는지 확인 -->
+	<select id="regInfoCheck" parameterType="Post" resultType="int">
+		select count(*) from reginfo where m_id = #{m_id} and bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</select>
+	
+<!-- 	게시물을 찜 했는지 안했는지 확인 -->
+	<select id="bookmarkCheck" parameterType="Post" resultType="int">
+		select count(*) from bookmark where m_id = #{m_id} and bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</select>
+	
+<!-- 	조회수 증가 -->
+	<update id="postHit" parameterType="Post">
+		update post 
+		set    p_hit = p_hit + 1 
+		where  bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</update>
+	
+<!-- 게시물 내용보기 -->
+	<select id="postListDetail" parameterType="Post" resultType="Post">
+		select  p.* , m.m_name, m.m_tel, m.m_img
+		from    post p, member m
+		where   p.bt_num =  #{bt_num}
+		and     p.bc_num = #{bc_num}
+		and     p.p_num =  #{p_num}
+		and     p.m_id = m.m_id
+		
+	</select>
+	
+<!-- 게시물 수정하기 -->
+	<update id="postListUpdate" parameterType="Post">
+		update  post
+		set 	p_title = #{p_title}, p_intro = #{p_intro}, p_info = #{p_intro}, p_gname = #{p_gname},
+				p_capa = #{p_capa}, p_cost = #{p_cost}, p_loc = #{p_loc}, p_starttime = #{p_starttime},
+				p_endtime = #{p_endtime}, p_cstatus = #{p_cstatus} 
+		where 	bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</update>
+	
+<!-- 게시물 삭제 -->
+	<delete id="postDelete" parameterType="Post">
+		delete 
+		from    post 
+		where   bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</delete>
+	
+<!-- 	게시물 신청하기 -->
+	<insert id="postRegInfoInsert3" parameterType="Post">
+		insert into reginfo 
+			(m_id, bt_num, bc_num, p_num, ri_pstatus)
+		values
+			(#{m_id},#{bt_num},#{bc_num},#{p_num},
+			<if test="#{p_cstatus} == '0'">
+				'N'
+			</if>
+			<if test="#{p_cstatus} == '1'">
+				'Y'
+			</if>) 
+	</insert>
+	
+	
+	<!-- 	게시물 신청하기 -->
+	<insert id="postRegInfoInsert" parameterType="Post">
+		insert into reginfo 
+			(m_id, bt_num, bc_num, p_num, ri_pstatus)
+		values
+			(#{m_id},#{bt_num},#{bc_num},#{p_num},
+			 DECODE(#{p_cstatus},'0','N','1','Y') 
+			)
+	</insert>
+	
+<!-- 	게시물 신청하면 p_capa값 마이너스 해주기 -->
+	<update id="postCapaMinusUpdate" parameterType="Post">
+		update post 
+		set    p_capa = p_capa - 1
+		where  bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</update>
+	
+<!-- 	게시물 신청 취소하기 -->
+	<delete id="postRegInfoDelete" parameterType="Post">
+		delete 
+		from   reginfo
+		where  bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num} and m_id = #{m_id}
+	</delete>
+	
+<!-- 	게시물 신청하면 p_capa값 플러스 해주기 -->
+	<update id="postCapaPlusUpdate" parameterType="Post">
+		update post
+		set    p_capa = p_capa + 1
+		where  bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
+	</update>
+	
+<!-- 	게시물 찜하기 -->
+	<insert id="postBookmarkInsert" parameterType="Post">
+		insert into bookmark
+			(m_id, bt_num, bc_num, p_num, b_time)
+		values
+			(#{m_id}, #{bt_num}, #{bc_num}, #{p_num}, sysdate)
+	</insert>
+	
+<!-- 	게시물 찜  취소하기 -->
+	<delete id="postBookmarkDelete" parameterType="Post">
+		delete
+		from   bookmark
+		where  bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num} and m_id = #{m_id}
+	</delete>
+
+</mapper>

@@ -12,7 +12,7 @@
 
 	<!-- 검색 total -->
 	<select id="searchTotal" parameterType="Post" resultType="Post">
-		select count(*) from post where '%'||#{keyword}||'%' or p_intro like '%'||#{keyword}||'%'
+		select count(*) from post where p_title like '%'||#{keyword}||'%' or p_intro like '%'||#{keyword}||'%'
 	</select>
 	
 	<!-- 검색 list -->
@@ -20,7 +20,7 @@
 		select * from 
 			(select rownum rn, a.* from 
 				(select * from post 
-                 where p_title like  '%'||#{keyword}||'%' OR p_intro like '%'||#{keyword}||'%'
+                 where p_title like '%'||#{keyword}||'%' OR p_intro like '%'||#{keyword}||'%'
                  order by p_num) a
 			)
 		where rn between #{start} and #{end}

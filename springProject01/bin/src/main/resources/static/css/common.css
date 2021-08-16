@@ -1,0 +1,308 @@
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 20px;
+    color: #353535;
+    font-family: 'Roboto', 'NanumSquare', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+ul, li {
+    margin: 0px;
+    padding: 0px;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+.intro_section1 {
+    height: 100vh;
+}
+.intro_section2 {
+    margin-top: -150px;
+    padding: 0px 150px;
+    position: relative;
+}
+.intro_section1 .main_title {
+    font-size: 8vw;
+    font-family: 'Nanum Myeongjo';
+    font-weight: 700;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    margin-top: -12vw;
+    margin-left: -28vw;
+}
+.intro_section1 .sub_title {
+    font-size: 1.2vw;
+    font-weight: 500;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    margin-top: 10vw;
+    margin-left: -9vw;
+}
+.intro_section1 .logo {
+    position: absolute;
+    top: 87px;
+    left: 70px;
+}
+.intro_section1 .logo img {
+    width: 100px;
+}
+.intro_section1 .site_title {
+    position: absolute;
+    bottom: 70px;
+    left: 86px;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -.55px;
+    z-index: 1;
+}
+.intro_section1 .copyright {
+    position: absolute;
+    transform: rotate(90deg);
+    top: 290px;
+    right: -130px;
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    font-weight: 800;
+}
+.intro_section2 img {
+    width: 80%;
+}
+.intro_section2 .img_deco_copy {
+    position: absolute;
+    top: 65%;
+    right: -10%;
+    font-size: 8vw;
+    font-weight: 800;
+}
+.intro_section3 {
+    padding: 300px 130px 400px;
+    overflow: hidden;
+}
+.intro_section3 .sub_title {
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.intro_section3 .main_title {
+    font-size: 28px;
+    font-weight: 800;
+}
+.intro_section3 .section_desc {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #898989;
+    line-height: 34px;
+    font-weight: 400;
+}
+.intro_section3 .career_list_section {
+    margin-top: 40px;
+    font-weight: 800;
+    font-size: 4vw;
+    color: #D5D5D5;
+    letter-spacing: 0;
+    line-height: 7vw;
+    position: relative;
+}
+.intro_section3 .career_list_section .career_list_t {
+    position: relative;
+    z-index: 1;
+}
+.intro_section3 .career_list_section .career_deco {
+    z-index: 0;
+    font-size: 50vw;
+    font-weight: 600;
+    position: absolute;
+    right: -10vw;
+    bottom: 0vw;
+    color: #3f3f3f;
+    letter-spacing: -3vw;
+}
+.intro_section4 {
+    padding: 0px 100px 100px 200px;
+}
+.intro_section4 .main_title {
+    font-weight: 800;
+    font-size: 60px;
+    letter-spacing: 0;
+    line-height: 40px;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #353535;
+}
+.intro_section4 .main_desc {
+    font-weight: 400;
+    position: relative;
+    margin-top: 85px;
+    margin-left: 100px;
+    font-size: 19px;
+    color: #353535;
+    line-height: 44px;
+}
+.intro_section4 .main_desc .text_b {
+    font-weight: 600;
+}
+.intro_section5 {
+    margin: 100px 0px;
+}
+.intro_section5 .main_section_tl {
+    text-align: right;
+    position: relative;
+}
+.intro_section5 .main_section_tl .img_section {
+    display: inline-block;
+    width: 83vw;
+    height: 900px;
+    overflow: hidden;
+}
+.intro_section5 .main_section_tl .img_block {
+    position: absolute;
+    bottom: 0px;
+    left: 0%;
+    width: 50%;
+    height: 40%;
+    background-color: #fff;
+}
+.intro_section5 .main_section_tl .img_block .main_title {
+    margin-top: 9vw;
+    margin-right: 5vw;
+    font-weight: 600;
+    font-size: 20px;
+    color: #353535;
+    text-align: right;
+    line-height: 40px;
+}
+.intro_section5 .main_section_tl .deco_title {
+    font-weight: 800;
+    position: absolute;
+    top: 27vw;
+    left: -5vw;
+    font-size: 22vw;
+    color: #494949;
+    line-height: 0px;
+    letter-spacing: -1vw;
+    z-index: 3;
+}
+.intro_section6 {
+    width: 100%;
+    padding-left: 130px;
+    margin-top: 200px;
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 900px;
+}
+.intro_section6 .sub_title {
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+.intro_section6 .section_desc {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #898989;
+    line-height: 36px;
+    font-weight: 400;
+}
+.intro_section6 .contact_summary {
+    margin: 60px 0px;
+}
+.intro_section6 .contact_summary .cs_item {
+    display: inline-block;
+    margin-right: 70px;
+    line-height: 45px;
+}
+.intro_section6 .contact_form {
+    display: inline-block;
+    width: 30%;
+    z-index: 2;
+    position: absolute;
+}
+.intro_section6 .contact_form input, .intro_section6 .contact_form textarea {
+    border: none;
+    background: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    line-height: 40px;
+    font-family: 'NanumSquare';
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 10px;
+    color: #353535;
+}
+.intro_section6 .contact_form .submit_bt {
+    margin-top: 20px;
+    width: 200px;
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #282828;
+    cursor: pointer;
+    background-color: #eee;
+    transition-duration: 0.2s;
+}
+.intro_section6 .contact_form .submit_bt:hover {
+    background-color: #353535;
+    color: #fff;
+}
+.intro_section6 .contact_deco {
+    font-weight: 800;
+    font-size: 20vw;
+    position: absolute;
+    z-index: 0;
+    right: -1vw;
+    bottom: 250px;
+    line-height: 20vw;
+    letter-spacing: -0.5vw;
+    color: #494949;
+}
+.intro_section6 .contact_desc {
+    position: absolute;
+    bottom: 170px;
+    font-size: 18px;
+    line-height: 34px;
+    z-index: 1;
+}
+.intro_section6 .top_bt {
+    position: absolute;
+    bottom: 70px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #353535;
+    letter-spacing: -0.45px;
+}
+.sns_section {
+    position: fixed;
+    bottom: 60px;
+    right: 77px;
+    font-size: 20px;
+    z-index: 2;
+}
+.sns_section .sns_deco {
+    display: inline-block;
+    width: 110px;
+    height: 3px;
+    background: #353535;
+    vertical-align: middle;
+    margin-top: -5px;
+    margin-right: 40px;
+}
+.sns_section ul {
+    display: inline-block;
+}
+.sns_section ul li {
+    font-weight: 800;
+    font-size: 22px;
+    display: inline-block;
+    margin-left: 40px;
+    vertical-align: middle;
+}
+.sns_section ul li:first-child {
+    margin-left: 0px;
+}

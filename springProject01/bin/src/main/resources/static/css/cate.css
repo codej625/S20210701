@@ -1,0 +1,111 @@
+@import url('/css/header.css');
+@import url('/css/foot.css');
+
+body {
+    font-size: 15px;
+   font-weight: 400;
+    font-family: 'Nanum Square', sans-serif;
+   line-height: 1.8em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+   color: #3c3c3c;
+   margin: 0px;
+   padding: 0px;
+}
+ul, li {
+   list-style: none;
+   margin: 0px;
+   padding: 0px;
+}
+a {
+   color: #3c3c3c;
+   text-decoration: none;
+}
+
+.contents_wrap {
+    position: relative;
+    width: 75%;
+    margin: 50px auto;
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 30px 0px 80px;
+}
+.contents_wrap .fil_section {
+    max-height: 300px;
+    margin: 0px auto;
+    border: 1px solid #3c3c3c;
+    border-radius: 5px;
+}
+.contents_wrap .fil_section .fil_title {
+    font-size: 15px;
+    color:#3c3c3c;
+}
+.contents_wrap .fil_section .fil_items {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+}
+.contents_wrap .fil_section .fil_items .item {
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    padding-top: 10px;
+    margin:0 10px 20px 10px;
+}
+.contents_wrap .con_section {
+    margin-top: 50px;
+    text-align: center;
+   background-color: #ffffff;
+    border: 1px solid #3c3c3c;
+    padding-bottom: 120px;
+}
+.con_section .con_item {
+   position: relative;
+   display: inline-block;
+   vertical-align: top;
+    text-align: left;
+    width: 300px;
+    height: 300px;
+    top: 20px;
+   margin: 30px 20px 10px 20px;
+   background-color: gray;
+   
+}
+.con_section .con_item .con_img {
+    width: 250px;
+   height: 210px;
+    margin: auto;
+    margin-top: 20px;
+   position: relative;
+   background-position: center center;
+   background-size: 100%;
+}
+.con_section .con_item img {
+    width: 100%;
+    height: 100%;
+   background-size: 100%;
+}
+.con_itm {
+    width: 250px;
+   height: 25px;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    background-color: aqua;
+}
+.con_itm .con_contents {
+    width: 125px;
+   height: 25px;
+   position: relative;
+    background-color: #269F70;
+}
+.con_itm .con_subinfo {
+    width: 125px;
+   height: 25px;
+   position: relative;
+    background-color: beige;
+}
+.con_section .page_btn {
+    margin: 100px auto -70px;
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ReplyDao">
+
+<!-- 	postReplyList -->
+	<select id="postReplyList" parameterType="Reply" resultType="Reply">
+		select  r.*, m.m_name, m.m_tel
+		from    reply r, member m
+		where   (r.bt_num =  #{bt_num} and r.bc_num = #{bc_num} and r.p_num = #{p_num}) and r.m_id = m.m_id
+		order by r_group desc, r_indent
+	</select>
+	
+<!-- 	replyInsert -->
+	<insert id="replyInsert" parameterType="Reply">
+		insert into reply
+				(m_id, bt_num, bc_num, p_num, r_num, r_rate, r_indent, r_group, r_info, r_writedate, r_openclose, r_level)
+		values (#{m_id},#{bt_num},#{bc_num},#{p_num},Reply_max( #{bt_num}, #{bc_num},#{p_num}),
+				#{r_rate},#{r_indent},Reply_max( #{bt_num}, #{bc_num},#{p_num}),#{r_info},sysdate,#{r_openclose},#{r_level})
+	</insert>
+	
+<!-- 	replyDelete -->
+	<delete id="replyDelete" parameterType="Reply">
+		delete from reply where bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num} and r_num = #{r_num}
+	</delete>
+	
+	<update id="replyIndentUpdate" parameterType="Reply">
+		update  reply 
+		set 	r_indent = r_indent + 1 
+		where 	bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num} and r_group = #{r_group} and r_indent > #{r_indent}
+	</update>
+	
+	<insert id="replyReplyInsert" parameterType="Reply">
+		insert into reply
+				(m_id,    bt_num,   bc_num,   p_num,   r_num,   r_indent,  r_group,  r_info, r_writedate, r_level)
+		values (#{m_id},#{bt_num},#{bc_num},#{p_num},Reply_max( #{bt_num}, #{bc_num},#{p_num}),#{r_indent}+1,
+		#{r_group},#{r_info},sysdate,#{r_level}+1)
+	</insert>
+
+</mapper>
