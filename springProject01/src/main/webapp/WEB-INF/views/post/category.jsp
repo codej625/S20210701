@@ -66,10 +66,7 @@
 							</c:if>
 						</select>
 					</div>
-					<div class="item">지역</div>
-					<div class="item">시간/비용</div>
-					<div class="item">기간</div>
-					<div class="item">검색어</div>
+					
 				</div>
 			</div>
 			<div class="con_section">

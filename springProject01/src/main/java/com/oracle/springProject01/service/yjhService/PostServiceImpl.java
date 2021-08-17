@@ -222,5 +222,4 @@ public class PostServiceImpl implements PostService {
 		return result;
 	}
 
-
 }

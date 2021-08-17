@@ -193,6 +193,7 @@
 							<input type="hidden" name="bt_num" value="${post.bt_num }">
 							<input type="hidden" name="bc_num" value="${post.bc_num }">
 							<input type="hidden" name="p_num" value="${post.p_num }">
+							<input type="hidden" name="pm_id" value="${post.m_id }">
 							<input type="hidden" name="r_num" value="${r_num }">
 							<input type="hidden" name="m_id" value="${sessionID }">
 							<input type="hidden" name="r_indent" value="${r_indent }">
@@ -242,7 +243,7 @@
 <!-- 							댓글들 이미지 -->
 							<c:if test="${reply.r_level == 0 }">
 								<a class="photo">
-								<img src="${pageContext.request.contextPath}/img/01.jpg">
+								<img src="${pageContext.request.contextPath}/upload/${reply.m_img}">
 								</a>
 							</c:if>
 							${reply.m_name }

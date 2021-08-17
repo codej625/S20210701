@@ -136,10 +136,10 @@
 						<span id ="confirmMsg"></span>
 					</div>
 					<div class="input_item">
-						<input type="password" name="m_name" placeholder="이름" required="required">
+						<input type="text" name="m_name" placeholder="이름" required="required">
 					</div>
 					<div class="input_item">
-						<input type="text" name="m_tel" placeholder="휴대폰 번호" required="required">
+						<input type="tel" name="m_tel" placeholder="휴대폰 번호" required="required">
 						<input type="button" onclick="telOverlap()" value="중복확인"/>
 					</div>
 					<div class="input_title">관심정보</div>

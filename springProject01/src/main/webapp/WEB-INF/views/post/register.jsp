@@ -312,7 +312,7 @@ function uncomma(str) {
 							    </script>
 							</div>
 							<div class="info">
-								<div class="title">신청기간</div>
+								<div class="title">모임기간</div>
 								<div class="container calendar-container">
 									<div id="calendar" style="max-width:900px; margin:40px auto;">
 										<p>Date :
