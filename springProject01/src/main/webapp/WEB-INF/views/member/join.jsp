@@ -44,20 +44,14 @@
 		console.log("idOverlap 호출")
 		console.log("아이디 입력 값 : "+joinForm.m_id.value)
 	$.ajax({
-		type :"post",/* 전송 방식 */
+		type :"post",
 		url :"${pageContext.request.contextPath}/idOverlap", /* 컨트롤러 사용할 때. 내가 보낼 데이터의 주소. */
 		data : {"m_id" : joinForm.m_id.value},
-		/* JSON형식 안에 JSON 형식으로 표현한 데이터. 
-        "파라미터 이름" : 폼태그에 적은 NAME 값.ID입력창의 NAME값.value 여러 개도 가능
-		data :{	"id" : joinForm.id.value, 
-		"id1" : joinForm.password.value}, 이렇게도 사용 가능.					
-		*/
-		dataType : "text",	/* text, xml, html, script, json, jsonp 가능 */
-        //정상적인 통신을 했다면 function은 백엔드 단에서 데이터를 처리.
+		dataType : "text",
 		success : function(data){	
 			if(data=="1"){
 				alert("이 아이디는 사용 가능합니다.");
-			}else{	//ajax가 제대로 안됐을 때 .
+			}else{
 				alert("이미 사용중인 아이디 입니다.");
 			}
 		},
@@ -75,11 +69,6 @@
 		type :"post",/* 전송 방식 */
 		url :"${pageContext.request.contextPath}/telOverlap", /* 컨트롤러 사용할 때. 내가 보낼 데이터의 주소. */
 		data : {"m_tel" : joinForm.m_tel.value},
-		/* JSON형식 안에 JSON 형식으로 표현한 데이터. 
-        "파라미터 이름" : 폼태그에 적은 NAME 값.ID입력창의 NAME값.value 여러 개도 가능
-		data :{	"id" : joinForm.id.value, 
-		"id1" : joinForm.password.value}, 이렇게도 사용 가능.					
-		*/
 		dataType : "text",	/* text, xml, html, script, json, jsonp 가능 */
         //정상적인 통신을 했다면 function은 백엔드 단에서 데이터를 처리.
 		success : function(data){	
@@ -95,6 +84,7 @@
 	});
 	
 }
+
 	
 </script>
 </head>
@@ -139,7 +129,25 @@
 						<input type="text" name="m_name" placeholder="이름" required="required">
 					</div>
 					<div class="input_item">
-						<input type="tel" name="m_tel" placeholder="휴대폰 번호" required="required">
+			               <input type="text" name="m_tel" class="phone" maxlength="13" placeholder="핸드폰번호" required="required">
+			               <script type="text/javascript">
+			               $('.phone').keydown(function(event) {
+			            	    var key = event.charCode || event.keyCode || 0;
+			            	    $text = $(this);
+			            	    if (key !== 8 && key !== 9) {
+			            	        if ($text.val().length === 3) {
+			            	            $text.val($text.val() + '-');
+			            	        }
+			            	        if ($text.val().length === 8) {
+			            	            $text.val($text.val() + '-');
+			            	        }
+			            	    }
+			            	 
+			            	    return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));          
+			            	});
+
+			               </script>
+			               
 						<input type="button" onclick="telOverlap()" value="중복확인"/>
 					</div>
 					<div class="input_title">관심정보</div>

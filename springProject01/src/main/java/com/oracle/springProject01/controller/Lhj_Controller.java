@@ -39,6 +39,7 @@ import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Lhj_OAuthToken;
 import com.oracle.springProject01.service.lhjService.MemberService;
+import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.PostService;
 
 @Controller
@@ -87,7 +88,6 @@ public class Lhj_Controller {
 	@RequestMapping(value = "/idOverlap", method = RequestMethod.POST)
 	public void idOverlap(HttpServletResponse response, @RequestParam("m_id") String m_id) throws IOException {
 		System.out.println("Lhj_Controller String idOverlap start...");
-		// @RequestParam는 요청의 특정 파라미터 값을 찾아낼 때 사용하는 어노테이션
 		ms.idOverlap(m_id, response); // 서비스에 있는 idOverlap 호출.
 	}
 
@@ -95,7 +95,6 @@ public class Lhj_Controller {
 	@RequestMapping(value = "/telOverlap", method = RequestMethod.POST)
 	public void telOverlap(HttpServletResponse response, @RequestParam("m_tel") String m_tel) throws IOException {
 		System.out.println("Lhj_Controller String telOverlap start...");
-		// @RequestParam는 요청의 특정 파라미터 값을 찾아낼 때 사용하는 어노테이션
 		ms.telOverlap(m_tel, response); // 서비스에 있는 idOverlap 호출.
 	}
 
@@ -522,7 +521,7 @@ public class Lhj_Controller {
 
 	// 마이페이지 내가 쓴 글 화면
 	@RequestMapping(value = "/member/mypage_myPostList", method = RequestMethod.GET)
-	public String mypage_myPostList(Model model, HttpServletRequest request, String m_id) throws Exception {
+	public String mypage_myPostList(String currentPage, Model model, HttpServletRequest request, String m_id) throws Exception {
 		System.out.println("lhjController mypage_changePW Start...");
 		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		m_id = sessionID;

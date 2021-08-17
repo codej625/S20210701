@@ -206,7 +206,7 @@ public class Yjh_Controller {
 
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, RecentPost rpost, Model model, HttpServletRequest request) {
+	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, String pm_id, RecentPost rpost, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
 
 //		섹션아이디

@@ -70,5 +70,6 @@ public interface MemberService {
 	int certification(AttachmentFileVO attachmentFileVO);
 		//메일 인증 확인
 	AttachmentFileVO member(AttachmentFileVO attachmentFileVO);
-
+	
+	
 }

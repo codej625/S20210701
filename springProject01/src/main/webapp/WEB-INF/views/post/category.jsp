@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,7 +72,7 @@
 			<div class="con_section">
 				<c:forEach var="post" items="${listPost }">
 					<div class="con_item" style="cursor: pointer;" 
-						onclick="location.href='${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
+						onclick="location.href='${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}&pm_id=${post.m_id }'">
 	                    <div class="con_img">
 	                        <img src="${pageContext.request.contextPath}/upload/${post.p_img}">
 	                    </div>

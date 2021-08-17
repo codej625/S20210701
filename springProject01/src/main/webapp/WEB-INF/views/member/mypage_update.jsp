@@ -47,51 +47,89 @@
 				<input type="hidden" value="${lhj_MemberVO.m_withdrawal }">
 				<div class="info_img">
 					<div id="image_container"></div>
-					<input type="file" name="m_img" onchange="setThumbnail(event);"/>
+					<input type="file" name="m_img" onchange="setThumbnail(event);" class="img_size"/>
 				</div>
-				<div class="info_items">
-					<div class="info_item">
-						<div class="item_title">이름</div>
-						<div class="item_content">
-							<input type="text" value="${lhj_MemberVO.m_name }" name="m_name">
-						</div>
-					</div>
-					<div class="info_item">
-						<div class="item_title">번호</div>
-						<div class="item_content">
-							<input type="text" value="${lhj_MemberVO.m_tel }" name="m_tel" >
-						</div>
-					</div>
-					<div class="info_item">
-						<div class="item_title">지역</div>
-						<div class="item_content">
-							<input type="text" value="${lhj_MemberVO.m_area }" name="m_area">
-						</div>
-					</div>
-					<div class="info_item">
-						<div class="item_title">분야</div>
-						<div class="input_item">
-						<select id="m_field" name="m_field">
-							<option value="게임/만화/애니">게임/만화/애니</option>
-							<option value="영화/음악/그림">영화/음악/그림</option>
-							<option value="스포츠/레저">스포츠/레저</option>
-							<option value="반려동물">반려동물</option>
-							<option value="패션/미용">패션/미용</option>
-							<option value="건강/다이어트">건강/다이어트</option>
-							<option value="가족/육아">가족/육아</option>
-							<option value="컴퓨터/통신">컴퓨터/통신</option>
-							<option value="외국어/인문/과학">외국어/인문/과학</option>
-							<option value="경제/금융/정치/사회">경제/금융/정치/사회</option>
-							<option value="문학/창작">문학/창작</option>
-							<option value="기타">기타</option>
-						</select>
-					</div>
-					</div>
-					<div>
-						<input type="submit" value="수정">
-						<input type="reset" value="취소">
-					</div>
+				
+				<div>
+					<table class="myreginfo_table_up">
+						<tr><th>이름</th><td><input type="text" value="${lhj_MemberVO.m_name }" name="m_name"></td></tr>
+						<tr><th>번호</th><td><input type="text" value="${lhj_MemberVO.m_tel }" name="m_tel" ></td></tr>
+						<tr><th>지역</th><td><input type="text" value="${lhj_MemberVO.m_area }" name="m_area"></td></tr>
+						<tr>
+							<th>분야</th>
+							<td>
+								<select id="m_field" name="m_field">
+									<option value="게임/만화/애니">게임/만화/애니</option>
+									<option value="영화/음악/그림">영화/음악/그림</option>
+									<option value="스포츠/레저">스포츠/레저</option>
+									<option value="반려동물">반려동물</option>
+									<option value="패션/미용">패션/미용</option>
+									<option value="건강/다이어트">건강/다이어트</option>
+									<option value="가족/육아">가족/육아</option>
+									<option value="컴퓨터/통신">컴퓨터/통신</option>
+									<option value="외국어/인문/과학">외국어/인문/과학</option>
+									<option value="경제/금융/정치/사회">경제/금융/정치/사회</option>
+									<option value="문학/창작">문학/창작</option>
+									<option value="기타">기타</option>
+								</select>
+							</td>
+						</tr>
+<!-- 						<tr> -->
+<!-- 							<td colspan="2"> -->
+<!-- 								<input type="submit" value="수정"> -->
+<!-- 		 						<input type="reset" value="취소"> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+					</table>
 				</div>
+				<div class="for_Btn">
+						<input type="submit" value="수정" class="update_Btn"> 
+		 				<input type="reset" value="취소" class="can_Btn">
+				</div>
+				
+<!-- 				<div class="info_items"> -->
+<!-- 					<div class="info_item"> -->
+<!-- 						<div class="item_title">이름</div> -->
+<!-- 						<div class="item_content"> -->
+<%-- 							<input type="text" value="${lhj_MemberVO.m_name }" name="m_name"> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="info_item"> -->
+<!-- 						<div class="item_title">번호</div> -->
+<!-- 						<div class="item_content"> -->
+<%-- 							<input type="text" value="${lhj_MemberVO.m_tel }" name="m_tel" > --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="info_item"> -->
+<!-- 						<div class="item_title">지역</div> -->
+<!-- 						<div class="item_content"> -->
+<%-- 							<input type="text" value="${lhj_MemberVO.m_area }" name="m_area"> --%>
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<div class="info_item"> -->
+<!-- 						<div class="item_title">분야</div> -->
+<!-- 						<div class="input_item"> -->
+<!-- 						<select id="m_field" name="m_field"> -->
+<!-- 							<option value="게임/만화/애니">게임/만화/애니</option> -->
+<!-- 							<option value="영화/음악/그림">영화/음악/그림</option> -->
+<!-- 							<option value="스포츠/레저">스포츠/레저</option> -->
+<!-- 							<option value="반려동물">반려동물</option> -->
+<!-- 							<option value="패션/미용">패션/미용</option> -->
+<!-- 							<option value="건강/다이어트">건강/다이어트</option> -->
+<!-- 							<option value="가족/육아">가족/육아</option> -->
+<!-- 							<option value="컴퓨터/통신">컴퓨터/통신</option> -->
+<!-- 							<option value="외국어/인문/과학">외국어/인문/과학</option> -->
+<!-- 							<option value="경제/금융/정치/사회">경제/금융/정치/사회</option> -->
+<!-- 							<option value="문학/창작">문학/창작</option> -->
+<!-- 							<option value="기타">기타</option> -->
+<!-- 						</select> -->
+<!-- 					</div> -->
+<!-- 					</div> -->
+<!-- 					<div> -->
+<!-- 						<input type="submit" value="수정"> -->
+<!-- 						<input type="reset" value="취소"> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 			<div class="res_section"></div>
 		</div>

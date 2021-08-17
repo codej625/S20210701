@@ -64,5 +64,5 @@ public class Lhj_MemberVO {
 	
 	//nicknameType
 	private String nt_name;
-
+	
 }

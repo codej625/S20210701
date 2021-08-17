@@ -29,17 +29,18 @@
 				<form action="${pageContext.request.contextPath}/member/mypage_deleteMyselfs" method="post">
 				<div class="info_items">
 					<div class="info_item">
-						<div class="item_title">회원 탈퇴 하려면 비밀번호 입력</div>
-						<div class="item_content">
+						<div>탈퇴 하시려면 비밀번호를 입력해주세요</div>
+						<div>
 							<input type="hidden" name="m_id" value="${lhj_MemberVO.m_id }">
+							&nbsp&nbsp&nbsp&nbsp
 							<input type="text" name="m_pw">
 						</div>
 					</div>
 				</div>	
-				<div>
-						<input type="submit" value="확인">
-						<input type="reset" value="취소">
-					</div>
+				<div class="info_items">
+					<input type="submit" value="확인" style="float: right;">
+					<input type="reset" value="취소" style="float: right;">
+				</div>
 				</form>
 			</div>
 			<div class="res_section"></div>

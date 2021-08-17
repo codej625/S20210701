@@ -324,4 +324,6 @@ public class MemberServiceImpl implements MemberService {
 		attachmentFileVO = md.member(attachmentFileVO);
 		return attachmentFileVO;
 	}
+
+	
 }
