@@ -92,7 +92,7 @@
 								<button type="button" onclick="location.href='${pageContext.request.contextPath}/member/login'">찜하기</button>
 							</c:if>
 							<c:if test="${sessionID != null}">
-								<c:if test="${post.m_id == sessionID || sessionID == 'aaaaaa@aaaaaa.com' }">
+								<c:if test="${post.m_id == sessionID || sessionID == 'dkwksla@naver.com' }">
 									<button type="button" 
 											onclick="location.href='${pageContext.request.contextPath}/post/postListUpdateView?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}'">
 											수정하기
@@ -252,7 +252,7 @@
 <!-- 							댓글이 비공개일때 글쓴사람이랑 관리자만 보기 -->
 							<c:if test="${reply.r_openclose == 'N'}" >
 					            <c:choose>
-					                <c:when test="${reply.m_id == sessionID || sessionID == 'aaaaaa@aaaaaa.com'}">
+					                <c:when test="${reply.m_id == sessionID || sessionID == 'dkwksla@naver.com'}">
 					                    <textarea rows="5" cols="70" name="r_info" readonly="readonly">${reply.r_info }</textarea>
 					                    <button type="button" onclick="location.href='${pageContext.request.contextPath}/reply/replyDelete?bt_num=${reply.bt_num }&bc_num=${reply.bc_num }&p_num=${reply.p_num}&r_num=${reply.r_num}'">삭제</button>
 <!-- 							           	 댓글이 비공개일때 답글쓰는 로직 -->
@@ -325,7 +325,7 @@
 							    </script>
 <!-- 					            <button>답변</button> -->
 					            
-					            <c:if test="${sessionID == reply.m_id || sessionID == 'aaaaaa@aaaaaa.com' }">
+					            <c:if test="${sessionID == reply.m_id || sessionID == 'dkwksla@naver.com' }">
 								<button type="button" onclick="location.href='${pageContext.request.contextPath}/reply/replyDelete?bt_num=${reply.bt_num }&bc_num=${reply.bc_num }&p_num=${reply.p_num}&r_num=${reply.r_num}'">삭제</button>
 								</c:if>
 					        </c:if>
