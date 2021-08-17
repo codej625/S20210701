@@ -16,9 +16,9 @@
 		
 		//채팅
 		//response.sendRedirect("chat/broadcast");
-		//	response.sendRedirect("chat/chat");
+		//response.sendRedirect("chat/chat");
 		//response.sendRedirect("chat/memberchat");
-		//	response.sendRedirect("chat/index");
+		//response.sendRedirect("chat/index");
 		//response.sendRedirect("chat/chat_addon");
 		response.sendRedirect("main/main");
 	%>

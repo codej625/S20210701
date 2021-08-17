@@ -68,12 +68,6 @@ public interface MemberDao {
 		//메일 인증 확인
 	AttachmentFileVO member(AttachmentFileVO attachmentFileVO);
 	
-
-
-	
-	
-	
-	
 	
 	
 }

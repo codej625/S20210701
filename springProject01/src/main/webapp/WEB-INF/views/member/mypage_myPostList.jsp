@@ -66,7 +66,7 @@
 	<!-- **MAIN START** -->
 	<main>
 		<!-- main -->		
-			<div class="userinfo_wrap">
+		<div class="userinfo_wrap">
 			<div class="title">${lhj_MemberVO.m_name }님의 마이페이지</div>
 			<div class="info_nav_bar">
 				<div class="info_nav_menu"><a href="${pageContext.request.contextPath}/member/mypage">마이페이지 홈</a></div>
@@ -79,18 +79,18 @@
 				<div class="info_nav_menu"><a href="${pageContext.request.contextPath}/member/mypage_deleteMyself">회원 탈퇴</a></div>
 			</div>
 			
-			<div class="info_section">	
-			
-				<input type="button" value="all" onclick="allBtn()">
-				<input type="button" value="class" onclick="classBtn()">
-				<input type="button" value="meeting" onclick="meetingBtn()">
-				
-				
+			<div class="my_info_box">
+				<div>
+					<input type="button" value="all" onclick="allBtn()">
+					<input type="button" value="class" onclick="classBtn()">
+					<input type="button" value="meeting" onclick="meetingBtn()">
+				</div>
+				<div>
 <!-- 				myPost 전부 보여주는거  -->
-				<table class="myreginfo_table" border="1" id="all">
+				<table id="all" border="1">
 				<c:forEach var="lhj_MemberVO" items="${myPostList }">
 					<tr>
-							<td rowspan="2">
+						<td rowspan="3" id="table_img">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
@@ -98,23 +98,24 @@
 								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
 							</c:if>
 							</td>
-						<td>
+						<td colspan="2">
+							${lhj_MemberVO.p_title }
 							<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
-								무료
+								(무료)
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
-								유료
+								(유료)
 							</c:if>
 						</td>						
 					</tr>
 					<tr>
-						<td>
-							${lhj_MemberVO.p_title }
+						<td colspan="3">
+							${lhj_MemberVO.p_intro }
 						</td>
 					</tr>
 					<tr>
-						<td>가격</td>
-						<td rowspan="2">
+						<td style="width: 300px">가격 : ${lhj_MemberVO.p_cost }</td>
+						<td>
 							<form action="${pageContext.request.contextPath}/member/mypage_myPostMEmberList_">
 								<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
 								<input type="hidden" name="bc_num" value="${lhj_MemberVO.bc_num }">
@@ -125,17 +126,14 @@
 							</form>
 						</td>
 					</tr>
-					<tr>
-						<td>${lhj_MemberVO.p_cost }</td>
-					</tr>
 				</c:forEach>	
 				</table>
 				
 <!-- 				myPost -class 보여주는거  -->
-				<table class="myreginfo_table" border="1" id="class_" style="display: none;">
+				<table id="class_" style="display: none;" border="1">
 				<c:forEach var="lhj_MemberVO" items="${myPostList_class }">
 					<tr>
-							<td rowspan="2">
+						<td rowspan="3" id="table_img">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
@@ -143,43 +141,42 @@
 								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
 							</c:if>
 							</td>
-						<td>
+						<td colspan="2">
+							${lhj_MemberVO.p_title }
 							<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
-								무료
+								(무료)
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
-								유료
+								(유료)
 							</c:if>
 						</td>						
 					</tr>
 					<tr>
-						<td>
-							${lhj_MemberVO.p_title }
+						<td colspan="3">
+							${lhj_MemberVO.p_intro }
 						</td>
 					</tr>
 					<tr>
-						<td>가격</td>
-						<td rowspan="2">
+						<td style="width: 300px">가격 : ${lhj_MemberVO.p_cost }</td>
+						<td>
 							<form action="${pageContext.request.contextPath}/member/mypage_myPostMEmberList_">
 								<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
 								<input type="hidden" name="bc_num" value="${lhj_MemberVO.bc_num }">
 								<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">
-								
-								<input type="submit" value="신청 인원 관리">
+								<a href="${pageContext.request.contextPath}/member/mypage_myPostMEmberList">
+									<input type="submit" value="신청 인원 관리">
+								</a>
 							</form>
 						</td>
-					</tr>
-					<tr>
-						<td>${lhj_MemberVO.p_cost }</td>
 					</tr>
 				</c:forEach>	
 				</table>
 				
 <!-- 				myPost -meeting 보여주는거  -->
-				<table class="myreginfo_table" border="1" id="meeting" style="display: none;">
+				<table id="meeting" style="display: none;" border="1">
 				<c:forEach var="lhj_MemberVO" items="${myPostList_meeting }">
 					<tr>
-							<td rowspan="2">
+						<td rowspan="3" id="table_img">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
@@ -187,43 +184,40 @@
 								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
 							</c:if>
 							</td>
-						<td>
+						<td colspan="2">
+							${lhj_MemberVO.p_title }
 							<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
-								무료
+								(무료)
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
-								유료
+								(유료)
 							</c:if>
 						</td>						
 					</tr>
 					<tr>
-						<td>
-							${lhj_MemberVO.p_title }
+						<td colspan="3">
+							${lhj_MemberVO.p_intro }
 						</td>
 					</tr>
 					<tr>
-						<td>가격</td>
-						<td rowspan="2">
+						<td style="width: 300px">가격 : ${lhj_MemberVO.p_cost }</td>
+						<td>
 							<form action="${pageContext.request.contextPath}/member/mypage_myPostMEmberList_">
 								<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
 								<input type="hidden" name="bc_num" value="${lhj_MemberVO.bc_num }">
 								<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">
-								
-								<input type="submit" value="신청 인원 관리">
+								<a href="${pageContext.request.contextPath}/member/mypage_myPostMEmberList">
+									<input type="submit" value="신청 인원 관리">
+								</a>
 							</form>
 						</td>
 					</tr>
-					<tr>
-						<td>${lhj_MemberVO.p_cost }</td>
-					</tr>
 				</c:forEach>	
 				</table>
-				
-				
+				</div>
 				</div>
 			<div class="res_section"></div>
 		</div>
-		</form>
 	</main>
 	<%@ include file="/WEB-INF/views//main/footer.jsp"%>
 </body>

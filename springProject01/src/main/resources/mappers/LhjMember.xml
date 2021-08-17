@@ -5,18 +5,10 @@
 
 <!-- 		회원가입 -보통의 회원가입의 경우 -->
 		<insert id="hj_insertMember">
-<!-- 			insert into member(	  m_id, m_pw, m_name, m_tel -->
-<!-- 								, m_area, m_field, m_regdate, m_rate -->
-<!-- 								, m_withdrawal, m_meetingauth, m_masterauth, m_point	) -->
-<!--             			values(	  #{m_id}, #{m_pw}, #{m_name}, #{m_tel} -->
-<!--             					, #{m_area}, #{m_field}, sysdate, 0 -->
-<!--             					, 'N', 'N', 'N', 0	) -->
-				insert into member(	  m_id, m_pw, m_name, m_tel
-								, m_area, m_field, m_regdate, m_rate
-								, m_withdrawal, m_meetingauth, m_masterauth, m_point	)
-            			values(	  #{m_id}, '1234', #{m_name}, '1234'
-            					, '', '', sysdate, 0
-            					, 'N', 'N', 'N', 0	)
+			insert into member(	  m_id, m_pw, m_name, m_tel
+								, m_area, m_field, m_regdate, m_rate)
+            			values(	  #{m_id}, #{m_pw}, #{m_name}, #{m_tel}
+            					, #{m_area}, #{m_field}, sysdate, 0)
 		</insert>
 <!-- 		회원가입 -네이버 로그인 경우 -->
 		<insert id="hj_insertMember_naver">
@@ -63,7 +55,7 @@
 <!-- 			개인정보 조회 -->
 		<select id="hj_selectMypage" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">
 				select *
-				from member
+				from member natural join nickname NATURAL JOIN nicknametype
 				where m_id = #{m_id}
 		</select>
 <!-- 			회원정보 수정 -->
@@ -194,6 +186,14 @@
 				where m_id = #{m_id}
 				and m_pw = #{m_pw}
 		</update>
+		
+<!-- 		내가 쓴 글 리스트 토탈 -->
+		<select id="hj_total" resultType="int" parameterType="java.lang.String">
+			select count(*)
+			from post
+			where m_id = #{m_id}
+		</select>
+		
 		
 <!-- 		내가 쓴 글 리스트 -all -->
 		<select id="hj_myPostList" resultType="Lhj_MemberVO" parameterType="Lhj_MemberVO">

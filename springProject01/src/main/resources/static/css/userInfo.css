@@ -124,7 +124,120 @@ a {
 
 
 /* mypage */
-/* .myreginfo_table{ */
+
+.my_info_box{
+	position: relative;
+    width: 100%;
+    margin: 50px auto;
+    z-index: 10;
+    background-color: #ffffff;
+    padding: 40px 0px 40px;
+    border: 1px solid black;
+/*     display: flex; */
+    left: -1px;
+}
+
+.img_size{
+	width: 230px;
+	height: 250px;
+}
+
+.myreginfo_table{
 /* 	border: 1px solid black; */
-/* 	padding-left: 50px; */
+	padding-left: 50px;
+	padding: 10px;
+	height: 38px;
+}
+
+.myreginfo_table th{
+	width: 100px;
+}
+
+.myreginfo_table_up{
+/* 	border: 1px solid black; */
+	padding-left: 50px;
+	padding: 10px;
+	height: 260px;
+}
+
+.myreginfo_table_up th{
+	width: 100px;
+}
+
+.for_Btn{
+	position: relative;
+	top: 230px;
+    left: 400px;
+}
+
+.for_Btn .update_Btn{
+	font-size: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px 15px;
+}
+
+.for_Btn .can_Btn{
+	font-size: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 5px 15px;
+}
+
+.myreginfo_table_certi{
+/* 	border: 1px solid black; */
+	padding-left: 50px;
+	padding: 10px;
+	height: 260px;
+	width: 1000px;
+}
+
+/* .myreginfo_table_certi th{ */
+/* 	width: 300px; */
+/* 	float: left; */
 /* } */
+
+#all{
+/* 	border: 1px solid black; */
+	padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 260px;
+    width: 1150px;
+}
+#all tr #table_img{
+	width: 300px;
+}
+#all tr #table_intro{
+	width: 600px;
+}
+
+#class_{
+/* 	border: 1px solid black; */
+	padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 260px;
+    width: 1150px;
+}
+#class_ tr #table_img{
+	width: 300px;
+}
+#class_ tr #table_intro{
+	width: 600px;
+}
+
+#meeting{
+/* 	border: 1px solid black; */
+	padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 260px;
+    width: 1150px;
+}
+#meeting tr #table_img{
+	width: 300px;
+}
+#meeting tr #table_intro{
+	width: 600px;
+}

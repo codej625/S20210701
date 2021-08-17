@@ -71,7 +71,7 @@
 					</div>
 					<div class="input_item2">
 						<div class="save_id">
-							<input type="checkbox" />아이디저장
+							<input type="checkbox" id="remember_m_id" name="remember_m_id"/>아이디저장
 						</div>
 						<div class="search_info">
 <%-- 							<a href="${pageContext.request.contextPath}/member/find_m_id">아이디 찾기</a>  --%>

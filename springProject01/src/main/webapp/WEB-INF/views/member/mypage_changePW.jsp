@@ -12,7 +12,6 @@
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
 	<!-- **MAIN START** -->
 	<main>
-		<form action="${pageContext.request.contextPath}/member/mypage_changePW" method="post">
 		<!-- main -->
 		<div class="userinfo_wrap">
 			<div class="title">${lhj_MemberVO.m_name }님의 마이페이지</div>
@@ -27,24 +26,26 @@
 				<div class="info_nav_menu"><a href="${pageContext.request.contextPath}/member/mypage_deleteMyself">회원 탈퇴</a></div>
 			</div>
 			<div class="info_section">
+				<form action="${pageContext.request.contextPath}/member/mypage_changePW" method="post">
 				<div class="info_items">
 					<div class="info_item">
-						<div class="item_title">비밀번호</div>
-						<div class="item_content">
+						<div>비밀번호</div>
+						<div>
 							<input type="hidden" value="${lhj_MemberVO.m_id }" name="m_id">
 							<input type="hidden" value="${lhj_MemberVO.m_name }">
+							&nbsp&nbsp&nbsp&nbsp
 							<input type="text" value="${lhj_MemberVO.m_pw }" name="m_pw">
 						</div>
 					</div>
 				</div>	
-				<div>
-						<input type="submit" value="수정">
-						<input type="reset" value="취소">
-					</div>
+				<div class="info_items">
+					<input type="submit" value="확인" style="float: right;">
+					<input type="reset" value="취소" style="float: right;">
+				</div>
+				</form>
 			</div>
 			<div class="res_section"></div>
 		</div>
-		</form>
 	</main>
 	<%@ include file="/WEB-INF/views//main/footer.jsp"%>
 </body>

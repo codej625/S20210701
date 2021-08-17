@@ -83,16 +83,17 @@
 				<div class="info_nav_menu"><a href="${pageContext.request.contextPath}/member/mypage_deleteMyself">회원 탈퇴</a></div>
 			</div>
 <!-- 				bookmark 전부 보여주는거  -->
-			<div class="info_section">
-			
-				<input type="button" value="all" onclick="allBtn()">
-				<input type="button" value="class" onclick="classBtn()">
-				<input type="button" value="meeting" onclick="meetingBtn()">
-			
-				<table border="1" id="all">
+			<div class="my_info_box">
+				<div>
+					<input type="button" value="all" onclick="allBtn()">
+					<input type="button" value="class" onclick="classBtn()">
+					<input type="button" value="meeting" onclick="meetingBtn()">
+				</div>
+				<div>
+				<table id="all" border="1">
 				<c:forEach var="lhj_MemberVO" items="${myBookMarkList }">
 					<tr>
-						<td rowspan="2">
+						<td rowspan="2" id="table_img">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
@@ -112,8 +113,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
-							${lhj_MemberVO.p_info }
+						<td id="table_intro">
+							${lhj_MemberVO.p_intro }
 						</td>
 						<td>
 							<form action="${pageContext.request.contextPath}/member/mypage_mybookmarkNO" method="post">
@@ -143,10 +144,10 @@
 			
 <!-- 				bookmark - class 보여주는거  -->
 
-				<table border="1" id="class_" style="display: none;">
+				<table id="class_" style="display: none;" border="1">
 				<c:forEach var="lhj_MemberVO" items="${myBookMark_classList }">
 					<tr>
-						<td rowspan="2">
+						<td rowspan="2" id="table_img">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
@@ -166,8 +167,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
-							${lhj_MemberVO.p_info }
+						<td id="table_intro">
+							${lhj_MemberVO.p_intro }
 						</td>
 						<td>
 							<form action="${pageContext.request.contextPath}/member/mypage_mybookmarkNO" method="post">
@@ -195,10 +196,10 @@
 			
 <!-- 				bookmark -meeting 보여주는거  -->
 
-				<table border="1" id="meeting" style="display: none;">
+				<table id="meeting" style="display: none;" border="1">
 				<c:forEach var="lhj_MemberVO" items="${myBookMark_meetingList }">
 					<tr>
-						<td rowspan="2">
+						<td rowspan="2" id="table_img">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
@@ -218,8 +219,8 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
-							${lhj_MemberVO.p_info }
+						<td id="table_intro">
+							${lhj_MemberVO.p_intro }
 						</td>
 						<td>
 							<form action="${pageContext.request.contextPath}/member/mypage_mybookmarkNO" method="post">
@@ -243,7 +244,8 @@
 						</td>
 					</tr>
 				</c:forEach>
-				</table>	
+				</table>
+				</div>
 			</div>
 			<div class="res_section"></div>
 		</div>

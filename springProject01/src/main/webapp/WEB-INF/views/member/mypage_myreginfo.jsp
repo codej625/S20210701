@@ -79,41 +79,47 @@
 				<div class="info_nav_menu"><a href="${pageContext.request.contextPath}/member/mypage_deleteMyself">회원 탈퇴</a></div>
 			</div>
 <!-- 				reginfo 전부 보여주는거  -->
-			<div class="info_section">
-				
-				<input type="button" value="all" onclick="allBtn()">
-				<input type="button" value="class" onclick="classBtn()">
-				<input type="button" value="meeting" onclick="meetingBtn()">
-				
-				
-				<table class="myreginfo_table" id="all" border="1" >
+			<div class="my_info_box">
+				<div>
+					<input type="button" value="all" onclick="allBtn()">
+					<input type="button" value="class" onclick="classBtn()">
+					<input type="button" value="meeting" onclick="meetingBtn()">
+				</div>
+				<div>
+				<table id="all" border="1">
 				<c:forEach var="lhj_MemberVO" items="${myRegInfoList }">
-												
 					<tr>
-						<td rowspan="2">
+						<td rowspan="3" id="table_img">
 						<c:if test="${lhj_MemberVO.p_img == null}">
-								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
-							
+							<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 						</c:if>
 						<c:if test="${lhj_MemberVO.p_img != null}">
-							
-								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
+							<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }" width="250px">
 						</c:if>
 						</td>
-						<td>
+						<td colspan="2">
+							${lhj_MemberVO.p_title }
 							<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
-								무료
+								(무료)
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
-								유료
+								(유료)
 							</c:if>
 						</td>
-						<td  rowspan="4">
+					</tr>
+					<tr>
+						<td colspan="2">
+							${lhj_MemberVO.p_intro }
+						</td>
+					</tr>
+					<tr>
+						<td>가격 : ${lhj_MemberVO.p_cost }</td>
+						<td>
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
-								결제 하기 버튼
+								<input type="button" value="결제 하기" >
 							</c:if>
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
-								결제 취소 버튼
+								결제 완료
 							</c:if>
 							<form action="${pageContext.request.contextPath}/member/mypage_myreginfoDE">
 								<input type="hidden" name="m_id" value="${lhj_MemberVO.m_id }">
@@ -123,28 +129,6 @@
 								
 								<input type="submit" value="신청 취소">
 							</form>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							${lhj_MemberVO.p_title }
-						</td>
-					</tr>
-					<tr>
-						<td>가격</td>
-						<td>신청상태</td>
-					</tr>
-					<tr>
-						<td>
-							${lhj_MemberVO.p_cost }
-						</td>
-						<td>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
-								미결제
-							</c:if>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
-								결제완료
-							</c:if>
 						</td>
 					</tr>
 				</c:forEach>	
@@ -153,34 +137,40 @@
 <!-- 				reginfo - class만 보여주는 거 -->
 
 				<table class="myreginfo_table" border="1" id="class_" style="display: none">
-				<c:forEach var="lhj_MemberVO" items="${myRegInfo_classList }">
+								<c:forEach var="lhj_MemberVO" items="${myRegInfoList }">
 					<tr>
-							<td rowspan="2">
-							<c:if test="${lhj_MemberVO.p_img == null}">
-									<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
-								
-							</c:if>
-							<c:if test="${lhj_MemberVO.p_img != null}">
-								
-									<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
-							</c:if>
-							</td>
-						<td>
+						<td rowspan="3" id="table_img">
+						<c:if test="${lhj_MemberVO.p_img == null}">
+							<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
+						</c:if>
+						<c:if test="${lhj_MemberVO.p_img != null}">
+							<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }" width="250px">
+						</c:if>
+						</td>
+						<td colspan="2">
+							${lhj_MemberVO.p_title }
 							<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
-								무료
+								(무료)
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
-								유료
+								(유료)
 							</c:if>
 						</td>
-						<td  rowspan="4">
+					</tr>
+					<tr>
+						<td colspan="2">
+							${lhj_MemberVO.p_intro }
+						</td>
+					</tr>
+					<tr>
+						<td>가격 : ${lhj_MemberVO.p_cost }</td>
+						<td>
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
-								결제 하기 버튼
+								<input type="button" value="결제 하기" >
 							</c:if>
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
-								결제 취소 버튼
+								결제 완료
 							</c:if>
-							
 							<form action="${pageContext.request.contextPath}/member/mypage_myreginfoDE">
 								<input type="hidden" name="m_id" value="${lhj_MemberVO.m_id }">
 								<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
@@ -188,28 +178,7 @@
 								<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">
 								
 								<input type="submit" value="신청 취소">
-							
 							</form>
-						
-						</td>
-						
-					</tr>
-					<tr>
-						<td>${lhj_MemberVO.p_title }</td>
-					</tr>
-					<tr>
-						<td>가격</td>
-						<td>신청상태</td>
-					</tr>
-					<tr>
-						<td>${lhj_MemberVO.p_cost }</td>
-						<td>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
-								미결제
-							</c:if>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
-								결제완료
-							</c:if>
 						</td>
 					</tr>
 				</c:forEach>	
@@ -218,34 +187,40 @@
 <!-- 				reginfo - meeting만 보여주는 거 -->
 
 				<table class="myreginfo_table" border="1" id="meeting" style="display: none">
-				<c:forEach var="lhj_MemberVO" items="${myRegInfo_meetingList }">
+								<c:forEach var="lhj_MemberVO" items="${myRegInfoList }">
 					<tr>
-							<td rowspan="2">
-							<c:if test="${lhj_MemberVO.p_img == null}">
-									<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
-								
-							</c:if>
-							<c:if test="${lhj_MemberVO.p_img != null}">
-								
-									<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
-							</c:if>
-							</td>
-						<td>
+						<td rowspan="3" id="table_img">
+						<c:if test="${lhj_MemberVO.p_img == null}">
+							<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
+						</c:if>
+						<c:if test="${lhj_MemberVO.p_img != null}">
+							<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }" width="250px">
+						</c:if>
+						</td>
+						<td colspan="2">
+							${lhj_MemberVO.p_title }
 							<c:if test="${lhj_MemberVO.p_cstatus == '0'}">
-								무료
+								(무료)
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
-								유료
+								(유료)
 							</c:if>
 						</td>
-						<td  rowspan="4">
+					</tr>
+					<tr>
+						<td colspan="2">
+							${lhj_MemberVO.p_intro }
+						</td>
+					</tr>
+					<tr>
+						<td>가격 : ${lhj_MemberVO.p_cost }</td>
+						<td>
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
-								결제 하기 버튼
+								<input type="button" value="결제 하기" >
 							</c:if>
 							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
-								결제 취소 버튼
+								결제 완료
 							</c:if>
-							
 							<form action="${pageContext.request.contextPath}/member/mypage_myreginfoDE">
 								<input type="hidden" name="m_id" value="${lhj_MemberVO.m_id }">
 								<input type="hidden" name="bt_num" value="${lhj_MemberVO.bt_num }">
@@ -253,31 +228,10 @@
 								<input type="hidden" name="p_num" value="${lhj_MemberVO.p_num }">
 								
 								<input type="submit" value="신청 취소">
-							
 							</form>
-						
-						</td>
-						
-					</tr>
-					<tr>
-						<td>${lhj_MemberVO.p_title }</td>
-					</tr>
-					<tr>
-						<td>가격</td>
-						<td>신청상태</td>
-					</tr>
-					<tr>
-						<td>${lhj_MemberVO.p_cost }</td>
-						<td>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
-								미결제
-							</c:if>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
-								결제완료
-							</c:if>
 						</td>
 					</tr>
-				</c:forEach>	
+				</c:forEach>
 				</table>
 			</div>
 
