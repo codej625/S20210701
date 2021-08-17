@@ -96,7 +96,7 @@ public class Lhj_Controller {
 	public void telOverlap(HttpServletResponse response, @RequestParam("m_tel") String m_tel) throws IOException {
 		System.out.println("Lhj_Controller String telOverlap start...");
 		// @RequestParam는 요청의 특정 파라미터 값을 찾아낼 때 사용하는 어노테이션
-		ms.idOverlap(m_tel, response); // 서비스에 있는 idOverlap 호출.
+		ms.telOverlap(m_tel, response); // 서비스에 있는 idOverlap 호출.
 	}
 
 	// 회원가입 처리 for 네이버

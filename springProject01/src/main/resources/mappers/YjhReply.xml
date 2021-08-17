@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ReplyDao">
 
-<!-- 	postReplyList -->
+<!-- 	댓글리스트 -->
 	<select id="postReplyList" parameterType="Reply" resultType="Reply">
-		select  r.*, m.m_name, m.m_tel
+		select  r.*, m.m_name, m.m_tel, m.m_img
 		from    reply r, member m
 		where   (r.bt_num =  #{bt_num} and r.bc_num = #{bc_num} and r.p_num = #{p_num}) and r.m_id = m.m_id
 		order by r_group desc, r_indent
 	</select>
 	
-<!-- 	replyInsert -->
+<!-- 	댓글입력 -->
 	<insert id="replyInsert" parameterType="Reply">
 		insert into reply
 				(m_id, bt_num, bc_num, p_num, r_num, r_rate, r_indent, r_group, r_info, r_writedate, r_openclose, r_level)
@@ -18,17 +18,51 @@
 				#{r_rate},#{r_indent},Reply_max( #{bt_num}, #{bc_num},#{p_num}),#{r_info},sysdate,#{r_openclose},#{r_level})
 	</insert>
 	
-<!-- 	replyDelete -->
+<!-- 	맴버 평점 올려주기 -->
+	<update id="memberRateUpdate" parameterType="Reply">
+		update  member
+		set     m_rate = (
+                          select avg(r_rate) as m_rate
+                    	  from reply re left outer join post p
+                    	  on (re.bt_num = p.bt_num and re.bc_num = p.bc_num and re.p_num = p.p_num )
+                    	  where p.m_id = #{pm_id}
+                		 )
+		where   m_id   = #{pm_id}
+	</update>
+	
+<!-- 	닉네임 테이블에 입력 -->
+	<insert id="nicknameInsert">
+		insert into nickname 
+					(m_id, nt_num) 
+		values      (#{pm_id}, (select round(avg(r_rate)) as m_rate
+								from   reply re left outer join post p
+								on     (re.bt_num = p.bt_num and re.bc_num = p.bc_num and re.p_num = p.p_num )
+								where  p.m_id = #{pm_id})
+					)
+	</insert>
+	
+<!-- 	닉네임 테이블에 입력이 되있으면 칭호번호 업데이트 -->
+	<update id="nicknameNumUpdate">
+		update  nickname 
+		set     nt_num = ( (select round(avg(r_rate)) as m_rate
+                            from   reply re left outer join post p
+                            on     (re.bt_num = p.bt_num and re.bc_num = p.bc_num and re.p_num = p.p_num )
+                            where  p.m_id = #{pm_id}))
+	</update>
+	
+<!-- 	댓글 삭제 -->
 	<delete id="replyDelete" parameterType="Reply">
 		delete from reply where bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num} and r_num = #{r_num}
 	</delete>
 	
+<!-- 	댓글 step(indent)늘려주기 -->
 	<update id="replyIndentUpdate" parameterType="Reply">
 		update  reply 
 		set 	r_indent = r_indent + 1 
 		where 	bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num} and r_group = #{r_group} and r_indent > #{r_indent}
 	</update>
 	
+<!-- 	대댓글 입력 -->
 	<insert id="replyReplyInsert" parameterType="Reply">
 		insert into reply
 				(m_id,    bt_num,   bc_num,   p_num,   r_num,   r_indent,  r_group,  r_info, r_writedate, r_level)

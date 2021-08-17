@@ -11,10 +11,11 @@ import com.oracle.springProject01.service.paging.Paging;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {
-	
+
 	@Autowired
 	private ReplyDao rd;
 
+//	댓글 리스트
 	@Override
 	public List<Reply> postReplyList(int bt_num, int bc_num, int p_num) {
 		System.out.println("ReplyServiceImpl List<Reply> postReplyList start...");
@@ -24,7 +25,7 @@ public class ReplyServiceImpl implements ReplyService {
 		reply.setBc_num(bc_num);
 		reply.setP_num(p_num);
 		postReplyList = rd.postReplyList(reply);
-		
+
 //		Reply reply = new Reply();
 //		reply.setBt_num(BT_NUM);
 //		REPLY.SETBC_NUM(BC_NUM);
@@ -34,14 +35,37 @@ public class ReplyServiceImpl implements ReplyService {
 		return postReplyList;
 	}
 
+//	댓글입력
 	@Override
 	public int replyInsert(Reply reply) {
 		System.out.println("ReplyServiceImpl int replyInsert start...");
+//		댓글입력
 		int result = 0;
+//		입력성공 하면 맴버 평점 올려주기
+		int result1 = 0;
+//		닉네임 테이블에 입력
+		int result2 = 0;
+//		닉네임 테이블에 입력이 되있으면 칭호번호 업데이트
+		int result3 = 0;
+//		댓글입력
 		result = rd.replyInsert(reply);
+		if (result > 0) {
+//		입력성공 하면 맴버 평점 올려주기
+			result1 = rd.memberRateUpdate(reply);
+			if (result1 > 0) {
+//				닉네임 테이블에 입력
+				result2 = rd.nicknameInsert(reply);
+				if (result2 == 0) {
+//					닉네임 테이블에 입력이 되있으면 칭호번호 업데이트
+					result3 = rd.nicknameNumUpdate(reply);
+				}
+			}
+
+		}
 		return result;
 	}
 
+//	댓글삭제
 	@Override
 	public int replyDelete(int bt_num, int bc_num, int p_num, int r_num) {
 		System.out.println("ReplyServiceImpl replyDelete start...");
@@ -55,6 +79,7 @@ public class ReplyServiceImpl implements ReplyService {
 		return result;
 	}
 
+//	대댓글 입력
 	@Override
 	public int replyReplyInsert(Reply reply) {
 		System.out.println("ReplyServiceImpl replyIndentUpdate start...");
@@ -64,9 +89,8 @@ public class ReplyServiceImpl implements ReplyService {
 		result1 = rd.replyIndentUpdate(reply);
 		System.out.println("ReplyServiceImpl replyReplyInsert start...");
 //		대댓글 등록
-		result = rd.replyReplyInsert(reply); 
+		result = rd.replyReplyInsert(reply);
 		return result;
 	}
-
 
 }

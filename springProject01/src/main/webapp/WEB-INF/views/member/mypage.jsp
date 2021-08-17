@@ -43,6 +43,9 @@
 					<div class="info_item">
 						<div class="item_title">이메일</div>
 						<div class="item_content">
+							
+							<input type="text" value="${lhj_MemberVO.m_rate }" readonly>
+						
 							<input type="text" value="${lhj_MemberVO.m_id }" readonly>
 						</div>
 					</div>

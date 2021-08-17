@@ -25,6 +25,7 @@
 			<form action="${pageContext.request.contextPath}/post/category/search" method="get">
 				<div class="search_section">
 					<input type="text" id="keyword" name="keyword" placeholder="원하는 모임을 검색해보세요!" /><button>검색하기</button>
+					<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 				</div>
 			</form>
 			<div class="nav_bar">

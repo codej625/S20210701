@@ -75,9 +75,10 @@
 <!-- 게시물 수정하기 -->
 	<update id="postListUpdate" parameterType="Post">
 		update  post
-		set 	p_title = #{p_title}, p_intro = #{p_intro}, p_info = #{p_intro}, p_gname = #{p_gname},
-				p_capa = #{p_capa}, p_cost = #{p_cost}, p_loc = #{p_loc}, p_starttime = #{p_starttime},
-				p_endtime = #{p_endtime}, p_cstatus = #{p_cstatus} 
+		set 	p_title = #{p_title}, p_img = #{p_img}, p_intro = #{p_intro}, p_info = #{p_info}, p_gname = #{p_gname},
+				p_capa = #{p_capa}, p_cost = #{p_cost}, p_loc = #{p_loc}, p_metstart = #{p_metstart}, p_metend = #{p_metend},
+				p_starttime = #{p_starttime}, p_endtime = #{p_endtime}, p_appstart = #{p_appstart}, p_append = #{p_append},
+				p_cstatus = #{p_cstatus}, p_tag = #{p_tag}, p_bankname = #{p_bankname}, p_accountnumber = #{p_accountnumber}
 		where 	bt_num = #{bt_num} and bc_num = #{bc_num} and p_num = #{p_num}
 	</update>
 	

@@ -24,6 +24,13 @@ public class Reply {
 //	게시물 작성한 맴버 조회용
 	private String m_name;
 	private String m_tel;
+	private String m_img;
+	
+//	댓글평점 아이디 저장용
+	private String pm_id;
+	
+//	닉네임 테이블 저장용
+	private int nt_num;
 	
 //	페이징 조회용
 	private String search;
