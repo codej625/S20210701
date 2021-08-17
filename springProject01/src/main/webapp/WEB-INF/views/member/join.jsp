@@ -147,7 +147,6 @@
 			            	});
 
 			               </script>
-			               
 						<input type="button" onclick="telOverlap()" value="중복확인"/>
 					</div>
 					<div class="input_title">관심정보</div>
