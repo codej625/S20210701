@@ -66,6 +66,7 @@ public class Che_Controller {
 		System.out.println("Che_Controller mainGetForm bestList2 listPost.size()->"+bestList2.size());
 		
 		String m_id = (String) request.getSession().getAttribute("sessionID");
+		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		System.out.println("Che_Controller recentPostList m_id -> " + m_id);
 		
 		if(m_id != null) {
@@ -89,6 +90,7 @@ public class Che_Controller {
 		model.addAttribute("bestList1",bestList1);
 		model.addAttribute("bestList2",bestList2);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+		model.addAttribute("sessionID", sessionID);
 		
 		return "main/main";
 	}

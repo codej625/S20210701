@@ -51,8 +51,9 @@ public class Yjh_Controller {
 
 //   게시물 리스트 불러오기
    @RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
-   public String categoryGet(Integer bt_num, Integer bc_num, String currentPage, Model model) {
+   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String currentPage, Model model, Lhj_MemberVO lhj_MemberVO) {
       System.out.println("Yjh_Controller categoryGet Start...");
+      String sessionID =  (String) request.getSession().getAttribute("sessionID");
       int total = 0;
 //      유형번호만 눌렀을때 카테고리값을 0으로
       if (bc_num == null)
@@ -74,6 +75,7 @@ public class Yjh_Controller {
 //         System.out.println("Yjh_Controller categoryGet post1.getP_title()->"+post1.getP_img());
 //      }
       System.out.println("Yjh_Controller String list() listPost.size()->" + listPost.size());
+      model.addAttribute("sessionID",sessionID);
       model.addAttribute("total", total);
       model.addAttribute("listPost", listPost);
       model.addAttribute("pg", pg);
@@ -206,7 +208,7 @@ public class Yjh_Controller {
 
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, String pm_id, RecentPost rpost, Model model, HttpServletRequest request) {
+	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, String pm_id, RecentPost rpost, Model model, HttpServletRequest request, Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("Yjh_Controller String postListDetail start...");
 
 //		섹션아이디
@@ -253,7 +255,6 @@ public class Yjh_Controller {
 		model.addAttribute("result",result1);
 		model.addAttribute("result2",result2);	
 		model.addAttribute("reply",replyList);
-		
 		return "post/contents";
 	}
 
