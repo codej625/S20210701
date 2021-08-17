@@ -96,7 +96,7 @@ public class Lhj_Controller {
 	public void telOverlap(HttpServletResponse response, @RequestParam("m_tel") String m_tel) throws IOException {
 		System.out.println("Lhj_Controller String telOverlap start...");
 		// @RequestParam는 요청의 특정 파라미터 값을 찾아낼 때 사용하는 어노테이션
-		ms.idOverlap(m_tel, response); // 서비스에 있는 idOverlap 호출.
+		ms.telOverlap(m_tel, response); // 서비스에 있는 idOverlap 호출.
 	}
 
 	// 회원가입 처리 for 네이버
@@ -178,7 +178,7 @@ public class Lhj_Controller {
 			} else {
 				// 세션유지
 				request.getSession().setAttribute("sessionID", m_id);
-				model.addAttribute("lhj_MemberVO", lhj_MemberVO);
+				model.addAttribute("lhj_MemberVO", login);
 				model.addAttribute("m_id", m_id);
 				// 넘어간 m_id value 확인용
 				System.out.println("m_id->" + m_id);
@@ -189,7 +189,7 @@ public class Lhj_Controller {
 		}
 		return "redirect:/member/login";
 	}
-
+	
 	// 네이버 로그인
 	@RequestMapping(value = "/member/naverlogin")
 	public String naverlogin(HttpSession session) {

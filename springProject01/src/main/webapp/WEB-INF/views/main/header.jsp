@@ -35,7 +35,7 @@
 							<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						</c:if>
 						<c:if test="${sessionID != null}">
-							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${m_name}회원님</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${lhj_MemberVO.m_name}회원님</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/chat/user">고객센터</a></li>
