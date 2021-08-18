@@ -1,0 +1,109 @@
+.find_div{
+	position: relative;
+	top: 20px;
+	left: 20px;
+	border: 2px solid #269F70;
+	border-radius: 15px;
+/* 	border-color: #269F70;  */
+	padding: 10px;
+	width: 350px;
+	height: 140px;
+}
+.find_div2{
+	position: relative;
+	top: 20px;
+	left: 20px;
+	border: 2px solid #269F70;
+	border-radius: 15px;
+/* 	border-color: #269F70;  */
+	padding: 10px;
+	width: 350px;
+	height: 200px;
+}
+
+#labels{
+/* 	margin-right: 10px; */
+	padding-right: 30px;
+	margin-bottom: 5px;
+}
+#labels_2{
+/* 	margin-right: 10px; */
+	padding-right: 15px;
+	margin-bottom: 5px;
+}
+
+
+#m_name{
+	border-radius:15px;
+	width: 170px;
+	height: 27px;
+	margin-bottom: 5px;
+}
+#m_id{
+	border-radius:15px;
+	width: 170px;
+	height: 27px;
+	margin-bottom: 5px;
+}
+
+#m_pw{
+	border-radius:15px;
+	width: 170px;
+	height: 27px;
+	margin-bottom: 5px;
+}
+
+#m_re_pw{
+	border-radius:15px;
+	width: 170px;
+	height: 27px;
+	margin-bottom: 5px;
+}
+
+#m_tel{
+	border-radius:15px;
+	width: 170px;
+	height: 27px;
+}
+
+.sub_btn{
+	position: relative;
+    top: 5px;
+    left: 10px;
+    width: 80px;
+    height: 30px;
+    background-color: rgba(38,159,112,30%);
+    border-radius: 10px;
+}
+
+.text_label{
+	position: relative;
+    top: 40px;
+    left: 10px;
+}
+
+.text_label2{
+	position: relative;
+    top: 40px;
+    left: 10px;
+}
+
+.chk_btn{
+	position: relative;
+    top: 15px;
+    left: 280px;
+    width: 50px;
+    height: 30px;
+    background-color: rgba(38,159,112,20%);
+    border-radius: 10px;
+}
+
+.chk_btn2{
+	position: relative;
+    top: 15px;
+    left: 280px;
+    width: 50px;
+    height: 30px;
+    background-color: rgba(38,159,112,20%);
+    border-radius: 10px;
+}

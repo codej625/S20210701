@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/joinStyle.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/find.css"/>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/foot.css"/>
 <%
 	String context = request.getContextPath();
@@ -24,37 +24,34 @@
 </head>
 <body onload="bodyOnload()">
 <form action="find_m_id" name="findform" method="post" >
-		<div class="form-label-group">
-			<input type="text" id="m_name" name="m_name" class="form-control"/>
-			<label for="m_name">m_name</label>
-		</div>
 		
-		<div class="form-label-group">
-			<input type="text" id="m_tel" name="m_tel" class="form-control"/>
-			<label for="m_tel">m_tel</label>
-		</div>
-
-		<div class="form-label-group">
-			<input class="btn btn-lg btn-secondary btn-block text-uppercase"
-				type="submit" value="check">
-		</div>
-
-		<!--일치하지 않을 때-->
-		<c:if test="${check == 1}">
-			<script>
-				opener.document.findform.m_name.value = "";
-				opener.document.findform.m_tel.value = "";
-			</script>
-			<label>일치하는 정보가 존재하지 않습니다.</label>
-		</c:if>
-
-		<!--일치 할 때 -->
-		<c:if test="${check == 0 }">
-		<label>찾으시는 아이디는' ${m_id}' 입니다.</label>
-		<div class="form-label-group">
-				<input class="btn btn-lg btn-secondary btn-block text-uppercase"
-					type="button" value="OK" onclick="closethewindow()">
+		<div class="find_div">
+			<label for="m_name" id="labels">이름</label>
+			<input type="text" id="m_name" name="m_name" class="find_text"/>
+			<br>
+			<label for="m_tel" id="labelss">전화번호</label>
+			<input type="text" id="m_tel" name="m_tel" class="find_text"/>
+	
+			<input type="submit" class="sub_btn" value="찾기">
+			
+			<!--일치하지 않을 때-->
+			<c:if test="${check == 1}">
+				<script>
+					opener.document.findform.m_name.value = "";
+					opener.document.findform.m_tel.value = "";
+				</script>
+				<label class="text_label">일치하는 정보가 존재하지 않습니다.</label>
+			</c:if>
+	
+			<!--일치 할 때 -->
+			<c:if test="${check == 0 }">
+			<label class="text_label">찾으시는 아이디는' ${m_id}' 입니다.</label>
+			<div>
+				<input class="chk_btn"
+					type="button" value="확인" onclick="closethewindow()">
 			</div>
-		</c:if>
+			</c:if>
+		</div>
+
 	</form>
  </body>

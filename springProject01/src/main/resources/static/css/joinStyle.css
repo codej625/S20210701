@@ -147,3 +147,19 @@ a {
 	color: #fff;
 	background-color: #2F2F96;
 }
+
+/* 추가 */
+
+#m_field{
+	width: 100%;
+    height: 56px;
+    border-radius: 5px;
+    border-color: #80808066;
+}
+.agree_form {
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	overflow: scroll;
+	height: 400px;
+}

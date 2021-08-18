@@ -13,6 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/find.css"/>
 <style>
 </style>
 </head>
@@ -21,15 +22,15 @@
 <script type="text/javascript">
 	var naver_id_login = new naver_id_login("6afzdjusqprAB9msW6OV", "http://localhost:8181/springProject01/member/naverCallback");
 	// 접근 토큰 값 출력
-	alert(naver_id_login.oauthParams.access_token);
+// 	alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회
   naver_id_login.get_naver_userprofile("naverSignInCallback()");
   // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
   function naverSignInCallback() {
     
 	  //걍 잘 가져오는지 확인하는거임
-    alert(naver_id_login.getProfileData('email'));
-    alert(naver_id_login.getProfileData('name'));
+//     alert(naver_id_login.getProfileData('email'));
+//     alert(naver_id_login.getProfileData('name'));
 
   }
   
@@ -41,8 +42,8 @@
 		var password = document.getElementById('m_pw');					//비밀번호 
 		var passwordConfirm = document.getElementById('m_re_pw');	//비밀번호 확인 값
 		var confrimMsg = document.getElementById('confirmMsg');				//확인 메세지
-		var correctColor = "#00ff00";	//맞았을 때 출력되는 색깔.
-		var wrongColor ="#ff0000";	//틀렸을 때 출력되는 색깔
+		var correctColor = "#269F70";	//맞았을 때 출력되는 색깔.
+		var wrongColor ="#CC3D3D";	//틀렸을 때 출력되는 색깔
 		
 		if(password.value == passwordConfirm.value){//password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
 			confirmMsg.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
@@ -72,7 +73,7 @@
 			 type: 'POST',
 	      dataType:'text',
 	      success:function(data){
-	          alert("로그인 되었습니다.");
+	          alert("회원가입 되었습니다.");
 	          window.opener.location.href="${pageContext.request.contextPath}/main/main";
 	            self.close();
 	      }
@@ -81,12 +82,12 @@
 }
 </script>
 	<form action="${pageContext.request.contextPath}/members/join" method="post" name="joinForm">
-	<div>
-		<input type="text" id="m_tel" name="m_tel" placeholder="전화번호" required="required"></br>
-		<input type="text" id="m_pw" name="m_pw" placeholder="비밀번호" required="required"><br>
-		<input type="text" id="m_re_pw" name="m_re_pw" placeholder="비밀번호 확인" required="required" onkeyup="passConfirm()"><br>
+	<div class="find_div">
+		<input type="text" id="m_tel" name="m_tel" placeholder="전화번호" required="required" class="find_text"></br>
+		<input type="text" id="m_pw" name="m_pw" placeholder="비밀번호" required="required" class="find_text"><br>
+		<input type="text" id="m_re_pw" name="m_re_pw" placeholder="비밀번호 확인" required="required" onkeyup="passConfirm()">
+		<input type="submit" onclick="naverlogin()" value="확인" class="sub_btn"><br>
 		<span id ="confirmMsg"></span> 
-		<input type="submit" onclick="naverlogin()" value="확인"> 
 	</div>
 	</form>
 
