@@ -19,6 +19,12 @@ public class Member {
 	private String m_withdrawal;
 	private String m_meetingauth;
 	private String m_masterauth;
+	private int m_point;
+	private String m_img;
+	private String m_meetingfile;
+	private String m_masterfile;
+	private String m_mail;
+	private String m_certification;
 	
 	// 조회용
 	private String search;   private String keyword;

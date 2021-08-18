@@ -19,15 +19,17 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao md;
 
+	// 회원 리스트
 	@Override
 	public List<Member> listMember(Member member) {
-		List<Member> memberList = null;
 		System.out.println("MemberServiceImpl Start listMember...");
+		List<Member> memberList = null;
 		memberList = md.listMember(member);
 		System.out.println("MemberServiceImpl listMember.size()->" + memberList);
 		return memberList;
 	}
 
+	// 회원 총 인원 알아보기
 	@Override
 	public int total() {
 		System.out.println("MemberServiceImpl Start total...");
@@ -93,12 +95,28 @@ public class MemberServiceImpl implements MemberService {
 		return check;
 	}
 
+	// 권한 해제
 	@Override
 	public int user_delete(String m_id) {
-		int delete = 0;
 		System.out.println("MemberServiceImpl Start user_delete...");
+		int delete = 0;
 		delete = md.user_delete(m_id);
 		return delete;
 	}
 
+	@Override
+	public List<Member> auth_listMember(Member member) {
+		System.out.println("MemberServiceImpl Start auth_listMember...");
+		List<Member> auth_listMember = null;
+		auth_listMember = md.auth_listMember(member);
+		return auth_listMember;
+	}
+
+	@Override
+	public int a_total() {
+		System.out.println("MemberServiceImpl Start a_total...");
+		int a_total = md.a_total();
+		System.out.println("MemberServiceImpl total a_total->" + a_total);
+		return a_total;
+	}
 }

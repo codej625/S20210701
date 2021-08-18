@@ -37,32 +37,32 @@
 								</c:choose>
 							</option>
 							<c:if test="${bt_num == 1 }">
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=1&m_name=${lhj_MemberVO.m_name}">게임/만화/애니</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=2&m_name=${lhj_MemberVO.m_name}">영화/음악/그림</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=3&m_name=${lhj_MemberVO.m_name}">스포츠/레저</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=4&m_name=${lhj_MemberVO.m_name}">반려동물</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=5&m_name=${lhj_MemberVO.m_name}">패션/미용</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=6&m_name=${lhj_MemberVO.m_name}">건강/다이어트</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=7&m_name=${lhj_MemberVO.m_name}">가족/육아</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=8&m_name=${lhj_MemberVO.m_name}">컴퓨터/통신</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=9&m_name=${lhj_MemberVO.m_name}">외국어/인문/과학</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=10&m_name=${lhj_MemberVO.m_name}">경제/금융/정치/사회</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=11&m_name=${lhj_MemberVO.m_name}">문학/창작</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=12&m_name=${lhj_MemberVO.m_name}">기타</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=1">게임/만화/애니</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=2">영화/음악/그림</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=3">스포츠/레저</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=4">반려동물</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=5">패션/미용</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=6">건강/다이어트</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=7">가족/육아</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=8">컴퓨터/통신</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=9">외국어/인문/과학</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=10">경제/금융/정치/사회</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=11">문학/창작</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=12">기타</option>
 							</c:if>
 							<c:if test="${bt_num == 2 }">
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=1&m_name=${lhj_MemberVO.m_name}">게임/만화/애니</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=2&m_name=${lhj_MemberVO.m_name}">영화/음악/그림</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=3&m_name=${lhj_MemberVO.m_name}">스포츠/레저</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=4&m_name=${lhj_MemberVO.m_name}">반려동물</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=5&m_name=${lhj_MemberVO.m_name}">패션/미용</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=6&m_name=${lhj_MemberVO.m_name}">건강/다이어트</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=7&m_name=${lhj_MemberVO.m_name}">가족/육아</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=8&m_name=${lhj_MemberVO.m_name}">컴퓨터/통신</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=9&m_name=${lhj_MemberVO.m_name}">외국어/인문/과학</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=10&m_name=${lhj_MemberVO.m_name}">경제/금융/정치/사회</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=11&m_name=${lhj_MemberVO.m_name}">문학/창작</option>
-								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=12&m_name=${lhj_MemberVO.m_name}">기타</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=1">게임/만화/애니</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=2">영화/음악/그림</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=3">스포츠/레저</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=4">반려동물</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=5">패션/미용</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=6">건강/다이어트</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=7">가족/육아</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=8">컴퓨터/통신</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=9">외국어/인문/과학</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=10">경제/금융/정치/사회</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=11">문학/창작</option>
+								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=12">기타</option>
 							</c:if>
 						</select>
 					</div>
@@ -72,7 +72,7 @@
 			<div class="con_section">
 				<c:forEach var="post" items="${listPost }">
 					<div class="con_item" style="cursor: pointer;" 
-						onclick="location.href='${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}&pm_id=${post.m_id }&m_name=${lhj_MemberVO.m_name}'">
+						onclick="location.href='${pageContext.request.contextPath}/post/postListDetail?bt_num=${post.bt_num }&bc_num=${post.bc_num }&p_num=${post.p_num}&pm_id=${post.m_id }'">
 	                    <div class="con_img">
 	                        <img src="${pageContext.request.contextPath}/upload/${post.p_img}">
 	                    </div>

@@ -1,117 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="" />
-<meta name="author" content="" />
-<title>ADMIN Page</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
-	rel="stylesheet" />
-<link href="${pageContext.request.contextPath}/css/styles.css"
-	rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-<body class="sb-nav-fixed">
-	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3"
-			href="${pageContext.request.contextPath}/admin/index">모꼬지 ADMIN</a>
-		<!-- Sidebar Toggle-->
-		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-			id="sidebarToggle" href="#!">
-			<i class="fas fa-bars"></i>
-		</button>
-	</nav>
-	<div id="layoutSidenav">
-		<div id="layoutSidenav_nav">
-			<nav class="sb-sidenav accordion sb-sidenav-dark"
-				id="sidenavAccordion">
-				<div class="sb-sidenav-menu">
-					<div class="nav">
-						<div class="sb-sidenav-menu-heading"></div>
-						<div class="sb-sidenav-menu-heading">회원관리</div>
-						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-							data-bs-target="#collapseLayouts" aria-expanded="false"
-							aria-controls="collapseLayouts">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-columns"></i>
-							</div> 회원 기능
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
-							</div>
-						</a>
-						<div class="collapse" id="collapseLayouts"
-							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/table">회원 목록</a>
-								<a class="nav-link"
-									href="${pageContext.request.contextPath}/admin/masterauth">고수
-									인증</a> <a class="nav-link" href="">회원 삭제</a>
-							</nav>
-						</div>
-
-
-
-						<div class="sb-sidenav-menu-heading">기타 기능</div>
-						<a class="nav-link" href="charts.html">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-chart-area"></i>
-							</div> 신고 목록
-						</a> <a class="nav-link" href="tables.html">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-table"></i>
-							</div> 고수 인증
-						</a>
-					</div>
-				</div>
-				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					ADMIN
-				</div>
-			</nav>
-		</div>
-		<div id="layoutSidenav_content">
-			<main>
-				<form action="${pageContext.request.contextPath}/admin/update" method="post">
-					<input type="text" name="m_id"> 
-					<input type="submit" value="확인">
-				</form>
-			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2021</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
-						</div>
-					</div>
-				</div>
-			</footer>
+<body>
+	<form method="post" action="${pageContext.request.contextPath}/admin/upload" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><input type="text" name="m_id"></td>
+			</tr>
+			<tr>
+				<td><input multiple="multiple" type="file" name="files"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="submit"></td>
+			</tr>
+		</table>
+	</form>
+	
+<form method="post" action="${pageContext.request.contextPath}/member/certification" enctype="multipart/form-data" name="resultform">
+	<div class="info_img">
+		<div id="image_container">
+			<table>
+				<tbody>
+					<tr>
+						<td>1.</td>
+						<td colspan="2"><font color="blue">&lt;인증 받을 권한을 선택&gt;</font></td>
+					<tr>
+						<td>
+							<input type="checkbox" name="m_meetingauth" value="M">&nbsp;모임&nbsp;
+							<input type="checkbox" name="m_masterauth" value="M">&nbsp;클래스
+						</td>
+					</tr>
+					<tr>
+						<td>2.</td>
+						<td><font color="blue">&lt;인증 받으려는 이유를 선택&gt;</font></td>
+					</tr>
+					<tr>
+						<td>
+							<select name="m_certification">
+								<option value="정보 공유">정보 공유</option>
+								<option value="상업적인 목적">상업적인 목적</option>
+								<option value="취미 활동">취미 활동</option>
+								<option value="기타">기타</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>3.</td>
+						<td><font color="blue">&lt;메일 인증&gt;</font></td>
+					</tr>
+					<tr>
+						<td><input type="text" placeholder="${lhj_MemberVO.m_id}" readonly></td>
+						<td><input type="button" onclick="mail()" value="인증번호 받기"></td>
+					</tr>
+					<tr>
+						<td><input type="hidden" name="m_id" value="${lhj_MemberVO.m_id}"></td>
+						<td><input type="text" name="m_mail" placeholder="인증번호를 입력하세요"></td>
+					</tr>
+					<tr>
+						<td>4.</td>
+						<td><font color="blue">&lt;첨부 파일&gt;</font></td>
+						<td><input multiple="multiple" type="file" name="files"></td>
+					<tr>
+						<td><input type="submit" value="개설자 인증받기"></td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/js/scripts.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-		crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/js/chart-area.js"></script>
-	<script src="${pageContext.request.contextPath}/js/chart-bar.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-		crossorigin="anonymous"></script>
-	<script src="${pageContext.request.contextPath}/js/datatables2.js"></script>
+</form>
 </body>
 </html>

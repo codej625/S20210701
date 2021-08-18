@@ -32,4 +32,20 @@
 		UPDATE member SET
 		m_withdrawal = 'Y' WHERE m_id = #{m_id}
 	</update>
+	
+	<select id="auth_listMember" parameterType="Member" resultType="Member">
+		SELECT * FROM (SELECT rownum rn, a.*
+		FROM (SELECT * FROM
+		member WHERE (M_MEETINGAUTH = 'N' AND M_MASTERAUTH  IS NULL AND m_withdrawal = 'N')
+		OR (M_MEETINGAUTH  IS NULL AND M_MASTERAUTH = 'N' AND m_withdrawal = 'N')
+		OR (M_MEETINGAUTH = 'N' AND M_MASTERAUTH = 'N' AND m_withdrawal = 'N') ORDER BY m_regdate DESC) a)
+		WHERE rn
+		BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="ljwA_Total" resultType="int">
+		SELECT COUNT(*) FROM member
+		WHERE m_withdrawal = 'N' AND m_meetingauth = 'N' AND m_masterauth = 'N'
+	</select>
+	
 </mapper>

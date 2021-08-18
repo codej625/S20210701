@@ -32,7 +32,13 @@
 	font-size: 15px;
 }
 /* 메시지입력창 */
-
+.msg{
+position:relative; 
+	top:400px;
+	width: 430px;
+	height: 25px;
+	margin: 0px;
+}
 /* 본인 text */
 .me {
 
@@ -57,10 +63,12 @@
 	<!-- 유저가 접속할 때마다 이 템플릿으로 채팅창을 생성한다. -->
 	<div class="template" style="display: none" >
 	<!--  sessionNAME값 -->
-			<input type="text" id="name" value="회원아이디 = ${sessionID} "><br/>
+		<div>	<input type="text" id="name" value="회원아이디 = ${sessionID} "><br/>
+		</div>
 		<!-- 서버와 메시지를 주고 받는 콘솔 텍스트 영역 -->
 		<!--  <div id="textarea" class="console"></div>
 		<br />  -->
+		<div class="msg">
 		<form class="msgSend">
 			<!-- 메시지 텍스트 박스 -->
 			<input type="text" class="message"
@@ -69,6 +77,7 @@
 			<input value="Send" type="button" class="sendBtn">
 
 		</form>
+	</div>
 	</div>
 
 	   

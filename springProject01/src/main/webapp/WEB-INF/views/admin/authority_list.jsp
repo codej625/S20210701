@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<%
-	String context = request.getContextPath();
-%>
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -69,14 +66,47 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-				<div class="container-fluid px-4">
-					<h1 class="mt-4">임시 지정</h1>
-					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item active">임시 지정</li>
-					</ol>
-					<p>업데이트시 전달 Message : ${num}
-					<p>업데이트시 전달 Message : ${f.m_num}
-				</div>
+				<h4>회원수 : ${total} 명</h4>
+				<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
+				<form method="post" action="${pageContext.request.contextPath}/admin/user_delete">
+					<br>
+						<br>
+							<br>
+					<table class="table table-hover">
+						<tr>
+							<th>번호</th>
+							<th>ID</th>
+							<th>이름</th>
+							<th>가입 날짜</th>
+							<th>관심 분야</th>
+							<th>모임 권한</th>
+							<th>클래스 권한</th>
+						</tr>
+						<c:forEach var="member" items="${auth_listMember}">
+							<tr>
+								<td><input type="checkbox" value="${member.m_id}" name="m_idArray">${num}</td>
+								<td>${member.m_id}</td>
+								<td>${member.m_name}</td>
+								<td>${member.m_regdate}</td>
+								<td>${member.m_field}</td>
+								<td>${member.m_meetingauth}</td>
+								<td>${member.m_masterauth}</td>
+							</tr>
+							<c:set var="num" value="${num - 1 }"></c:set>
+						</c:forEach>
+					</table>
+					<input type="submit" value="회원 권한 승인">
+				</form>
+
+				<c:if test="${pg.startPage > pg.pageBlock }">
+					<a href="${pageContext.request.contextPath}/admin/authority_list?currentPage=${pg.startPage-pg.pageBlock}">[이전]</a>
+				</c:if>
+				<c:forEach var="i" begin="${pg.startPage}" end="${pg.endPage}">
+					<a href="${pageContext.request.contextPath}/admin/authority_list?currentPage=${i}">[${i}]</a>
+				</c:forEach>
+				<c:if test="${pg.endPage < pg.totalPage }">
+					<a href="${pageContext.request.contextPath}/admin/authority_list?currentPage=${pg.startPage+pg.pageBlock}">[다음]</a>
+				</c:if>
 			</main>
 			<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid px-4">

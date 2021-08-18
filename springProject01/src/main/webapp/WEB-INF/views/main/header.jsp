@@ -35,7 +35,7 @@
 							<li><a href="${pageContext.request.contextPath}/member/join">회원가입</a></li>
 						</c:if>
 						<c:if test="${sessionID != null}">
-							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${lhj_MemberVO.m_name}회원님</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${sessionID}회원님</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
 						<li><a href="${pageContext.request.contextPath}/chat/user">고객센터</a></li>
@@ -130,58 +130,58 @@
 				<a href="${pageContext.request.contextPath}/post/category?bt_num=1&m_name=${lhj_MemberVO.m_name}">모임</a>
 				<ul class="select_box">
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=1&m_name=${lhj_MemberVO.m_name}">게임/만화/애니</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=1">게임/만화/애니</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=2&m_name=${lhj_MemberVO.m_name}">영화/음악/그림</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=2">영화/음악/그림</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=3&m_name=${lhj_MemberVO.m_name}">스포츠/레저</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=3">스포츠/레저</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=4&m_name=${lhj_MemberVO.m_name}">반려동물</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=4">반려동물</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=5&m_name=${lhj_MemberVO.m_name}">패션/미용</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=5">패션/미용</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=6&m_name=${lhj_MemberVO.m_name}">건강/다이어트</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=6">건강/다이어트</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=7&m_name=${lhj_MemberVO.m_name}">가족/육아</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=7">가족/육아</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=8&m_name=${lhj_MemberVO.m_name}">컴퓨터/통신</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=8">컴퓨터/통신</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=9&m_name=${lhj_MemberVO.m_name}">외국어/인문/과학</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=9">외국어/인문/과학</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=10&m_name=${lhj_MemberVO.m_name}">경제/금융/정치/사회</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=10">경제/금융/정치/사회</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=11&m_name=${lhj_MemberVO.m_name}">문학/창작</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=11">문학/창작</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=12&m_name=${lhj_MemberVO.m_name}">기타</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=12">기타</a></li>
 				</ul>
 			</div>
 			<div class="filter_item">
-				<a href="${pageContext.request.contextPath}/post/category?bt_num=2&m_name=${lhj_MemberVO.m_name}">클래스</a>
+				<a href="${pageContext.request.contextPath}/post/category?bt_num=2">클래스</a>
 				<ul class="select_box">
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=1&m_name=${lhj_MemberVO.m_name}">게임/만화/애니</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=1">게임/만화/애니</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=2&m_name=${lhj_MemberVO.m_name}">영화/음악/그림</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=2">영화/음악/그림</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=3&m_name=${lhj_MemberVO.m_name}">스포츠/레저</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=3">스포츠/레저</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=4&m_name=${lhj_MemberVO.m_name}">반려동물</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=4">반려동물</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=5&m_name=${lhj_MemberVO.m_name}">패션/미용</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=5">패션/미용</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=6&m_name=${lhj_MemberVO.m_name}">건강/다이어트</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=6">건강/다이어트</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=7&m_name=${lhj_MemberVO.m_name}">가족/육아</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=7">가족/육아</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=8&m_name=${lhj_MemberVO.m_name}">컴퓨터/통신</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=8">컴퓨터/통신</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=9&m_name=${lhj_MemberVO.m_name}">외국어/인문/과학</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=9">외국어/인문/과학</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=10&m_name=${lhj_MemberVO.m_name}">경제/금융/정치/사회</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=10">경제/금융/정치/사회</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=11&m_name=${lhj_MemberVO.m_name}">문학/창작</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=11">문학/창작</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=12&m_name=${lhj_MemberVO.m_name}">기타</a></li>
+						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=12">기타</a></li>
 				</ul>
 			</div>
 		</div>

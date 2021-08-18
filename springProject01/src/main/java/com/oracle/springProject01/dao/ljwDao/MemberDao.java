@@ -23,4 +23,8 @@ public interface MemberDao {
 	
 	int user_delete(String m_id);
 	
+	List<Member> auth_listMember(Member member);
+	
+	int a_total();
+	
 }

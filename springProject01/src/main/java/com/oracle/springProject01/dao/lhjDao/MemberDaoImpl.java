@@ -69,7 +69,7 @@ public class MemberDaoImpl implements MemberDao {
 	public Lhj_MemberVO find_m_id(Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("daoImple select find_m_id start");
 		try {
-			lhj_MemberVO = session.selectOne("hj_find_m_pw", lhj_MemberVO);
+			lhj_MemberVO = session.selectOne("hj_find_m_id", lhj_MemberVO);
 		} catch (Exception e) {
 			System.out.println("Dao lhjmember memberDaoImpl find_m_id error -> " + e.getMessage());
 		}

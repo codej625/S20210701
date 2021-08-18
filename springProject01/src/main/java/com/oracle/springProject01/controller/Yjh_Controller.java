@@ -51,7 +51,7 @@ public class Yjh_Controller {
 
 //   게시물 리스트 불러오기
    @RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
-   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String currentPage, Model model, Lhj_MemberVO lhj_MemberVO) {
+   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String currentPage, Model model) {
       System.out.println("Yjh_Controller categoryGet Start...");
       String sessionID =  (String) request.getSession().getAttribute("sessionID");
       int total = 0;

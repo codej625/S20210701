@@ -114,4 +114,28 @@ public class MemberDaoImpl implements MemberDao {
 		return delete;
 	}
 
+	@Override
+	public List<Member> auth_listMember(Member member) {
+		System.out.println("MemberDaoImpl auth_listMember Start");
+		List<Member> auth_listMember = null;
+		try {
+			auth_listMember = session.selectList("auth_listMember", member);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl auth_listMember Exception->" + e.getMessage());
+		}
+		return auth_listMember;
+	}
+
+	@Override
+	public int a_total() {
+		System.out.println("MemberDaoImpl a_total Start");
+		int a_total = 0;
+		try {
+			a_total = session.selectOne("ljwA_Total");
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl a_total Exception->" + e.getMessage());
+		}
+		return a_total;
+	}
+
 }

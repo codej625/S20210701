@@ -16,7 +16,7 @@ import com.oracle.springProject01.service.paging.LjwPaging;
 @Controller
 public class Ljw_Controller {
 
-	@Autowired 
+	@Autowired
 	private MemberService ms;
 
 	// admin_main page 접속
@@ -59,34 +59,34 @@ public class Ljw_Controller {
 				m_id = m_idArray[i];
 			}
 			delete = ms.user_delete(m_id);
-			System.out.println("굿굿굿");
+			System.out.println("ok");
 			model.addAttribute("result", delete);
 			return "forward:/admin/admin_main";
 		} else if (m_idArray == null) {
-			System.out.println("오류시발!");
+			System.out.println("error");
 			m_id = "입력 된 값이 없습니다.";
 			model.addAttribute("value", m_id);
 		}
 		return "forward:/admin/user_list";
 	}
 
-	@RequestMapping(value = "/admin/table")
-	public String list(Member member, String currentPage, Model model) {
-		System.out.println("Ljw_Controller user_delete Start");
-		int total = ms.total();
-		System.out.println("EmpController total=>" + total);
+	@RequestMapping(value = "/admin/authority_list")
+	public String authority_list(Member member, String currentPage, Model model) {
+		System.out.println("Ljw_Controller authority_list Start");
+		int a_total = ms.a_total();
+		System.out.println("EmpController total=>" + a_total);
 		System.out.println("currentPage=>" + currentPage);
 
-		LjwPaging pg = new LjwPaging(total, currentPage);
+		LjwPaging pg = new LjwPaging(a_total, currentPage);
 		member.setStart(pg.getStart());
 		member.setEnd(pg.getEnd());
-		List<Member> listMember = ms.listMember(member);
-		System.out.println("Ljw_Controller list listMember.size()=>" + listMember.size());
-		model.addAttribute("listMember", listMember);
-		model.addAttribute("total", total);
+		List<Member> auth_listMember = ms.auth_listMember(member);
+		System.out.println("Ljw_Controller auth_listMember.size()=>" + auth_listMember.size());
+		model.addAttribute("auth_listMember", auth_listMember);
+		model.addAttribute("total", a_total);
 		model.addAttribute("pg", pg);
 
-		return "admin/table";
+		return "admin/authority_list";
 	}
 
 }

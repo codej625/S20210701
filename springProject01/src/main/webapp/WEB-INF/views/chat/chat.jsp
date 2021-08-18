@@ -42,6 +42,8 @@
 .chating .me {
 	color: black;
 	text-align: right;
+	background: #F7E600;
+		border-radius: 10px 10px 10px 10px;
 }
 
 .chating .others {

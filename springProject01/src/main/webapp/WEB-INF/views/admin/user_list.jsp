@@ -42,7 +42,7 @@
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/user_list">회원 목록</a>
-								<a class="nav-link" href="${pageContext.request.contextPath}/admin/masterauth">고수 인증</a> 
+								<a class="nav-link" href="${pageContext.request.contextPath}/admin/authority_list">고수 인증</a> 
 								<a class="nav-link" href="">회원 삭제</a>
 							</nav>
 						</div>
@@ -66,10 +66,13 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-				<p>[ 회원수 : ${total} 명 ]</p>
+				<h4>회원수 : ${total} 명</h4>
 				<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
 				<form method="post" action="${pageContext.request.contextPath}/admin/user_delete">
-					<table class="table">
+					<br>
+						<br>
+							<br>
+					<table class="table table-hover">
 						<tr>
 							<th>번호</th>
 							<th>ID</th>
