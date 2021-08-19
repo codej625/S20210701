@@ -142,7 +142,7 @@
 		values
 			(#{m_id}, #{bt_num}, #{bc_num}, #{p_num}, sysdate)
 	</insert>
-	
+
 <!-- 	게시물 찜  취소하기 -->
 	<delete id="postBookmarkDelete" parameterType="Post">
 		delete
