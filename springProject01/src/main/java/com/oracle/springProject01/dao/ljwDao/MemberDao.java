@@ -20,7 +20,7 @@ public interface MemberDao {
 
 	int a_total();
 
-	MemberVo authorityList(String m_id);
+	MemberVo authorityList(MemberVo memberVo);
 
 	int authority(MemberVo member_list);
 

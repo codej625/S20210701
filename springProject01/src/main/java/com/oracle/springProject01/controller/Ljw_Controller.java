@@ -94,12 +94,18 @@ public class Ljw_Controller {
 	public String authority(String[] m_idArray, Model model) {
 		System.out.println("Ljw_Controller authority Start");
 		MemberVo member = new MemberVo();
+		int update = 0;
 		for (String m_id : m_idArray) {
-			System.out.println(m_id);
-			member = ms.authorityList(m_id);
-			System.out.println("member.getM_id()->" + member.getM_id());
-			ms.authority(member);
+			member.setM_id(m_id);
+			if (member.getM_id() != null) {
+				// m_id value check
+				System.out.println("member.getM_id()->" + member.getM_id());
+				member = ms.authorityList(member);
+				System.out.println("가져온 값이 있으면 member.getM_id()->" + member.getM_id());
+				update = ms.authority(member);
+				model.addAttribute("result" ,update);
+			}
 		}
-		return "/admin/admin_main";
+		return "forward:/admin/admin_main";
 	}
 }

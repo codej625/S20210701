@@ -63,29 +63,34 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVo authorityList(String m_id) {
+	public MemberVo authorityList(MemberVo member) {
+
 		System.out.println("MemberServiceImpl Start authorityList...");
-		MemberVo authorityList = md.authorityList(m_id);
-		return authorityList;
+
+		return md.authorityList(member);
 	}
 
 	@Override
 	public int authority(MemberVo member) {
-		System.out.println("MemberServiceImpl Start authority...");
-		System.out.println("member.getM_meetingauth()->" + member.getM_meetingauth());
-		MemberVo authority = member;
 		int result = 0;
-		if (authority != null) {
-			if (authority.getM_meetingauth() == "N") {
-				authority.setM_meetingauth("Y");
-			}
-			if (authority.getM_masterauth() == "N") {
-				authority.setM_masterauth("Y");
-			}
-			System.out.println(authority.getM_masterauth());
-			result = md.authority(authority);
-		}
-		return result;
-	}
+		System.out.println("MemberServiceImpl Start authority...");
+		System.out.println("1. member.getM_meetingauth()->" + member.getM_meetingauth());
+		System.out.println("2. member.getM_masterauth()->" + member.getM_masterauth());
 
+		if (member.getM_meetingauth().equals("N")) {
+			member.setM_meetingauth("Y");
+		}
+		if (member.getM_masterauth().equals("M")) {
+			member.setM_masterauth("M");
+		}
+		if (member.getM_masterauth().equals("N")) {
+			member.setM_masterauth("Y");
+		}
+		if (member.getM_meetingauth().equals("M")) {
+			member.setM_meetingauth("M");
+		}
+		System.out.println("1-1. member.getM_meetingauth()->" + member.getM_meetingauth());
+		System.out.println("2-1. member.getM_masterauth()->" + member.getM_masterauth());
+		return result = md.authority(member);
+	}
 }

@@ -17,7 +17,8 @@
 		//response.sendRedirect("chat/memberchat");
 		//response.sendRedirect("chat/index");
 		//response.sendRedirect("chat/chat_addon");
-		response.sendRedirect("main/main");
+// 		response.sendRedirect("main/main");
+		response.sendRedirect("admin/admin_main");
 	%>
 </body>
 </html>

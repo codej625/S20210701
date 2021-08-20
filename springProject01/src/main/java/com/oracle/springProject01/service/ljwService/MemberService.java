@@ -20,7 +20,7 @@ public interface MemberService {
 
 	int a_total();
 
-	MemberVo authorityList(String m_id);
+	MemberVo authorityList(MemberVo member);
 
 	int authority(MemberVo member);
 }

@@ -90,15 +90,16 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberVo authorityList(String m_id) {
+	public MemberVo authorityList(MemberVo member) {
 		System.out.println("MemberDaoImpl authorityList Start");
-		MemberVo authorityList = null;
+		MemberVo result = null;
+		System.out.println("member m_id->" + member.getM_id());
 		try {
-			authorityList = session.selectOne("ljwA_List", m_id);
+			result = session.selectOne("ljwA_List", member);
 		} catch (Exception e) {
 			System.out.println("MemberDaoImpl authorityList Exception->" + e.getMessage());
 		}
-		return authorityList;
+		return result;
 	}
 
 	@Override

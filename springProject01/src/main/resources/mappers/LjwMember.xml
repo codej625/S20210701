@@ -27,8 +27,8 @@
 		resultType="Member">
 		SELECT * FROM (SELECT rownum rn, a.* FROM (SELECT * FROM member WHERE 
 		(
-		m_meetingauth = 'N' AND m_masterauth IS NULL AND m_withdrawal = 'N')
-		OR (m_meetingauth IS NULL AND m_masterauth = 'N' AND m_withdrawal = 'N')
+		m_meetingauth = 'N' AND m_masterauth = 'M' AND m_withdrawal = 'N')
+		OR (m_meetingauth = 'M' AND m_masterauth = 'N' AND m_withdrawal = 'N')
 		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
    		OR (m_meetingauth = 'Y' AND m_masterauth = 'N' AND m_withdrawal = 'N')
     	OR (m_meetingauth = 'N' AND m_masterauth = 'Y' AND m_withdrawal = 'N')
@@ -45,14 +45,10 @@
 		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
 	</select>
 	
-	<select id="ljwA_List" parameterType="String" resultType="com.oracle.springProject01.model.MemberVo">
-		SELECT * FROM member
-		WHERE m_withdrawal = 'N'
-		AND
-		m_id = #{m_id}
-		AND (m_meetingauth = 'N' AND m_masterauth IS NULL AND m_withdrawal = 'N')
-		OR (m_meetingauth IS NULL AND m_masterauth = 'N' AND m_withdrawal = 'N')
-		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
+	<select id="ljwA_List" parameterType="com.oracle.springProject01.model.MemberVo" resultType="com.oracle.springProject01.model.MemberVo">
+		SELECT m_meetingauth, m_masterauth, m_withdrawal, m_id
+		FROM member
+		WHERE m_withdrawal = 'N' AND m_id = #{m_id}
 	</select>
 
 	<update id="ljw_authority" parameterType="com.oracle.springProject01.model.MemberVo">
