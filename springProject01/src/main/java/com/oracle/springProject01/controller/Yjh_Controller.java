@@ -485,5 +485,6 @@ public class Yjh_Controller {
 //      Post post = ps.postBookmarkDelete(m_id,bt_num, bc_num, p_num);
       return "ok!!!";
    }
+   
 
 }
