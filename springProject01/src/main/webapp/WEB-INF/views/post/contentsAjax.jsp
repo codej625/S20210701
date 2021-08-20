@@ -24,7 +24,10 @@ $("#request").click(function(){
         url : "/test/ajax",      // 컨트롤러에서 대기중인 URL 주소이다.
         data : reply,            // Json 형식의 데이터이다.
         success : function(res){ // 비동기통신의 성공일경우 success콜백으로 들어옵니다. 'res'는 응답받은 데이터이다.
-            for (var i = 0; i < res.length; i++) {
+            
+        	for (var i = 0; i < res.length; i++) {
+        		res[i].m_id
+        		
 				$('.replyid').append(
 						'<input type="hidden" id="replyid" value="'
 						+ res.m_id[i]

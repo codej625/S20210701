@@ -65,6 +65,14 @@
 								<option value="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=12">기타</option>
 							</c:if>
 						</select>
+						
+					</div>
+					<div class="item">
+						<form action="${pageContext.request.contextPath}/post/category" method="post">
+							<input type="hidden" name="bt_num" value="${bt_num }">
+							<input type="hidden" name="bc_num" value="${bc_num }">
+							<input type="text" id="keyword" name="keyword" placeholder="장소 및 모임명을 검색해보세요!" /><button type="submit">검색하기</button>
+						</form>
 					</div>
 					
 				</div>

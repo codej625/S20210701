@@ -51,7 +51,7 @@ public class Yjh_Controller {
 
 //   게시물 리스트 불러오기
    @RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
-   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String currentPage, Model model) {
+   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String keyword, String currentPage, Model model) {
       System.out.println("Yjh_Controller categoryGet Start...");
       String sessionID =  (String) request.getSession().getAttribute("sessionID");
       int total = 0;
@@ -59,13 +59,14 @@ public class Yjh_Controller {
       if (bc_num == null)
          bc_num = 0;
 //      게시물 갯수를 가져오기
-      total = ps.total(bt_num, bc_num);
+      total = ps.total(bt_num, bc_num,keyword);
       System.out.println("Yjh_Controller categoryGet total->" + total);
 //      페이징 처리
       Paging pg = new Paging(total, currentPage);
       Post post = new Post();
       post.setBt_num(bt_num);
       post.setBc_num(bc_num);
+      post.setKeyword(keyword);
       post.setStart(pg.getStart());
       post.setEnd(pg.getEnd());
 //      게시물 리스트
@@ -178,7 +179,7 @@ public class Yjh_Controller {
          return "forward:/post/category";
       } else {
          model.addAttribute("msg", "바보");
-         return "forward:add";
+         return "forward:/add";
       }
    }
 
@@ -208,7 +209,7 @@ public class Yjh_Controller {
 
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, String pm_id, RecentPost rpost, Model model, HttpServletRequest request, Lhj_MemberVO lhj_MemberVO) {
+	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, String pm_id, RecentPost rpost, Model model, HttpServletRequest request) {
 		System.out.println("Yjh_Controller String postListDetail start...");
 
 //		섹션아이디
@@ -336,11 +337,12 @@ public class Yjh_Controller {
 
 //   게시물 삭제하기
    @RequestMapping(value = "/post/postDelete", method = { RequestMethod.GET, RequestMethod.POST })
-   public String postDelete(Integer bt_num, Integer bc_num, Integer p_num) {
+   public String postDelete(Integer bt_num, Integer bc_num, Integer p_num, String m_id) {
       System.out.println("Yjh_Controller String postDelete start...");
       System.out.println("Yjh_Controller postDelete bt_num->" + bt_num);
       System.out.println("Yjh_Controller postDelete bc_num->" + bc_num);
       System.out.println("Yjh_Controller postDelete p_num->" + p_num);
+      System.out.println("Yjh_Controller postDelete m_id->" + m_id);
       int result = ps.postDelete(bt_num, bc_num, p_num);
       System.out.println("Yjh_Controller String postDelete result->" + result);
       return "redirect:/main/main";
@@ -483,5 +485,17 @@ public class Yjh_Controller {
 //      Post post = ps.postBookmarkDelete(m_id,bt_num, bc_num, p_num);
       return "ok!!!";
    }
+   
+//	// 결제확인 ajax
+//	 @RequestMapping(value = "post/payments/complete", method = { RequestMethod.GET, RequestMethod.POST })
+//	 @ResponseBody
+//	 public List<Post> paymentsCompletes(Reply reply) {
+//	    System.out.println(imp_uid);
+//	    
+//	    List<Post> listPost = ps.listPost(post);
+//	//    Post post = ps.postBookmarkDelete(m_id,bt_num, bc_num, p_num);
+//	    return listPost;
+//	 }
+   
 
 }

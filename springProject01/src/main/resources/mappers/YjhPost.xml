@@ -8,6 +8,7 @@
 		<where>
 			<if test='bt_num!=0'> bt_num = #{bt_num} </if>
 			<if test='bc_num!=0'> and bc_num = #{bc_num} </if>
+			<if test="keyword!=null"> and p_title like '%'||#{keyword}||'%' or p_loc like '%'||#{keyword}||'%'</if>
 		</where>
 	</select>
 
@@ -19,6 +20,7 @@
 					<where>
 						<if test='bt_num!=0'> bt_num = #{bt_num} </if>
 						<if test='bc_num!=0'> and bc_num = #{bc_num} </if>
+						<if test="keyword!=null"> and p_title like '%'||#{keyword}||'%' or p_loc like '%'||#{keyword}||'%'</if>
 					</where>
 				order by bt_num,bc_num,p_num desc) a
 			)
@@ -142,7 +144,7 @@
 		values
 			(#{m_id}, #{bt_num}, #{bc_num}, #{p_num}, sysdate)
 	</insert>
-	
+
 <!-- 	게시물 찜  취소하기 -->
 	<delete id="postBookmarkDelete" parameterType="Post">
 		delete

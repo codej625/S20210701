@@ -137,7 +137,9 @@ public class PostDaoImpl implements PostDao {
 		System.out.println("PostDaoImpl int postDelete start...");
 		int result = 0;
 		try {
+//				게시물 삭제하기
 			result = session.delete("postDelete",post);
+			System.out.println("PostDaoImpl postDelete result->"+result);
 		} catch (Exception e) {
 			System.out.println("PostDaoImpl int postListUpdate Exception->"+e.getMessage());
 		}

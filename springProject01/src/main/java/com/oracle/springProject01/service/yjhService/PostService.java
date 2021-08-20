@@ -6,7 +6,7 @@ import com.oracle.springProject01.model.Post;
 
 public interface PostService {
 //	게시물 갯수 가져오기
-	int total(int bt_num, int bc_num);
+	int total(int bt_num, int bc_num, String keyword);
 //	게시물 리스트
 	List<Post> listPost(Post post);
 //	로그인한 정보가져오기
