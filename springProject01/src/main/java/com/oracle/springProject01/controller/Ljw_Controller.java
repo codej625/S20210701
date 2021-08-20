@@ -5,11 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.oracle.springProject01.model.Member;
+import com.oracle.springProject01.model.MemberVo;
 import com.oracle.springProject01.service.ljwService.MemberService;
 import com.oracle.springProject01.service.paging.LjwPaging;
 
@@ -38,7 +39,7 @@ public class Ljw_Controller {
 		LjwPaging pg = new LjwPaging(total, currentPage);
 		member.setStart(pg.getStart());
 		member.setEnd(pg.getEnd());
-		List<Member> user_list = ms.listMember(member);
+		List<Member> user_list = ms.memberList(member);
 
 		model.addAttribute("user_list", user_list);
 		model.addAttribute("total", total);
@@ -89,4 +90,16 @@ public class Ljw_Controller {
 		return "admin/authority_list";
 	}
 
+	@PostMapping(value = "/admin/authority")
+	public String authority(String[] m_idArray, Model model) {
+		System.out.println("Ljw_Controller authority Start");
+		MemberVo member = new MemberVo();
+		for (String m_id : m_idArray) {
+			System.out.println(m_id);
+			member = ms.authorityList(m_id);
+			System.out.println("member.getM_id()->" + member.getM_id());
+			ms.authority(member);
+		}
+		return "/admin/admin_main";
+	}
 }

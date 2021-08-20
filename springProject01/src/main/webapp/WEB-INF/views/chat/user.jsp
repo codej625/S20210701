@@ -92,7 +92,7 @@ position:relative; bottom:20px;
 <script type="text/javascript">
 	// 서버의 broadsocket의 서블릿으로 웹 소켓을 한다.
 	var webSocket = new WebSocket(
-			"ws://localhost:8282/springProject01/broadsocket");
+			"ws://localhost:8181/springProject01/broadsocket");
 	// 콘솔 텍스트 영역
 	var messageTextArea = document.getElementById("messageTextArea");
 

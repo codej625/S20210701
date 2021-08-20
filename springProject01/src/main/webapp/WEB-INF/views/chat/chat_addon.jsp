@@ -43,7 +43,7 @@ $(".chat").on({
 
     <script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://localhost:8282/springProject01/broadcasting');
+        var webSocket = new WebSocket('ws://localhost:8181/springProject01/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
         var name = document.getElementById('name');
     webSocket.onerror = function(event) {

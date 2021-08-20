@@ -38,6 +38,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Lhj_OAuthToken;
+import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.service.lhjService.MemberService;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.PostService;
@@ -50,6 +51,9 @@ public class Lhj_Controller {
 
 	@Autowired
 	private PostService ps;
+
+	@Autowired
+	private com.oracle.springProject01.service.ljwService.MemberService mms;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -521,7 +525,8 @@ public class Lhj_Controller {
 
 	// 마이페이지 내가 쓴 글 화면
 	@RequestMapping(value = "/member/mypage_myPostList", method = RequestMethod.GET)
-	public String mypage_myPostList(String currentPage, Model model, HttpServletRequest request, String m_id) throws Exception {
+	public String mypage_myPostList(String currentPage, Model model, HttpServletRequest request, String m_id)
+			throws Exception {
 		System.out.println("lhjController mypage_changePW Start...");
 		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		m_id = sessionID;
@@ -657,7 +662,7 @@ public class Lhj_Controller {
 			return "member/mypage";
 		}
 	}
-	
+
 	@RequestMapping(value = "/member/certification2", method = RequestMethod.POST)
 	public String upload2(AttachmentFileVO attachmentFileVO, HttpServletRequest request, String m_id, Model model)
 			throws Exception {
@@ -686,6 +691,5 @@ public class Lhj_Controller {
 			return "member/mypage";
 		}
 	}
-	
-	
+
 }

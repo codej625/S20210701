@@ -68,7 +68,7 @@
 			<main>
 				<h4>회원수 : ${total} 명</h4>
 				<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
-				<form method="post" action="${pageContext.request.contextPath}/admin/user_delete">
+				<form method="post" action="${pageContext.request.contextPath}/admin/authority">
 					<br>
 						<br>
 							<br>

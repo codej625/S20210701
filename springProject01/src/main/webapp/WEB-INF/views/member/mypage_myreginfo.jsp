@@ -115,11 +115,17 @@
 					<tr>
 						<td>가격 : ${lhj_MemberVO.p_cost }</td>
 						<td>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'N'}">
-								<input type="button" value="결제 하기" >
-							</c:if>
-							<c:if test="${lhj_MemberVO.ri_pstatus == 'Y'}">
-								결제 완료
+<!-- 							유료인경우 -->
+							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
+								<c:choose>
+									<c:when test="${lhj_MemberVO.ri_pstatus == 'N'}">
+										<a href="http://localhost:8181/springProject01/post/postRegInfoApplication?bt_num=${lhj_MemberVO.bt_num }&bc_num=${lhj_MemberVO.bc_num }&p_num=${lhj_MemberVO.p_num }">
+										<input type="button" value="결제 하기" ></a>
+									</c:when>
+									<c:when test="${lhj_MemberVO.ri_pstatus == 'Y'}">
+										결제 완료
+									</c:when>
+								</c:choose>
 							</c:if>
 							<form action="${pageContext.request.contextPath}/member/mypage_myreginfoDE">
 								<input type="hidden" name="m_id" value="${lhj_MemberVO.m_id }">
@@ -129,6 +135,7 @@
 								
 								<input type="submit" value="신청 취소">
 							</form>
+							<input type="button" value="채팅" onclick="location.href='${pageContext.request.contextPath}/chat/chat'">
 						</td>
 					</tr>
 				</c:forEach>	

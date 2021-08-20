@@ -74,8 +74,10 @@
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item active">임시 지정</li>
 					</ol>
-					<p>업데이트시 전달 Message : ${num}
-					<p>업데이트시 전달 Message : ${f.m_num}
+					<p>업데이트시 전달 Message : ${num}</p>
+					<p>업데이트시 전달 Message : ${f.m_num}</p>
+					<p>업데이트시 전달 Message : ${result}</p>
+					<a href="${pageContext.request.contextPath}/chat/admin">관리자</a>
 				</div>
 			</main>
 			<footer class="py-4 bg-light mt-auto">

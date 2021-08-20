@@ -1,18 +1,14 @@
 package com.oracle.springProject01.service.ljwService;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.springProject01.dao.ljwDao.MemberDao;
 import com.oracle.springProject01.model.AttachmentFile;
-import com.oracle.springProject01.model.AttachmentFileVO;
-import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Member;
+import com.oracle.springProject01.model.MemberVo;
 
 @Service("LjwService")
 public class MemberServiceImpl implements MemberService {
@@ -21,11 +17,10 @@ public class MemberServiceImpl implements MemberService {
 
 	// 회원 리스트
 	@Override
-	public List<Member> listMember(Member member) {
-		System.out.println("MemberServiceImpl Start listMember...");
-		List<Member> memberList = null;
-		memberList = md.listMember(member);
-		System.out.println("MemberServiceImpl listMember.size()->" + memberList);
+	public List<Member> memberList(Member member) {
+		System.out.println("MemberServiceImpl Start memberList...");
+		List<Member> memberList = md.memberList(member);
+		System.out.println("MemberServiceImpl memberList.size()->" + memberList);
 		return memberList;
 	}
 
@@ -39,59 +34,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int masterauth(String m_id) {
-		System.out.println("MemberServiceImpl Start total...");
-		int update = md.masterauth(m_id);
-		System.out.println("MemberServiceImpl masterauth update->" + update);
-		return update;
-	}
-
-	@Override
-	public List<AttachmentFileVO> test(AttachmentFileVO attachmentFileVO) {
-		System.out.println("MemberServiceImpl Start test...");
-		List<AttachmentFileVO> list = null;
-
-//======날짜를 입력하기 위한 SimpleDateFormat, Calendar 객체 생성==========================
-		SimpleDateFormat Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Calendar time = Calendar.getInstance();
-		String date = Format.format(time.getTime());
-
-//======List에서 꺼낸 files, m_id, f_orgname f_newname, f_regdate를  DTO 단위로 옮길 계획==		
-		AttachmentFile attachmentFileTest = new AttachmentFile();
-
-		for (MultipartFile file : attachmentFileVO.getFiles()) {
-			String name = "images/" + file.getOriginalFilename();
-			attachmentFileVO.setF_orgname(name);
-//==========로컬에 저장된 이름과 DB에 저장된 이름이 같지 않게 하기위해  random을 붙임=================
-			attachmentFileVO.setF_newname(name + Math.random());
-			attachmentFileVO.setM_id(attachmentFileVO.getM_id().toString());
-			attachmentFileVO.setF_regdate(date);
-
-//==========원래 List attachmentFileVO 통채로 DAO로 보내서 처리하려다 실패 하였음==============
-//			System.out.println(attachmentFileVO.getF_orgname());
-//			System.out.println(attachmentFileVO.getF_newname());
-//			System.out.println(attachmentFileVO.getM_id());
-//			System.out.println(attachmentFileVO.getF_regdate());
-//			DB에 값을 저장하기 위해 DTO단위로 DAO에 보냄
-//			list = md.test(attachmentFileVO);
-
-//==========위에서 만들어 놓은 AttachmentFileVO에 DTO 단위로 옮기기 위해 Set==================
-			attachmentFileTest.setF_orgname(attachmentFileVO.getF_orgname());
-			attachmentFileTest.setF_newname(attachmentFileVO.getF_newname());
-			attachmentFileTest.setM_id(attachmentFileVO.getM_id());
-			attachmentFileTest.setF_regdate(attachmentFileVO.getF_regdate());
-			md.test2(attachmentFileTest);
-
-//================================================================================	
-		}
-		return list;
-	}
-
-	@Override
 	public List<AttachmentFile> check(AttachmentFile attachmentFile) {
 		System.out.println("MemberServiceImpl Start mail...");
-		List<AttachmentFile> check = null;
-		check = md.check(attachmentFile);
+		List<AttachmentFile> check = md.check(attachmentFile);
 		return check;
 	}
 
@@ -99,16 +44,14 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int user_delete(String m_id) {
 		System.out.println("MemberServiceImpl Start user_delete...");
-		int delete = 0;
-		delete = md.user_delete(m_id);
+		int delete = md.user_delete(m_id);
 		return delete;
 	}
 
 	@Override
 	public List<Member> auth_listMember(Member member) {
 		System.out.println("MemberServiceImpl Start auth_listMember...");
-		List<Member> auth_listMember = null;
-		auth_listMember = md.auth_listMember(member);
+		List<Member> auth_listMember = md.auth_listMember(member);
 		return auth_listMember;
 	}
 
@@ -116,7 +59,33 @@ public class MemberServiceImpl implements MemberService {
 	public int a_total() {
 		System.out.println("MemberServiceImpl Start a_total...");
 		int a_total = md.a_total();
-		System.out.println("MemberServiceImpl total a_total->" + a_total);
 		return a_total;
 	}
+
+	@Override
+	public MemberVo authorityList(String m_id) {
+		System.out.println("MemberServiceImpl Start authorityList...");
+		MemberVo authorityList = md.authorityList(m_id);
+		return authorityList;
+	}
+
+	@Override
+	public int authority(MemberVo member) {
+		System.out.println("MemberServiceImpl Start authority...");
+		System.out.println("member.getM_meetingauth()->" + member.getM_meetingauth());
+		MemberVo authority = member;
+		int result = 0;
+		if (authority != null) {
+			if (authority.getM_meetingauth() == "N") {
+				authority.setM_meetingauth("Y");
+			}
+			if (authority.getM_masterauth() == "N") {
+				authority.setM_masterauth("Y");
+			}
+			System.out.println(authority.getM_masterauth());
+			result = md.authority(authority);
+		}
+		return result;
+	}
+
 }

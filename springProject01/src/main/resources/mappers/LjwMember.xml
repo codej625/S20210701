@@ -3,7 +3,7 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="LjwMember">
 
-	<select id="ljwListMember" parameterType="Member"
+	<select id="ljwMemberList" parameterType="Member"
 		resultType="Member">
 		SELECT * FROM (SELECT rownum rn, a.*
 		FROM (SELECT * FROM
@@ -18,34 +18,47 @@
 		WHERE m_withdrawal = 'N'
 	</select>
 
-<!-- 	<select id="ljwCertificationTotal" resultType="int"> -->
-<!-- 		SELECT COUNT(*) FROM member -->
-<!-- 		WHERE m_withdrawal = 'N' -->
-<!-- 	</select> -->
-
-	<update id="ljwUpdate" parameterType="String">
-		UPDATE member SET
-		m_masterauth = 1 WHERE m_id = #{m_id}
-	</update>
-
 	<update id="ljwDelete" parameterType="String">
 		UPDATE member SET
 		m_withdrawal = 'Y' WHERE m_id = #{m_id}
 	</update>
-	
-	<select id="auth_listMember" parameterType="Member" resultType="Member">
-		SELECT * FROM (SELECT rownum rn, a.*
-		FROM (SELECT * FROM
-		member WHERE (M_MEETINGAUTH = 'N' AND M_MASTERAUTH  IS NULL AND m_withdrawal = 'N')
-		OR (M_MEETINGAUTH  IS NULL AND M_MASTERAUTH = 'N' AND m_withdrawal = 'N')
-		OR (M_MEETINGAUTH = 'N' AND M_MASTERAUTH = 'N' AND m_withdrawal = 'N') ORDER BY m_regdate DESC) a)
-		WHERE rn
-		BETWEEN #{start} AND #{end}
+
+	<select id="auth_listMember" parameterType="Member"
+		resultType="Member">
+		SELECT * FROM (SELECT rownum rn, a.* FROM (SELECT * FROM member WHERE 
+		(
+		m_meetingauth = 'N' AND m_masterauth IS NULL AND m_withdrawal = 'N')
+		OR (m_meetingauth IS NULL AND m_masterauth = 'N' AND m_withdrawal = 'N')
+		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
+   		OR (m_meetingauth = 'Y' AND m_masterauth = 'N' AND m_withdrawal = 'N')
+    	OR (m_meetingauth = 'N' AND m_masterauth = 'Y' AND m_withdrawal = 'N')
+		ORDER BY m_regdate DESC) a
+		)
+		WHERE rn BETWEEN #{start} AND #{end}
 	</select>
-	
-	<select id="ljwA_Total" resultType="int">
+
+	<select id="ljwA_TotalCnt" resultType="int">
 		SELECT COUNT(*) FROM member
-		WHERE m_withdrawal = 'N' AND m_meetingauth = 'N' AND m_masterauth = 'N'
+		WHERE m_withdrawal = 'N' 
+		AND (m_meetingauth = 'N' AND m_masterauth IS NULL AND m_withdrawal = 'N')
+		OR (m_meetingauth IS NULL AND m_masterauth = 'N' AND m_withdrawal = 'N')
+		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
 	</select>
+	
+	<select id="ljwA_List" parameterType="String" resultType="com.oracle.springProject01.model.MemberVo">
+		SELECT * FROM member
+		WHERE m_withdrawal = 'N'
+		AND
+		m_id = #{m_id}
+		AND (m_meetingauth = 'N' AND m_masterauth IS NULL AND m_withdrawal = 'N')
+		OR (m_meetingauth IS NULL AND m_masterauth = 'N' AND m_withdrawal = 'N')
+		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
+	</select>
+
+	<update id="ljw_authority" parameterType="com.oracle.springProject01.model.MemberVo">
+		UPDATE member 
+		SET m_meetingauth = #{m_meetingauth, jdbcType = VARCHAR }, m_masterauth = #{m_masterauth, jdbcType = VARCHAR }
+		WHERE m_id = #{m_id, jdbcType = VARCHAR} AND m_withdrawal = 'N'
+	</update>
 	
 </mapper>

@@ -75,7 +75,7 @@ input {
 
 	function wsOpen() {
 		console.log("wsOpen  location.host: " + location.host);
-		var wsUri = "ws://" + location.host + "/bootMyBatis03/chating";
+		var wsUri = "ws://" + location.host + "/springProject01/chating";
 		ws = new WebSocket(wsUri); //웹소켓을 만들어줌
 		wsEvt();
 	}

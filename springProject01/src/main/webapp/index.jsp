@@ -11,12 +11,9 @@
 		// response.sendRedirect("post/category"); 	 
 		// response.sendRedirect("post/contents");
 		// response.sendRedirect("admin/index");
-		// response.sendRedirect("main/main");
-		//response.sendRedirect("main/main");
-		
 		//채팅
-		//response.sendRedirect("chat/broadcast");
-		//response.sendRedirect("chat/chat");
+		// response.sendRedirect("chat/broadcast");
+// 		response.sendRedirect("chat/chat");
 		//response.sendRedirect("chat/memberchat");
 		//response.sendRedirect("chat/index");
 		//response.sendRedirect("chat/chat_addon");
