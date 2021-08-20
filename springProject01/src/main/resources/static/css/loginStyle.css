@@ -144,3 +144,24 @@ a {
 	color: #fff;
 	background-color: #2F2F96;
 }
+
+#naver_id_login{
+	top:-10000px;
+	left:-10000px;
+	display:absolute
+}
+
+#naver_id_login2{
+	width: 450px;
+/* 	width: 100%; */
+	height: 56px;
+/* 	padding: 0 0 0 50px; */
+/* 	padding: 20px 204px 20px 204px; */
+/* 	margin-top: 30px; */
+}
+
+#kakao_btn{
+	width: 450px;
+	height: 56px;
+/* 	padding: 0 0 0 50px; */
+}
