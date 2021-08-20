@@ -51,7 +51,7 @@ public class Yjh_Controller {
 
 //   게시물 리스트 불러오기
    @RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
-   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String currentPage, Model model) {
+   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String keyword, String currentPage, Model model) {
       System.out.println("Yjh_Controller categoryGet Start...");
       String sessionID =  (String) request.getSession().getAttribute("sessionID");
       int total = 0;
@@ -59,13 +59,14 @@ public class Yjh_Controller {
       if (bc_num == null)
          bc_num = 0;
 //      게시물 갯수를 가져오기
-      total = ps.total(bt_num, bc_num);
+      total = ps.total(bt_num, bc_num,keyword);
       System.out.println("Yjh_Controller categoryGet total->" + total);
 //      페이징 처리
       Paging pg = new Paging(total, currentPage);
       Post post = new Post();
       post.setBt_num(bt_num);
       post.setBc_num(bc_num);
+      post.setKeyword(keyword);
       post.setStart(pg.getStart());
       post.setEnd(pg.getEnd());
 //      게시물 리스트

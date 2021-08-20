@@ -237,7 +237,8 @@
 <!-- 							대댓글들 다른이미지 보여주는곳 -->
 							<c:if test="${reply.r_level > 0 }">
 								<a class="photo">
-								<img src="${pageContext.request.contextPath}/img/re.gif" width="${reply.r_level*10 }">
+<%-- 								<img src="${pageContext.request.contextPath}/img/re.gif" width="${reply.r_level*30 }"> --%>
+								<img src="${pageContext.request.contextPath}/img/re.gif" width="100px;">
 								</a>
 							</c:if>
 <!-- 							댓글들 이미지 -->
