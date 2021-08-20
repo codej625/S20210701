@@ -486,5 +486,16 @@ public class Yjh_Controller {
       return "ok!!!";
    }
    
+//	// 결제확인 ajax
+//	 @RequestMapping(value = "post/payments/complete", method = { RequestMethod.GET, RequestMethod.POST })
+//	 @ResponseBody
+//	 public List<Post> paymentsCompletes(Reply reply) {
+//	    System.out.println(imp_uid);
+//	    
+//	    List<Post> listPost = ps.listPost(post);
+//	//    Post post = ps.postBookmarkDelete(m_id,bt_num, bc_num, p_num);
+//	    return listPost;
+//	 }
+   
 
 }
