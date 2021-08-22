@@ -20,7 +20,9 @@ public interface MemberService {
 
 	int a_total();
 
-	MemberVo authorityList(MemberVo member);
+	MemberVo authorityList(MemberVo memberVo);
 
-	int authority(MemberVo member);
+	int authority(MemberVo memberVo);
+
+	int authority2(MemberVo memberVo);
 }

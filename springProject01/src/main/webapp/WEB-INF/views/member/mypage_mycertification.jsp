@@ -47,7 +47,7 @@
 					<div class="info_section">
 						<c:choose>
 						
-							<c:when test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq null}">
+							<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'M'}">
 								<form method="post" action="${pageContext.request.contextPath}/member/certification" enctype="multipart/form-data" name="resultform">
 									<div class="info_img">
 										<div id="image_container">
@@ -106,7 +106,7 @@
 								</script>
 							</c:when>
 		
-							<c:when test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq 'N'}">
+							<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'N'}">
 								<form method="post" action="${pageContext.request.contextPath}/member/certification2" enctype="multipart/form-data" name="resultform">
 									<div class="info_img">
 										<div id="image_container">
@@ -171,7 +171,7 @@
 								</script>
 							</c:when>
 				
-							<c:when test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq null}">
+							<c:when test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq 'M'}">
 								<form method="post" action="${pageContext.request.contextPath}/member/certification2" enctype="multipart/form-data" name="resultform">
 									<div class="info_img">
 										<div id="image_container">
@@ -236,7 +236,7 @@
 								</script>
 							</c:when>
 							
-													<c:when test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq null}">
+													<c:when test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'M'}">
 							<form method="post" action="${pageContext.request.contextPath}/member/certification2" enctype="multipart/form-data" name="resultform">
 									<div class="info_img">
 										<div id="image_container">
@@ -301,7 +301,7 @@
 								</script>
 							</c:when>
 							
-							<c:when test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq 'Y'}">
+							<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'Y'}">
 							<form method="post" action="${pageContext.request.contextPath}/member/certification2" enctype="multipart/form-data" name="resultform">
 									<div class="info_img">
 										<div id="image_container">

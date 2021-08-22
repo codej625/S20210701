@@ -21,7 +21,7 @@ public interface MemberDao {
 	int a_total();
 
 	MemberVo authorityList(MemberVo memberVo);
-
+	
 	int authority(MemberVo member_list);
 
 }

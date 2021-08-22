@@ -71,6 +71,7 @@ public class Ljw_Controller {
 		return "forward:/admin/user_list";
 	}
 
+	// 개설 권한 인증 요청 리스트
 	@RequestMapping(value = "/admin/authority_list")
 	public String authority_list(Member member, String currentPage, Model model) {
 		System.out.println("Ljw_Controller authority_list Start");
@@ -90,20 +91,46 @@ public class Ljw_Controller {
 		return "admin/authority_list";
 	}
 
+	// 권한 인증
 	@PostMapping(value = "/admin/authority")
-	public String authority(String[] m_idArray, Model model) {
+	public String authority(MemberVo memberVo, Model model) {
 		System.out.println("Ljw_Controller authority Start");
-		MemberVo member = new MemberVo();
 		int update = 0;
-		for (String m_id : m_idArray) {
-			member.setM_id(m_id);
-			if (member.getM_id() != null) {
-				// m_id value check
-				System.out.println("member.getM_id()->" + member.getM_id());
-				member = ms.authorityList(member);
-				System.out.println("가져온 값이 있으면 member.getM_id()->" + member.getM_id());
-				update = ms.authority(member);
-				model.addAttribute("result" ,update);
+		System.out.println("memberVo.getM_meetingauth()->" + memberVo.getM_meetingauth());
+		System.out.println("memberVo.getM_masterauth()->" + memberVo.getM_masterauth());
+		if ((memberVo != null)) {
+			if (memberVo.getM_meetingauth() == null && memberVo.getM_masterauth() == null) {
+				for (String m_id : memberVo.getM_idArray()) {
+					memberVo.setM_id(m_id);
+					if (memberVo.getM_id() != null) {
+						// m_id value check
+						System.out.println("member.getM_id()->" + memberVo.getM_id());
+						memberVo = ms.authorityList(memberVo);
+						System.out.println("가져온 값이 있으면 member.getM_id()->" + memberVo.getM_id());
+						update = ms.authority(memberVo);
+						model.addAttribute("result", update);
+					}
+				}
+			} else {
+				for (String m_id : memberVo.getM_idArray()) {
+					memberVo.setM_id(m_id);
+					if (memberVo.getM_id() != null) {
+						if (memberVo.getM_masterauth() == null) {
+							memberVo = ms.authorityList(memberVo);
+							memberVo.setM_masterauth("M");
+							memberVo.setM_meetingauth("N");
+							System.out.println("111111");
+							update = ms.authority2(memberVo);
+						} else if (memberVo.getM_meetingauth() == null) {
+							memberVo = ms.authorityList(memberVo);
+							memberVo.setM_meetingauth("M");
+							memberVo.setM_masterauth("N");
+							System.out.println("222222");
+							update = ms.authority2(memberVo);
+						}
+						model.addAttribute("result", update);
+					}
+				}
 			}
 		}
 		return "forward:/admin/admin_main";

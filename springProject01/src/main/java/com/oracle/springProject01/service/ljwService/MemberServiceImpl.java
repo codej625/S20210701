@@ -20,7 +20,9 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> memberList(Member member) {
 		System.out.println("MemberServiceImpl Start memberList...");
 		List<Member> memberList = md.memberList(member);
+
 		System.out.println("MemberServiceImpl memberList.size()->" + memberList);
+
 		return memberList;
 	}
 
@@ -29,7 +31,9 @@ public class MemberServiceImpl implements MemberService {
 	public int total() {
 		System.out.println("MemberServiceImpl Start total...");
 		int totCnt = md.total();
+
 		System.out.println("MemberServiceImpl total totCnt->" + totCnt);
+
 		return totCnt;
 	}
 
@@ -37,6 +41,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<AttachmentFile> check(AttachmentFile attachmentFile) {
 		System.out.println("MemberServiceImpl Start mail...");
 		List<AttachmentFile> check = md.check(attachmentFile);
+
 		return check;
 	}
 
@@ -45,6 +50,7 @@ public class MemberServiceImpl implements MemberService {
 	public int user_delete(String m_id) {
 		System.out.println("MemberServiceImpl Start user_delete...");
 		int delete = md.user_delete(m_id);
+
 		return delete;
 	}
 
@@ -52,6 +58,7 @@ public class MemberServiceImpl implements MemberService {
 	public List<Member> auth_listMember(Member member) {
 		System.out.println("MemberServiceImpl Start auth_listMember...");
 		List<Member> auth_listMember = md.auth_listMember(member);
+
 		return auth_listMember;
 	}
 
@@ -59,38 +66,79 @@ public class MemberServiceImpl implements MemberService {
 	public int a_total() {
 		System.out.println("MemberServiceImpl Start a_total...");
 		int a_total = md.a_total();
+
 		return a_total;
 	}
 
 	@Override
 	public MemberVo authorityList(MemberVo member) {
-
 		System.out.println("MemberServiceImpl Start authorityList...");
 
 		return md.authorityList(member);
 	}
 
 	@Override
-	public int authority(MemberVo member) {
-		int result = 0;
+	public int authority(MemberVo memberVo) {
 		System.out.println("MemberServiceImpl Start authority...");
-		System.out.println("1. member.getM_meetingauth()->" + member.getM_meetingauth());
-		System.out.println("2. member.getM_masterauth()->" + member.getM_masterauth());
+		int result;
 
-		if (member.getM_meetingauth().equals("N")) {
-			member.setM_meetingauth("Y");
+		if (memberVo.getM_meetingauth().equals("N")) {
+			memberVo.setM_meetingauth("Y");
+			System.out.println("1번 탔당");
 		}
-		if (member.getM_masterauth().equals("M")) {
-			member.setM_masterauth("M");
+		if (memberVo.getM_masterauth().equals("M")) {
+			memberVo.setM_masterauth("M");
+			System.out.println("2번 탔당");
 		}
-		if (member.getM_masterauth().equals("N")) {
-			member.setM_masterauth("Y");
+		if (memberVo.getM_masterauth().equals("N")) {
+			memberVo.setM_masterauth("Y");
+			System.out.println("3번 탔당");
 		}
-		if (member.getM_meetingauth().equals("M")) {
-			member.setM_meetingauth("M");
+		if (memberVo.getM_meetingauth().equals("M")) {
+			memberVo.setM_meetingauth("M");
+			System.out.println("4번 탔당");
 		}
-		System.out.println("1-1. member.getM_meetingauth()->" + member.getM_meetingauth());
-		System.out.println("2-1. member.getM_masterauth()->" + member.getM_masterauth());
-		return result = md.authority(member);
+//		if (memberVo.getM_meetingauth().equals(null)) {
+//			memberVo.setM_meetingauth("M");
+//			System.out.println("5번 탔당");
+//		}
+//		if (memberVo.getM_meetingauth().equals(null)) {
+//			memberVo.setM_meetingauth("M");
+//			System.out.println("6번 탔당");
+//		}
+		// 값이 if문을 타고 변경 되었는지 확인
+		System.out.println("MemberServiceImpl member.getM_meetingauth()->" + memberVo.getM_meetingauth());
+		System.out.println("MemberServiceImpl member.getM_masterauth()->" + memberVo.getM_masterauth());
+
+		return result = md.authority(memberVo);
 	}
+
+	@Override
+	public int authority2(MemberVo memberVo) {
+		System.out.println("MemberServiceImpl Start authority2...");
+		int result;
+
+		if (memberVo.getM_meetingauth().equals("N")) {
+			memberVo.setM_meetingauth("Y");
+			System.out.println("1-1번 탔당");
+		}
+		if (memberVo.getM_meetingauth().equals("M")) {
+			memberVo.setM_meetingauth("N");
+			System.out.println("1-2번 탔당");
+		}
+		if (memberVo.getM_masterauth().equals("N")) {
+			memberVo.setM_masterauth("Y");
+			System.out.println("2-1번 탔당");
+		}
+		if (memberVo.getM_masterauth().equals("M")) {
+			memberVo.setM_masterauth("N");
+			System.out.println("2-2번 탔당");
+		}
+		// 값이 if문을 타고 변경 되었는지 확인
+		System.out.println("MemberServiceImpl member.getM_meetingauth()->" + memberVo.getM_meetingauth());
+		System.out.println("MemberServiceImpl member.getM_masterauth()->" + memberVo.getM_masterauth());
+
+		return result = md.authority(memberVo);
+	}
+
 }

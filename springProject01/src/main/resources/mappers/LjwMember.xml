@@ -23,26 +23,27 @@
 		m_withdrawal = 'Y' WHERE m_id = #{m_id}
 	</update>
 
-	<select id="auth_listMember" parameterType="Member"
-		resultType="Member">
+	<select id="auth_listMember" parameterType="Member" resultType="Member">
 		SELECT * FROM (SELECT rownum rn, a.* FROM (SELECT * FROM member WHERE 
-		(
-		m_meetingauth = 'N' AND m_masterauth = 'M' AND m_withdrawal = 'N')
+		(m_meetingauth = 'N' AND m_masterauth = 'M' AND m_withdrawal = 'N')
 		OR (m_meetingauth = 'M' AND m_masterauth = 'N' AND m_withdrawal = 'N')
 		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
    		OR (m_meetingauth = 'Y' AND m_masterauth = 'N' AND m_withdrawal = 'N')
     	OR (m_meetingauth = 'N' AND m_masterauth = 'Y' AND m_withdrawal = 'N')
 		ORDER BY m_regdate DESC) a
 		)
-		WHERE rn BETWEEN #{start} AND #{end}
+		WHERE rn 
+		BETWEEN #{start} AND #{end}
 	</select>
 
 	<select id="ljwA_TotalCnt" resultType="int">
 		SELECT COUNT(*) FROM member
-		WHERE m_withdrawal = 'N' 
-		AND (m_meetingauth = 'N' AND m_masterauth IS NULL AND m_withdrawal = 'N')
-		OR (m_meetingauth IS NULL AND m_masterauth = 'N' AND m_withdrawal = 'N')
+		WHERE 
+		(m_meetingauth = 'N' AND m_masterauth = 'M' AND m_withdrawal = 'N')
+		OR (m_meetingauth = 'M' AND m_masterauth = 'N' AND m_withdrawal = 'N')
 		OR (m_meetingauth = 'N' AND m_masterauth = 'N' AND m_withdrawal = 'N')
+   		OR (m_meetingauth = 'Y' AND m_masterauth = 'N' AND m_withdrawal = 'N')
+    	OR (m_meetingauth = 'N' AND m_masterauth = 'Y' AND m_withdrawal = 'N')
 	</select>
 	
 	<select id="ljwA_List" parameterType="com.oracle.springProject01.model.MemberVo" resultType="com.oracle.springProject01.model.MemberVo">

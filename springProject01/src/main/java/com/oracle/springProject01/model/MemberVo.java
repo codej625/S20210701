@@ -9,4 +9,6 @@ public class MemberVo {
 	private String m_id;
 	private String m_meetingauth;
 	private String m_masterauth;
+
+	private String[] m_idArray;
 }
