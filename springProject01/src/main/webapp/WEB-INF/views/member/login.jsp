@@ -17,6 +17,7 @@
 		var url="${pageContext.request.contextPath}/member/find_m_id";
 		window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=470, height=250");
 	}
+	
 	function find_m_pw(){
 		var url="${pageContext.request.contextPath}/member/find_m_pw";
 		window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=470, height=300");
@@ -88,14 +89,19 @@
 			</div>
 					<div style="padding-top: 10px">
 						
-						<a href="https://kauth.kakao.com/oauth/authorize?client_id=142ce1de0bd727a3968c1ff08bfca9be&redirect_uri=http://localhost:8181/springProject01/member/kakaoCallback&response_type=code">
+<!-- 						<a href="https://kauth.kakao.com/oauth/authorize?client_id=142ce1de0bd727a3968c1ff08bfca9be&redirect_uri=http://localhost:8181/springProject01/member/kakaoCallback&response_type=code"> -->
+							<div  onclick="kakaoCallBack()">
 							<img src="${pageContext.request.contextPath}/img/kakaoBtn.png" id="kakao_btn">
-						</a>
+							</div>
+<!-- 						</a> -->
 					
-<%-- 					<a href="https://kauth.kakao.com/oauth/authorize?client_id=142ce1de0bd727a3968c1ff08bfca9be&redirect_uri=${pageContext.request.contextPath}/member/test&response_type=code">  --%>
-<%-- 							<img src="${pageContext.request.contextPath}/img/kakaoBtn.png">  --%>
-<!-- 					</a>  -->
-					
+					<script type="text/javascript">
+						function kakaoCallBack(){
+							var url="https://kauth.kakao.com/oauth/authorize?client_id=142ce1de0bd727a3968c1ff08bfca9be&redirect_uri=http://localhost:8181/springProject01/member/kakaoCallback&response_type=code";
+							window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=470, height=300");
+						}
+					</script>
+										
 						<div onclick="document.getElementById('naver_id_login_anchor').click();">
 							<img src="${pageContext.request.contextPath}/img/btnG_완성형.png" id="naver_id_login2">
 						</div>

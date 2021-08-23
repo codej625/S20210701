@@ -38,6 +38,18 @@ public class MemberDaoImpl implements MemberDao {
 		}
 	}
 	
+	//카카오 회원가입 구현
+		@Override
+		public void insertMember_KAKAOID(Lhj_MemberVO lhj_MemberVO, String m_id, String m_name) {
+			System.out.println("dao lhjMember MemberDaoImpl insertMember_KAKAOID Start ...");
+			try {
+				session.insert("hj_insertMember_kakao", lhj_MemberVO);
+				
+			} catch (Exception e) {
+				System.out.println("dao lhjMember MemberDaoImpl insertMember_KAKAOID Exception->"+e.getMessage());
+			}
+		}
+	
 	
 	
 	//회원가입 아이디 중복 확인 ajax

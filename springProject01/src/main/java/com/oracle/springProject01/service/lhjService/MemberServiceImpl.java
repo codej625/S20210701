@@ -41,6 +41,17 @@ public class MemberServiceImpl implements MemberService {
 		md.insertMember_NaverID(lhj_MemberVO);
 	}
 	
+	//카카오 회원가입
+	@Override
+	public void insertMember_KAKAOID(Lhj_MemberVO lhj_MemberVO, String m_name, String m_id) {
+		System.out.println("lhj_login memberServiceImpl insertMember_KAKAOID start..");
+		if(lhj_MemberVO == null) {
+			return ; 
+		}
+		md.insertMember_KAKAOID(lhj_MemberVO, m_name, m_id);
+		
+	}
+	
 	//회원가입 아이디 중복 확인 ajax
 
 	@Override
@@ -324,6 +335,9 @@ public class MemberServiceImpl implements MemberService {
 		attachmentFileVO = md.member(attachmentFileVO);
 		return attachmentFileVO;
 	}
+
+	
+
 
 	
 }

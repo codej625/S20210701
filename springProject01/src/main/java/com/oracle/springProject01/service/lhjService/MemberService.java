@@ -98,5 +98,8 @@ public interface MemberService {
 
 	// 메일 인증 확인
 	AttachmentFileVO member(AttachmentFileVO attachmentFileVO);
-
+	
+		//카카오 회원가입
+	void insertMember_KAKAOID(Lhj_MemberVO lhj_MemberVO, String m_name, String m_id);
+	
 }

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -39,6 +40,7 @@ import com.oracle.springProject01.model.AttachmentFileVO;
 import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Lhj_OAuthToken;
 import com.oracle.springProject01.model.Member;
+import com.oracle.springProject01.service.lhjService.KakaoAPI;
 import com.oracle.springProject01.service.lhjService.MemberService;
 import com.oracle.springProject01.service.paging.Paging;
 import com.oracle.springProject01.service.yjhService.PostService;
@@ -46,6 +48,9 @@ import com.oracle.springProject01.service.yjhService.PostService;
 @Controller
 public class Lhj_Controller {
 
+	@Autowired
+    private KakaoAPI kakao;
+	
 	@Autowired
 	private MemberService ms;
 
@@ -115,6 +120,42 @@ public class Lhj_Controller {
 		return "member/join";
 	}
 
+	//카카오 로그인 api
+	@RequestMapping(value = "/member/kakaoCallback")
+	public String login(@RequestParam("code") String code, HttpSession session) {
+		String access_Token = kakao.getAccessToken(code);
+		System.out.println("controller access_token : " + access_Token);
+		
+		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
+		System.out.println("login Controller : " + userInfo);
+		
+		String m_name = (String) userInfo.get("nickname");
+		System.out.println("nickname"+m_name);
+		String m_id = (String) userInfo.get("email");
+		System.out.println("m_id"+m_id);
+		
+		session.setAttribute("m_id", m_id);
+		session.setAttribute("m_name", m_name);
+		
+		return "/member/kakaoCallback";
+	}
+	
+	// 회원가입 처리 for 카카오
+		@RequestMapping(value = "/member/kakaojoin", method = RequestMethod.POST)
+		public String kakaojoin(String m_id, String m_name, HttpSession session, HttpServletResponse response, Lhj_MemberVO lhj_MemberVO, HttpServletRequest request){
+			System.out.println("Lhj_Controller String kakaojoin start...");
+			
+			ms.insertMember_KAKAOID(lhj_MemberVO, m_name, m_id);
+			
+//			session.setAttribute("m_id", request.getSession("sessionID", m_id));
+//			session.setAttribute("m_name", m_name);
+			
+//			ms.insertMember_KAKAOID(lhj_MemberVO, m_name, m_id);
+
+			return "member/join";
+		}
+	
+	
 	// 로그인 화면
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
 	public String loginGET() throws Exception {
@@ -123,50 +164,6 @@ public class Lhj_Controller {
 		return "member/login";
 	}
 
-	// 카카오 토큰 받아오는 것 까지 햇고..포기..☆
-	@RequestMapping(value = "/member/kakaoCallback")
-	public @ResponseBody String kakaoCallback(String code) {
-		System.out.println("Lhj_Controller String kakaoCallback start...");
-
-		// post 방식으로 key = value 데이터를 요청(ㅋ카카오로)
-
-		RestTemplate rt = new RestTemplate();
-
-		// httpheader 오브젝트 생성
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
-
-		// httpbody 오브젝트 생성
-		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-		params.add("grant_type", "authorization_code");
-		params.add("client_id", "142ce1de0bd727a3968c1ff08bfca9be");
-		params.add("redirect_uri", "http://localhost:8181/springProject01/member/kakaoCallback");
-		params.add("code", code);
-
-		// httpheader와 httpbody를 하나의 오브젝트에 젖ㅇ
-		HttpEntity<MultiValueMap<String, String>> kakaoTokenRequest = new HttpEntity<>(params, headers);
-
-		// http 요청하기 post 방식으ㅗ로, response 변수의 응답 받음
-		ResponseEntity responseEntity = rt.exchange("https://kauth.kakao.com/oauth/token", HttpMethod.POST,
-				kakaoTokenRequest, String.class);
-
-		// Gson, Json Simple, ObjectMapper
-		ObjectMapper objectMapper = new ObjectMapper();
-		Lhj_OAuthToken lhj_OAuthToken = null;
-
-//		try {
-//			lhj_OAuthToken = objectMapper.readValue(response.getBody(), Lhj_OAuthToken.class);
-//		} catch (JsonMappingException e) {
-//			e.printStackTrace(); 
-//		} catch (JsonProcessingException e) {
-//			e.printStackTrace();
-//		}
-
-//		System.out.println("카카오 엑세스 토큰 :" +lhj_OAuthToken.getAccess_token());
-
-//		return "토큰 벗기기 "+response.getBody(); 
-		return "카카오 인증 완료: 토큰" + code + "<br> 토큰 요청에 대한 응답 : " + responseEntity;
-	}
 
 	// 로그인 처리
 	@RequestMapping(value = "/member/login", method = RequestMethod.POST)
@@ -684,10 +681,10 @@ public class Lhj_Controller {
 			attachmentFileVO.setM_id(m_id);
 			model.addAttribute("lhj_MemberVO", attachmentFileVO);
 			System.out.println("attachmentFileVO.getM_mail()->" + attachmentFileVO.getM_mail());
-			System.out.println("못 지나간다");
+			System.out.println("error");
 			return "member/mypage";
 		} else {
-			System.out.println("못 지나간다");
+			System.out.println("error");
 			return "member/mypage";
 		}
 	}
