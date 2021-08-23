@@ -40,6 +40,12 @@
 .header_top .search_section input:focus {
 	outline: none;
 }
+.header_top .search_section button {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	z-index: 108;
+}
 .header_top .search_section i {
 	position: absolute;
 	right: 15px;

@@ -80,8 +80,10 @@
 	                        <img src="${pageContext.request.contextPath}/upload/${post.p_img}">
 	                    </div>
 	                    <div class="con_itm">
-							<input type="hidden" name="p_num" value="${post.p_num }">
-							${post.p_title }
+	                    	<div class="con_itm_tit">
+		                    	<input type="hidden" name="p_num" value="${post.p_num }">
+								${post.p_title }
+	                    	</div>
 	                    </div>
 	                    <div class="con_itm">
 	                        <div class="con_contents">
