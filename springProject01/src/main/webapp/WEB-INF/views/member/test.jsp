@@ -18,54 +18,15 @@
 </head>
 <body>
 
-	<form action="${pageContext.request.contextPath}/members/join" method="post" name="joinForm">
-	<div>
-		<input type="text" id="m_tel" name="m_tel" placeholder="전화번호" required="required"></br>
-		<input type="text" id="m_pw" name="m_pw" placeholder="비밀번호" required="required"><br>
-		<input type="text" id="m_re_pw" name="m_re_pw" placeholder="비밀번호 확인" required="required" onkeyup="passConfirm()"><br>
-		<span id ="confirmMsg"></span> 
-		<input type="submit" onclick="naverlogin()" value="확인"> 
-	</div>
-	</form>
-<script type="text/javascript">
-	//카카오
-	window.Kakao.init("e2fd8d66aec38708604ef29d89508490");
-	
-	function naverlogin() {
-	   window.Kakao.Auth.login({
-	      scope: 'profile_nickname, account_email',
-	      success: function(authObj) {
-	         console.log(authObj);
-	         window.Kakao.API.request({
-	            url: '/v2/user/me',
-	            success: res => {
-	               const Kakao_account = res.kakao_account;
-	               console.log('authObj-->', authObj);
-	               console.log('Kakao_account-->', Kakao_account);
-	               console.log('Kakao_account-->', Kakao_account_email);
-	
-	               var m_id = Kakao_account.email;
-// 	               var m_name = Kakao_profile_nickname;
-	
-	               $.ajax({
-	            	   url:"${pageContext.request.contextPath}/member/Naverjoin",
-	                  data: {m_id : m_id },
-	                  dataType: 'text',
-	                  success:function(data){
-	        	          alert(data);
-	        	          window.opener.location.href="${pageContext.request.contextPath}/main/main";
-	        	            self.close();
-	        	      }
-	               });
-	
-	
-	            }
-	         });
-	      }
-	   });
-	}
+	<c:if test="${userId eq null}">
+        <a href="">
+            <img src="/img/kakao_account_login_btn_medium_wide_ov.png">
+        </a>
+    </c:if>
+    <c:if test="${userId ne null}">
+        <h1>로그인 성공입니다</h1>
+    </c:if>
 
-</script>
 
 </body>
 </html>

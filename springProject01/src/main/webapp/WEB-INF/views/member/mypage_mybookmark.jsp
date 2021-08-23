@@ -94,12 +94,14 @@
 				<c:forEach var="lhj_MemberVO" items="${myBookMarkList }">
 					<tr>
 						<td rowspan="2" id="table_img">
+							<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${lhj_MemberVO.bt_num }&bc_num=${lhj_MemberVO.bc_num }&p_num=${lhj_MemberVO.p_num}">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_img != null}">
 								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
 							</c:if>
+							</a>
 						</td>
 						<td colspan="2">
 							<input type="hidden" value="${lhj_MemberVO.m_id }" name="m_id">
@@ -148,12 +150,14 @@
 				<c:forEach var="lhj_MemberVO" items="${myBookMark_classList }">
 					<tr>
 						<td rowspan="2" id="table_img">
+							<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${lhj_MemberVO.bt_num }&bc_num=${lhj_MemberVO.bc_num }&p_num=${lhj_MemberVO.p_num}">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_img != null}">
 								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
 							</c:if>
+							</a>
 						</td>
 						<td colspan="2">
 							<input type="hidden" value="${lhj_MemberVO.m_id }" name="m_id">
@@ -200,12 +204,14 @@
 				<c:forEach var="lhj_MemberVO" items="${myBookMark_meetingList }">
 					<tr>
 						<td rowspan="2" id="table_img">
+							<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${lhj_MemberVO.bt_num }&bc_num=${lhj_MemberVO.bc_num }&p_num=${lhj_MemberVO.p_num}">
 							<c:if test="${lhj_MemberVO.p_img == null}">
 								<img src="${pageContext.request.contextPath}/img/goya.jpg" width="250px">
 							</c:if>
 							<c:if test="${lhj_MemberVO.p_img != null}">
 								<img src="${pageContext.request.contextPath}/upload/${lhj_MemberVO.p_img }">
 							</c:if>
+							</a>
 						</td>
 						<td colspan="2">
 							<input type="hidden" value="${lhj_MemberVO.m_id }" name="m_id">

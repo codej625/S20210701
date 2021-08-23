@@ -21,6 +21,12 @@
 				insert into member( m_id, m_pw, m_name, m_tel, m_regdate)
 							values( #{m_id}, #{m_pw}, #{m_name}, #{m_tel}, sysdate)
 		</insert>
+		
+		<!-- 		회원가입 -네이버 로그인 경우 -->
+		<insert id="hj_insertMember_kakao">
+				insert into member( m_id, m_pw, m_name, m_tel, m_regdate)
+							values( #{m_id}, #{m_pw}, #{m_name}, #{m_tel}, sysdate)
+		</insert>
 
 	<!-- 회원가입시 아이디 중복 체크 -->
 	<select id="hj_m_idCheck" parameterType="Lhj_MemberVO"
