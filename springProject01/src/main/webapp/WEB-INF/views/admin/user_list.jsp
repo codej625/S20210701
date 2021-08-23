@@ -29,11 +29,11 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading"></div>
-						<div class="sb-sidenav-menu-heading">회원관리</div>
+						<div class="sb-sidenav-menu-heading">Main</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
-							</div> 회원 기능
+							</div> 회원 관리
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
@@ -43,7 +43,6 @@
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/user_list">회원 목록</a>
 								<a class="nav-link" href="${pageContext.request.contextPath}/admin/authority_list">고수 인증</a> 
-								<a class="nav-link" href="">회원 삭제</a>
 							</nav>
 						</div>
 
@@ -55,7 +54,7 @@
 						</a> <a class="nav-link" href="tables.html">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> 고수 인증
+							</div> 
 						</a>
 					</div>
 				</div>
@@ -66,15 +65,12 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<main>
-				<h4>회원수 : ${total} 명</h4>
+				<div class="alert alert-light"><h4>회원수 : ${total} 명</h4></div>
 				<c:set var="num" value="${pg.total-pg.start+1}"></c:set>
-				<form method="post" action="${pageContext.request.contextPath}/admin/user_delete">
-					<br>
-						<br>
-							<br>
+				<form method="post" action="${pageContext.request.contextPath}/admin/user_delete" name="frm" onsubmit="return chk(this);">
 					<table class="table table-hover">
-						<tr>
-							<th>번호</th>
+						<tr class="table-secondary">
+							<th><input type='checkbox' name='check' value='selectall' onclick='selectAll(this)' /> 번호</th>
 							<th>ID</th>
 							<th>이름</th>
 							<th>가입 날짜</th>
@@ -82,7 +78,7 @@
 						</tr>
 						<c:forEach var="member" items="${user_list}">
 							<tr>
-								<td><input type="checkbox" value="${member.m_id}" name="m_idArray">${num}</td>
+								<td><input type="checkbox" value="${member.m_id}" name="m_idArray"> ${num}</td>
 								<td>${member.m_id}</td>
 								<td>${member.m_name}</td>
 								<td>${member.m_regdate}</td>
@@ -91,7 +87,7 @@
 							<c:set var="num" value="${num - 1 }"></c:set>
 						</c:forEach>
 					</table>
-					<input type="submit" value="회원 권한 해제">
+					<input type="submit" value="회원 권한 해제" class="btn btn-outline-secondary">
 				</form>
 
 				<c:if test="${pg.startPage > pg.pageBlock }">
@@ -114,6 +110,25 @@
 			</footer>
 		</div>
 	</div>
+		<script type="text/javascript">
+	function chk(form) {
+		var arr_form = document.getElementsByName('m_idArray');
+		var num = 0;
+		for (var i = 0; i < arr_form.length; i++) {
+			if (arr_form[i].checked) {
+				num++;
+			}
+		}
+		if (!num) {
+			alert('번호를 선택해주세요');
+			return false;
+		}
+	}
+	function selectAll(selectAll) {
+		  const checkboxes = document.getElementsByName('m_idArray');
+		  checkboxes.forEach((checkbox) => {checkbox.checked = selectAll.checked;})
+		}
+	</script>
 	<script src="${pageContext.request.contextPath}/js/array.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 	<script src="${pageContext.request.contextPath}/js/scripts.js"></script>

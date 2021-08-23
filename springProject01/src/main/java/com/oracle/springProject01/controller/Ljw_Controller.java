@@ -96,22 +96,24 @@ public class Ljw_Controller {
 	public String authority(MemberVo memberVo, Model model) {
 		System.out.println("Ljw_Controller authority Start");
 		int update = 0;
-		System.out.println("memberVo.getM_meetingauth()->" + memberVo.getM_meetingauth());
-		System.out.println("memberVo.getM_masterauth()->" + memberVo.getM_masterauth());
+		
 		if ((memberVo != null)) {
+			// 두개의 필드 속에 값이 없어야 실행 가능한 조건
 			if (memberVo.getM_meetingauth() == null && memberVo.getM_masterauth() == null) {
 				for (String m_id : memberVo.getM_idArray()) {
+					// 배열에서 m_id를 하나씩 set
 					memberVo.setM_id(m_id);
+					// m_id null check
 					if (memberVo.getM_id() != null) {
 						// m_id value check
 						System.out.println("member.getM_id()->" + memberVo.getM_id());
 						memberVo = ms.authorityList(memberVo);
-						System.out.println("가져온 값이 있으면 member.getM_id()->" + memberVo.getM_id());
 						update = ms.authority(memberVo);
 						model.addAttribute("result", update);
 					}
 				}
 			} else {
+				// 개별적으로 가져오는 값을 처리하는 로직
 				for (String m_id : memberVo.getM_idArray()) {
 					memberVo.setM_id(m_id);
 					if (memberVo.getM_id() != null) {
@@ -119,13 +121,11 @@ public class Ljw_Controller {
 							memberVo = ms.authorityList(memberVo);
 							memberVo.setM_masterauth("M");
 							memberVo.setM_meetingauth("N");
-							System.out.println("111111");
 							update = ms.authority2(memberVo);
 						} else if (memberVo.getM_meetingauth() == null) {
 							memberVo = ms.authorityList(memberVo);
 							memberVo.setM_meetingauth("M");
 							memberVo.setM_masterauth("N");
-							System.out.println("222222");
 							update = ms.authority2(memberVo);
 						}
 						model.addAttribute("result", update);

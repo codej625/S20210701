@@ -84,31 +84,20 @@ public class MemberServiceImpl implements MemberService {
 
 		if (memberVo.getM_meetingauth().equals("N")) {
 			memberVo.setM_meetingauth("Y");
-			System.out.println("1번 탔당");
+			System.out.println("getM_meetingauth()->" + "N -> Y");
 		}
 		if (memberVo.getM_masterauth().equals("M")) {
 			memberVo.setM_masterauth("M");
-			System.out.println("2번 탔당");
+			System.out.println("getM_masterauth()->" + "M -> M");
 		}
 		if (memberVo.getM_masterauth().equals("N")) {
 			memberVo.setM_masterauth("Y");
-			System.out.println("3번 탔당");
+			System.out.println("getM_masterauth()->" + "N -> Y");
 		}
 		if (memberVo.getM_meetingauth().equals("M")) {
 			memberVo.setM_meetingauth("M");
-			System.out.println("4번 탔당");
+			System.out.println("getM_meetingauth()->" + "M -> M");
 		}
-//		if (memberVo.getM_meetingauth().equals(null)) {
-//			memberVo.setM_meetingauth("M");
-//			System.out.println("5번 탔당");
-//		}
-//		if (memberVo.getM_meetingauth().equals(null)) {
-//			memberVo.setM_meetingauth("M");
-//			System.out.println("6번 탔당");
-//		}
-		// 값이 if문을 타고 변경 되었는지 확인
-		System.out.println("MemberServiceImpl member.getM_meetingauth()->" + memberVo.getM_meetingauth());
-		System.out.println("MemberServiceImpl member.getM_masterauth()->" + memberVo.getM_masterauth());
 
 		return result = md.authority(memberVo);
 	}
@@ -120,23 +109,20 @@ public class MemberServiceImpl implements MemberService {
 
 		if (memberVo.getM_meetingauth().equals("N")) {
 			memberVo.setM_meetingauth("Y");
-			System.out.println("1-1번 탔당");
+			System.out.println("getM_meetingauth()->" + "N -> Y");
 		}
 		if (memberVo.getM_meetingauth().equals("M")) {
 			memberVo.setM_meetingauth("N");
-			System.out.println("1-2번 탔당");
+			System.out.println("getM_meetingauth()" + "M -> N");
 		}
 		if (memberVo.getM_masterauth().equals("N")) {
 			memberVo.setM_masterauth("Y");
-			System.out.println("2-1번 탔당");
+			System.out.println("getM_masterauth()->" + "N -> Y");
 		}
 		if (memberVo.getM_masterauth().equals("M")) {
 			memberVo.setM_masterauth("N");
-			System.out.println("2-2번 탔당");
+			System.out.println("getM_masterauth()->" + "M -> N");
 		}
-		// 값이 if문을 타고 변경 되었는지 확인
-		System.out.println("MemberServiceImpl member.getM_meetingauth()->" + memberVo.getM_meetingauth());
-		System.out.println("MemberServiceImpl member.getM_masterauth()->" + memberVo.getM_masterauth());
 
 		return result = md.authority(memberVo);
 	}
