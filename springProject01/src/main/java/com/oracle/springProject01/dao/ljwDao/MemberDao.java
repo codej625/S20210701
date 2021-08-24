@@ -5,6 +5,7 @@ import java.util.List;
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.model.MemberVo;
+import com.oracle.springProject01.model.Report;
 
 public interface MemberDao {
 
@@ -23,5 +24,7 @@ public interface MemberDao {
 	MemberVo authorityList(MemberVo memberVo);
 	
 	int authority(MemberVo member_list);
+	
+	int report(Report report);
 
 }

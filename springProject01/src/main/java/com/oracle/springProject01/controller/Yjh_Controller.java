@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.oracle.springProject01.model.Lhj_MemberVO;
+import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.model.Post;
 import com.oracle.springProject01.model.RecentPost;
 import com.oracle.springProject01.model.Reply;
@@ -48,12 +49,17 @@ public class Yjh_Controller {
 
    @Autowired
    private MainService mas;
-
+   
+   @Autowired
+   private com.oracle.springProject01.service.yjhService.MemberService ys;
+   
 //   게시물 리스트 불러오기
    @RequestMapping(value = "/post/category", method = { RequestMethod.GET, RequestMethod.POST })
-   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String keyword, String currentPage, Model model) {
+   public String categoryGet(HttpServletRequest request,Integer bt_num, Integer bc_num, String keyword, String currentPage, Model model, Member lhj_MemberVO) {
       System.out.println("Yjh_Controller categoryGet Start...");
       String sessionID =  (String) request.getSession().getAttribute("sessionID");
+      lhj_MemberVO.setM_id(sessionID);
+      lhj_MemberVO = ys.id(lhj_MemberVO);
       int total = 0;
 //      유형번호만 눌렀을때 카테고리값을 0으로
       if (bc_num == null)
@@ -77,6 +83,7 @@ public class Yjh_Controller {
 //      }
       System.out.println("Yjh_Controller String list() listPost.size()->" + listPost.size());
       model.addAttribute("sessionID",sessionID);
+      model.addAttribute("lhj_MemberVO", lhj_MemberVO);
       model.addAttribute("total", total);
       model.addAttribute("listPost", listPost);
       model.addAttribute("pg", pg);
@@ -100,12 +107,14 @@ public class Yjh_Controller {
 
 //   게시물 작성  폼
    @GetMapping(value = "/post/register")
-   public String register(HttpServletRequest request, int bt_num, Model model) {
+   public String register(HttpServletRequest request, int bt_num, Model model, Member lhj_MemberVO) {
       System.out.println("Yjh_Controller String register Start...");
 //      섹션아이디
       String sessionID = (String) request.getSession().getAttribute("sessionID");
 //      섹션아이디의 정보가져오기
       Post post = ps.registerMember(sessionID);
+      lhj_MemberVO.setM_id(sessionID);
+      lhj_MemberVO = ys.id(lhj_MemberVO);
 //      게시물번호
       int p_num = 0;
 //      페이지넘
@@ -117,6 +126,7 @@ public class Yjh_Controller {
       model.addAttribute("sessionID", sessionID);
       model.addAttribute("post", post);
       model.addAttribute("bt_num", bt_num);
+      model.addAttribute("lhj_MemberVO", lhj_MemberVO);
       System.out.println("bt_num->" + bt_num);
       return "post/register";
    }
@@ -209,11 +219,14 @@ public class Yjh_Controller {
 
 //	게시물 보기
 	@RequestMapping(value = "/post/postListDetail", method = { RequestMethod.GET, RequestMethod.POST })
-	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, String pm_id, RecentPost rpost, Model model, HttpServletRequest request) {
+	public String postListDetail(Integer bt_num, Integer bc_num, Integer p_num, String pm_id, RecentPost rpost, Model model, HttpServletRequest request, Member lhj_MemberVO) {
 		System.out.println("Yjh_Controller String postListDetail start...");
 
 //		섹션아이디
 		String sessionID =  (String) request.getSession().getAttribute("sessionID");
+	    lhj_MemberVO.setM_id(sessionID);
+	    lhj_MemberVO = ys.id(lhj_MemberVO);
+
 		String m_id = sessionID;
 //		게시물을 신청 했는지 안했는지 확인
 		int result1 = ps.regInfoCheck(m_id,bt_num, bc_num, p_num);
@@ -256,6 +269,7 @@ public class Yjh_Controller {
 		model.addAttribute("result",result1);
 		model.addAttribute("result2",result2);	
 		model.addAttribute("reply",replyList);
+		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 		return "post/contents";
 	}
 
@@ -273,8 +287,11 @@ public class Yjh_Controller {
 
 //   게시물 수정하기
    @RequestMapping(value = "/post/postListUpdate", method = { RequestMethod.GET, RequestMethod.POST })
-   public String postListUpdate(HttpServletRequest request, MultipartFile p_img, Model model) throws IOException {
+   public String postListUpdate(HttpServletRequest request, MultipartFile p_img, Model model, Member lhj_MemberVO) throws IOException {
       System.out.println("Yjh_Controller String postListUpdate start...");
+      String sessionID = (String) request.getSession().getAttribute("sessionID");
+      lhj_MemberVO.setM_id(sessionID);
+      lhj_MemberVO = ys.id(lhj_MemberVO);
 //    태그를 배열로 받아서 저장해주기
       String[] p_tag = request.getParameterValues("p_tag");
 //    태그 받은걸  (a b)a 띄어쓰기 b 이런식으로  변경해서 p_tagStr로  다시 받아주기
@@ -332,6 +349,7 @@ public class Yjh_Controller {
       int result = ps.postListUpdate(post);
       System.out.println("Yjh_Controller String postListUpdate result->" + result);
       model.addAttribute("post", post);
+      model.addAttribute("lhj_MemberVO", lhj_MemberVO);
       return "forward:/post/postListDetail";
    }
 
@@ -394,17 +412,20 @@ public class Yjh_Controller {
 
 //   게시물 신청하기 보여주는 곳
    @RequestMapping(value = "post/postRegInfoApplication", method = { RequestMethod.GET, RequestMethod.POST })
-   public String postRegInfoApplication(Integer bt_num, Integer bc_num, Integer p_num, Model model,
+   public String postRegInfoApplication(Integer bt_num, Integer bc_num, Integer p_num, Model model, Member lhj_MemberVO,
          HttpServletRequest request) {
       System.out.println("Yjh_Controller postRegInfoApplication start...");
 //      섹션아이디
       String sessionID = (String) request.getSession().getAttribute("sessionID");
+      lhj_MemberVO.setM_id(sessionID);
+      lhj_MemberVO = ys.id(lhj_MemberVO);
 //      게시물 리스트
       Post post = ps.postListDetail(bt_num, bc_num, p_num);
 //      로그인 아이디 정보
       Post postMemberDetail = ps.registerMember(sessionID);
       model.addAttribute("post", post);
       model.addAttribute("member", postMemberDetail);
+      model.addAttribute("lhj_MemberVO", lhj_MemberVO);
       return "post/applicationContents";
    }
 

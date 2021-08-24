@@ -8,4 +8,13 @@
 				from member
 				where m_id = #{m_id}
 		</select>
+		<!-- 신청정보 조회 -->
+	<select id="mj_detail" resultType="PmjChatVO"	parameterType="PmjChatVO">
+
+		select p_title
+		from post p
+		where bt_num = #{bt_num}
+		and bc_num = #{bc_num}
+		and p_num = #{p_num}
+	</select>
 </mapper>

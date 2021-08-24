@@ -78,8 +78,8 @@ public class Che_Controller {
 			System.out.println("Che_Controller recentPostList m_id -> " + rpost.getM_id());
 			rpost.setStart(pg.getStart());
 			rpost.setEnd(pg.getEnd());
+			// 최근 본모임 이미지 (임시)
 			listRpost = ms.recentPostList(rpost);
-			
 			System.out.println("Che_Controller recentPostList listRpost size -> " + listRpost.size());
 			model.addAttribute("size", listRpost.size());
 			model.addAttribute("listRpost", listRpost);

@@ -70,8 +70,122 @@ a {
     position: relative;
     width: 100%;
     background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+}
+.oepn_wrap .info_section .class_info {
+    display: flex;
+    flex-direction: column;
+}
+.oepn_wrap .info_section .class_info .section_tit {
+    margin-bottom: 20px;
+}
+.oepn_wrap .info_section .class_info .section_con {
+	display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.oepn_wrap .info_section .class_info .section_con .item_title {
+    width: 100px;
+}
+.oepn_wrap .info_section .class_info .section_con .item_content a {
+    font-size: 12px;
+    font-weight: 300;
+    margin-right: 10px;
+}
+.oepn_wrap .info_section .class_info .section_con .item_content input {
+    margin-right: 10px;
+}
+.oepn_wrap .info_section .section_con textarea {
+	width: 400px;
 }
 .oepn_wrap .btn_section {
     text-align: center;
+    margin-top: 20px;
 }
-
+.oepn_wrap .btn_section button {
+	margin: 10px 10px 0 10px;
+}
+.info {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+.info .title {
+    margin-right: 10px;
+    font-size: 13px;
+    font-weight: 300;
+}
+.info input[type=text] {
+    margin-right: 10px;
+}
+.info a {
+    margin-right: 10px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #269F70;
+}
+.info input[type=number] {
+    margin-right: 10px;
+}
+.info2 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+.info2 .title {
+    font-size: 13px;
+    font-weight: 300;
+}
+.info2 input[type=text] {
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.map {
+    background-color: #269F70;
+}
+.section_con2 .content {
+    width: 93%;
+}
+.section_con2 .title{
+    font-size: 13px;
+    font-weight: 300;
+    margin-top: 10px;
+    color: #269F70;
+}
+.default_bt {
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	font-size: 16px;
+	border: 0px;
+	border-radius: 6px;
+	font-weight: 600;
+	margin-top: 30px;
+    color: black;
+	background-color: #EFEFEF;
+	padding: 10px 30px 10px 30px;
+}
+.default_bt2 {
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	font-size: 11px;
+	border: 0px;
+	border-radius: 6px;
+	font-weight: 300;
+	margin-top: 30px;
+    color: black;
+	background-color: #EFEFEF;
+	padding: 5px 15px 5px 15px;
+}
+.default_bt .login_bt {
+	width: 100px;
+	height: 56px;
+	line-height: 64px;
+}
+.default_bt .add_bt {
+	width: 50;
+	height: 56px;
+	line-height: 64px;
+}

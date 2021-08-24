@@ -56,10 +56,12 @@ position:relative;
 }
 
 </style>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/header.css" />
 </head>
 <body>
 
-	<div id="admin" > 채팅 관리자 창 </div>
+	<div id="admin" > [ 채팅 관리자 창 ] </div>
 	<!-- 유저가 접속할 때마다 이 템플릿으로 채팅창을 생성한다. -->
 	<div class="template" style="display: none" >
 	<!--  sessionNAME값 -->

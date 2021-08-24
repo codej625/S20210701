@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.model.MemberVo;
+import com.oracle.springProject01.model.Report;
 import com.oracle.springProject01.service.ljwService.MemberService;
 import com.oracle.springProject01.service.paging.LjwPaging;
 
@@ -96,7 +97,7 @@ public class Ljw_Controller {
 	public String authority(MemberVo memberVo, Model model) {
 		System.out.println("Ljw_Controller authority Start");
 		int update = 0;
-		
+
 		if ((memberVo != null)) {
 			// 두개의 필드 속에 값이 없어야 실행 가능한 조건
 			if (memberVo.getM_meetingauth() == null && memberVo.getM_masterauth() == null) {
@@ -134,5 +135,15 @@ public class Ljw_Controller {
 			}
 		}
 		return "forward:/admin/admin_main";
+	}
+
+	// 신고 기능
+	@PostMapping(value = "/admin/report")
+	public String report(Report report) {
+		System.out.println("Ljw_Controller report Start");
+		if (report != null) {
+			ms.report(report);
+		}
+		return "member/mypage";
 	}
 }

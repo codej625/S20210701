@@ -107,6 +107,8 @@
 							<c:if test="${lhj_MemberVO.p_cstatus == '1'}">
 								(유료)
 							</c:if>
+							<a href="${pageContext.request.contextPath}/chat/chat2?bt_num=${lhj_MemberVO.bt_num }&bc_num=${lhj_MemberVO.bc_num }&p_num=${lhj_MemberVO.p_num}">
+							asd</a>
 						</td>
 					</tr>
 					<tr>

@@ -20,7 +20,9 @@ a {
 	color: #3c3c3c;
 	text-decoration: none;
 }
-
+span {
+    color: #269F70;
+}
 .contents_wrap {
     position: relative;
     width: 75%;
@@ -57,6 +59,10 @@ a {
     font-size: 17px;
     font-weight: 600;
     margin-bottom: 10px;
+    margin-left: 10px;
+}
+.offeror .offer_option {
+    margin-left: 10px;
 }
 .offeror .offeror_info .info_detail {
     border-top: 1px solid #cccccc;
@@ -121,6 +127,8 @@ a {
     color: #3a519c;
     cursor: pointer;
     padding: 7px 9px 4px;
+    font-size: 11px;
+    font-weight: 300;
 }
 .a .meet_info {
     display: flex;
@@ -129,6 +137,14 @@ a {
 }
 .a .meet_info .meet_title {
     margin-right: 20px;
+}
+.meet_info table {
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    font-size: 13px;
+}
+.meet_info tr {
+    border-bottom: 1px solid #cccccc;
 }
 /*  Contents Detail CSS  */
 .con_detail {
@@ -185,4 +201,23 @@ a {
 .con_detail .con_item .item_det .can_detail a {
     text-decoration: underline;
     cursor: pointer;
+}
+.default_bt2 {
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: center;
+	font-size: 11px;
+	border: 0px;
+	border-radius: 6px;
+	font-weight: 300;
+	margin-top: 30px;
+    margin-right: 10px;
+    color: black;
+	background-color: #EFEFEF;
+	padding: 5px 15px 5px 15px;
+}
+.default_bt2 .add_bt {
+	width: 50;
+	height: 56px;
+	line-height: 64px;
 }

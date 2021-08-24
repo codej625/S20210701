@@ -66,6 +66,8 @@ position:relative; bottom:20px;
 	text-align: left;
 }
 </style>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/header.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>

@@ -49,8 +49,8 @@ import com.oracle.springProject01.service.yjhService.PostService;
 public class Lhj_Controller {
 
 	@Autowired
-    private KakaoAPI kakao;
-	
+	private KakaoAPI kakao;
+
 	@Autowired
 	private MemberService ms;
 
@@ -120,42 +120,42 @@ public class Lhj_Controller {
 		return "member/join";
 	}
 
-	//카카오 로그인 api
+	// 카카오 로그인 api
 	@RequestMapping(value = "/member/kakaoCallback")
 	public String login(@RequestParam("code") String code, HttpSession session) {
 		String access_Token = kakao.getAccessToken(code);
 		System.out.println("controller access_token : " + access_Token);
-		
+
 		HashMap<String, Object> userInfo = kakao.getUserInfo(access_Token);
 		System.out.println("login Controller : " + userInfo);
-		
+
 		String m_name = (String) userInfo.get("nickname");
-		System.out.println("nickname"+m_name);
+		System.out.println("nickname" + m_name);
 		String m_id = (String) userInfo.get("email");
-		System.out.println("m_id"+m_id);
-		
+		System.out.println("m_id" + m_id);
+
 		session.setAttribute("m_id", m_id);
 		session.setAttribute("m_name", m_name);
-		
+
 		return "/member/kakaoCallback";
 	}
-	
+
 	// 회원가입 처리 for 카카오
-		@RequestMapping(value = "/member/kakaojoin", method = RequestMethod.POST)
-		public String kakaojoin(String m_id, String m_name, HttpSession session, HttpServletResponse response, Lhj_MemberVO lhj_MemberVO, HttpServletRequest request){
-			System.out.println("Lhj_Controller String kakaojoin start...");
-			
-			ms.insertMember_KAKAOID(lhj_MemberVO, m_name, m_id);
-			
+	@RequestMapping(value = "/member/kakaojoin", method = RequestMethod.POST)
+	public String kakaojoin(String m_id, String m_name, HttpSession session, HttpServletResponse response,
+			Lhj_MemberVO lhj_MemberVO, HttpServletRequest request) {
+		System.out.println("Lhj_Controller String kakaojoin start...");
+
+		ms.insertMember_KAKAOID(lhj_MemberVO, m_name, m_id);
+
 //			session.setAttribute("m_id", request.getSession("sessionID", m_id));
 //			session.setAttribute("m_name", m_name);
-			
+
 //			ms.insertMember_KAKAOID(lhj_MemberVO, m_name, m_id);
 
-			return "member/join";
-		}
-	
-	
+		return "member/join";
+	}
+
 	// 로그인 화면
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
 	public String loginGET() throws Exception {
@@ -163,7 +163,6 @@ public class Lhj_Controller {
 		logger.info("C: 로그인 입력페이지 GET");
 		return "member/login";
 	}
-
 
 	// 로그인 처리
 	@RequestMapping(value = "/member/login", method = RequestMethod.POST)
@@ -675,18 +674,18 @@ public class Lhj_Controller {
 			System.out.println("attachmentFileVO->m_id: " + attachmentFileVO.getM_id());
 			model.addAttribute("result", result);
 			model.addAttribute("lhj_MemberVO", attachmentFileVO);
-			return "member/mypage";
-
-		} else if (attachmentFileVO.getM_mail().equals("") || attachmentFileVO.getM_mail() != emali.getM_mail()) {
-			attachmentFileVO.setM_id(m_id);
-			model.addAttribute("lhj_MemberVO", attachmentFileVO);
-			System.out.println("attachmentFileVO.getM_mail()->" + attachmentFileVO.getM_mail());
-			System.out.println("error");
-			return "member/mypage";
-		} else {
-			System.out.println("error");
-			return "member/mypage";
 		}
+			return "member/mypage";
+//		} else if (attachmentFileVO.getM_mail().equals("") || attachmentFileVO.getM_mail() != emali.getM_mail()) {
+//			attachmentFileVO.setM_id(m_id);
+//			model.addAttribute("lhj_MemberVO", attachmentFileVO);
+//			System.out.println("attachmentFileVO.getM_mail()->" + attachmentFileVO.getM_mail());
+//			System.out.println("error");
+//			return "member/mypage";
+//		} else {
+//			attachmentFileVO.setM_id(m_id);
+//			model.addAttribute("lhj_MemberVO", attachmentFileVO);
+//			return "member/mypage";
 	}
 
 }

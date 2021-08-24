@@ -16,7 +16,7 @@
 <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js'></script> -->
 
 <link href="${pageContext.request.contextPath}/summernote/summernote-lite.css" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
 <!-- <script src="https://code.jquery.coms/jquery-3.5.1.min.js"></script>  -->
 <%-- <script src="${pageContext.request.contextPath}/summernote/summernote-lite.js"></script> --%>
 <%-- <script src="${pageContext.request.contextPath}/summernote/lang/summernote-ko-KR.js"></script> --%>
@@ -55,13 +55,29 @@ function uncomma(str) {
 		<div class="oepn_wrap">
 			<form action="${pageContext.request.contextPath}/post/insert" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="p_num" value="${p_num }">
-				<div class="page_title">개설하기</div>
+				<div class="page_title">
+					<c:choose>
+						<c:when test="${bt_num == 1 }">
+							<div class="item_title">
+								<input type="hidden" name="bt_num" value="${bt_num }">
+								모임 개설하기
+							</div>
+						</c:when>
+						<c:when test="${bt_num == 2 }">
+							<div class="item_title">
+								<input type="hidden" name="bt_num" value="${bt_num }">
+								클래스 개설하기
+							</div>
+						</c:when>
+					</c:choose>
+				</div>
 				<div class="info_section">
 					<div class="class_img">
 <!-- 						<div id="image_container" ></div>  -->
 <!-- 						<input type="file" name="p_img" onchange="setThumbnail(event);"> -->
 						<input type="file" name="p_img" id="file" accept="image/*">
 						<div id="preview"></div>
+						
 						<div class="file-edit-icon">
 					    	<a href="#" class="preview-edit">수정</a>
 					    	<a href="#" class="preview-de">삭제</a>
@@ -94,21 +110,6 @@ function uncomma(str) {
 					<div class="class_info">
 						<div class="section_tit">기본정보</div>
 						<div class="section_con">
-							모임/클래스
-							<c:choose>
-								<c:when test="${bt_num == 1 }">
-									<div class="item_title">
-										<input type="hidden" name="bt_num" value="${bt_num }">
-										<input type="text" value="모임" readonly="readonly">
-									</div>
-								</c:when>
-								<c:when test="${bt_num == 2 }">
-									<div class="item_title">
-										<input type="hidden" name="bt_num" value="${bt_num }">
-										<input type="text" value="클래스" readonly="readonly">
-									</div>
-								</c:when>
-							</c:choose>
 							<div class="item_title">카테고리</div>
 							<div class="item_content">
 								<select name="bc_num">
@@ -127,6 +128,7 @@ function uncomma(str) {
 								</select>
 								<input type="text" name="p_title" placeholder="모임명을 입력해주세요">
 							</div>
+						</div>
 							<div class="section_con">
 								<div class="item_title">문의연락처</div>
 <!-- 								이부분은 로그인부분과 연결시켜서 sessionId값을 불러와서 넣어줘야된다 -->
@@ -145,7 +147,6 @@ function uncomma(str) {
 							</div>
 						</div>
 					</div>
-				</div>
 				<div class="info_section">
 					<div class="section_tit">상세정보</div>
 					<div class="section_con">
@@ -176,6 +177,7 @@ function uncomma(str) {
 
 								var setting = {
 							            height : 300,
+							            width : 1220,
 							            minHeight : null,
 							            maxHeight : null,
 							            focus : true,
@@ -210,59 +212,6 @@ function uncomma(str) {
 										});
 									}
 						  </script>
-						
-<!-- 						<textarea name="p_info" id="ir1" rows="10" cols="100">에디터에 기본으로 삽입할 글(수정 모드)이 없다면 이 value 값을 지정하지 않으시면 됩니다.</textarea> -->
-<!-- <!-- 					textarea부분 script --> -->
-<!-- 						<script type="text/javascript"> -->
-<!-- // 							var oEditors = []; -->
-<!-- // 							nhn.husky.EZCreator.createInIFrame({ -->
-<!-- // 								oAppRef : oEditors, -->
-<!-- // 								elPlaceHolder : "ir1", -->
-<%-- // 								sSkinURI : "${pageContext.request.contextPath}/smarteditor211/SmartEditor2Skin.html", --%>
-<!-- // 								fCreator : "createSEditor2", -->
-<!-- // 								htParams : {  -->
-<!-- // 									// 툴바 사용 여부 (true:사용/ false:사용하지 않음)  -->
-<!-- // 									bUseToolbar : true,  -->
-<!-- // 									// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)  -->
-<!-- // 									bUseVerticalResizer : false,  -->
-<!-- // 									// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)  -->
-<!-- // 									bUseModeChanger : false  -->
-<!-- // 								} -->
-<!-- // 							}); -->
-<!-- // 							$(function() {  -->
-<!-- // 								$("#savebutton").click(function() {  -->
-<!-- // 									oEditors.getById["ir1"].exec("UPDATE_CONTENTS_FIELD", []);  -->
-<!-- // 									//textarea의 id를 적어줍니다.  -->
-									
-<!-- // 									var selcatd = $("#selcatd > option:selected").val();  -->
-<!-- // 									var title = $("#title").val();  -->
-<!-- // 									var content = document.getElementById("smartEditor").value;;  -->
-									
-<!-- // 									if (selcatd == "") {  -->
-<!-- // 										alert("카테고리를 선택해주세요.");  -->
-<!-- // 										return;  -->
-<!-- // 									}  -->
-<!-- // 									if (title == null || title == "") {  -->
-<!-- // 										alert("제목을 입력해주세요.");  -->
-<!-- // 										$("#title").focus();  -->
-<!-- // 										return;  -->
-<!-- // 									}  -->
-<!-- // 									if(content == "" || content == null || content == '&nbsp;' ||  -->
-<!-- // 													content == '<br>' || content == '<br/>' || content == '<p>&nbsp;</p>'){  -->
-<!-- // 										alert("본문을 작성해주세요.");  -->
-<!-- // 										oEditors.getById["smartEditor"].exec("FOCUS"); //포커싱  -->
-<!-- // 										return;  -->
-<!-- // 									} //이 부분은 스마트에디터 유효성 검사 부분이니 참고하시길 바랍니다.  -->
-<!-- // 									var result = confirm("발행 하시겠습니까?");  -->
-<!-- // 									if(result){  -->
-<!-- // 										alert("발행 완료!");  -->
-<!-- // 										$("#noticeWriteForm").submit();  -->
-<!-- // 									}else{  -->
-<!-- // 										return;  -->
-<!-- // 									}  -->
-<!-- // 								});  -->
-<!-- // 							}) -->
-<!-- 						</script> -->
 					</div>
 				</div>
 				<div class="info_section">
@@ -271,7 +220,7 @@ function uncomma(str) {
 						<div class="group_info">
 							<div class="info">
 								<input type="text" name="p_gname" placeholder="그룹명을 입력하세요.">
-								정원을 입력하세요
+								<a>정원을 입력하세요</a>
 								<input type="number" id="wr_2" name="p_capa" min="1" max="30" style="width: 100px;" placeholder="최대 30명">
 								<script type="text/javascript">
 									$('#wr_2').on('keyup', function() {
@@ -404,11 +353,12 @@ function uncomma(str) {
 									</div>
 								</div>
 							</div>
-							<div class="info">
+							<div class="info2">
 <!-- 								<input type="checkbox">장소없음 <input type="text" name="p_loc" placeholder="장소"> -->
-								
-								<input type="text" id="sample5_address" name="p_loc" placeholder="주소">
-								<input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
+								<div class="title">
+									<input type="text" id="sample5_address" name="p_loc" placeholder="주소">
+									<input type="button" onclick="sample5_execDaumPostcode()" value="주소검색">
+								</div>
 								<div id="map" style="width:300px;height:300px;margin-top:10px;display:none"></div>
 								
 								<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -512,9 +462,8 @@ function uncomma(str) {
 				</div>
 				<div class="info_section">
 					<div class="section_tit">태그</div>
-					<div class="section_con">
-						<div class="title">
-							<p>한개 이상 선택하세요</p>
+					<div class="section_con2">
+						<div class="content">
 							<input type="checkbox" name="p_tag" value="게임/만화/애니" checked="checked">게임/만화/애니
 							<input type="checkbox" name="p_tag" value="영화/음악/그림">영화/음악/그림
 							<input type="checkbox" name="p_tag" value="스포츠/레저">스포츠/레저
@@ -528,12 +477,13 @@ function uncomma(str) {
 							<input type="checkbox" name="p_tag" value="문학/창작">문학/창작
 							<input type="checkbox" name="p_tag" value="기타">기타
 						</div>
+						<div class="title">한 개 이상 선택하세요.</div>
 					</div>
 				</div>
 				<div class="btn_section">
-					<button>다시작성</button>
-					<button type="submit">개설하기</button>
-					<button>취소</button>
+					<button class="default_bt class_bt">다시작성</button>
+					<button class="default_bt class_bt" type="submit">개설하기</button>
+					<button class="default_bt class_bt">취소</button>
 				</div>
 			</form>
 		</div>

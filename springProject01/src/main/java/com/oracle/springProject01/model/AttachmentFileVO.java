@@ -35,4 +35,17 @@ public class AttachmentFileVO {
 	private String m_masterfile;
 	private String m_mail;
 	private String m_certification;
+	
+	//reginfo
+	private String ri_pstatus;
+	
+	//bookmark
+	private String b_time;
+	private String b_reg;
+	
+	//nickname
+	private int nt_num;
+	
+	//nicknameType
+	private String nt_name;
 }

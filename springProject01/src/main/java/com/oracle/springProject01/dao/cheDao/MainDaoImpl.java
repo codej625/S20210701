@@ -94,5 +94,19 @@ public class MainDaoImpl implements MainDao {
 		return listRpost;
 	}
 
+	@Override
+	public List<RecentPost> imgList(RecentPost postImg) {
+		System.out.println("********* MainDaoImpl recentPostList() start *********");
+		List<RecentPost> imgList = null;
+		try {
+			imgList = session.selectList("ImgList", postImg);
+			System.out.println("MainDaoImpl recentPostList listRpost size -> " + imgList.size());
+		} catch (Exception e) {
+			System.out.println("!!!!MainDaoImpl recentPostList() Exception->"+e.getMessage());
+		}
+		
+		return imgList;
+	}
+
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.model.MemberVo;
+import com.oracle.springProject01.model.Report;
 
 public interface MemberService {
 
@@ -25,4 +26,6 @@ public interface MemberService {
 	int authority(MemberVo memberVo);
 
 	int authority2(MemberVo memberVo);
+	
+	int report(Report report);
 }

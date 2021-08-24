@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.model.MemberVo;
+import com.oracle.springProject01.model.Report;
 
 @Repository("LjwDao")
 public class MemberDaoImpl implements MemberDao {
@@ -119,8 +120,8 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public int authority(MemberVo memberVo) {
-		int authority = 0;
 		System.out.println("MemberDaoImpl authority Start");
+		int authority = 0;
 
 		try {
 			authority = session.update("ljw_authority", memberVo);
@@ -129,6 +130,19 @@ public class MemberDaoImpl implements MemberDao {
 		}
 
 		return authority;
+	}
+
+	@Override
+	public int report(Report report) {
+		System.out.println("MemberDaoImpl authority Start");
+		int result = 0;
+		try {
+			result = session.insert("ljw_report", report);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl report Exception->" + e.getMessage());
+		}
+
+		return result;
 	}
 
 }

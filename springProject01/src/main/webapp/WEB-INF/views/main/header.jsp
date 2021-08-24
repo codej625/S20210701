@@ -25,6 +25,7 @@
 			<form action="${pageContext.request.contextPath}/post/category/search" method="get">
 				<div class="search_section">
 					<input type="text" id="keyword" name="keyword" placeholder="원하는 모임을 검색해보세요!" /><button>검색하기</button>
+					<i class="fas fa-search fa-2x"></i>
 				</div>
 			</form>
 			<div class="nav_bar">
@@ -38,7 +39,7 @@
 							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${sessionID}회원님</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
-						<li><a href="${pageContext.request.contextPath}/chat/user">고객센터</a></li>
+						<li><a href="${pageContext.request.contextPath}/chat/user">톡톡문의연결</a></li>
 <%-- 						<li><a href="${pageContext.request.contextPath}/chat/chat">라이브톡</a></li>
  --%>					</ul>
 				</div>
@@ -54,19 +55,19 @@
 					<div class="nav_detail">
 						<c:if test="${sessionID != null}">
 							<c:choose>
-								<c:when test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq null}">
+								<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'M'}">
 									<a href="${pageContext.request.contextPath}/member/mypage_mycertification"><i class="far fa-list-alt fa-3x"></i></a>
 									<br>
 									<a href="${pageContext.request.contextPath}/member/mypage_mycertification">모임개설</a>
 								</c:when>
 							
-								<c:when test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq 'N'}">
+								<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'N'}">
 									<a href="${pageContext.request.contextPath}/member/mypage_mycertification"><i class="far fa-list-alt fa-3x"></i></a>
 									<br>
 									<a href="${pageContext.request.contextPath}/member/mypage_mycertification">모임개설</a>
 								</c:when>
 							
-								<c:when test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq null}">
+								<c:when test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq 'M'}">
 									<a href="${pageContext.request.contextPath}/member/mypage_mycertification"><i class="far fa-list-alt fa-3x"></i></a>
 									<br>
 									<a href="${pageContext.request.contextPath}/member/mypage_mycertification">모임개설</a>
@@ -96,13 +97,13 @@
 									<a href="${pageContext.request.contextPath}/post/add">모임개설</a>
 								</c:when>
 								
-								<c:when test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq 'Y'}">
+								<c:when test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'Y'}">
 									<a href="${pageContext.request.contextPath}/post/add"><i class="far fa-list-alt fa-3x"></i></a>
 									<br>
 									<a href="${pageContext.request.contextPath}/post/add">모임개설</a>
 								</c:when>
 								
-								<c:when test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq null}">
+								<c:when test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'M'}">
 									<a href="${pageContext.request.contextPath}/post/add"><i class="far fa-list-alt fa-3x"></i></a>
 									<br>
 									<a href="${pageContext.request.contextPath}/post/add">모임개설</a>

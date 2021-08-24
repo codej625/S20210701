@@ -89,7 +89,7 @@
 	<!-- 				<div class="con_item">15</div> -->
 	<!-- 				<div class="con_item">16</div> -->
 	<!-- 				<div class="con_item">17</div> -->
-	<!-- 				<div class="con_item">18</div> -->
+	<!-- 				<div class="con_item">18</div> -->                               
 	<!-- 				<div class="con_item">19</div> -->
 	<!-- 				<div class="con_item">20</div> -->
 					<div class="page_btn">
@@ -98,6 +98,16 @@
 						<button>다음</button>
 					</div>
 				</div>
+			</div>
+		</c:if>
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'M'}">
+			<div class="contents_wrap">
+            	<a href="${pageContext.request.contextPath}/post/register?bt_num=1" style="margin-left: 530px;">
+            		모임 개설하기
+            	</a>
+            	<a href="${pageContext.request.contextPath}/post/register?bt_num=2" style="margin-left: 30px;">
+            		클래스 개설하기
+            	</a>
 			</div>						
 		</c:if>
 		
@@ -155,7 +165,7 @@
 		</div>				
 		</c:if>
 		
-		<c:if test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq null}">
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'M'}">
 			<div class="contents_wrap">
 			<div class="fil_section">
 				<div class="fil_title">상세검색기능<c:if test="${msg != null }">${msg }</c:if></div>
@@ -282,7 +292,7 @@
 		</div>					
 		</c:if>
 		
-		<c:if test="${lhj_MemberVO.m_meetingauth eq null and lhj_MemberVO.m_masterauth eq 'Y'}">
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'Y'}">
 			<div class="contents_wrap">
 			<div class="fil_section">
 				<div class="fil_title">상세검색기능<c:if test="${msg != null }">${msg }</c:if></div>
@@ -354,7 +364,37 @@
 			</div>
 		</div>					
 		</c:if>
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'N'}">
+			<div class="contents_wrap">	
+				<a href="${pageContext.request.contextPath}/post/register?bt_num=1" style="margin-left: 530px;">
+            		모임 개설하기
+            	</a>
+			</div>				
+		</c:if>
 		
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'Y' and lhj_MemberVO.m_masterauth eq 'M'}">
+			<div class="contents_wrap">
+				<a href="${pageContext.request.contextPath}/post/register?bt_num=1" style="margin-left: 530px;">
+            		모임 개설하기
+            	</a>
+			</div>				
+		</c:if>
+		
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq 'Y'}">
+			<div class="contents_wrap">
+            	<a href="${pageContext.request.contextPath}/post/register?bt_num=2" style="margin-left: 30px;">
+            		클래스 개설하기
+            	</a>
+			</div>					
+		</c:if>
+		
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'Y'}">
+			<div class="contents_wrap">
+            	<a href="${pageContext.request.contextPath}/post/register?bt_num=2" style="margin-left: 30px;">
+            		클래스 개설하기
+            	</a>
+			</div>
+		</c:if>
 	</main>
 	<%@ include file="/WEB-INF/views//main/footer.jsp"%>
 </body>

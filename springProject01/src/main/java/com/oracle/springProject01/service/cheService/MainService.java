@@ -13,4 +13,5 @@ public interface MainService {
 	int cntRecentPost(String m_id);
 	void insertRecentPost(RecentPost rpost);
 	List<RecentPost> recentPostList(RecentPost rpost);
+	List<RecentPost> imgList(RecentPost postImg);
 }

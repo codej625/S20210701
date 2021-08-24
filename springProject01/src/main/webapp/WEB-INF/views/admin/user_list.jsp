@@ -51,10 +51,10 @@
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 신고 목록
-						</a> <a class="nav-link" href="tables.html">
+						</a> <a class="nav-link" href="${pageContext.request.contextPath}/chat/admin" target='_blank'>
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> 
+							</div> 톡톡 연결
 						</a>
 					</div>
 				</div>

@@ -29,7 +29,7 @@
 				<c:forEach var="RecentPost" items="${listRpost }">	
 					<div class="side_info">
 						<a href="${pageContext.request.contextPath}/post/postListDetail?bt_num=${RecentPost.bt_num}&bc_num=${RecentPost.bc_num}&p_num=${RecentPost.p_num}">
-							<div class="info_img"><img src="${pageContext.request.contextPath}/img/people.jpg"></div>
+							<div class="info_img"><img src="${pageContext.request.contextPath}/img/2.png"></div>
 							<div class="info_item"> ${RecentPost.p_title }</div>
 						</a>
 					</div>

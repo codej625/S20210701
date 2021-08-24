@@ -78,6 +78,16 @@ public class MainServiceImpl implements MainService {
 		return listRpost;
 	}
 
+	@Override
+	public List<RecentPost> imgList(RecentPost postImg) {
+		System.out.println("********* MainServiceImpl imgList() start *********");
+		List<RecentPost> imgList = null;
+		imgList = md.recentPostList(postImg);
+		System.out.println("MainDaoImpl imgList imgList size -> " + imgList.size());
+		
+		return imgList;
+	}
+
 
 	
 }

@@ -9,6 +9,7 @@ import com.oracle.springProject01.dao.ljwDao.MemberDao;
 import com.oracle.springProject01.model.AttachmentFile;
 import com.oracle.springProject01.model.Member;
 import com.oracle.springProject01.model.MemberVo;
+import com.oracle.springProject01.model.Report;
 
 @Service("LjwService")
 public class MemberServiceImpl implements MemberService {
@@ -65,9 +66,9 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int a_total() {
 		System.out.println("MemberServiceImpl Start a_total...");
-		int a_total = md.a_total();
+		md.a_total();
 
-		return a_total;
+		return md.a_total();
 	}
 
 	@Override
@@ -125,6 +126,13 @@ public class MemberServiceImpl implements MemberService {
 		}
 
 		return result = md.authority(memberVo);
+	}
+
+	@Override
+	public int report(Report report) {
+		System.out.println("MemberServiceImpl Start report...");
+
+		return md.report(report);
 	}
 
 }

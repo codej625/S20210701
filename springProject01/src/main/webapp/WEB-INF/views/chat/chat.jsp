@@ -157,6 +157,8 @@ input {
 		$('#chatting').val("");
 	}
 </script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/header.css" />
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
 	<div id="container" class="container">

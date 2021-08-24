@@ -5,7 +5,8 @@
 <head>
  <meta charset="UTF-8">
     <title>Testing websockets</title>
-
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/header.css" />
 </head>
 <body>
 <%@ include file="/WEB-INF/views/main/header.jsp"%>
