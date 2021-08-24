@@ -8,6 +8,9 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/contents.css" />
 </head>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/modal.css" />
+</head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
 	<!-- **MAIN START** -->
@@ -27,7 +30,34 @@
 									<div class="offer_img">
 										<img src="${pageContext.request.contextPath}/upload/${post.m_img}">
 									</div>
-									<h2>${post.m_name }</h2>
+									
+									<div id="myBtn"><h2><span class="hover-id">${post.m_name}</span></h2></div>
+									<div id="myModal" class="modal">
+									    <div class="modal-content">
+									        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${post.m_name}님을 불량 회원으로 <a href="${pageContext.request.contextPath}/admin/report"><span class="hover-id">신고</span></a></h2>
+									    </div>
+									</div>
+									
+									<script>
+									var modal = document.getElementById("myModal");
+									var btn = document.getElementById("myBtn");
+									var span = document.getElementsByClassName("close");
+									
+									btn.onclick = function() {
+									  modal.style.display = "block";
+									}
+									
+									span.onclick = function() {
+									  modal.style.display = "none";
+									}
+									
+									window.onclick = function(event) {
+									  if (event.target == modal) {
+									    modal.style.display = "none";
+									  }
+									}
+									</script>
+									
 								</div>
 								<div class="offer_item">
 									<div class="item_title">이 메 일</div>

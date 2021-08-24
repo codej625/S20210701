@@ -27,7 +27,7 @@
 						<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/member/login'">개설하기</button>
 					</c:if>
 					<c:if test="${sessionID != null}">
-						<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/post/add?bt_num=1'">개설하기</button>
+						<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/main/main_select'">개설하기</button>
 					</c:if>
 				</div>
 			</div>
@@ -45,7 +45,7 @@
 						<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/member/login'">개설하기</button>
 					</c:if>
 					<c:if test="${sessionID != null}">
-						<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/post/add?bt_num=2'">개설하기</button>
+						<button class="default_bt" onclick="location.href='${pageContext.request.contextPath}/main/main_select'">개설하기</button>
 					</c:if>
 				</div>
 			</div>

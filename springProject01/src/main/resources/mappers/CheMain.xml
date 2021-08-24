@@ -38,8 +38,12 @@
 	
 	<select id="Recentlist" parameterType="RecentPost" resultType="RecentPost">
 		select * from (select rownum rn, a.* from 
-				(select * from RECENTPOST where m_id = #{m_id}  order by rp_cnt) a
-			) where rn between #{start} and #{end}
+				(select * from RECENTPOST where m_id = #{m_id}  order by rp_cnt DESC) a
+			) where rn between 1 and 5
+	</select>
+	
+	<select id="MainSelect" parameterType="Lhj_MemberVO" resultType="Lhj_MemberVO">
+		SELECT * FROM member WHERE m_id = #{m_id}
 	</select>
 	
 </mapper>

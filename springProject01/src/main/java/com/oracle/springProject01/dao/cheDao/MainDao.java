@@ -3,6 +3,7 @@ package com.oracle.springProject01.dao.cheDao;
 import java.util.List;
 
 import com.oracle.springProject01.model.ChePostVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Post;
 import com.oracle.springProject01.model.RecentPost;
 
@@ -14,4 +15,6 @@ public interface MainDao {
 	void insertRecentPost(RecentPost rpost);
 	List<RecentPost> recentPostList(RecentPost rpost);
 	List<RecentPost> imgList(RecentPost postImg);
+	Lhj_MemberVO main_select(Lhj_MemberVO lhj_MemberVO);
+
 }

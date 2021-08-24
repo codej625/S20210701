@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -138,7 +139,7 @@ public class Ljw_Controller {
 	}
 
 	// 신고 기능
-	@PostMapping(value = "/admin/report")
+	@GetMapping(value = "/admin/report")
 	public String report(Report report) {
 		System.out.println("Ljw_Controller report Start");
 		if (report != null) {

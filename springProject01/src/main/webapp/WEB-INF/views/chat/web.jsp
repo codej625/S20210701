@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>영상통화</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/main.css" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/web.css" />
 </head>
 <body>

@@ -158,7 +158,7 @@ input {
 	}
 </script>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/header.css" />
+	href="${pageContext.request.contextPath}/css/main.css" />
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
 	<div id="container" class="container">

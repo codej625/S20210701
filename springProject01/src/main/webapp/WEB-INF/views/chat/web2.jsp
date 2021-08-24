@@ -27,7 +27,8 @@
   <link rel="icon" sizes="192x192" href="../../../images/webrtc-icon-192x192.png">
   <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/web2.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/header.css" />
+  <link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/main.css" />
 
 </head>
 

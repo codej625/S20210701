@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.springProject01.model.ChePostVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Post;
 import com.oracle.springProject01.model.RecentPost;
 
@@ -22,11 +23,11 @@ public class MainDaoImpl implements MainDao {
 		try {
 			postList = session.selectList("bestListPost", post);
 		} catch (Exception e) {
-			System.out.println("!!!!MainDaoImpl bestListPost() Exception->"+e.getMessage());
+			System.out.println("!!!!MainDaoImpl bestListPost() Exception->" + e.getMessage());
 		}
 		return postList;
 	}
-	
+
 	@Override
 	public int searchTotal(String keyword) {
 		System.out.println("********* MainDaoImpl searchTotal() start *********");
@@ -34,12 +35,12 @@ public class MainDaoImpl implements MainDao {
 		try {
 			total = session.selectOne("searchTotal", keyword);
 		} catch (Exception e) {
-			System.out.println("!!!!MainDaoImpl searchTotal() Exception->"+e.getMessage());
+			System.out.println("!!!!MainDaoImpl searchTotal() Exception->" + e.getMessage());
 		}
-		
+
 		return total;
 	}
-	
+
 	@Override
 	public List<Post> searchPost(Post post) {
 		System.out.println("********* MainDaoImpl searchPost() start *********");
@@ -48,27 +49,26 @@ public class MainDaoImpl implements MainDao {
 			System.out.println("MainDaoImpl mainSearch keyword -> " + post.getKeyword());
 			listPost = session.selectList("searchlist", post);
 		} catch (Exception e) {
-			System.out.println("!!!!MainDaoImpl searchPost() Exception->"+e.getMessage());
+			System.out.println("!!!!MainDaoImpl searchPost() Exception->" + e.getMessage());
 		}
 		return listPost;
 	}
 
-	
 	@Override
 	public int cntRecentPost(String m_id) {
 		System.out.println("********* MainDaoImpl cntRecentPost() start *********");
 		int total = 0;
-		
+
 		try {
 			total = session.selectOne("cntRecent", m_id);
 			System.out.println("MainDaoImpl cntRecentPost total -> " + total);
 		} catch (Exception e) {
-			System.out.println("!!!!MainDaoImpl cntRecentPost() Exception->"+e.getMessage());
+			System.out.println("!!!!MainDaoImpl cntRecentPost() Exception->" + e.getMessage());
 		}
-		
+
 		return total;
 	}
-	
+
 	@Override
 	public void insertRecentPost(RecentPost rpost) {
 		System.out.println("********* MainDaoImpl insertRecentPost() start *********");
@@ -76,7 +76,7 @@ public class MainDaoImpl implements MainDao {
 			session.insert("insertRecent", rpost);
 			System.out.println("insertRecentPost session success!");
 		} catch (Exception e) {
-			System.out.println("!!!!MainDaoImpl insertRecentPost() Exception->"+e.getMessage());
+			System.out.println("!!!!MainDaoImpl insertRecentPost() Exception->" + e.getMessage());
 		}
 	}
 
@@ -88,9 +88,9 @@ public class MainDaoImpl implements MainDao {
 			listRpost = session.selectList("Recentlist", rpost);
 			System.out.println("MainDaoImpl recentPostList listRpost size -> " + listRpost.size());
 		} catch (Exception e) {
-			System.out.println("!!!!MainDaoImpl recentPostList() Exception->"+e.getMessage());
+			System.out.println("!!!!MainDaoImpl recentPostList() Exception->" + e.getMessage());
 		}
-		
+
 		return listRpost;
 	}
 
@@ -102,11 +102,23 @@ public class MainDaoImpl implements MainDao {
 			imgList = session.selectList("ImgList", postImg);
 			System.out.println("MainDaoImpl recentPostList listRpost size -> " + imgList.size());
 		} catch (Exception e) {
-			System.out.println("!!!!MainDaoImpl recentPostList() Exception->"+e.getMessage());
+			System.out.println("!!!!MainDaoImpl recentPostList() Exception->" + e.getMessage());
 		}
-		
+
 		return imgList;
 	}
 
-	
+	@Override
+	public Lhj_MemberVO main_select(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("********* MainDaoImpl main_select() start *********");
+		Lhj_MemberVO main_select = null;
+		try {
+			main_select = session.selectOne("MainSelect", lhj_MemberVO);
+		} catch (Exception e) {
+			System.out.println("!!!!MainDaoImpl main_select() Exception->" + e.getMessage());
+		}
+
+		return main_select;
+	}
+
 }

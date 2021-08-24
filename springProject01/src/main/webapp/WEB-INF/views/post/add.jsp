@@ -46,11 +46,9 @@
 	                        <img src="${pageContext.request.contextPath}/img/goya.jpg">
 	                    </div>
 	                    <div class="con_itm">
-							이것은
 	                    </div>
 	                    <div class="con_itm">
 	                        <div class="con_contents">
-								모임에
 	                        </div>
 	                        <div class="con_subinfo">
 								<a href="${pageContext.request.contextPath}/post/register?bt_num=1">모임개설</a>
@@ -62,11 +60,9 @@
 	                        <img src="${pageContext.request.contextPath}/img/goya.jpg">
 	                    </div>
 	                    <div class="con_itm">
-							이것은
 	                    </div>
 	                    <div class="con_itm">
 	                        <div class="con_contents">
-								클래스에
 	                        </div>
 	                        <div class="con_subinfo">
 								<a href="${pageContext.request.contextPath}/post/register?bt_num=2">클래스 개설</a>
@@ -102,10 +98,32 @@
 		</c:if>
 		<c:if test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'M'}">
 			<div class="contents_wrap">
-            	<a href="${pageContext.request.contextPath}/post/register?bt_num=1" style="margin-left: 530px;">
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
             		모임 개설하기
             	</a>
-            	<a href="${pageContext.request.contextPath}/post/register?bt_num=2" style="margin-left: 30px;">
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		클래스 개설하기
+            	</a>
+			</div>						
+		</c:if>
+		
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq 'M'}">
+			<div class="contents_wrap">
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		모임 개설하기
+            	</a>
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		클래스 개설하기
+            	</a>
+			</div>						
+		</c:if>
+		
+		<c:if test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'N'}">
+			<div class="contents_wrap">
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		모임 개설하기
+            	</a>
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
             		클래스 개설하기
             	</a>
 			</div>						
@@ -145,11 +163,9 @@
                         <img src="${pageContext.request.contextPath}/img/goya.jpg">
                     </div>
                     <div class="con_itm">
-						이것은
                     </div>
                     <div class="con_itm">
                         <div class="con_contents">
-							모임에
                         </div>
                         <div class="con_subinfo">
 							<a href="${pageContext.request.contextPath}/post/register?bt_num=1">모임개설</a>
@@ -199,11 +215,9 @@
                         <img src="${pageContext.request.contextPath}/img/goya.jpg">
                     </div>
                     <div class="con_itm">
-						이것은
                     </div>
                     <div class="con_itm">
                         <div class="con_contents">
-							모임에
                         </div>
                         <div class="con_subinfo">
 							<a href="${pageContext.request.contextPath}/post/register?bt_num=1">모임개설</a>
@@ -253,11 +267,9 @@
                         <img src="${pageContext.request.contextPath}/img/goya.jpg">
                     </div>
                     <div class="con_itm">
-						이것은
                     </div>
                     <div class="con_itm">
                         <div class="con_contents">
-							클래스에
                         </div>
                         <div class="con_subinfo">
 							<a href="${pageContext.request.contextPath}/post/register?bt_num=2">클래스 개설</a>
@@ -326,11 +338,9 @@
                         <img src="${pageContext.request.contextPath}/img/goya.jpg">
                     </div>
                     <div class="con_itm">
-						이것은
                     </div>
                     <div class="con_itm">
                         <div class="con_contents">
-							클래스에
                         </div>
                         <div class="con_subinfo">
 							<a href="${pageContext.request.contextPath}/post/register?bt_num=2">클래스 개설</a>
@@ -369,6 +379,9 @@
 				<a href="${pageContext.request.contextPath}/post/register?bt_num=1" style="margin-left: 530px;">
             		모임 개설하기
             	</a>
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		클래스 개설하기
+            	</a>
 			</div>				
 		</c:if>
 		
@@ -377,11 +390,17 @@
 				<a href="${pageContext.request.contextPath}/post/register?bt_num=1" style="margin-left: 530px;">
             		모임 개설하기
             	</a>
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		클래스 개설하기
+            	</a>
 			</div>				
 		</c:if>
 		
 		<c:if test="${lhj_MemberVO.m_meetingauth eq 'N' and lhj_MemberVO.m_masterauth eq 'Y'}">
 			<div class="contents_wrap">
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		모임 개설하기
+            	</a>
             	<a href="${pageContext.request.contextPath}/post/register?bt_num=2" style="margin-left: 30px;">
             		클래스 개설하기
             	</a>
@@ -390,6 +409,9 @@
 		
 		<c:if test="${lhj_MemberVO.m_meetingauth eq 'M' and lhj_MemberVO.m_masterauth eq 'Y'}">
 			<div class="contents_wrap">
+            	<a href="${pageContext.request.contextPath}/member/mypage_mycertification" style="margin-left: 30px;">
+            		모임 개설하기
+            	</a>
             	<a href="${pageContext.request.contextPath}/post/register?bt_num=2" style="margin-left: 30px;">
             		클래스 개설하기
             	</a>

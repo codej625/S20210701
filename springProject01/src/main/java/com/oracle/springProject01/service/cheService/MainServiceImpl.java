@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.oracle.springProject01.dao.cheDao.MainDao;
 import com.oracle.springProject01.model.ChePostVO;
+import com.oracle.springProject01.model.Lhj_MemberVO;
 import com.oracle.springProject01.model.Post;
 import com.oracle.springProject01.model.RecentPost;
 
@@ -21,20 +22,20 @@ public class MainServiceImpl implements MainService {
 		System.out.println("********* MainServiceImpl bestListPost() start *********");
 		List<Post> postList = null;
 		postList = md.bestListPost(post);
-		
+
 		return postList;
 	}
-	
+
 	// 검색 개수 조회
 	@Override
 	public int searchTotal(String keyword) {
 		System.out.println("********* MainServiceImpl searchTotal() start *********");
 		int total = 0;
 		total = md.searchTotal(keyword);
-		
+
 		return total;
 	}
-	
+
 	// 검색
 	@Override
 	public List<Post> searchPost(Post post) {
@@ -42,10 +43,10 @@ public class MainServiceImpl implements MainService {
 		List<Post> listPost = null;
 		System.out.println("MainServiceImpl mainSearch keyword -> " + post.getKeyword());
 		listPost = md.searchPost(post);
-		
+
 		return listPost;
 	}
-	
+
 	// 최근 본 게시물 삽입
 	@Override
 	public void insertRecentPost(RecentPost rpost) {
@@ -64,7 +65,7 @@ public class MainServiceImpl implements MainService {
 		int total = 0;
 		total = md.cntRecentPost(m_id);
 		System.out.println("MainServiceImpl cntRecentPost total -> " + total);
-		
+
 		return total;
 	}
 
@@ -74,7 +75,7 @@ public class MainServiceImpl implements MainService {
 		List<RecentPost> listRpost = null;
 		listRpost = md.recentPostList(rpost);
 		System.out.println("MainDaoImpl recentPostList listRpost size -> " + listRpost.size());
-		
+
 		return listRpost;
 	}
 
@@ -84,10 +85,15 @@ public class MainServiceImpl implements MainService {
 		List<RecentPost> imgList = null;
 		imgList = md.recentPostList(postImg);
 		System.out.println("MainDaoImpl imgList imgList size -> " + imgList.size());
-		
+
 		return imgList;
 	}
 
+	@Override
+	public Lhj_MemberVO main_select(Lhj_MemberVO lhj_MemberVO) {
+		System.out.println("********* MainServiceImpl main_select() start *********");
+		lhj_MemberVO = md.main_select(lhj_MemberVO);
+		return lhj_MemberVO;
+	}
 
-	
 }
