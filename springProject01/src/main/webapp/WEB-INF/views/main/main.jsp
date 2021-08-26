@@ -6,6 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
+<style type="text/css">
+	.best5 {
+		font-family: 'Single Day', cursive;
+	    font-size: 27px;
+	    }
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/main/header.jsp"%>
@@ -15,10 +24,8 @@
 		<div class="contennts_wrap">
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url('${pageContext.request.contextPath}/img/KakaoTalk_20210815_022348582.png')">
-					<h1>재테크?</h1>
-                    <h2>부업?</h2>
-                    <h3>교육?</h3>
+					style="background-image: url('${pageContext.request.contextPath}/img/모임모임.jpg')">
+                    <h3>취미?</h3>
                     <p>모임에 참여하고싶다면!</p>
 				</div>
 				<div class="ex_btn">
@@ -33,10 +40,8 @@
 			</div>
 			<div class="ex_section">
 				<div class="ex_img"
-					style="background-image: url('${pageContext.request.contextPath}/img/KakaoTalk_20210815_022412738.png')">
-					<h1>공예</h1>
-                    <h2>운동</h2>
-                    <h3>취미</h3>
+					style="background-image: url('${pageContext.request.contextPath}/img/클래스클래스.jpg')">
+                    <h3>교육?</h3>
                     <p>클래스! 우리 함께 배워봐요!</p>
 				</div>
 				<div class="ex_btn">
@@ -51,7 +56,7 @@
 			</div>
 			
 			<div class="ex_section">
-                <div>All the Best 모임.ver</div>
+                <div class="best5">All the Best 모임.ver</div>
 	            <div class="class_wrap">
 	                <c:forEach var="post1" items="${bestList1 }">
 	                    <div class="class_item">
@@ -65,7 +70,7 @@
 			</div>
 			
 			<div class="ex_section">
-                <div>All the Best 모임.ver</div>
+                <div class="best5">All the Best 모임.ver</div>
 	            <div class="class_wrap">
 	           		<c:forEach var="post2" items="${bestList2 }">
 		            	<div class="class_item">

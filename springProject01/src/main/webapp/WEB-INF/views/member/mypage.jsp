@@ -115,7 +115,6 @@
 <!-- 					</div> -->
 <!-- 				</div> -->
 			</div>
-			<div class="res_section"></div>
 		</div>
 		</form>
 	</main>

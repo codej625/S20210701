@@ -9,5 +9,6 @@
 		<typeAlias alias="LjwAttachmentFile" type="com.oracle.springProject01.model.AttachmentFile"/>
 		<typeAlias alias="Reply" type="com.oracle.springProject01.model.Reply"/>
 		<typeAlias alias="RecentPost" type="com.oracle.springProject01.model.RecentPost"/>
+		<typeAlias alias="Report" type="com.oracle.springProject01.model.Report"/>
 	</typeAliases>
 </configuration>

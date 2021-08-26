@@ -6,7 +6,7 @@ main {
 .aside_wrap {
 	position: relative;
 	width: 150px;
-	height: 400px;
+	height: 700px;
 	border: 1px solid #eee;
 	border-radius: 3px;
 	margin: 30px 60px;
@@ -35,8 +35,8 @@ main {
 	padding-top: 5px;
 }
 .aside_wrap .side_info .info_img img {
-	width: 170%;
-    height: 100%;
+	width: 100%;
+    height: 90%;
 }
 .aside_wrap .side_info .info_img i {
 	padding: 30px;

@@ -6,8 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/header.css" />
+<style type="text/css">
+	.tok {
+		font-family: 'Nanum Square', sans-serif;
+		}
+</style>
 <script type="text/javascript">
 	function innerHTMLTest(){
 		var randValNode = document.getElementById("rand-val");
@@ -39,7 +45,7 @@
 							<li><a href="${pageContext.request.contextPath}/member/mypage"><span style="color:#269F70;">${sessionID}회원님</span></a></li>
 							<li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 						</c:if>
-						<li><a href="${pageContext.request.contextPath}/chat/user">톡톡문의연결</a></li>
+						<li><a href="${pageContext.request.contextPath}/chat/user"><span class="tok">톡톡문의연결</span></a></li>
 <%-- 						<li><a href="${pageContext.request.contextPath}/chat/chat">라이브톡</a></li>
  --%>					</ul>
 				</div>
@@ -128,7 +134,7 @@
 				<i class="fas fa-angle-right fa-2x"></i>
 			</div>
 			<div class="filter_item">
-				<a href="${pageContext.request.contextPath}/post/category?bt_num=1&m_name=${lhj_MemberVO.m_name}">모임</a>
+				<a class="a_name" href="${pageContext.request.contextPath}/post/category?bt_num=1&m_name=${lhj_MemberVO.m_name}">모임</a>
 				<ul class="select_box">
 					<li><a
 						href="${pageContext.request.contextPath}/post/category?bt_num=1&bc_num=1">게임/만화/애니</a></li>
@@ -157,7 +163,7 @@
 				</ul>
 			</div>
 			<div class="filter_item">
-				<a href="${pageContext.request.contextPath}/post/category?bt_num=2">클래스</a>
+				<a class="a_name" href="${pageContext.request.contextPath}/post/category?bt_num=2">클래스</a>
 				<ul class="select_box">
 					<li><a
 						href="${pageContext.request.contextPath}/post/category?bt_num=2&bc_num=1">게임/만화/애니</a></li>

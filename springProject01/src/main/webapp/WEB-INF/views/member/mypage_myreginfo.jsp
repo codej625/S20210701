@@ -139,7 +139,7 @@
 								
 								<input type="submit" value="신청 취소">
 							</form>
-							<input type="button" value="채팅" onclick="location.href='${pageContext.request.contextPath}/chat/chat'">
+							<input type="button" value="채팅" onclick="location.href='${pageContext.request.contextPath}/chat/chat2?bt_num=${lhj_MemberVO.bt_num }&bc_num=${lhj_MemberVO.bc_num }&p_num=${lhj_MemberVO.p_num}'">
 						</td>
 					</tr>
 				</c:forEach>	
@@ -249,8 +249,6 @@
 				</c:forEach>
 				</table>
 			</div>
-
-			<div class="res_section"></div>
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views//main/footer.jsp"%>

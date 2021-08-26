@@ -131,8 +131,34 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int report(Report report) {
 		System.out.println("MemberServiceImpl Start report...");
+		int result = 0;
+		result = md.report(report);
+		return result;
+	}
 
-		return md.report(report);
+	@Override
+	public int report_total() {
+		System.out.println("MemberServiceImpl Start report_total...");
+		return md.report_total();
+	}
+
+	@Override
+	public List<Report> report_list(Report report) {
+		System.out.println("MemberServiceImpl Start report_list...");
+		List<Report> report_list = md.report_list(report);
+		return report_list;
+	}
+
+	@Override
+	public int report_y(Report report) {
+		System.out.println("MemberServiceImpl Start report_y...");
+		return md.report_y(report);
+	}
+
+	@Override
+	public Report report_select(Report report) {
+		System.out.println("MemberServiceImpl Start report_select...");
+		return md.report_select(report);
 	}
 
 }

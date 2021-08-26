@@ -58,8 +58,11 @@ public class Pmj_Controller {
 
 	// 관리자랑 대화하기
 	@RequestMapping("/chat/user")
-	public String user() {
+	public String user(HttpServletRequest request, Model model, Lhj_MemberVO lhj_MemberVO) {
 		System.out.println("Pmj_Controller userchat start");
+		String m_id = (String) request.getSession().getAttribute("sessionID");
+		lhj_MemberVO = es.selectMypage(m_id);
+		model.addAttribute(lhj_MemberVO);
 		return "chat/user";
 	}
 

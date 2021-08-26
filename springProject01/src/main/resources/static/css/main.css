@@ -1,43 +1,67 @@
 @import url(/css/header.css);
+
 @import url(/css/foot.css);
+
 @import url(/css/aside.css);
+
 body {
-    font-size: 15px;
+	font-size: 15px;
 	font-weight: 400;
-    font-family: 'Nanum Square', sans-serif;
+	font-family: 'Nanum Square', sans-serif;
 	line-height: 1.8em;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
 	color: #3c3c3c;
 	margin: 0px;
 	padding: 0px;
 }
+
 @font-face {
-    font-family: 'Katuri';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/Katuri.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-@font-face {
-	font-family: 'UhBeeKeongKeong';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeKeongKeong.woff') format('woff');
+	font-family: 'Katuri';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_13@1.0/Katuri.woff')
+		format('woff');
 	font-weight: normal;
 	font-style: normal;
-	}
+}
+
+@font-face {
+	font-family: 'UhBeeKeongKeong';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeKeongKeong.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 ul, li {
 	list-style: none;
 	margin: 0px;
 	padding: 0px;
 }
+
 a {
 	color: #3c3c3c;
 	text-decoration: none;
+	font-size: 15px;
 }
+
+.a_name {
+	color: #eee;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+a:hover {
+	color: #69d0b8;
+}
+
 main {
 	position: relative;
 	margin-left: 300px;
 	display: flex;
 }
+
 .ex_section {
 	position: relative;
 	display: flex;
@@ -47,14 +71,17 @@ main {
 	vertical-align: top;
 	margin: 30px auto 100px;
 }
+
 .ex_section .ex_img {
 	height: 550px;
 	position: relative;
 	background-position: center center;
-	background-size: 30%;
+	background-size: 55%;
 	background-repeat: no-repeat;
 	background-position: 15% 80%;
+	border-top: 5px solid #efefef;
 }
+
 .ex_section .ex_img h1 {
 	position: absolute;
 	font-size: 25px;
@@ -62,6 +89,7 @@ main {
 	padding: 150px 0px 0px 100px;
 	color: rgba(0, 0, 0, 0.3);
 }
+
 .ex_section .ex_img h2 {
 	position: absolute;
 	font-size: 30px;
@@ -69,6 +97,7 @@ main {
 	padding: 200px 0px 0px 0px;
 	color: rgba(0, 0, 0, 0.8);
 }
+
 .ex_section .ex_img h3 {
 	position: absolute;
 	font-size: 80px;
@@ -76,6 +105,7 @@ main {
 	padding: 10px 0px 0px 0px;
 	color: rgba(0, 0, 0, 0.6);
 }
+
 .ex_section .ex_img p {
 	position: absolute;
 	font-size: 55px;
@@ -83,13 +113,15 @@ main {
 	padding: 180px 0px 0px 680px;
 	font-family: 'Katuri';
 }
+
 .ex_section .ex_btn {
 	position: absolute;
 	margin: 430px 750px;
 	cursor: pointer;
 	display: flex;
 }
-.ex_section .ex_btn a{
+
+.ex_section .ex_btn a {
 	font-size: 30px;
 	font-weight: 700;
 	cursor: pointer;
@@ -98,48 +130,60 @@ main {
 	color: #eee;
 	padding-right: 60px;
 }
-.ex_section .ex_btn input{
+
+.ex_section .ex_btn input {
 	cursor: pointer;
 }
+
 .ex_section .ex_title {
 	font-size: 28px;
 	text-align: center;
 	padding-top: 20px;
 }
+
 .ex_section .class_wrap {
 	position: absolute;
 	display: flex;
 	flex-direction: row;
 	margin-left: 35px;
+	border-top: 5px solid #efefef;
 }
+
 .ex_section .class_wrap .class_item {
 	position: relative;
 	width: 230px;
-	height: 330px;
+	height: auto;
 	margin: 110px 20px 110px 0px;
 	cursor: pointer;
-	border: 1px solid #eee;
+	border: 4px solid #eee;
 	border-radius: 3px;
 }
+
 .ex_section .class_wrap .class_item .class_img {
 	width: 210px;
-    height: 280px;
-    overflow: hidden;
-    box-sizing: border-box;
-    display: inline-block;
+	height: 280px;
+	overflow: hidden;
+	box-sizing: border-box;
+	display: inline-block;
 	margin: 10px 10px;
 }
-.ex_section .class_wrap .class_item .class_img img{
-    width: 170%;
-    height: 100%;
+
+.ex_section .class_wrap .class_item .class_img img {
+	width: 170%;
+	height: 100%;
 }
+
 .ex_section .class_wrap .class_item .class_info {
 	text-align: center;
 	margin-top: -15px;
 	font-size: 13px;
 	font-weight: 400;
 }
-::-webkit-file-upload-button { cursor:pointer; }
+
+::-webkit-file-upload-button {
+	cursor: pointer;
+}
+
 .default_bt {
 	box-sizing: border-box;
 	cursor: pointer;
@@ -151,6 +195,6 @@ main {
 	margin-right: 30px;
 	width: 200px;
 	height: 50px;
-	background-color: #269F70;
+	background-color: #51bfa6;
 	color: #eee;
 }

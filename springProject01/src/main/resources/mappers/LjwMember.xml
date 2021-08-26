@@ -65,8 +65,4 @@
 		WHERE m_id = #{m_id, jdbcType = VARCHAR} AND m_withdrawal = 'N'
 	</update>
 	
-	<insert id="ljw_report" parameterType="com.oracle.springProject01.model.Report">
-		INSERT INTO report(r_num, m_id, r_content) VALUES(report_seq.nextval, #{m_id}, #{r_content})
-	</insert>
-	
 </mapper>

@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -98,7 +97,11 @@ public class Ljw_Controller {
 	public String authority(MemberVo memberVo, Model model) {
 		System.out.println("Ljw_Controller authority Start");
 		int update = 0;
-
+		MemberVo memberVo2 = new MemberVo();
+		memberVo2.setM_masterauth(memberVo.getM_masterauth());
+		memberVo2.setM_meetingauth(memberVo.getM_meetingauth());
+		System.out.println("memberVo2.getM_masterauth()->" + memberVo2.getM_masterauth());
+		System.out.println("memberVo2.getM_meetingauth()->" + memberVo2.getM_meetingauth());
 		if ((memberVo != null)) {
 			// 두개의 필드 속에 값이 없어야 실행 가능한 조건
 			if (memberVo.getM_meetingauth() == null && memberVo.getM_masterauth() == null) {
@@ -138,13 +141,66 @@ public class Ljw_Controller {
 		return "forward:/admin/admin_main";
 	}
 
-	// 신고 기능
-	@GetMapping(value = "/admin/report")
-	public String report(Report report) {
-		System.out.println("Ljw_Controller report Start");
-		if (report != null) {
-			ms.report(report);
-		}
-		return "member/mypage";
+	// 신고 게시판
+	@RequestMapping(value = "/post/report")
+	public String report_in(Report report, Model model) {
+		System.out.println("Ljw_Controller report_in Start");
+		model.addAttribute(report);
+		System.out.println("report.getM_id()->" + report.getM_id());
+		return "post/report";
 	}
+
+	// 신고 기능
+	@PostMapping(value = "/admin/report")
+	public String report(Report report, String m_id, Model model) {
+		int result = 0;
+		System.out.println("String m_id->" + m_id);
+		System.out.println("Ljw_Controller report Start");
+		System.out.println("report.getM_id()->" + report.getM_id());
+		System.out.println("report.getR_content()->" + report.getR_content());
+		if (report != null) {
+			result = ms.report(report);
+			model.addAttribute(result);
+		}
+		return "post/report";
+	}
+
+	// Report page
+	@RequestMapping(value = "/admin/report_list")
+	public String report_list(Report report, String currentPage, Model model) {
+		System.out.println("Ljw_Controller report_list Start");
+
+		int total = ms.report_total();
+		System.out.println("Ljw_Controller total=>" + total);
+
+		System.out.println("currentPage=>" + currentPage);
+		LjwPaging pg = new LjwPaging(total, currentPage);
+		report.setStart(pg.getStart());
+		report.setEnd(pg.getEnd());
+		List<Report> report_list = ms.report_list(report);
+
+		model.addAttribute("report_list", report_list);
+		model.addAttribute("total", total);
+		model.addAttribute("pg", pg);
+
+		return "admin/report_list";
+	}
+
+	// 신고 승인
+	@PostMapping(value = "/admin/report_list")
+	public String report_y(Report report, Model model) {
+		System.out.println("Ljw_Controller report_y Start");
+		int result = 0;
+		if (report != null) {
+			// m_id value check
+			System.out.println("report.setM_id(m_id)->" + report.getM_id());
+			report = ms.report_select(report);
+			// r_result value "Y" set
+			report.setR_result("Y");
+			result = ms.report_y(report);
+		}
+		model.addAttribute(result);
+		return "/admin/admin_main";
+	}
+
 }

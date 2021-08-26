@@ -273,8 +273,10 @@ public class Lhj_Controller {
 
 		Lhj_MemberVO lhj_MemberVO2 = ms.find_m_pw(lhj_MemberVO);
 		if (lhj_MemberVO2 == null) {
+			model.addAttribute(lhj_MemberVO);
 			model.addAttribute("check", 1);
 		} else {
+			model.addAttribute(lhj_MemberVO);
 			model.addAttribute("check", 0);
 			model.addAttribute("m_pw", lhj_MemberVO2.getM_pw());
 		}
@@ -368,6 +370,7 @@ public class Lhj_Controller {
 		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		m_id = sessionID;
 		Lhj_MemberVO lhj_MemberVO = ms.selectMypage(m_id);
+		model.addAttribute(sessionID);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 
 		return "/member/mypage_changePW";
@@ -381,6 +384,8 @@ public class Lhj_Controller {
 		String sessionID = (String) request.getSession().getAttribute("sessionID");
 		m_id = sessionID;
 		lhj_MemberVO = ms.myPWchange(lhj_MemberVO);
+		System.out.println("lhj_MemberVO->" + lhj_MemberVO.getM_id());
+		model.addAttribute(sessionID);
 		model.addAttribute("lhj_MemberVO", lhj_MemberVO);
 
 		return "/member/mypage_changePW";
@@ -583,7 +588,7 @@ public class Lhj_Controller {
 		// 넘어온 m_id값 확인용
 		System.out.println(tomail);
 		// 보내는 사람 이메일
-		String setfrom = "dkwksla@gmail.com";
+		String setfrom = "codej625s@gmail.com";
 		String title = "인증번호 입니다.";
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
@@ -643,7 +648,6 @@ public class Lhj_Controller {
 			// 데이터 값을 DB에 저장하기 위해 DTO 단위로 Service로 보냄
 			int result = ms.certification(attachmentFileVO);
 			System.out.println("attachmentFileVO->m_id: " + attachmentFileVO.getM_id());
-			model.addAttribute("result", result);
 			model.addAttribute("lhj_MemberVO", attachmentFileVO);
 			return "member/mypage";
 
@@ -676,16 +680,6 @@ public class Lhj_Controller {
 			model.addAttribute("lhj_MemberVO", attachmentFileVO);
 		}
 			return "member/mypage";
-//		} else if (attachmentFileVO.getM_mail().equals("") || attachmentFileVO.getM_mail() != emali.getM_mail()) {
-//			attachmentFileVO.setM_id(m_id);
-//			model.addAttribute("lhj_MemberVO", attachmentFileVO);
-//			System.out.println("attachmentFileVO.getM_mail()->" + attachmentFileVO.getM_mail());
-//			System.out.println("error");
-//			return "member/mypage";
-//		} else {
-//			attachmentFileVO.setM_id(m_id);
-//			model.addAttribute("lhj_MemberVO", attachmentFileVO);
-//			return "member/mypage";
 	}
 
 }

@@ -22,9 +22,17 @@ public interface MemberDao {
 	int a_total();
 
 	MemberVo authorityList(MemberVo memberVo);
-	
+
 	int authority(MemberVo member_list);
 	
+	int report_y(Report report);
+
 	int report(Report report);
+
+	int report_total();
+
+	List<Report> report_list(Report report);
+	
+	Report report_select(Report report);
 
 }

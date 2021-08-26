@@ -253,7 +253,6 @@
 				</table>
 				</div>
 			</div>
-			<div class="res_section"></div>
 		</div>
 	</main>
 	<%@ include file="/WEB-INF/views//main/footer.jsp"%>

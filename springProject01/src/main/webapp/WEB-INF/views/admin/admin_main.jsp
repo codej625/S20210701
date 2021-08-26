@@ -50,7 +50,7 @@
 						</div>
 
 						<div class="sb-sidenav-menu-heading">기타 기능</div>
-						<a class="nav-link" href="charts.html">
+						<a class="nav-link" href="${pageContext.request.contextPath}/admin/report_list">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
 							</div> 신고 목록

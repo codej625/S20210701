@@ -26,6 +26,16 @@ public interface MemberService {
 	int authority(MemberVo memberVo);
 
 	int authority2(MemberVo memberVo);
-	
+
 	int report(Report report);
+
+	int report_total();
+
+	List<Report> report_list(Report report);
+	// 신고 조회
+	Report report_select(Report report);
+	
+	int report_y(Report report);
+	
+	
 }

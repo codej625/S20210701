@@ -145,4 +145,51 @@ public class MemberDaoImpl implements MemberDao {
 		return result;
 	}
 
+	@Override
+	public int report_total() {
+		System.out.println("MemberDaoImpl report_total Start");
+		int result = 0;
+		try {
+			result = session.selectOne("ljw_reportTotal");
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl report_total Exception->" + e.getMessage());
+		}
+		return result;
+	}
+
+	@Override
+	public List<Report> report_list(Report report) {
+		System.out.println("MemberDaoImpl report_list Start");
+		List<Report> report_list = null;
+		try {
+			report_list = session.selectList("ljw_reportList", report);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl report_list Exception->" + e.getMessage());
+		}
+		return report_list;
+	}
+
+	@Override
+	public int report_y(Report report) {
+		System.out.println("MemberDaoImpl report_y Start");
+		int report_y = 0;
+		try {
+			report_y = session.update("ljw_report_y", report);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl report_y Exception->" + e.getMessage());
+		}
+		return report_y;
+	}
+
+	@Override
+	public Report report_select(Report report) {
+		System.out.println("MemberDaoImpl report_select Start");
+		try {
+			report = session.selectOne("ljw_report_select", report);
+		} catch (Exception e) {
+			System.out.println("MemberDaoImpl report_select Exception->" + e.getMessage());
+		}
+		return report;
+	}
+
 }

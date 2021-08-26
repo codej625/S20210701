@@ -23,6 +23,17 @@ ul, li {
 a {
 	color: #3c3c3c;
 	text-decoration: none;
+	font-size: 15px;
+}
+
+.a_name {
+	color: #eee;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+a:hover {
+	color: #69d0b8;
 }
 
 .contents_wrap {
@@ -39,6 +50,9 @@ a {
 	margin: 0px auto;
 	border: 1px solid #3c3c3c;
 	border-radius: 5px;
+	width: 1300px;
+    position: relative;
+    left: -14px;
 }
 
 .contents_wrap .fil_section .fil_title {
@@ -67,6 +81,9 @@ a {
 	background-color: #ffffff;
 	border: 1px solid #3c3c3c;
 	padding-bottom: 120px;
+    width: 1300px;
+    position: relative;
+    left: 60px;
 }
 
 .con_section .con_item {
@@ -162,8 +179,11 @@ a {
 	border-radius: 3px;
 	background-color: #EFEFEF;
 	padding: 10px 30px;
+	position: relative;
+	left: -47px;
+	top: -8px;
 }
 
 .select {
-	margin: 500px;
+	margin-left: 500px;
 }

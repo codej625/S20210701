@@ -34,7 +34,7 @@
 									<div id="myBtn"><h2><span class="hover-id">${post.m_name}</span></h2></div>
 									<div id="myModal" class="modal">
 									    <div class="modal-content">
-									        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${post.m_name}님을 불량 회원으로 <a href="${pageContext.request.contextPath}/admin/report"><span class="hover-id">신고</span></a></h2>
+									        <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${post.m_name}님을 불량 회원으로 <span class="hover-id" onclick="showPopup();">신고</span></h2>
 									    </div>
 									</div>
 									
@@ -56,6 +56,11 @@
 									    modal.style.display = "none";
 									  }
 									}
+									
+									function showPopup(){
+											var url="${pageContext.request.contextPath}/post/report?m_id=${post.m_id}";
+								            window.open(url,"popup","width=400, height=300, top=10, left=10");
+								    }
 									</script>
 									
 								</div>
